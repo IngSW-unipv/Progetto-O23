@@ -4,7 +4,7 @@
 
 il gruppo dei MipsTips intende realizzare un software in grado di gestire un albergo
 il suddetto avrà le seguenti funzionalità:
--Registrazione cliente
--Gestione Personale 
--Gestione prenotazione stanze
--Login/Logout dalla piattaforma
+Registrazione cliente
+Gestione Personale 
+Gestione prenotazione stanze
+Login/Logout dalla piattaforma
