@@ -1,4 +1,3 @@
 
 # Progetto-O23
-![Progetto senza titolo](https://user-images.githubusercontent.com/119416593/222482968-04848149-4576-4e08-b035-75ba5a733f62.png)
-
+![logo](https://user-images.githubusercontent.com/119416593/222483582-4878bacd-6fdc-44dd-869a-b152037e5e60.png)
