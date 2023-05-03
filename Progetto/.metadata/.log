@@ -342,3 +342,67 @@ Caused by: org.eclipse.jgit.errors.NoRemoteRepositoryException: file:///C:\Users
 	at org.eclipse.jgit.transport.Transport.open(Transport.java:551)
 	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:156)
 	... 4 more
+
+!ENTRY org.eclipse.egit.core 4 0 2023-05-03 19:08:46.453
+!MESSAGE An exception occurred during push on URI https://github.com/IngSW-unipv/Progetto-O23.git: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:548)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:437)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:127)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1335)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:191)
+	at org.eclipse.egit.ui.internal.push.ConfirmationPage$2.run(ConfirmationPage.java:210)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+
+!ENTRY org.eclipse.egit.core 4 0 2023-05-03 19:09:18.807
+!MESSAGE An exception occurred during push on URI https://github.com/IngSW-unipv/Progetto-O23.git: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:147)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:217)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:548)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:437)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:127)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1335)
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:137)
+	... 4 more
+
+!ENTRY org.eclipse.egit.ui 4 0 2023-05-03 19:09:18.809
+!MESSAGE Can't connect to any repository: https://github.com/IngSW-unipv/Progetto-O23.git (https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/')
+
+!ENTRY org.eclipse.egit.core 4 0 2023-05-03 19:10:14.467
+!MESSAGE An exception occurred during push on URI https://github.com/IngSW-unipv/Progetto-O23.git: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:147)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:217)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:548)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:437)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:127)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1335)
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:137)
+	... 4 more
+
+!ENTRY org.eclipse.egit.ui 4 0 2023-05-03 19:10:14.468
+!MESSAGE Can't connect to any repository: https://github.com/IngSW-unipv/Progetto-O23.git (https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/')
+
+!ENTRY org.eclipse.egit.core 4 0 2023-05-03 19:10:38.795
+!MESSAGE An exception occurred during push on URI https://github.com/IngSW-unipv/Progetto-O23.git: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/IngSW-unipv/Progetto-O23.git: git-receive-pack not permitted on 'https://github.com/IngSW-unipv/Progetto-O23.git/'
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:548)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:437)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:127)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1335)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:191)
+	at org.eclipse.egit.ui.internal.push.ConfirmationPage$2.run(ConfirmationPage.java:210)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)

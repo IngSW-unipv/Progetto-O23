@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="GitSelectRepositoryPage.lastRepository" value="C:\Users\chris\git\UniPro\.git"/>
+	<item key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel" value="0"/>
 	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://github.com/IngSW-unipv/Progetto-O23.git"/>
+		<item value="file://C:\Users\chris\OneDrive\Desktop\UniPro\Progetto"/>
 		<item value="file://C:\Users\chris\git\UniPro\Progetto"/>
 	</list>
+	<list key="EGit.KnownHosts">
+		<item value="git.eclipse.org"/>
+		<item value="github.com"/>
+		<item value="bitbucket.org"/>
+	</list>
+	<list key="CommitDialog.authorValues">
+		<item value="BiussUni &lt;christian.biuso01@universtiadipavia.it&gt;"/>
+	</list>
+	<list key="CommitDialog.committerValues">
+		<item value="BiussUni &lt;christian.biuso01@universtiadipavia.it&gt;"/>
+	</list>
 	<section name="GitImportWizard">
+		<item key="GitProjectsImportPage.STORE_NESTED_PROJECTS" value="true"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
+		<item key="HORIZONTAL_SASH_FORM_WEIGHT" value="200,200"/>
+		<item key="STAGING_SASH_FORM_WEIGHT" value="200,200"/>
+		<item key="sortItemState" value="false"/>
+	</section>
+	<section name="GitCommitMessageComponent">
 	</section>
 </section>
