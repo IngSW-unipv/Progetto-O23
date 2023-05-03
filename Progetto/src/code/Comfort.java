@@ -9,10 +9,10 @@ public class Comfort {
 //Costruttore
 	
 public Comfort(String id_Comfort, String tipo, float prezzo) {
-		this.id_Comfort = id_Comfort;
-		this.Tipo = tipo;
-		this.Prezzo = prezzo;
-	}
+	this.id_Comfort = id_Comfort;
+	this.Tipo = tipo;
+	this.Prezzo = prezzo;
+}
 
 
 //stampa informazioni del comfort
