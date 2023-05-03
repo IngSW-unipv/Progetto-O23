@@ -11,7 +11,7 @@ public class User {
 	private String Nome;
 	private String Cognome;
 	private LocalDate DataDiNascita;
-	private int Età;
+	private int Eta;
 	private String NumTelefono; //string because that can accept foreign numbers, so the prefix must be accepted
 	private String Email;
 	
@@ -19,7 +19,7 @@ public class User {
 	private String Password;
 
 	private int Id_User;
-	private int Id_Città;
+	private int Id_Citta;
 	private int Id_prova;
 	private int Id_nazione;
 	private int Id_tipo;
@@ -38,7 +38,7 @@ public User(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String 
 	//calculate age from age of born;
 	  LocalDate oggi = LocalDate.now();
       Period periodo = Period.between(DataDiNascita, oggi);
-      this.Età = periodo.getYears();
+      this.Eta = periodo.getYears();
     //finish
       
     //telephone number conditions
@@ -107,13 +107,13 @@ public void setDataDiNascita(LocalDate dataDiNascita) {
 }
 
 
-public int getEtà() {
-	return Età;
+public int getEta() {
+	return Eta;
 }
 
 
-public void setEtà(int età) {
-	Età = età;
+public void setEta(int eta) {
+	Eta = eta;
 }
 
 
@@ -164,12 +164,12 @@ public void setId_User(int id_User) {
 	Id_User = id_User;
 }
 
-public int getId_Città() {
-	return Id_Città;
+public int getId_Citta() {
+	return Id_Citta;
 }
 
-public void setId_Città(int id_Città) {
-	Id_Città = id_Città;
+public void setId_Citta(int id_Citta) {
+	Id_Citta = id_Citta;
 }
 
 public int getId_prova() {
