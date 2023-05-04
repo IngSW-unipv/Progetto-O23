@@ -1,4 +1,4 @@
-package code;
+package interfacciaGrafica;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
