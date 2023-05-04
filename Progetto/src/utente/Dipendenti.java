@@ -4,7 +4,7 @@ public class Dipendenti {
 	private int id_L;
 	private float Stipendio;
 
-//Costruttore
+//COSTRUTTORE
 	
 public Dipendenti(int id_L, float stipendio) {
 	this.id_L = id_L;
@@ -12,7 +12,7 @@ public Dipendenti(int id_L, float stipendio) {
 	
 }
 	
-//Getter e Setter
+//GETTER SETTER
 	public int getId_L() {
 		return id_L;
 	}
