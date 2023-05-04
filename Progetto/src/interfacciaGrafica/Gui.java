@@ -124,11 +124,7 @@ public class Gui extends JFrame {
     });
     }
 
-    public static void main(String[] args) {
-        // Creare un'istanza della finestra GUI
-        Gui Finestra = new Gui();
-    }
-    
+   
     class FinestraNuova extends JFrame {
 
         public FinestraNuova(String titolo) {
