@@ -6,4 +6,5 @@
  *
  */
 module Albergo {
+	requires java.desktop;
 }

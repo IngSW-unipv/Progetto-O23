@@ -1,4 +1,4 @@
-package code;
+package utente;
 
 public class Dipendenti {
 	private int id_L;
