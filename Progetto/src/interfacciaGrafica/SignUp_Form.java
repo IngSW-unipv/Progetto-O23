@@ -1,5 +1,8 @@
 package interfacciaGrafica;
 import javax.swing.*;
+
+import com.toedter.calendar.JDateChooser;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -10,6 +13,7 @@ public class SignUp_Form extends JFrame implements ActionListener {
     private JTextField CFCampo;
     private JTextField DataNascitaCampo;
     
+    private JDateChooser DateChooser;
     
     private JPasswordField passwordCampo;
     private JButton registratiButton;
@@ -21,7 +25,12 @@ public class SignUp_Form extends JFrame implements ActionListener {
      // Centrare la finestra nella schermata
         setLocationRelativeTo(null);
 
+        
+        //creazione calendar
+        DateChooser = new JDateChooser();
+        DateChooser.setBounds(320,90,200,30);
 
+        
         // Creazione campi di testo
         nomeCampo = new JTextField(20);
         cognomeCampo = new JTextField(20);
@@ -56,7 +65,7 @@ public class SignUp_Form extends JFrame implements ActionListener {
         panel.add(cognomeLabel);
         panel.add(cognomeCampo);
         panel.add(DataNascitaLabel);
-        panel.add(DataNascitaCampo);
+        panel.add(DateChooser);
         panel.add(CFLabel);
         panel.add(CFCampo);
         panel.add(emailLabel);

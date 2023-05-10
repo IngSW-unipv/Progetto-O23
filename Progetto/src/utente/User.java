@@ -10,7 +10,7 @@ public class User {
 	private String Cf;
 	private String Nome;
 	private String Cognome;
-	private LocalDate DataDiNascita;
+	private java.sql.Date DataDiNascita;
 	private int Eta;
 	private String NumTelefono; //string because that can accept foreign numbers, so the prefix must be accepted
 	private String Email;
@@ -20,8 +20,8 @@ public class User {
 
 	private int Id_User;
 	private int Id_Citta;
-	private int Id_prova;
-	private int Id_nazione;
+	private int Id_Prov;
+	private int Id_Nazione;
 	private int Id_tipo;
 	
 
@@ -34,12 +34,8 @@ public User(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String 
 	}
 	this.Nome = Nome;
 	this.Cognome = Cognome;
-	
-	//calculate age from age of born;
-	  LocalDate oggi = LocalDate.now();
-      Period periodo = Period.between(DataDiNascita, oggi);
-      this.Eta = periodo.getYears();
-    //finish
+
+	this.Eta = Eta;
       
     //telephone number conditions
     if(NumTelefono.length() == 0) {
@@ -97,12 +93,12 @@ public void setCognome(String cognome) {
 }
 
 
-public LocalDate getDataDiNascita() {
+public java.sql.Date getDataDiNascita() {
 	return DataDiNascita;
 }
 
 
-public void setDataDiNascita(LocalDate dataDiNascita) {
+public void setDataDiNascita(java.sql.Date dataDiNascita) {
 	DataDiNascita = dataDiNascita;
 }
 
@@ -172,20 +168,20 @@ public void setId_Citta(int id_Citta) {
 	Id_Citta = id_Citta;
 }
 
-public int getId_prova() {
-	return Id_prova;
+public int getId_Prov() {
+	return Id_Prov;
 }
 
-public void setId_prova(int id_prova) {
-	Id_prova = id_prova;
+public void setId_prov(int id_Prov) {
+	Id_Prov = id_Prov;
 }
 
-public int getId_nazione() {
-	return Id_nazione;
+public int getId_Nazione() {
+	return Id_Nazione;
 }
 
-public void setId_nazione(int id_nazione) {
-	Id_nazione = id_nazione;
+public void setId_Nazione(int id_Nazione) {
+	Id_Nazione = id_Nazione;
 }
 
 public int getId_tipo() {
