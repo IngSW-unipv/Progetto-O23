@@ -52,7 +52,8 @@ public User(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String 
     if (verificaUsername(Username)) {
     	throw new IllegalArgumentException("Username già in uso, riprova");
     } else {	
-    	this.Username = Username;}
+    	this.Username = Username;
+    	}
     
     this.Password = criptaPassword(Password);
     
