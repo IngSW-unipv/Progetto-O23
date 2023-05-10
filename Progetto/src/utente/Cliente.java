@@ -2,13 +2,18 @@ package utente;
 
 import java.util.Date;
 
-public class Cliente {
+public class Cliente extends User{
 	private int Id_Cliente;
 
-	public Cliente(int id_Cliente) {
-		this.Id_Cliente = id_Cliente;
-		
+	
+	
+//COSTRUTTORE	
+public Cliente(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String NumTelefono, String Email,
+			String Username, String Password, int id_Cliente) {
+		super(Cf, Nome, Cognome, DataDiNasciuta, NumTelefono, Email, Username, Password);
+		Id_Cliente = id_Cliente;
 	}
+
 // metodo per prenotare la camera
 	public boolean PrenotaCamera( int Cod_pr, Date Data_Pren, int Num_C) {
 		return false;
