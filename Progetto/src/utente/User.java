@@ -34,7 +34,6 @@ public User(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String 
 	}
 	this.Nome = Nome;
 	this.Cognome = Cognome;
-
 	this.Eta = Eta;
       
     //telephone number conditions

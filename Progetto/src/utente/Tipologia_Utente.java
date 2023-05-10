@@ -7,6 +7,7 @@ public class Tipologia_Utente extends User{
 	private int Id_Tipo;
 	private String Descrizione_Utente;
 	
+	//COSTRUTTORE
 	public Tipologia_Utente(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String NumTelefono,
 			String Email, String Username, String Password, int id_Tipo, String descrizione_Utente) {
 			super(Cf, Nome, Cognome, DataDiNasciuta, NumTelefono, Email, Username, Password);
@@ -15,7 +16,7 @@ public class Tipologia_Utente extends User{
 		}
 
 	
-//COSTRUTTORE
+
 	
 	
 //GETTER E SETTER	
