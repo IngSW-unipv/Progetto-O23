@@ -9,6 +9,8 @@ public class SignUp_Form extends JFrame implements ActionListener {
     private JTextField emailCampo;
     private JTextField CFCampo;
     private JTextField DataNascitaCampo;
+    
+    
     private JPasswordField passwordCampo;
     private JButton registratiButton;
     private JButton BackButton;
