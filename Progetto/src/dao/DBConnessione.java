@@ -12,14 +12,15 @@ public class DBConnessione {
 		private String url = "jdbc:mysql://localhost:3306/hotel";
 	    private String user = "root";
 	    private String password = "Biuss90!";
-	    private String driver="com.mysql.jdbc.Driver";
+	    private String driver="com.mysql.cj.jdbc.Driver";
 	
 	
-	    public void connessione() {
+	    public Connection connessione(Connection con) {
+	    	
 	    	
 	    	try {
 	    		Class.forName(driver);
-	    		Connection con = DriverManager.getConnection(url, user, password);
+	    		con = DriverManager.getConnection(url, user, password);
 	    		
 	    		System.out.println("connesione avvenuta");
 	    	
@@ -30,6 +31,7 @@ public class DBConnessione {
 				Logger.getLogger(DBConnessione.class.getName()).log(Level.SEVERE,null,e);
 			}
 	        
+	    	return con;
 
 	    }
 	    
