@@ -19,7 +19,7 @@ public class Test {
 		
 		
 		Paese_Dao p = new Paese_Dao();
-		p.Ottieni_IdNazione("Italia");
+		p.Ottieni_IdNazione("italia");
 	}
 
 }
