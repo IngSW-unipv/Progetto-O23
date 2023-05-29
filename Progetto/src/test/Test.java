@@ -1,7 +1,6 @@
 package test;
 
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import dao.DBConnessione;
@@ -20,6 +19,9 @@ public class Test {
 		
 		Paese_Dao p = new Paese_Dao();
 		p.Ottieni_IdNazione("italia");
+		
+		User_Dao u = new User_Dao();
+		u.Ottieni_User("2");
 	}
 
 }
