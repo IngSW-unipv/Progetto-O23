@@ -8,9 +8,9 @@ public class Cliente extends User{
 	
 	
 //COSTRUTTORE	
-public Cliente(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String NumTelefono, String Email,
-			String Username, String Password, int id_Cliente) {
-		super(Cf, Nome, Cognome, DataDiNasciuta, NumTelefono, Email, Username, Password);
+	public Cliente(String cf, String nome, String cognome, java.sql.Date dataDiNascita, int eta, String numTelefono,
+			String email, String username, String password, int id_Cliente) {
+		super(cf, nome, cognome, dataDiNascita, eta, numTelefono, email, username, password);
 		Id_Cliente = id_Cliente;
 	}
 
@@ -19,6 +19,8 @@ public Cliente(String Cf, String Nome, String Cognome, Date DataDiNasciuta, Stri
 		return false;
 	}
 	
+
+
 //metodo per cancellare l'account
 	public void EliminaACC(String Username, String Passward) {
 		

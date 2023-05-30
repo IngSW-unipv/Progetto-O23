@@ -3,8 +3,14 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
 
+import dao.DBConnessione;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class User {
 	private String Cf;
@@ -23,43 +29,24 @@ public class User {
 	private int Id_Prov;
 	private int Id_Nazione;
 	private int Id_tipo;
+	private Boolean login;
 	
 
 //Costruttore 
-public User(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String NumTelefono, String Email, String Username, String Password ) {
-	if (Cf.length()== 16) {
-		this.Cf = Cf;
-	} else {
-		 throw new IllegalArgumentException("Il codice fiscale inserito è errato, riprova.");
+	
+	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, int eta, String numTelefono,
+			String email, String username, String password) {
+		this.Cf = cf;
+		this.Nome = nome;
+		this.Cognome = cognome;
+		this.DataDiNascita = dataDiNascita;
+		this.Eta = eta;
+		this.NumTelefono = numTelefono;
+		this.Email = email;
+		this.Username = username;
+		this.Password = password;
 	}
-	this.Nome = Nome;
-	this.Cognome = Cognome;
-	this.Eta = Eta;
-      
-    //telephone number conditions
-    if(NumTelefono.length() == 0) {
-    	throw new IllegalArgumentException("numero di telefono mancante, riprova");
-    } else {						//we are not considering a "between" because maybe in 20 years the numbers can change in length
-    	this.NumTelefono = NumTelefono;	
-    		}
-    //finish
-    if(verificaEmail(Email)) {
-    	throw new IllegalArgumentException("Email già in uso, riprova");
-    } else {
-    this.Email = Email;
-    }
-    
-    if (verificaUsername(Username)) {
-    	throw new IllegalArgumentException("Username già in uso, riprova");
-    } else {	
-    	this.Username = Username;
-    	}
-    
-    this.Password = criptaPassword(Password);
-    
-    
-    
-    }
+
 
 //GETTER & SETTER
 
@@ -195,34 +182,37 @@ public void setId_tipo(int id_tipo) {
 
 //METHODS	
 
-// Metodo per verificare se lo username è già stato utilizzato
-private static boolean verificaUsername(String Username) {
- 
-    // Restituisce true se lo username è già stato utilizzato, false altrimenti
-    return false;
+public boolean login(String username ,String password) throws SQLException {
+	
+	DBConnessione d =new DBConnessione();
+	Connection con=null;
+	con=d.connessione(con);
+	int count=0;
+	String sql = "SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END AS USERNAME \r\n"
+			+ "FROM user \r\n"
+			+ "WHERE USERNAME = ? and PSW = ? ";
+	
+	 try (PreparedStatement stmt = con.prepareStatement(sql)) {
+         stmt.setString(1, username);
+         stmt.setString(2, password);
+         ResultSet rs = stmt.executeQuery();
+         rs.next();
+         count = rs.getInt(1);
+         con.close();
+         if(count==1) {
+        	 System.out.println("loggato");
+        	 login=true;
+        	 return login;
+         }else {
+         login=false;
+         System.out.println("utente inesistente o password sbagliata");
+         return login;
+         
+         }
+
+	 }
 }
 
-// Metodo per verificare se l'email è valida
-private static boolean verificaEmail(String email) {
-    // Restituisce true se l'email è valida, false altrimenti
-    return true;
-}
-
-// Metodo per criptare la password utilizzando l'algoritmo SHA-256
-private String criptaPassword(String password) {
-    try {
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hash = digest.digest(password.getBytes());
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hash) {
-            hexString.append(String.format("%02x", b));
-        }
-        return hexString.toString();
-    } catch (NoSuchAlgorithmException e) {
-        e.printStackTrace();
-        return null;
-    }
-}
 
 
 }

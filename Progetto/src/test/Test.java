@@ -8,6 +8,7 @@ import dao.Paese_Dao;
 import dao.User_Dao;
 import interfacciaGrafica.Benvenuto_Form;
 import interfacciaGrafica_User.Login_Success_GUI;
+import utente.User;
 
 public class Test {
 
@@ -15,13 +16,16 @@ public class Test {
 		// TODO Auto-generated method stub
 		/*Benvenuto_Form Benvenuto_Form = new Benvenuto_Form();
 		Benvenuto_Form.setVisible(true);*/
+	
+		
+		User s = new User(null, null, null, null, 0, null, null, null, null);
+		s.login("mario.rossi", "1");
+		s.login("mario.rossi", "password");
+		s.login("anna.verdi", "password");
+		s.login("anna.vvvverdi", "password");
 		
 		
-		Paese_Dao p = new Paese_Dao();
-		p.Ottieni_IdNazione("italia");
 		
-		User_Dao u = new User_Dao();
-		u.Ottieni_User("2");
 	}
 
 }

@@ -7,19 +7,18 @@ public class Dipendenti extends User{
 	private float Stipendio;
 
 //COSTRUTTORE
-	
-public Dipendenti(String Cf, String Nome, String Cognome, Date DataDiNasciuta, String NumTelefono, String Email,
-		String Username, String Password, int id_L, float stipendio) {
-	super(Cf, Nome, Cognome, DataDiNasciuta, NumTelefono, Email, Username, Password);
-	this.id_L = id_L;
-	Stipendio = stipendio;
-}
+	public Dipendenti(String cf, String nome, String cognome, java.sql.Date dataDiNascita, int eta, String numTelefono,
+			String email, String username, String password, int id_L, float stipendio) {
+		super(cf, nome, cognome, dataDiNascita, eta, numTelefono, email, username, password);
+		this.id_L = id_L;
+		Stipendio = stipendio;
+	}
+
 	
 //GETTER SETTER
 	public int getId_L() {
 		return id_L;
 	}
-
 
 	public void setId_L(int id_L) {
 		this.id_L = id_L;
