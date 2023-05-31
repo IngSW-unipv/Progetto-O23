@@ -1,7 +1,9 @@
 package interfacciaGrafica;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
+
 
 public class Login_Form extends JFrame implements ActionListener {
    private JTextField emailCampo;
@@ -25,6 +27,7 @@ public class Login_Form extends JFrame implements ActionListener {
         // Creazione pulsante di registrazione
         LoginButton = new JButton("Accedi al tuo account");
         LoginButton.addActionListener(this);
+        
         
         //creazione pulsante per tornare indietro
         
@@ -67,7 +70,19 @@ public class Login_Form extends JFrame implements ActionListener {
 
         dispose();
     }
+    
+    public void addLoginListener(ActionListener listener) {
+        LoginButton.addActionListener(listener);
+    }
 
+    public String getUsername() {
+        return emailCampo.getText();
+    }
+    
+    @SuppressWarnings("deprecation")
+	public String getPassword() {
+        return passwordCampo.getText();
+    }
  //   public static void main(String[] args) {
  //       new RegistrazioneUtente();
  //   }
