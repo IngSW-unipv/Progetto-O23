@@ -24,8 +24,9 @@ public class Test {
 		s.login("anna.verdi", "password");
 		s.login("anna.vvvverdi", "password");
 		
-		
-		
+		User U = new User(null, null, null, null, 0, null,null,null.null);
+		U.registrati("ABCDEF12G34H567I", "Mario", "Rossi", "01/01/1980", "3331234567", "mario.rossi@example.com", 1, 1, 1, "mario.rossi", "password");
 	}
+}		
 
-}
+
