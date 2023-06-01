@@ -307,6 +307,7 @@ public void registrati(String cf, String nome, String cognome, String dataNascit
     	DBConnessione d =new DBConnessione();
     	Connection con=null;
     	con=d.connessione(con);
+    	String psw=null;
     	String sql =" SELECT PSW \r\n"
     			+"FROM USER \r\n"
     			+"WHERE USERNAME= ? and  CF= ? and EMAIL= ?";
@@ -316,11 +317,11 @@ public void registrati(String cf, String nome, String cognome, String dataNascit
              stmt.setString(3, email);
              ResultSet rs = stmt.executeQuery();
              if (rs.next()) {
-            	 Password = rs.getString("PSW");
-                 return Password;
+            	 psw = rs.getString("PSW");
+                 return psw;
              } else {
             	 System.out.println("impossibile trovare password hai sbagliato a inserire i dati");
-            	 return null;
+            	 return psw;
              }
              
     	
