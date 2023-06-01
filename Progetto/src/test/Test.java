@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import controller.LoginController;
 import dao.DBConnessione;
+import dao.Gestione_Dao;
 import dao.Paese_Dao;
 import interfacciaGrafica.Benvenuto_Form;
 import interfacciaGrafica.Login_Form;
@@ -19,13 +20,14 @@ public class Test {
 		Benvenuto_Form.setVisible(true);*/
 	
 		
-		/*User s = new User(null, null, null, null, 0, null, null, null, null);
-		s.login("mario.rossi", "1");
-		System.out.println(s.OttieniPassword("RSSMRA80A01F205S", "mario.rossi", "mario.rossi@email.com"));
-		*/
+		User s = new User(null, null, null, null, 0, null, null, null, null);
+		s.login("mario.rossi", "password");
+		System.out.println(s.toString());
 		
 		
 		
+		/*Gestione_Dao g =  new Gestione_Dao();
+		System.out.println(g.OttieniParametroUser("Cognome","mario.rossi","password"));*/
 		//Login_Form  loginform= new Login_Form();
 		//loginform.setVisible(true);
 		

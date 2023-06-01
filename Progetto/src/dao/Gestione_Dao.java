@@ -33,36 +33,57 @@ public class Gestione_Dao {
                  return 51;
              }
     	 }
-
-           
-         }
-  //OTTIENI UN PARAMETRO DI DATA UNA TABELLA PER UNA STRINGA
+  }
+  //OTTIENI UN PARAMETRO STRINGA DI USER DATA IL SUO USERNAME e Password
     	 
-    	public String OttieniParametro(String tabella,String parametro) throws SQLException {
+    public String OttieniParametroUserString(String par1,String user,String password ) throws SQLException {
     	    	
     	    	DBConnessione d =new DBConnessione();
     	    	conn=d.connessione(conn);
+    	    	String sql = "SELECT "+par1+" FROM user WHERE  USERNAME = ? and PSW = ? ";
     	    	String ris=null;
-    	    	String sql = "SELECT ? FROM ? ";
     	    	
     	    	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-    	             stmt.setString(1, tabella);
-    	             stmt.setString(2, parametro);
+    	             stmt.setString(1, user);
+    	             stmt.setString(2, password);
     	             ResultSet rs = stmt.executeQuery();
-    	             
-    	             if (rs.next()) {
-    	                 ris = rs.getString(parametro);
-    	                 System.out.println(ris);
-    	                 return ris;
-    	             } else {
+    	             if(rs.next()) {
+    	            	 ris=rs.getString(par1);
+    	            	 rs.close();
     	            	 
-    	                 return ris;
+    	            	 return ris;
+    	             }else {
+    	            	 rs.close();
+    	            	 return ris;
     	             }
-
     	           
     	         }
     	
-    	
     }
+  //OTTIENI UN PARAMETRO DATA DI USER DATA IL SUO USERNAME e PASSWORD
+    public java.sql.Date OttieniParametroUserDate(String string,String user,String password ) throws SQLException {
+    	
+    	DBConnessione d =new DBConnessione();
+    	conn=d.connessione(conn);
+    	String sql = "SELECT "+string+" FROM user WHERE  USERNAME = ? and PSW = ? ";
+    	java.sql.Date ris = null;
+    	
+    	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+             stmt.setString(1, user);
+             stmt.setString(2, password);
+             ResultSet rs = stmt.executeQuery();
+             if(rs.next()) {
+            	 ris=rs.getDate(string);
+            	 rs.close();
+            	 
+            	 return ris;
+             }else {
+            	 rs.close();
+            	 return ris;
+             }
+           
+         }
+
+}
 
 }

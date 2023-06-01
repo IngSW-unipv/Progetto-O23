@@ -4,6 +4,7 @@ import java.time.Period;
 import java.util.Date;
 
 import dao.DBConnessione;
+import dao.Gestione_Dao;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -203,6 +204,15 @@ public boolean login(String username ,String password) throws SQLException {
          if(count==1) {
         	 System.out.println("loggato");
         	 login=true;
+        	 Gestione_Dao g =  new Gestione_Dao();
+        	 Username=username;
+        	 Password=password;
+        	 Cognome=g.OttieniParametroUserString("Cognome",username,password);
+        	 Nome=g.OttieniParametroUserString("Nome",username,password);
+        	 Cf=g.OttieniParametroUserString("CF", username, password);
+        	 Email=g.OttieniParametroUserString("EMAIL", username, password);
+        	 NumTelefono=g.OttieniParametroUserString("CELL", username, password);
+        	 DataDiNascita=g.OttieniParametroUserDate("DATA_NASCITA", username, password);
         	 return login;
          }else {
          login=false;
@@ -326,9 +336,20 @@ public void registrati(String cf, String nome, String cognome, String dataNascit
              
     	
     }
+    	 
+    	 
     
     
 }
+
+
+	@Override
+	public String toString() {
+		return "User [Cf=" + Cf + ", Nome=" + Nome + ", Cognome=" + Cognome + ", DataDiNascita=" + DataDiNascita
+				+ ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username + ", Password="
+				+ Password + "]";
+	}
+
 
 
 
