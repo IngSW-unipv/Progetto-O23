@@ -1,4 +1,4 @@
-package interfacciaGrafica;
+package View;
 
 
 import javax.swing.JButton;

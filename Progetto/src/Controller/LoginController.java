@@ -1,4 +1,4 @@
-package controller;
+package Controller;
 
 
 import java.awt.event.ActionEvent;
@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import Model.User;
-import interfacciaGrafica.Login_Form;
+import View.Login_Form;
 
 public class LoginController {
     private Login_Form view;

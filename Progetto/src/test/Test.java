@@ -3,14 +3,14 @@ package test;
 
 import java.sql.SQLException;
 
+import Controller.LoginController;
 import Model.User;
-import controller.LoginController;
+import View.Benvenuto_Form;
+import View.Login_Form;
+import View.Login_Success_GUI;
 import dao.DBConnessione;
 import dao.Gestione_Dao;
 import dao.Paese_Dao;
-import interfacciaGrafica.Benvenuto_Form;
-import interfacciaGrafica.Login_Form;
-import interfacciaGrafica.Login_Success_GUI;
 
 public class Test {
 
