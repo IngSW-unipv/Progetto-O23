@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import utente.User;
+import Model.User;
 
 public class Paese_Dao {
     private Connection conn;

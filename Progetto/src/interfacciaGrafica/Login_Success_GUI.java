@@ -1,4 +1,4 @@
-package interfacciaGrafica_User;
+package interfacciaGrafica;
 import javax.swing.*;
 
 import java.awt.*;

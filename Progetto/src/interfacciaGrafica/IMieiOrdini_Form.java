@@ -1,13 +1,13 @@
-package interfacciaGrafica_User;
+package interfacciaGrafica;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class EliminaACC_Form extends JFrame implements ActionListener {
+public class IMieiOrdini_Form extends JFrame implements ActionListener {
  
 
-    public EliminaACC_Form() {
-        super("Elimina Account"); 
+    public IMieiOrdini_Form() {
+        super("I Miei Ordini"); 
         
      // Centrare la finestra nella schermata
         setLocationRelativeTo(null);

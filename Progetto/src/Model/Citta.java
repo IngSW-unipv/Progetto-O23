@@ -1,4 +1,4 @@
-package luoghi;
+package Model;
 
 public class Citta{
 	private int Id_Citta;

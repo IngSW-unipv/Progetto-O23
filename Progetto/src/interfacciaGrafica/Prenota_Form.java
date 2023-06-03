@@ -1,13 +1,13 @@
-package interfacciaGrafica_User;
+package interfacciaGrafica;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class IMieiOrdini_Form extends JFrame implements ActionListener {
+public class Prenota_Form extends JFrame implements ActionListener {
  
 
-    public IMieiOrdini_Form() {
-        super("I Miei Ordini"); 
+    public Prenota_Form() {
+        super("Prenota una stanza"); 
         
      // Centrare la finestra nella schermata
         setLocationRelativeTo(null);

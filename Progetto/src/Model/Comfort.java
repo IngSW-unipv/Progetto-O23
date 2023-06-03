@@ -1,4 +1,4 @@
-package code;
+package Model;
 
 public class Comfort {
 	

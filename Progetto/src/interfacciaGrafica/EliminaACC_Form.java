@@ -1,13 +1,13 @@
-package interfacciaGrafica_User;
+package interfacciaGrafica;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Prenota_Form extends JFrame implements ActionListener {
+public class EliminaACC_Form extends JFrame implements ActionListener {
  
 
-    public Prenota_Form() {
-        super("Prenota una stanza"); 
+    public EliminaACC_Form() {
+        super("Elimina Account"); 
         
      // Centrare la finestra nella schermata
         setLocationRelativeTo(null);

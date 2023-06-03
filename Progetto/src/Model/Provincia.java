@@ -1,4 +1,4 @@
-package luoghi;
+package Model;
 
 public class Provincia {
 	private int Id_Prov;

@@ -1,4 +1,4 @@
-package luoghi;
+package Model;
 
 public class Nazione {
 	private int Id_naz;
