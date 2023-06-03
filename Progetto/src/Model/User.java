@@ -178,8 +178,10 @@ public void setId_tipo(int id_tipo) {
 public boolean login(String username ,String password) throws SQLException {
 	
 	Gestione_Dao g =  new Gestione_Dao();
+	//richiamo metodo controllo dell esistenza dell'untente
 	int count=g.ControllaUser(username, password);
-
+	
+//se count = 1 l'utente e nel DB
          if(count==1) {
         	 System.out.println("loggato");
         	 login=true;
@@ -205,6 +207,8 @@ public boolean login(String username ,String password) throws SQLException {
 
 //LOGOUT
 public boolean logout(boolean log) {
+	
+//controllo se l'utente ha effettuato il login	
 	
 	if(log = true) {
 		login=false;
