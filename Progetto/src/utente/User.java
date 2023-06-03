@@ -21,7 +21,6 @@ public class User {
 	private int Eta;
 	private String NumTelefono; //string because that can accept foreign numbers, so the prefix must be accepted
 	private String Email;
-	
 	private String Username;
 	private String Password;
 
@@ -38,15 +37,7 @@ public class User {
 	
 	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, int eta, String numTelefono,
 			String email, String username, String password) {
-		this.Cf = cf;
-		this.Nome = nome;
-		this.Cognome = cognome;
-		this.DataDiNascita = dataDiNascita;
-		this.Eta = eta;
-		this.NumTelefono = numTelefono;
-		this.Email = email;
-		this.Username = username;
-		this.Password = password;
+		
 	}
 
 
@@ -223,6 +214,29 @@ public boolean login(String username ,String password) throws SQLException {
 	 }
 }
 
+//LOGOUT
+public boolean logout(boolean log) {
+	
+	if(log = true) {
+		login=false;
+		Username=null;
+   	 	Password=null;
+   	 	Cognome=null;
+   	 	Nome=null;
+   	 	Cf=null;
+   	 	Email=null;
+   	 	NumTelefono=null;
+   	 	DataDiNascita=null;
+   	 	System.out.println("logout effettuato!");
+   	 	return login;
+		
+		
+	}else
+		System.out.println("impossibile effettuare logout non hai effettuato il login");
+	return login;
+	
+}
+
 private boolean verificaDuplicati(String cf, String username, String email) {
     DBConnessione d =new DBConnessione();
 	Connection con=null;
@@ -346,9 +360,12 @@ public void registrati(String cf, String nome, String cognome, String dataNascit
 	@Override
 	public String toString() {
 		return "User [Cf=" + Cf + ", Nome=" + Nome + ", Cognome=" + Cognome + ", DataDiNascita=" + DataDiNascita
-				+ ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username + ", Password="
-				+ Password + "]";
+				+ ", Eta=" + Eta + ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username
+				+ ", Password=" + Password + ", login=" + login + "]";
 	}
+
+
+
 
 
 

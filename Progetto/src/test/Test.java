@@ -21,8 +21,13 @@ public class Test {
 	
 		
 		User s = new User(null, null, null, null, 0, null, null, null, null);
-		s.login("mario.rossi", "password");
+		boolean a=s.login("giulia.ferraris", "password");
 		System.out.println(s.toString());
+		s.logout(a);
+		System.out.println(s.toString());
+		
+		
+		
 		
 		
 		
