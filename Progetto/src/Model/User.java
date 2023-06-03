@@ -177,25 +177,14 @@ public void setId_tipo(int id_tipo) {
 
 public boolean login(String username ,String password) throws SQLException {
 	
-	DBConnessione d =new DBConnessione();
-	Connection con=null;
-	con=d.connessione(con);
-	int count=0;
-	String sql = "SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END AS USERNAME \r\n"
-			+ "FROM user \r\n"
-			+ "WHERE USERNAME = ? and PSW = ? ";
-	
-	 try (PreparedStatement stmt = con.prepareStatement(sql)) {
-         stmt.setString(1, username);
-         stmt.setString(2, password);
-         ResultSet rs = stmt.executeQuery();
-         rs.next();
-         count = rs.getInt(1);
-         con.close();
+	Gestione_Dao g =  new Gestione_Dao();
+	int count=g.ControllaUser(username, password);
+
          if(count==1) {
         	 System.out.println("loggato");
         	 login=true;
-        	 Gestione_Dao g =  new Gestione_Dao();
+        	 
+        	 //salvataggio parametri db negli attributi della classe
         	 Username=username;
         	 Password=password;
         	 Cognome=g.OttieniParametroUserString("Cognome",username,password);
@@ -212,13 +201,14 @@ public boolean login(String username ,String password) throws SQLException {
          
          }
 	 }
-}
+
 
 //LOGOUT
 public boolean logout(boolean log) {
 	
 	if(log = true) {
 		login=false;
+		//cancellazione attributi della classe
 		Username=null;
    	 	Password=null;
    	 	Cognome=null;

@@ -83,7 +83,31 @@ public class Gestione_Dao {
              }
            
          }
+    
 
 }
+ //METODO PER CONTROLLARE SE ESISTE UN USER NEL DB DATA PASSWORD E NOMEUTENTE
+    public int ControllaUser(String username ,String password) throws SQLException {
+    	DBConnessione d =new DBConnessione();
+    	conn=d.connessione(conn);
+    	int count=0;
+    	String sql = "SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END AS USERNAME \r\n"
+    			+ "FROM user \r\n"
+    			+ "WHERE USERNAME = ? and PSW = ? ";
+    	
+    	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+             stmt.setString(1, username);
+             stmt.setString(2, password);
+             ResultSet rs = stmt.executeQuery();
+             rs.next();
+             count = rs.getInt(1);
+             conn.close();
+       
+             return count;
+             }
+    	 }
 
-}
+    	
+    }
+
+
