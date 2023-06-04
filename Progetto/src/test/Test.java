@@ -39,6 +39,8 @@ public class Test {
 		Login_Form view = new Login_Form();
 		LoginController controller = new LoginController(view, model);
 		
+		
+		
 		//User U = new User(null, null, null, null, 0, null,null,null.null);
 		//U.registrati("ABCDEF12G34H567I", "Mario", "Rossi", "01/01/1980", "3331234567", "mario.rossi@example.com", 1, 1, 1, "mario.rossi", "password");
 	}

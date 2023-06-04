@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import Model.User;
 import View.Login_Form;
+import View.Login_Success_GUI;
 
 public class LoginController {
     private Login_Form view;
@@ -38,6 +39,8 @@ public class LoginController {
 
             // Aggiorna la vista in base al risultato del login
             if (esito) {
+            	Login_Success_GUI g = new Login_Success_GUI();
+        		g.action(null, g);
                 System.out.println("Accesso effettuato con successo!");
 
             } else {
