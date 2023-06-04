@@ -42,11 +42,21 @@ public class User {
 
 
 //GETTER & SETTER
+	
+
+
+public Boolean getLogin() {
+	return login;
+}
+
+
+public void setLogin(Boolean login) {
+	this.login = login;
+}
 
 public String getCf() {
 	return Cf;
 }
-
 
 public void setCf(String cf) {
 	Cf = cf;

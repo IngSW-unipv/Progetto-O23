@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import Model.User;
+import View.Benvenuto_Form;
 import View.Login_Form;
 import View.Login_Success_GUI;
 
@@ -32,6 +33,7 @@ public class LoginController {
             boolean esito = false;
 			try {
 				esito = model.login(username, password);
+				System.out.println(model.toString()); //controllo parametri accesso
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -47,5 +49,6 @@ public class LoginController {
             	System.out.println("Nome utente o password errati!");
             }
         }
+        
     }
 }

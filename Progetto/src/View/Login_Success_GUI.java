@@ -30,7 +30,7 @@ public class Login_Success_GUI extends JFrame implements ActionListener {
         IMieiOrdini.addActionListener(this);
         
         //creazione pulsante per LogOut
-        LogOut = new JButton("esci");
+        LogOut = new JButton("Log out");
         LogOut.addActionListener(this);
 /*        
         // Creazione etichette
@@ -85,6 +85,19 @@ public class Login_Success_GUI extends JFrame implements ActionListener {
             	 public void actionPerformed(ActionEvent e) {
             	        if (e.getSource() == EliminaACC) {
             	            new EliminaACC_Form();
+            	            dispose(); // Chiude la finestra della prima classe
+            	        }
+            	          
+            	}
+         });
+        
+        //EliminaACC CASE    
+        LogOut.addActionListener(new ActionListener() {
+            @Override
+                // Questo metodo viene chiamato quando il pulsante viene cliccato
+            	 public void actionPerformed(ActionEvent e) {
+            	        if (e.getSource() == LogOut) {
+            	            new Benvenuto_Form ();
             	            dispose(); // Chiude la finestra della prima classe
             	        }
             	          
