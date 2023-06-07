@@ -51,6 +51,9 @@ public class Login_Success_GUI extends JFrame implements ActionListener {
         setSize(400, 200);
         setVisible(true);
         
+//       public JButton getLogOut() {
+//        	return LogOut;
+//      }
         
       //IMieiOrdini CASE    
         IMieiOrdini.addActionListener(new ActionListener() {
