@@ -187,16 +187,33 @@ public void setId_tipo(int id_tipo) {
 
 public boolean login(String username ,String password) throws SQLException {
 	
+<<<<<<< HEAD
 	Gestione_Dao g =  new Gestione_Dao();
 	//richiamo metodo controllo dell esistenza dell'untente
 	int count=g.ControllaUser(username, password);
 	
 //se count = 1 l'utente e nel DB
+=======
+	DBConnessione d =new DBConnessione();
+	Connection con=null;
+	con=d.connessione(con);
+	int count=0;
+	String sql = "SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END AS USERNAME \r\n"
+			+ "FROM user \r\n"
+			+ "WHERE USERNAME = ? and PSW = ? ";
+	
+	 try (PreparedStatement stmt = con.prepareStatement(sql)) {
+         stmt.setString(1, username);
+         stmt.setString(2, password);
+         ResultSet rs = stmt.executeQuery();
+         rs.next();
+         count = rs.getInt(1);
+         con.close();
+>>>>>>> parent of e41c93c (ordine + aggiunta commenti)
          if(count==1) {
         	 System.out.println("loggato");
         	 login=true;
-        	 
-        	 //salvataggio parametri db negli attributi della classe
+        	 Gestione_Dao g =  new Gestione_Dao();
         	 Username=username;
         	 Password=password;
         	 Cognome=g.OttieniParametroUserString("Cognome",username,password);
@@ -213,7 +230,7 @@ public boolean login(String username ,String password) throws SQLException {
          
          }
 	 }
-
+}
 
 //LOGOUT
 public boolean logout(boolean log) {
@@ -222,7 +239,6 @@ public boolean logout(boolean log) {
 	
 	if(log = true) {
 		login=false;
-		//cancellazione attributi della classe
 		Username=null;
    	 	Password=null;
    	 	Cognome=null;

@@ -3,11 +3,12 @@ package controller;
 import java.awt.event.ActionListener;
 
 import Model.User;
+import View.Login_Form;
 import View.Login_Success_GUI;
 
 public class UserController {
 	  private User user;
-	  private Login_Success_GUI form;
+	  private Login_Form form;
 
 	    // Costruttore del controllore
 	    public UserController(User user, Login_Success_GUI form) {
@@ -15,7 +16,7 @@ public class UserController {
 	        this.form = form;
 
 	        // Aggiungi gli ActionListener ai bottoni della finestra dell'interfaccia utente
-	        form.getLogOut().addActionListener(new ActionListener() {
+	        form.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
 	                // Chiama il metodo logout() della classe User

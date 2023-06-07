@@ -39,13 +39,13 @@ public class Login_Form extends JFrame implements ActionListener {
         PasswordDimenticataButton.addActionListener(this);
         
         // Creazione etichette
-        JLabel UsernameLabel = new JLabel("Username:");
+        JLabel emailLabel = new JLabel("Email:");
         JLabel passwordLabel = new JLabel("Password:");
         JLabel tornaindietroLabel = new JLabel("torna indietro:");
         
         // Aggiunta componenti alla GUI
         JPanel panel = new JPanel(new GridLayout(8, 2));
-        panel.add(UsernameLabel);
+        panel.add(emailLabel);
         panel.add(emailCampo);
         panel.add(passwordLabel);
         panel.add(passwordCampo);
