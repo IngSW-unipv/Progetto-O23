@@ -298,49 +298,17 @@ private boolean verificaDuplicati(String cf, String username, String email) {
     } 
 }
 
-public void registrati(String cf, String nome, String cognome, String dataNascita, String cell, String email, int idCitta, int idProv, int idNaz, String username, String password) {
+public void registrati(String cf, String nome, String cognome, String dataNascita, String cell, String email, String citta, String username, String password) throws SQLException {
     // Verifica che il CF, l'username e l'email non siano già presenti nel database
-    if (verificaDuplicati(cf, username, email)) {
-        System.out.println("Errore: CF, username o email già presenti nel database");
-        return;
-    }
+	Gestione_Dao g = new Gestione_Dao();
+	g.user_Register(cf, nome, cognome, dataNascita, cell, email, citta, username, password);
+    	
+    
 
-    // Connessione al database
-    DBConnessione d =new DBConnessione();
-   	Connection con=null;
-   	con=d.connessione(con);
-       PreparedStatement stmt = null;
-       ResultSet rs = null;
+    
+    
 
-    try {
-        // Inserimento dei dati nella tabella user
-        String sql = "INSERT INTO user (cf, nome, cognome, data_nascita, cell, email, id_citta, id_prov, id_naz, id_tipo, username, psw) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, cf);
-        stmt.setString(2, nome);
-        stmt.setString(3, cognome);
-        stmt.setString(4, dataNascita);
-        stmt.setString(5, cell);
-        stmt.setString(6, email);
-        stmt.setInt(7, idCitta);
-        stmt.setInt(8, idProv);
-        stmt.setInt(9, idNaz);
-        stmt.setInt(10, 1); // id_tipo = 1
-        stmt.setString(11, username);
-        stmt.setString(12, password);
-        stmt.executeUpdate();
-
-        // Ottieni l'ID_USER generato automaticamente
-        rs = stmt.getGeneratedKeys();
-        if (rs.next()) {
-            int idUser = rs.getInt(1);
-            System.out.println("Registrazione completata con successo. ID_USER: " + idUser);
-        } else {
-            System.out.println("Errore: ID_USER non generato automaticamente");
-        }
-    } catch (SQLException e) {
-        System.out.println("Errore durante la registrazione: " + e.getMessage());
-    } 
+     
 }
     
     

@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -93,19 +94,19 @@ public class Gestione_Dao {
     	 }
          }
   //OTTIENI UN PARAMETRO DELLA CITTA DATO IL SUO NOME
-    public String OttieniParametoCitta(String string,String nomeCitta) throws SQLException {
+    public int OttieniParametoCitta(String string,String nomeCitta) throws SQLException {
     	    	
     	    DBConnessione d =new DBConnessione();
     	    conn=d.connessione(conn);
     	    String sql = "SELECT "+string+" FROM citta WHERE NOME_C = ?";
-    	    String ris = null;
+    	     int ris = 0;
     	    	
     	    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
     	    		stmt.setString(1, nomeCitta);
     	           
     	             ResultSet rs = stmt.executeQuery();
     	             if(rs.next()) {
-    	            	 ris=rs.getString(string);
+    	            	 ris=rs.getInt(string);
     	            	 rs.close();
     	            	 stmt.close();
     	            	 
@@ -147,12 +148,60 @@ public class Gestione_Dao {
             }
     	//prendo l'ultimo valore della lista e gli aggiungo 1 per ottenere un nuovo id che non esiste
     	int ultimo_id=IdList.get(IdList.size()-1);
-    	System.out.println(IdList);
+    	//System.out.println(IdList);
     	
          return ultimo_id+1;  
     
     	
              
     }
+//QUERY PER LA REGISTRAZIONE
+    
+    public void user_Register(String cf, String nome, String cognome, String dataNascita, String cell, String email, String citta, String username, String password) throws SQLException {
+    	
+    	
+    	 // Connessione al database
+        DBConnessione d =new DBConnessione();
+       	Connection con=null;
+       	con=d.connessione(con);
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        java.sql.Date date=Date.valueOf(dataNascita);//conversione della data di nascita da stringa a java.sql.date
+
+        try {
+            // Inserimento dei dati nella tabella user
+            String sql = "INSERT INTO user (ID_USER,cf, nome, cognome, data_nascita, cell, email,ID_CITTA, ID_PROV, ID_NAZ, id_tipo, username, psw) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, Id_Generator());
+            stmt.setString(2, cf);
+            stmt.setString(3, nome);
+            stmt.setString(4, cognome);
+            stmt.setDate(5, date);
+            stmt.setString(6, cell);
+            stmt.setString(7, email);
+            stmt.setInt(8,OttieniParametoCitta("ID_CITTA",citta));
+            stmt.setInt(9, OttieniParametoCitta("ID_PROV",citta));
+            stmt.setInt(10, OttieniParametoCitta("ID_NAZ",citta));
+            stmt.setInt(11, 1); // id_tipo = 1
+            stmt.setString(12, username);
+            stmt.setString(13, password);
+            
+            stmt.executeUpdate();
+
+            // Ottieni l'ID_USER generato automaticamente
+            if (rs.next()) {
+                System.out.println("Registrazione completata con successo");
+            } else {
+                System.out.println("Errore: ID_USER non generato automaticamente");
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante la registrazione: " + e.getMessage());
+        } 
+        
+       
+    	
+    }
+    
 
 }
