@@ -28,9 +28,13 @@ public class Gestione_Dao {
              if (rs.next()) {
                  int ID_CLIENTE = rs.getInt("ID_USER");
                  System.out.println(ID_CLIENTE);
+                 rs.close();
+                 stmt.close();
                  return ID_CLIENTE;
              } else {
             	 System.out.println(1);
+            	 rs.close();
+                 stmt.close();
                  return 51;
              }
     	 }
@@ -51,10 +55,12 @@ public class Gestione_Dao {
     	             if(rs.next()) {
     	            	 ris=rs.getString(par1);
     	            	 rs.close();
+    	            	 stmt.close();
     	            	 
     	            	 return ris;
     	             }else {
     	            	 rs.close();
+    	            	 stmt.close();
     	            	 return ris;
     	             }
     	           
@@ -76,16 +82,43 @@ public class Gestione_Dao {
              if(rs.next()) {
             	 ris=rs.getDate(string);
             	 rs.close();
+            	 stmt.close();
             	 
             	 return ris;
              }else {
             	 rs.close();
+            	 stmt.close();
             	 return ris;
              }
-           
+    	 }
          }
+  //OTTIENI UN PARAMETRO DELLA CITTA DATO IL SUO NOME
+    public String OttieniParametoCitta(String string,String nomeCitta) throws SQLException {
+    	    	
+    	    DBConnessione d =new DBConnessione();
+    	    conn=d.connessione(conn);
+    	    String sql = "SELECT "+string+" FROM citta WHERE NOME_C = ?";
+    	    String ris = null;
+    	    	
+    	    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+    	    		stmt.setString(1, nomeCitta);
+    	           
+    	             ResultSet rs = stmt.executeQuery();
+    	             if(rs.next()) {
+    	            	 ris=rs.getString(string);
+    	            	 rs.close();
+    	            	 stmt.close();
+    	            	 
+    	            	 return ris;
+    	             }else {
+    	            	 rs.close();
+    	            	 stmt.close();
+    	            	 return ris;
+    	             }
+    	           
+    	       }
 
-}
+    }
 //METODO PER GENERARE UN ID PER LA REGISTRAZIONE DELL USER
     
     public int Id_Generator() throws SQLException {

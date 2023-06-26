@@ -28,6 +28,7 @@ public class Test {
 
 		Gestione_Dao g = new Gestione_Dao();
 		System.out.println(g.Id_Generator());
+		System.out.println(g.OttieniParametoCitta("ID_PROV","Cagliari"));
 		
 		
 		

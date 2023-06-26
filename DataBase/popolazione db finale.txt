@@ -10,6 +10,9 @@ INSERT INTO contratti (ID_CONTR, DESC_CONTR) VALUES (2, 'Contratto di lavoro a t
 INSERT INTO contratti (ID_CONTR, DESC_CONTR) VALUES (3, 'Contratto di appalto');
 INSERT INTO contratti (ID_CONTR, DESC_CONTR) VALUES (4, 'Contratto di lavoro a tempo indeterminato');
 
+- per tabella citta
+INSERT INTO citta(ID_CITTA, NOME_C, ID_NAZ,ID_PROV) VALUES (1, 'Opera', 1,1);
+
 -- per tabella nazioni
 
 INSERT INTO nazione (ID_NAZ, NOME_N) VALUES (1, 'Italia');
