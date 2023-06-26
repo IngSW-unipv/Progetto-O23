@@ -187,13 +187,13 @@ public void setId_tipo(int id_tipo) {
 
 public boolean login(String username ,String password) throws SQLException {
 	
-<<<<<<< HEAD
+
 	Gestione_Dao g =  new Gestione_Dao();
 	//richiamo metodo controllo dell esistenza dell'untente
-	int count=g.ControllaUser(username, password);
+	
 	
 //se count = 1 l'utente e nel DB
-=======
+
 	DBConnessione d =new DBConnessione();
 	Connection con=null;
 	con=d.connessione(con);
@@ -209,19 +209,18 @@ public boolean login(String username ,String password) throws SQLException {
          rs.next();
          count = rs.getInt(1);
          con.close();
->>>>>>> parent of e41c93c (ordine + aggiunta commenti)
          if(count==1) {
         	 System.out.println("loggato");
         	 login=true;
-        	 Gestione_Dao g =  new Gestione_Dao();
+        	 Gestione_Dao g1 =  new Gestione_Dao();
         	 Username=username;
         	 Password=password;
-        	 Cognome=g.OttieniParametroUserString("Cognome",username,password);
-        	 Nome=g.OttieniParametroUserString("Nome",username,password);
-        	 Cf=g.OttieniParametroUserString("CF", username, password);
-        	 Email=g.OttieniParametroUserString("EMAIL", username, password);
-        	 NumTelefono=g.OttieniParametroUserString("CELL", username, password);
-        	 DataDiNascita=g.OttieniParametroUserDate("DATA_NASCITA", username, password);
+        	 Cognome=g1.OttieniParametroUserString("Cognome",username,password);
+        	 Nome=g1.OttieniParametroUserString("Nome",username,password);
+        	 Cf=g1.OttieniParametroUserString("CF", username, password);
+        	 Email=g1.OttieniParametroUserString("EMAIL", username, password);
+        	 NumTelefono=g1.OttieniParametroUserString("CELL", username, password);
+        	 DataDiNascita=g1.OttieniParametroUserDate("DATA_NASCITA", username, password);
         	 return login;
          }else {
          login=false;

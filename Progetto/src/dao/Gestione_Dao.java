@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Model.User;
 
@@ -85,5 +86,40 @@ public class Gestione_Dao {
          }
 
 }
+//METODO PER GENERARE UN ID PER LA REGISTRAZIONE DELL USER
+    
+    public int Id_Generator() throws SQLException {
+    	
+    	ArrayList<Integer> IdList=new ArrayList<>();
+    	
+    	DBConnessione d =new DBConnessione();
+    	conn=d.connessione(conn);
+    	int id=0;
+    	String sql = "select ID_USER\r\n"
+    			+ "from user ";
+    	
+    	try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+          //qui prendo gli id e li salvo nell array list 
+            while (rs.next()) {
+            	id = rs.getInt("ID_USER");
+            	IdList.add(id);
+				
+			}
+            
+            stmt.close();
+       	 	rs.close();
+            conn.close();
+    
+            }
+    	//prendo l'ultimo valore della lista e gli aggiungo 1 per ottenere un nuovo id che non esiste
+    	int ultimo_id=IdList.get(IdList.size()-1);
+    	System.out.println(IdList);
+    	
+         return ultimo_id+1;  
+    
+    	
+             
+    }
 
 }
