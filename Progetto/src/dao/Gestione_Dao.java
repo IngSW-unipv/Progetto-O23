@@ -1,5 +1,7 @@
 package dao;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -157,7 +159,7 @@ public class Gestione_Dao {
     }
 //QUERY PER LA REGISTRAZIONE
     
-    public void user_Register(String cf, String nome, String cognome, String dataNascita, String cell, String email, String citta, String username, String password) throws SQLException {
+    public void user_Register(String cf, String nome, String cognome, String dataNascita, String cell, String email, String citta, String username, String password) throws SQLException, NoSuchAlgorithmException {
     	
     	
     	 // Connessione al database
@@ -167,6 +169,14 @@ public class Gestione_Dao {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
+        // Hashing della password
+        
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(password.getBytes());
+        		byte[] digest = md.digest();
+        		String hashedPassword = String.format("%064x", new java.math.BigInteger(1, digest));
+        
+        
         java.sql.Date date=Date.valueOf(dataNascita);//conversione della data di nascita da stringa a java.sql.date
 
         try {
@@ -185,7 +195,7 @@ public class Gestione_Dao {
             stmt.setInt(10, OttieniParametoCitta("ID_NAZ",citta));
             stmt.setInt(11, 1); // id_tipo = 1
             stmt.setString(12, username);
-            stmt.setString(13, password);
+            stmt.setString(13, hashedPassword);
             
             stmt.executeUpdate();
 
@@ -202,6 +212,111 @@ public class Gestione_Dao {
        
     	
     }
+    
+ // Verifica se un codice fiscale è già presente nel database
+    public boolean verificaCF(String cf) throws SQLException {
+        DBConnessione d = new DBConnessione();
+        Connection con = null;
+        con = d.connessione(con);
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean presente = false;
+
+        try {
+            String sql = "SELECT * FROM user WHERE cf = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, cf);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                presente = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante la verifica del CF: " + e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return presente;
+    }
+
+    // Verifica se uno username è già presente nel database
+    public boolean verificaUsername(String username) throws SQLException {
+        DBConnessione d = new DBConnessione();
+        Connection con = null;
+        con = d.connessione(con);
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean presente = false;
+
+        try {
+            String sql = "SELECT * FROM user WHERE username = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                presente = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante la verifica dello username: " + e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return presente;
+    }
+
+    // Verifica se una email è già presente nel database
+    public boolean verificaEmail(String email) throws SQLException {
+        DBConnessione d = new DBConnessione();
+        Connection con = null;
+        con = d.connessione(con);
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean presente = false;
+
+        try {
+            String sql = "SELECT * FROM user WHERE email = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                presente = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante la verifica dell'email: " + e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return presente;
+    }    
     
 
 }
