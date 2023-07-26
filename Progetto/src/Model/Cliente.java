@@ -8,9 +8,9 @@ public class Cliente extends User{
 	
 	
 //COSTRUTTORE	
-	public Cliente(String cf, String nome, String cognome, java.sql.Date dataDiNascita, int eta, String numTelefono,
+	public Cliente(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String via, String citta, int cap, String numTelefono,
 			String email, String username, String password, int id_Cliente) {
-		super(cf, nome, cognome, dataDiNascita, eta, numTelefono, email, username, password);
+		super(cf, nome, cognome, dataDiNascita, numTelefono, via, citta, cap, email, username, password);
 		Id_Cliente = id_Cliente;
 	}
 

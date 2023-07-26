@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `Hotel` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `Hotel`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: 127.0.0.1    Database: Hotel
+-- Host: 127.0.0.1    Database: hotel2
 -- ------------------------------------------------------
 -- Server version	8.0.0-dmr
 
@@ -46,36 +44,6 @@ CREATE TABLE `CAMERA` (
 LOCK TABLES `CAMERA` WRITE;
 /*!40000 ALTER TABLE `CAMERA` DISABLE KEYS */;
 /*!40000 ALTER TABLE `CAMERA` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `CITTA`
---
-
-DROP TABLE IF EXISTS `CITTA`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `CITTA` (
-  `ID_CITTA` int(4) NOT NULL,
-  `NOME_C` varchar(45) NOT NULL,
-  `ID_NAZ` int(4) NOT NULL,
-  `ID_PROV` int(4) NOT NULL,
-  PRIMARY KEY (`ID_CITTA`),
-  UNIQUE KEY `ID_CITTA_UNIQUE` (`ID_CITTA`),
-  KEY `ID_N_idx` (`ID_NAZ`),
-  KEY `PROV_idx` (`ID_PROV`),
-  CONSTRAINT `PROV` FOREIGN KEY (`ID_PROV`) REFERENCES `PROVINCIA` (`ID_PROV`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `CITTA`
---
-
-LOCK TABLES `CITTA` WRITE;
-/*!40000 ALTER TABLE `CITTA` DISABLE KEYS */;
-INSERT INTO `CITTA` VALUES (1,'Roma',0,0),(2,'Milano',0,0),(3,'Napoli',0,0),(4,'Torino',0,0),(5,'Palermo',0,0),(6,'Genova',0,0),(7,'Bologna',0,0),(8,'Firenze',0,0),(9,'Bari',0,0),(10,'Catania',0,0),(11,'Venezia',0,0),(12,'Verona',0,0),(13,'Messina',0,0),(14,'Padova',0,0),(15,'Trieste',0,0),(16,'Taranto',0,0),(17,'Brescia',0,0),(18,'Reggio di Calabria',0,0),(19,'Modena',0,0),(20,'Cagliari',0,0),(21,'Prato',0,0),(22,'Parma',0,0),(23,'Livorno',0,0),(24,'Foggia',0,0),(25,'Perugia',0,0),(26,'Ravenna',0,0),(27,'Rimini',0,0),(28,'Salerno',0,0),(29,'Ferrara',0,0),(30,'Sassari',0,0),(31,'La Spezia',0,0),(32,'Lucca',0,0),(33,'Pisa',0,0),(34,'Benevento',0,0),(35,'Andria',0,0),(36,'Brindisi',0,0),(37,'Novara',0,0),(38,'Pescara',0,0),(39,'Asti',0,0),(40,'Arezzo',0,0),(41,'Cremona',0,0),(42,'Cuneo',0,0),(43,'Como',0,0),(44,'Lodi',0,0),(45,'Varese',0,0),(46,'Mantova',0,0),(47,'Piacenza',0,0),(48,'Trento',0,0),(49,'Pistoia',0,0),(50,'Ancona',0,0),(51,'Pavia',0,0),(52,'Rovigo',0,0),(53,'Forlì',0,0),(54,'Siena',0,0),(55,'Massa',0,0),(56,'Aosta',0,0),(57,'Vercelli',0,0),(58,'Biella',0,0),(59,'Civitavecchia',0,0),(60,'Crotone',0,0),(61,'Imperia',0,0),(62,'Viterbo',0,0),(63,'Lucca',0,0),(64,'Barletta',0,0),(65,'Sondrio',0,0),(66,'Frosinone',0,0),(67,'Nuoro',0,0),(68,'Oristano',0,0),(69,'Valle d\'Aosta',0,0);
-/*!40000 ALTER TABLE `CITTA` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -209,30 +177,8 @@ CREATE TABLE `MANSIONE` (
 
 LOCK TABLES `MANSIONE` WRITE;
 /*!40000 ALTER TABLE `MANSIONE` DISABLE KEYS */;
+INSERT INTO `MANSIONE` VALUES (1,'Segretario'),(2,'Contabile'),(3,'Programmatore'),(4,'Responsabile Acquisti'),(5,'Direttore Tecnico'),(6,'Addetto alla Sicurezza'),(7,'Responsabile Marketing'),(8,'Addetto alle Pulizie'),(9,'Dipendente ai Piani'),(10,'Responsabile Risorse Umane');
 /*!40000 ALTER TABLE `MANSIONE` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `NAZIONE`
---
-
-DROP TABLE IF EXISTS `NAZIONE`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `NAZIONE` (
-  `ID_NAZ` int(4) NOT NULL,
-  `NOME_N` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID_NAZ`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `NAZIONE`
---
-
-LOCK TABLES `NAZIONE` WRITE;
-/*!40000 ALTER TABLE `NAZIONE` DISABLE KEYS */;
-/*!40000 ALTER TABLE `NAZIONE` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -262,32 +208,6 @@ LOCK TABLES `PRENOTAZIONE` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `PROVINCIA`
---
-
-DROP TABLE IF EXISTS `PROVINCIA`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROVINCIA` (
-  `ID_PROV` int(4) NOT NULL,
-  `NOME_P` varchar(45) NOT NULL,
-  `ID_NAZ` int(4) NOT NULL,
-  PRIMARY KEY (`ID_PROV`),
-  KEY `NAZ_P_idx` (`ID_NAZ`),
-  CONSTRAINT `NAZ_P` FOREIGN KEY (`ID_NAZ`) REFERENCES `NAZIONE` (`ID_NAZ`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `PROVINCIA`
---
-
-LOCK TABLES `PROVINCIA` WRITE;
-/*!40000 ALTER TABLE `PROVINCIA` DISABLE KEYS */;
-/*!40000 ALTER TABLE `PROVINCIA` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `TIPOLOGIA_UTENTE`
 --
 
@@ -307,6 +227,7 @@ CREATE TABLE `TIPOLOGIA_UTENTE` (
 
 LOCK TABLES `TIPOLOGIA_UTENTE` WRITE;
 /*!40000 ALTER TABLE `TIPOLOGIA_UTENTE` DISABLE KEYS */;
+INSERT INTO `TIPOLOGIA_UTENTE` VALUES (1,'Utente'),(2,'Dipendente'),(3,'Direttore');
 /*!40000 ALTER TABLE `TIPOLOGIA_UTENTE` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,27 +275,19 @@ CREATE TABLE `USER` (
   `COGNOME` varchar(20) NOT NULL,
   `DATA_NASCITA` date NOT NULL,
   `CELL` varchar(20) NOT NULL,
+  `VIA` varchar(45) NOT NULL,
+  `CITTA` varchar(45) NOT NULL,
+  `CAP` varchar(45) NOT NULL,
   `EMAIL` varchar(40) NOT NULL,
-  `ID_CITTA` int(4) NOT NULL,
-  `ID_PROV` int(4) NOT NULL,
-  `ID_NAZ` int(4) NOT NULL,
-  `ID_TIPO` int(11) NOT NULL,
   `USERNAME` varchar(20) NOT NULL,
   `PSW` varchar(40) NOT NULL,
+  `ID_TIPO` int(10) NOT NULL,
   PRIMARY KEY (`ID_USER`),
   UNIQUE KEY `CF_UNIQUE` (`CF`),
   UNIQUE KEY `EMAIL_UNIQUE` (`EMAIL`),
   UNIQUE KEY `CELL_UNIQUE` (`CELL`),
   UNIQUE KEY `USERNAME_UNIQUE` (`USERNAME`),
-  UNIQUE KEY `ID_USER_UNIQUE` (`ID_USER`),
-  KEY `ID_T_idx` (`ID_TIPO`),
-  KEY `ID_C_idx` (`ID_CITTA`),
-  KEY `ID_N_idx` (`ID_NAZ`),
-  KEY `ID_P` (`ID_PROV`),
-  CONSTRAINT `ID_C` FOREIGN KEY (`ID_CITTA`) REFERENCES `CITTA` (`ID_CITTA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ID_N` FOREIGN KEY (`ID_NAZ`) REFERENCES `NAZIONE` (`ID_NAZ`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ID_P` FOREIGN KEY (`ID_PROV`) REFERENCES `PROVINCIA` (`ID_PROV`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ID_T` FOREIGN KEY (`ID_TIPO`) REFERENCES `TIPOLOGIA_UTENTE` (`ID_TIPO`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `ID_USER_UNIQUE` (`ID_USER`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -384,6 +297,7 @@ CREATE TABLE `USER` (
 
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
+INSERT INTO `USER` VALUES (314641403,'1211112rt','Christian','Biuso','2000-05-24','3343025','sesia',10,'Milano','56484','ahdòh@jkdlf.it','uteue5','********',1),(364456785,'12310012rt','Christian','Biuso','2000-05-24','33433235','sesia',10,'Milano','56484','ahdkfòh@jkdflf.it','utete','password',1),(364456789,'12312312rt','Pippo','Biuso','2000-05-24','334332335','sesia',10,'Milano','56484','ahdkgfòh@jkdflf.it','utente','password',1),(832725315,'12311012rt','Christian','Biuso','2000-05-24','3343325','sesia',10,'Milano','56484','ahdkfòh@jkdlf.it','uteute','password',1),(981670304,'12111012rt','Christian','Biuso','2000-05-24','33433025','sesia',10,'Milano','56484','ahdkòh@jkdlf.it','uteute5','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8',1);
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -396,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-27 11:31:44
+-- Dump completed on 2023-07-24 17:41:11

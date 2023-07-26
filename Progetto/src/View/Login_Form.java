@@ -1,89 +1,137 @@
 package View;
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
 
 
-public class Login_Form extends JFrame implements ActionListener {
-   private JTextField emailCampo;
-    private JPasswordField passwordCampo;
-    private JButton LoginButton;
-    private JButton BackButton;
-    private JButton PasswordDimenticataButton;
+import java.awt.EventQueue;
 
-    public Login_Form() {
-        super("Registrazione Utente");
-        
-     // Centrare la finestra nella schermata
-        setLocationRelativeTo(null);
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Controller.LoginController;
 
 
-        // Creazione campi di testo
-        emailCampo = new JTextField(20);
-        passwordCampo = new JPasswordField(20);
-        
-        
-        // Creazione pulsante di registrazione
-        LoginButton = new JButton("Accedi al tuo account");
-        LoginButton.addActionListener(this);
-        
-        
-        //creazione pulsante per tornare indietro
-        
-        BackButton = new JButton("Torna indietro");
-        BackButton.addActionListener(this);
-        
-        //creazione pulsante per password dimenticata
-        PasswordDimenticataButton = new JButton("Password dimenticata?");
-        PasswordDimenticataButton.addActionListener(this);
-        
-        // Creazione etichette
-        JLabel emailLabel = new JLabel("Email:");
-        JLabel passwordLabel = new JLabel("Password:");
-        JLabel tornaindietroLabel = new JLabel("torna indietro:");
-        
-        // Aggiunta componenti alla GUI
-        JPanel panel = new JPanel(new GridLayout(8, 2));
-        panel.add(emailLabel);
-        panel.add(emailCampo);
-        panel.add(passwordLabel);
-        panel.add(passwordCampo);
-        panel.add(new JLabel()); // Aggiunta di una riga vuota
-        panel.add(LoginButton);
-        panel.add(new JLabel());
-        panel.add(PasswordDimenticataButton);
-        panel.add(tornaindietroLabel);
-        panel.add(BackButton);
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.Color;
 
-        add(panel);
+public class Login_Form extends JFrame {
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 200);
-        setVisible(true);
-    }
+	private JPanel contentPane;
+	private JTextField username;
+	private JTextField password;
 
-    public void actionPerformed(ActionEvent e) {
-        // Qui puoi inserire il codice per la registrazione dell'utente
-        // Utilizzando i dati inseriti nei campi di testo
-        // Quando l'utente ha completato la registrazione, puoi chiudere la finestra della GUI
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login_Form frame = new Login_Form();
+					
+					
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-        dispose();
-    }
-    
-    public void addLoginListener(ActionListener listener) {
-        LoginButton.addActionListener(listener);
-    }
+	/**
+	 * Create the frame.
+	 */    
+	public Login_Form() {
+		super("Accesso");
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 634, 440);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setFont(new Font("Thonburi", Font.PLAIN, 18));
+		lblUsername.setBounds(74, 115, 98, 16);
+		contentPane.add(lblUsername);
+		
+		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setFont(new Font("Thonburi", Font.PLAIN, 18));
+		lblPassword.setBounds(74, 187, 98, 16);
+		contentPane.add(lblPassword);
+		
+		username = new JTextField();
+		username.setBounds(215, 100, 225, 50);
+		contentPane.add(username);
+		username.setColumns(10);
+		
+		password = new JTextField();
+		password.setBounds(215, 172, 225, 50);
+		contentPane.add(password);
+		password.setColumns(10);
+		
+		JButton btnAccedi = new JButton("Accedi al tuo account");
+		
+		
+		
+		btnAccedi.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnAccedi.setBounds(215, 263, 230, 35);
+		contentPane.add(btnAccedi);
+		
+		
+		
+		
+		
+		JButton btnPsw = new JButton("Password dimenticata?");
+		btnPsw.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnPsw.setBounds(215, 310, 230, 35);
+		contentPane.add(btnPsw);
+		
+		
+		JButton btnBack = new JButton("Torna indietro");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnBack.setBounds(215, 357, 230, 35);
+		contentPane.add(btnBack);
+	
+		
+		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setForeground(new Color(154, 205, 50));
+		lblLogin.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
+		lblLogin.setBounds(275, 6, 112, 68);
+		contentPane.add(lblLogin);
+	}
 
-    public String getUsername() {
-        return emailCampo.getText();
-    }
-    
-    @SuppressWarnings("deprecation")
+	
+	
+
+	
+	public JTextField getusername() {
+		return username;
+	}
+	
+	public JTextField getpassword() {
+		return password;
+	}	
+	
+	public String getUsername() {
+		return username.getText();
+	}
+	
 	public String getPassword() {
-        return passwordCampo.getText();
-    }
- //   public static void main(String[] args) {
- //       new RegistrazioneUtente();
- //   }
-}
+		return password.getText();
+	}
+	
+// NON SO PRCHE' NON ME LO FACCIA FARE	
+	/*
+	public void setLoginListener(ActionListener listener) {
+		btnAccedi.addActionListener(listener);
+	}
+	
+	*/
+	
+
+}	    

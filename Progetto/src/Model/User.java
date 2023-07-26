@@ -1,5 +1,7 @@
 package Model;
-
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 
 import dao.DBConnessione;
 import dao.Gestione_Dao;
@@ -16,16 +18,16 @@ public class User {
 	private String Nome;
 	private String Cognome;
 	private java.sql.Date DataDiNascita;
-	private int Eta;
+	
 	private String NumTelefono; //string because that can accept foreign numbers, so the prefix must be accepted
 	private String Email;
 	private String Username;
 	private String Password;
 
 	private int Id_User;
-	private int Id_Citta;
-	private int Id_Prov;
-	private int Id_Nazione;
+	private String Via;
+	private String Citta;
+	private int CAP;
 	private int Id_tipo;
 	private Boolean login;
 	private Boolean registrazione;
@@ -33,8 +35,23 @@ public class User {
 
 //Costruttore 
 	
-	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, int eta, String numTelefono,
+	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numTelefono, String via, String citta, int cap,
 			String email, String username, String password) {
+
+		this.Cf = cf;
+		this.Nome = nome;
+		this.Cognome = cognome;
+		this.DataDiNascita = dataDiNascita;
+		this.NumTelefono = numTelefono;
+		this.Via = via;
+		this.Citta=citta;
+		this.CAP=cap;
+		this.Email=email;
+		this.Username=username;
+		this.Password=password;
+	
+		
+		
 		
 	}
 
@@ -91,16 +108,6 @@ public void setDataDiNascita(java.sql.Date dataDiNascita) {
 }
 
 
-public int getEta() {
-	return Eta;
-}
-
-
-public void setEta(int eta) {
-	Eta = eta;
-}
-
-
 public String getNumTelefono() {
 	return NumTelefono;
 }
@@ -140,36 +147,40 @@ public void setPassword(String password) {
 	this.Password = password;
 }
 
+
+public String getVia() {
+	return Via;
+}
+
+
+public void setVia(String via) {
+	this.Via = via;
+}	
+	
+	public String getCitta() {
+		return Citta;
+	}
+
+
+	public void setCitta(String citta) {
+		this.Citta = citta;
+}		
+
 public int getId_User() {
 	return Id_User;
 }
 
-public void setId_User(int id_User) {
-	Id_User = id_User;
+public void setId_User(int id_user) {
+	Id_User = id_user;
 }
 
-public int getId_Citta() {
-	return Id_Citta;
+
+public int getCAP() {
+	return CAP;
 }
 
-public void setId_Citta(int id_Citta) {
-	Id_Citta = id_Citta;
-}
-
-public int getId_Prov() {
-	return Id_Prov;
-}
-
-public void setId_prov(int id_Prov) {
-	Id_Prov = id_Prov;
-}
-
-public int getId_Nazione() {
-	return Id_Nazione;
-}
-
-public void setId_Nazione(int id_Nazione) {
-	Id_Nazione = id_Nazione;
+public void setCAP(int cap) {
+	CAP = cap;
 }
 
 public int getId_tipo() {
@@ -296,33 +307,18 @@ private boolean verificaDuplicati(String cf, String username, String email) {
     } 
 }
 
-
-public boolean registrati(String cf, String nome, String cognome, String dataNascita, String cell, String email, String citta, String username, String password) throws NoSuchAlgorithmException {
-    try {
-        // Verifica che il CF, l'username e l'email non siano già presenti nel database
-        Gestione_Dao g = new Gestione_Dao();
-        boolean cfPresente = g.verificaCF(cf);
-        boolean usernamePresente = g.verificaUsername(username);
-        boolean emailPresente = g.verificaEmail(email);
-
-        if (cfPresente) {
-            System.out.println("Errore: il codice fiscale inserito è già presente nel database");
-        } else if (usernamePresente) {
-            System.out.println("Errore: lo username inserito è già presente nel database");
-        } else if (emailPresente) {
-            System.out.println("Errore: l'email inserita è già presente nel database");
-        } else {
-            // Registra l'utente nel database
-            g.user_Register(cf, nome, cognome, dataNascita, cell, email, citta, username, password);
-            System.out.println("Registrazione completata con successo");
-        } 
-        return false;
-     } catch (SQLException e) {
-            System.out.println("Errore durante la verifica dei duplicati: " + e.getMessage());
-            return true;
-        } 
-}
+public void registrazione(String cf, String nome, String cognome, String dataNascita, String cell, String via, String citta, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
+    // Verifica che il CF, l'username e l'email non siano già presenti nel database
+	Gestione_Dao g = new Gestione_Dao();
+	g.user_Register(cf, nome, cognome, dataNascita, cell, via, citta, cap, email, username, password);
+    	
     
+
+    
+    
+
+     
+}
     
     
  //OTTIENI PASSWORD UTENTE
@@ -350,143 +346,77 @@ public boolean registrati(String cf, String nome, String cognome, String dataNas
              
     	
     }
-    	 
-    	 
-    
     
 }
     
-    public void modificaAttributo(String attributo, String nuovoValore) {
+    
+    public void modificaDati(String attributo, String nuovoValore) throws SQLException {
+        if (!login) {
+            System.out.println("Devi effettuare il login per modificare i tuoi dati");
+            return;
+        }
+
         DBConnessione d = new DBConnessione();
-        Connection con = null;
-        PreparedStatement stmt = null;
-        String sql = null;
+        Connection con=null;
+        con=d.connessione(con);
+        String sql = "UPDATE user SET " + attributo + "=? WHERE username=? AND psw=?";
 
-        try {
-            con = d.connessione(con);
-            switch (attributo) {
-                case "Cf":
-                    sql = "UPDATE user SET CF=? WHERE ID_USER=?";
-                    stmt = con.prepareStatement(sql);
-                    stmt.setString(1, nuovoValore);
-                    stmt.setInt(2, this.getId_User());
-                    break;
-                
-                case "Nome":
-                    sql = "UPDATE user SET NOME=? WHERE ID_USER=?";
-                    stmt = con.prepareStatement(sql);
-                    stmt.setString(1, nuovoValore);
-                    stmt.setInt(2, this.getId_User());
-                    break;
-                
-                case "Cognome":
-                    sql = "UPDATE user SET COGNOME=? WHERE ID_USER=?";
-                    stmt = con.prepareStatement(sql);
-                    stmt.setString(1, nuovoValore);
-                    stmt.setInt(2, this.getId_User());
-                    break;
-              
-                case "NumTelefono":
-                    sql = "UPDATE user SET CELL=? WHERE ID_USER=?";
-                    stmt = con.prepareStatement(sql);
-                    stmt.setString(1, nuovoValore);
-                    stmt.setInt(2, this.getId_User());
-                    break;
-                
-                case "Email":
-                    sql = "UPDATE user SET EMAIL=? WHERE ID_USER=?";
-                    stmt = con.prepareStatement(sql);
-                    stmt.setString(1, nuovoValore);
-                    stmt.setInt(2, this.getId_User());
-                    break;
-                
-                case "Username":
-                    sql = "UPDATE user SET USERNAME=? WHERE ID_USER=?";
-                    stmt = con.prepareStatement(sql);
-                    stmt.setString(1, nuovoValore);
-                    stmt.setInt(2, this.getId_User());
-                    break;
-                case "Password":
-                    // In questo caso la password va prima crittografata secondo l'algoritmo SHA-256
-                    try {
-                        MessageDigest md = MessageDigest.getInstance("SHA-256");
-                        byte[] hashedPassword = md.digest(nuovoValore.getBytes());
-                        StringBuilder sb = new StringBuilder();
-                        for (byte b : hashedPassword) {
-                            sb.append(String.format("%02x", b));
-                        }
-                        String hashedPasswordStr = sb.toString();
-                        sql = "UPDATE user SET PSW=? WHERE ID_USER=?";
-                        stmt = con.prepareStatement(sql);
-                        stmt.setString(1, hashedPasswordStr);
-                        stmt.setInt(2, this.getId_User());
-                    } catch (NoSuchAlgorithmException e) {
-                        System.out.println("Errore durante la crittografia della password: " + e.getMessage());
-                        return;
-                    }
-                    break;
-                default:
-                    System.out.println("Attributo non valido.");
-                    return;
-            }
-
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected == 1) {
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, nuovoValore);
+            stmt.setString(2, Username);
+            stmt.setString(3, Password);
+            int result = stmt.executeUpdate();
+            if (result == 1) {
                 switch (attributo) {
-                    
-                	case "Cf":
-                        this.setCf(nuovoValore);
+                    case "cf":
+                        Cf = nuovoValore;
                         break;
-                    
-                	case "Nome":
-                        this.setNome(nuovoValore);
+                    case "nome":
+                        Nome = nuovoValore;
                         break;
-                    
-                	case "Cognome":
-                        this.setCognome(nuovoValore);
+                    case "cognome":
+                        Cognome = nuovoValore;
                         break;
-            
-                    case "NumTelefono":
-                        this.setNumTelefono(nuovoValore);
+                    case "data_nascita":
+                        DataDiNascita = java.sql.Date.valueOf(nuovoValore);
                         break;
-                    
-                    case "Email":
-                        this.setEmail(nuovoValore);
+                    case "cell":
+                        NumTelefono = nuovoValore;
                         break;
-                    case "Username":
-                        this.setUsername(nuovoValore);
+                    case "via":
+                        Via = nuovoValore;
                         break;
-                    
-                    case "Password":
-                        this.setPassword(stmt.toString()); // Non aggiorniamo la password nell'oggetto User per motivi di sicurezza
+                    case "citta":
+                        Citta = nuovoValore;
                         break;
+                    case "cap":
+                        CAP = Integer.parseInt(nuovoValore);
+                        break;
+                    case "email":
+                        Email = nuovoValore;
+                        break;
+                    case "username":
+                        Username = nuovoValore;
+                        break;
+                    case "psw":
+                        Password = nuovoValore;
+                        break;
+                    default:
+                        System.out.println("Attributo non valido");
+                        return;
                 }
-                System.out.println("Attributo '" + attributo + "' modificato con successo.");
+                System.out.println("Modifica effettuata con successo");
             } else {
-                System.out.println("Errore durante la modifica dell'attributo '" + attributo + "'. Nessuna riga modificata.");
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Errore durante l'esecuzione della query di aggiornamento: " + e.getMessage());
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Errore durante la chiusura della connessione al database: " + e.getMessage());
+                System.out.println("Errore durante la modifica dei dati");
             }
         }
-    }    
+    }
 
 
 	@Override
 	public String toString() {
 		return "User [Cf=" + Cf + ", Nome=" + Nome + ", Cognome=" + Cognome + ", DataDiNascita=" + DataDiNascita
-				+ ", Eta=" + Eta + ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username
+				+ ", Eta=" + ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username
 				+ ", Password=" + Password + ", login=" + login + "]";
 	}
 
