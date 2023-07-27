@@ -36,15 +36,16 @@ public class LoginController {
                 e1.printStackTrace();
             }
 
-            // Aggiorna la vista in base al risultato del login
+            // QUI CI SARà LA HOME DELL'UTENTE
             if (esito) {
-                Benvenuto_Form welcomeForm = new Benvenuto_Form();
+                Home_Form welcomeForm = new Home_Form();
                 welcomeForm.setVisible(true);
                 view.dispose();
                 System.out.println("Accesso effettuato con successo!");
             } else {
                 System.out.println("Nome utente o password errati!");
             }
+            
         }
     }
 }

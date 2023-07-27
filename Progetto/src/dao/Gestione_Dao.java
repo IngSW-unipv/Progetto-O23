@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.swing.JOptionPane;
+
 import Model.User;
 
 public class Gestione_Dao {
@@ -148,7 +150,7 @@ public class Gestione_Dao {
     
 //QUERY PER LA REGISTRAZIONE
     
-    public void user_Register(String cf, String nome, String cognome, String dataNascita, String cell, String via,  String citta, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
+    public void user_Register(String cf, String nome, String cognome, String dataNascita, String cell, String via,  String citta, String provincia, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
     	
     	
     	 // Connessione al database
@@ -164,7 +166,7 @@ public class Gestione_Dao {
 
         try {
             // Inserimento dei dati nella tabella user
-            String sql = "INSERT INTO user (ID_USER,cf, nome, cognome, data_nascita, cell, email, via, civico, citta, cap, username, psw, id_tipo) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO user (ID_USER,cf, nome, cognome, data_nascita, cell, email, via, citta, provincia, cap, username, psw, id_tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, generaID());
             stmt.setString(2, cf);
@@ -175,10 +177,11 @@ public class Gestione_Dao {
             stmt.setString(7, email);
             stmt.setString(8, via);
             stmt.setString(9, citta);
-            stmt.setInt(10, cap); 
-            stmt.setString(11, username);
-            stmt.setString(12, password);
-            stmt.setInt(13, 1); // id_tipo = 1
+            stmt.setString(10, provincia);
+            stmt.setInt(11, cap); 
+            stmt.setString(12, username);
+            stmt.setString(13, password);
+            stmt.setInt(14, 1); // id_tipo = 1
             
             
             stmt.executeUpdate();
@@ -192,6 +195,49 @@ public class Gestione_Dao {
         
        
     	
+    }
+    
+    public boolean login(String username, String password) throws SQLException {
+        Connection conn = null;
+        DBConnessione d =new DBConnessione();
+       	conn=d.connessione(conn);        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean loggedIn = false;
+
+        try {
+            
+            String sql = "SELECT username FROM user WHERE username = ? AND password = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                loggedIn = true;
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        if(loggedIn=true) {
+        	System.out.println("Login effettuato con successo");
+        	
+        } else {
+        	System.out.println("Errore, username o passsoword errati");
+        	
+        }
+        return loggedIn;
+        
+        
+       
     }
     
 

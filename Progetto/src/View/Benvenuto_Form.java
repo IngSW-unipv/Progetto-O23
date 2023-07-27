@@ -1,79 +1,81 @@
 package View;
 
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.UIManager;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Benvenuto_Form extends JFrame {
+import javax.swing.ImageIcon;
 
-    public Benvenuto_Form() {
-        // Impostare il titolo della finestra
-        super("Benvenuto");
+public class Benvenuto_form extends JFrame {
 
-        // Creare un layout con le griglie
-        GridBagLayout gridBagLayout = new GridBagLayout();
-        setLayout(gridBagLayout);
+	private JPanel contentPane;
+	private final JLabel lbl = new JLabel("Benvenuto Utente ");
 
-        // Creare i bottoni
-        JButton pulsantelogin = new JButton("Login");
-        JButton pulsantesignup = new JButton("Sign up");
-        
-        
-    
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Benvenuto_form frame = new Benvenuto_form();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-        // Impostare le dimensioni preferite dei bottoni
-        Dimension dimensioniBottoni = new Dimension(80, 30);
-        pulsantelogin.setPreferredSize(dimensioniBottoni);
-        pulsantesignup.setPreferredSize(dimensioniBottoni);
-
-        // Impostare i vincoli del GridBagConstraints per centrare i bottoni
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.NONE;  // Non estendere i bottoni
-        gbc.gridx = 0;  // Colonna 0
-        gbc.gridy = 0;  // Riga 0
-        gbc.weightx = 0.5;  // Peso orizzontale
-        gbc.ipadx = 50;  // Padding orizzontale
-        gbc.ipady = 20;  // Padding verticale
-        add(pulsantelogin, gbc);
-
-        gbc.gridx = 1;  // Colonna 1
-        gbc.weightx = 0.5;  // Peso orizzontale
-        gbc.ipadx = 50;  // Padding orizzontale
-        gbc.ipady = 20;  // Padding verticale
-        add(pulsantesignup, gbc);
-
-        // Centrare la finestra nella schermata
-        setLocationRelativeTo(null);
-
-        // Impostare il comportamento di default alla chiusura della finestra
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Mostrare la finestra
-        pack();
-        setVisible(true);
-    
-    
-    //NEW WINDOWS
-//LOGIN CASE    
-        pulsantelogin.addActionListener(new ActionListener() {
-            @Override
+	/**
+	 * Create the frame.
+	 */
+	public Benvenuto_form() {
+		setBackground(new Color(255, 255, 255));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 715, 402);
+		contentPane = new JPanel();
+		contentPane.setBackground(UIManager.getColor("EditorPane.selectionBackground"));
+		contentPane.setBorder(null);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		lbl.setForeground(new Color(0, 128, 0));
+		lbl.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
+		lbl.setBounds(171, 44, 390, 108);
+		contentPane.add(lbl);
+		
+		JButton btnReg = new JButton("Registrazione");
+		btnReg.setFont(new Font("Thonburi", Font.PLAIN, 18));
+		btnReg.setBounds(62, 184, 216, 94);
+		contentPane.add(btnReg);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Thonburi", Font.PLAIN, 18));
+		btnLogin.setBounds(431, 184, 216, 94);
+		contentPane.add(btnLogin);
+		
+		
+		
+		btnLogin.addActionListener(new ActionListener() {
+            
                 // Questo metodo viene chiamato quando il pulsante viene cliccato
             	 public void actionPerformed(ActionEvent e) {
-            	        if (e.getSource() == pulsantelogin) {
-            	            new Login_Form();
+            	        
+            	            Login_Form loginForm =new Login_Form();
+            	            loginForm.setVisible(true);
             	            dispose(); // Chiude la finestra della prima classe
-            	        }
+            	        
             	          
             	}
          });
@@ -81,44 +83,17 @@ public class Benvenuto_Form extends JFrame {
     
     
  //SIGNUP CASE   
-    pulsantesignup.addActionListener(new ActionListener() {
-        @Override
+    btnReg.addActionListener(new ActionListener() {
+        
             // Questo metodo viene chiamato quando il pulsante viene cliccato
         	 public void actionPerformed(ActionEvent e) {
-        	        if (e.getSource() == pulsantesignup) {
-        	            new SignUp_Form();
-        	            dispose(); // Chiude la finestra della prima classe
-        	        }
+        		Registration_Form regForm =new Registration_Form();
+ 	            regForm.setVisible(true);
+ 	            dispose();
         	          
         	}
      });
-        }
-
-   
-    class FinestraNuova extends JFrame {
-
-        public FinestraNuova(String titolo) {
-            // Impostare il titolo della nuova finestra
-            super(titolo);
-
-            // Creare un pannello di contenuti
-            JPanel contenuto = new JPanel();
-
-            // Aggiungere un'etichetta al pannello di contenuti
-            contenuto.add(new JLabel("Questo è il contenuto della nuova finestra"));
-
-            // Aggiungere il pannello di contenuti alla finestra
-            add(contenuto);
-
-            // Impostare il comportamento di default alla chiusura della finestra
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            // Centrare la finestra nella schermata
-            setLocationRelativeTo(null);
-
-            // Mostrare la nuova finestra
-            pack();
-            setVisible(true);
-        }
-    }
+		
+		
+	}
 }

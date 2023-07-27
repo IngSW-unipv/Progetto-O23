@@ -7,9 +7,9 @@ public class Dipendenti extends User{
 	private float Stipendio;
 
 //COSTRUTTORE
-	public Dipendenti(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String via, String citta, int cap, String numTelefono,
+	public Dipendenti(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String via, String citta, String provincia, int cap, String numTelefono,
 			String email, String username, String password, int id_L, float stipendio) {
-		super(cf, nome, cognome, dataDiNascita, numTelefono, via, citta, cap, email, username, password);
+		super(cf, nome, cognome, dataDiNascita, numTelefono, via, citta, provincia, cap, email, username, password);
 		this.id_L = id_L;
 		Stipendio = stipendio;
 	}

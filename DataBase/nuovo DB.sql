@@ -277,6 +277,7 @@ CREATE TABLE `USER` (
   `CELL` varchar(20) NOT NULL,
   `VIA` varchar(45) NOT NULL,
   `CITTA` varchar(45) NOT NULL,
+  `PROVINCIA` varchar(45) NOT NULL,
   `CAP` varchar(45) NOT NULL,
   `EMAIL` varchar(40) NOT NULL,
   `USERNAME` varchar(20) NOT NULL,

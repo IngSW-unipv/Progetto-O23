@@ -9,10 +9,10 @@ public class Tipologia_Utente extends User{
 	
 //COSTRUTTORE
 
-	public Tipologia_Utente(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String via, String citta, int cap,
+	public Tipologia_Utente(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String via, String citta, String provincia, int cap,
 			String numTelefono, String email, String username, String password, int id_Tipo,
 			String descrizione_Utente) {
-		super(cf, nome, cognome, dataDiNascita, numTelefono, via, citta, cap, email, username, password);
+		super(cf, nome, cognome, dataDiNascita, numTelefono, via, citta, provincia, cap, email, username, password);
 		Id_Tipo = id_Tipo;
 		Descrizione_Utente = descrizione_Utente;
 	}

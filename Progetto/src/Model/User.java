@@ -1,12 +1,8 @@
 package Model;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.Date;
+
 
 import dao.DBConnessione;
 import dao.Gestione_Dao;
-
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +23,7 @@ public class User {
 	private int Id_User;
 	private String Via;
 	private String Citta;
+	private String Provincia;
 	private int CAP;
 	private int Id_tipo;
 	private Boolean login;
@@ -35,7 +32,7 @@ public class User {
 
 //Costruttore 
 	
-	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numTelefono, String via, String citta, int cap,
+	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numTelefono, String via, String citta, String provincia, int cap,
 			String email, String username, String password) {
 
 		this.Cf = cf;
@@ -46,6 +43,7 @@ public class User {
 		this.Via = via;
 		this.Citta=citta;
 		this.CAP=cap;
+		this.Provincia=provincia;
 		this.Email=email;
 		this.Username=username;
 		this.Password=password;
@@ -166,6 +164,16 @@ public void setVia(String via) {
 		this.Citta = citta;
 }		
 
+	public String getProvincia() {
+		return Provincia;
+	}
+
+
+	public void setProvincia(String provincia) {
+		Provincia = provincia;
+	}
+
+	
 public int getId_User() {
 	return Id_User;
 }
@@ -199,9 +207,9 @@ public boolean login(String username ,String password) throws SQLException {
 
 	Gestione_Dao g =  new Gestione_Dao();
 	//richiamo metodo controllo dell esistenza dell'untente
+	return g.login(username, password);
 	
-	
-//se count = 1 l'utente e nel DB
+/*//se count = 1 l'utente e nel DB
 
 	DBConnessione d =new DBConnessione();
 	Connection con=null;
@@ -237,7 +245,7 @@ public boolean login(String username ,String password) throws SQLException {
          return login;
          
          }
-	 }
+	 } */
 }
 
 //LOGOUT
@@ -307,10 +315,10 @@ private boolean verificaDuplicati(String cf, String username, String email) {
     } 
 }
 
-public void registrazione(String cf, String nome, String cognome, String dataNascita, String cell, String via, String citta, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
+public void registrazione(String cf, String nome, String cognome, String dataNascita, String cell, String via, String citta, String provincia, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
     // Verifica che il CF, l'username e l'email non siano già presenti nel database
 	Gestione_Dao g = new Gestione_Dao();
-	g.user_Register(cf, nome, cognome, dataNascita, cell, via, citta, cap, email, username, password);
+	g.user_Register(cf, nome, cognome, dataNascita, cell, via, citta, provincia, cap, email, username, password);
     	
     
 
