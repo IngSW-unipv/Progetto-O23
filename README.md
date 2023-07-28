@@ -1,5 +1,5 @@
 # Progetto-O23
-![logo](https://user-images.githubusercontent.com/119416593/222483582-4878bacd-6fdc-44dd-869a-b152037e5e60.png)
+![logo](https://github.com/IngSW-unipv/Progetto-O23/assets/119416593/fcf3e57d-b43d-4619-9d1a-0305d3d08b5f)
 
 il gruppo dei MipsTips intende realizzare un software in grado di gestire un albergo
 
