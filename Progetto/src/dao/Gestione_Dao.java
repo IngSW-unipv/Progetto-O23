@@ -240,5 +240,34 @@ public class Gestione_Dao {
        
     }
     
-
-}
+    
+    public String OttieniPsw(String cf,String user,String email) throws SQLException{
+    	
+    	DBConnessione d =new DBConnessione();
+    	Connection con=null;
+    	con=d.connessione(con);
+    	String psw=null;
+    	String sql =" SELECT PSW \r\n"
+    			+"FROM USER \r\n"
+    			+"WHERE USERNAME= ? and  CF= ? and EMAIL= ?";
+    	 try (PreparedStatement stmt = con.prepareStatement(sql)) {
+             stmt.setString(1, user);
+             stmt.setString(2, cf);
+             stmt.setString(3, email);
+             ResultSet rs = stmt.executeQuery();
+             if (rs.next()) {
+            	 psw = rs.getString("PSW");
+                 return psw;
+             } else {
+            	 System.out.println("impossibile trovare password hai sbagliato a inserire i dati");
+            	 return psw;
+             }
+    	
+    	
+    	
+    	 }
+    }
+    
+    
+    
+   }

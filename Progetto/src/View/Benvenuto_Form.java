@@ -17,8 +17,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
-public class Benvenuto_form extends JFrame {
+public class Benvenuto_Form extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final JLabel lbl = new JLabel("Benvenuto Utente ");
 
@@ -41,7 +45,7 @@ public class Benvenuto_form extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Benvenuto_form() {
+	public Benvenuto_Form() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 715, 402);

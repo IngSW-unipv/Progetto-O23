@@ -24,7 +24,7 @@ public class Test {
 	
 		
 
-		//User model = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
+		User model = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
 		
 		
 		//Registration_Form view = new Registration_Form();
@@ -37,7 +37,7 @@ public class Test {
         // Crea un'istanza del controller e passa vista e modello come argomenti
         
 
-		/model.login("utente", "password");
+		model.login("utente", "password");
 		
 		//model.modificaDati("nome", "Pippo");
 		//model.logout(false);

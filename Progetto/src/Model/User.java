@@ -209,43 +209,7 @@ public boolean login(String username ,String password) throws SQLException {
 	//richiamo metodo controllo dell esistenza dell'untente
 	return g.login(username, password);
 	
-/*//se count = 1 l'utente e nel DB
-
-	DBConnessione d =new DBConnessione();
-	Connection con=null;
-	con=d.connessione(con);
-	int count=0;
-	String sql = "SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END AS USERNAME \r\n"
-			+ "FROM user \r\n"
-			+ "WHERE USERNAME = ? and PSW = ? ";
-	
-	 try (PreparedStatement stmt = con.prepareStatement(sql)) {
-         stmt.setString(1, username);
-         stmt.setString(2, password);
-         ResultSet rs = stmt.executeQuery();
-         rs.next();
-         count = rs.getInt(1);
-         con.close();
-         if(count==1) {
-        	 System.out.println("loggato");
-        	 login=true;
-        	 Gestione_Dao g1 =  new Gestione_Dao();
-        	 Username=username;
-        	 Password=password;
-        	 Cognome=g1.OttieniParametroUserString("Cognome",username,password);
-        	 Nome=g1.OttieniParametroUserString("Nome",username,password);
-        	 Cf=g1.OttieniParametroUserString("CF", username, password);
-        	 Email=g1.OttieniParametroUserString("EMAIL", username, password);
-        	 NumTelefono=g1.OttieniParametroUserString("CELL", username, password);
-        	 DataDiNascita=g1.OttieniParametroUserDate("DATA_NASCITA", username, password);
-        	 return login;
-         }else {
-         login=false;
-         System.out.println("utente inesistente o password sbagliata");
-         return login;
-         
-         }
-	 } */
+ 
 }
 
 //LOGOUT
@@ -316,60 +280,36 @@ private boolean verificaDuplicati(String cf, String username, String email) {
 }
 
 public void registrazione(String cf, String nome, String cognome, String dataNascita, String cell, String via, String citta, String provincia, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
+	
     // Verifica che il CF, l'username e l'email non siano già presenti nel database
 	Gestione_Dao g = new Gestione_Dao();
-	g.user_Register(cf, nome, cognome, dataNascita, cell, via, citta, provincia, cap, email, username, password);
-    	
-    
-
-    
-    
-
+	g.user_Register(cf, nome, cognome, dataNascita, cell, via, citta, provincia, cap, email, username, password);	
      
 }
     
     
  //OTTIENI PASSWORD UTENTE
-    
-    public String OttieniPassword(String cf,String user,String email) throws SQLException {
-    	DBConnessione d =new DBConnessione();
-    	Connection con=null;
-    	con=d.connessione(con);
-    	String psw=null;
-    	String sql =" SELECT PSW \r\n"
-    			+"FROM USER \r\n"
-    			+"WHERE USERNAME= ? and  CF= ? and EMAIL= ?";
-    	 try (PreparedStatement stmt = con.prepareStatement(sql)) {
-             stmt.setString(1, user);
-             stmt.setString(2, cf);
-             stmt.setString(3, email);
-             ResultSet rs = stmt.executeQuery();
-             if (rs.next()) {
-            	 psw = rs.getString("PSW");
-                 return psw;
-             } else {
-            	 System.out.println("impossibile trovare password hai sbagliato a inserire i dati");
-            	 return psw;
-             }
-             
-    	
-    }
-    
+ public String OttieniPassword(String cf,String user,String email) throws SQLException {
+    Gestione_Dao g =  new Gestione_Dao();
+    return g.OttieniPsw(cf, user, email);
+            
 }
     
+
     
-    public void modificaDati(String attributo, String nuovoValore) throws SQLException {
-        if (!login) {
-            System.out.println("Devi effettuare il login per modificare i tuoi dati");
-            return;
-        }
+    
+public void modificaDati(String attributo, String nuovoValore) throws SQLException {
+     if (!login) {
+          System.out.println("Devi effettuare il login per modificare i tuoi dati");
+          return;
+     }
 
-        DBConnessione d = new DBConnessione();
-        Connection con=null;
-        con=d.connessione(con);
-        String sql = "UPDATE user SET " + attributo + "=? WHERE username=? AND psw=?";
+       DBConnessione d = new DBConnessione();
+       Connection con=null;
+       con=d.connessione(con);
+       String sql = "UPDATE user SET " + attributo + "=? WHERE username=? AND psw=?";
 
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+       try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, nuovoValore);
             stmt.setString(2, Username);
             stmt.setString(3, Password);
@@ -418,15 +358,16 @@ public void registrazione(String cf, String nome, String cognome, String dataNas
                 System.out.println("Errore durante la modifica dei dati");
             }
         }
-    }
+}
 
 
-	@Override
-	public String toString() {
-		return "User [Cf=" + Cf + ", Nome=" + Nome + ", Cognome=" + Cognome + ", DataDiNascita=" + DataDiNascita
+@Override
+public String toString() {
+	
+	return "User [Cf=" + Cf + ", Nome=" + Nome + ", Cognome=" + Cognome + ", DataDiNascita=" + DataDiNascita
 				+ ", Eta=" + ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username
 				+ ", Password=" + Password + ", login=" + login + "]";
-	}
+}
 
 
 
