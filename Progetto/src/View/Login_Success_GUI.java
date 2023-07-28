@@ -100,7 +100,7 @@ public class Login_Success_GUI extends JFrame implements ActionListener {
                 // Questo metodo viene chiamato quando il pulsante viene cliccato
             	 public void actionPerformed(ActionEvent e) {
             	        if (e.getSource() == LogOut) {
-            	            new Benvenuto_form ();
+            	            new Benvenuto_Form ();
             	            dispose(); // Chiude la finestra della prima classe
             	        }
             	          

@@ -33,7 +33,7 @@ public class Benvenuto_Form extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Benvenuto_form frame = new Benvenuto_form();
+					Benvenuto_Form frame = new Benvenuto_Form();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
