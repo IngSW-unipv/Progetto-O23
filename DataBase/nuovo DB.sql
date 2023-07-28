@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS hotel /*!40100 default character set latin1 */;
+use hotel;
+
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: hotel2
