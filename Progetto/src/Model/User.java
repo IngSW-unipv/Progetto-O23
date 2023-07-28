@@ -22,7 +22,7 @@ public class User {
 
 	private int Id_User;
 	private String Via;
-	private String Citta;
+	private String Città;
 	private String Provincia;
 	private int CAP;
 	private int Id_tipo;
@@ -32,7 +32,7 @@ public class User {
 
 //Costruttore 
 	
-	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numTelefono, String via, String citta, String provincia, int cap,
+	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numTelefono, String via, String città, String provincia, int cap,
 			String email, String username, String password) {
 
 		this.Cf = cf;
@@ -41,7 +41,7 @@ public class User {
 		this.DataDiNascita = dataDiNascita;
 		this.NumTelefono = numTelefono;
 		this.Via = via;
-		this.Citta=citta;
+		this.Città=città;
 		this.CAP=cap;
 		this.Provincia=provincia;
 		this.Email=email;
@@ -155,13 +155,13 @@ public void setVia(String via) {
 	this.Via = via;
 }	
 	
-	public String getCitta() {
-		return Citta;
+	public String getCittà() {
+		return Città;
 	}
 
 
-	public void setCitta(String citta) {
-		this.Citta = citta;
+	public void setCittà(String città) {
+		this.Città = città;
 }		
 
 	public String getProvincia() {
@@ -237,48 +237,6 @@ public boolean logout(boolean log) {
 	
 }
 
-private boolean verificaDuplicati(String cf, String username, String email) {
-    DBConnessione d =new DBConnessione();
-	Connection con=null;
-	con=d.connessione(con);
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
-
-    try {
-        // Verifica duplicati per CF
-        String sql = "SELECT * FROM user WHERE cf=?";
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, cf);
-        rs = stmt.executeQuery();
-        if (rs.next()) {
-            return true;
-        }
-
-        // Verifica duplicati per username
-        sql = "SELECT * FROM user WHERE username=?";
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, username);
-        rs = stmt.executeQuery();
-        if (rs.next()) {
-            return true;
-        }
-
-        // Verifica duplicati per email
-        sql = "SELECT * FROM user WHERE email=?";
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, email);
-        rs = stmt.executeQuery();
-        if (rs.next()) {
-            return true;
-        }
-
-        return false;
-    } catch (SQLException e) {
-        System.out.println("Errore durante la verifica dei duplicati: " + e.getMessage());
-        return true;
-    } 
-}
-
 public void registrazione(String cf, String nome, String cognome, String dataNascita, String cell, String via, String citta, String provincia, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
 	
     // Verifica che il CF, l'username e l'email non siano già presenti nel database
@@ -286,7 +244,13 @@ public void registrazione(String cf, String nome, String cognome, String dataNas
 	g.user_Register(cf, nome, cognome, dataNascita, cell, via, citta, provincia, cap, email, username, password);	
      
 }
-    
+
+public void modificaAttr(String attributo, String nuovoValore) throws SQLException, NoSuchAlgorithmException {
+	
+	Gestione_Dao g = new Gestione_Dao();
+	g.modificaDati(this, attributo, nuovoValore);	
+     
+}
     
  //OTTIENI PASSWORD UTENTE
  public String OttieniPassword(String cf,String user,String email) throws SQLException {
@@ -298,67 +262,7 @@ public void registrazione(String cf, String nome, String cognome, String dataNas
 
     
     
-public void modificaDati(String attributo, String nuovoValore) throws SQLException {
-     if (!login) {
-          System.out.println("Devi effettuare il login per modificare i tuoi dati");
-          return;
-     }
 
-       DBConnessione d = new DBConnessione();
-       Connection con=null;
-       con=d.connessione(con);
-       String sql = "UPDATE user SET " + attributo + "=? WHERE username=? AND psw=?";
-
-       try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, nuovoValore);
-            stmt.setString(2, Username);
-            stmt.setString(3, Password);
-            int result = stmt.executeUpdate();
-            if (result == 1) {
-                switch (attributo) {
-                    case "cf":
-                        Cf = nuovoValore;
-                        break;
-                    case "nome":
-                        Nome = nuovoValore;
-                        break;
-                    case "cognome":
-                        Cognome = nuovoValore;
-                        break;
-                    case "data_nascita":
-                        DataDiNascita = java.sql.Date.valueOf(nuovoValore);
-                        break;
-                    case "cell":
-                        NumTelefono = nuovoValore;
-                        break;
-                    case "via":
-                        Via = nuovoValore;
-                        break;
-                    case "citta":
-                        Citta = nuovoValore;
-                        break;
-                    case "cap":
-                        CAP = Integer.parseInt(nuovoValore);
-                        break;
-                    case "email":
-                        Email = nuovoValore;
-                        break;
-                    case "username":
-                        Username = nuovoValore;
-                        break;
-                    case "psw":
-                        Password = nuovoValore;
-                        break;
-                    default:
-                        System.out.println("Attributo non valido");
-                        return;
-                }
-                System.out.println("Modifica effettuata con successo");
-            } else {
-                System.out.println("Errore durante la modifica dei dati");
-            }
-        }
-}
 
 
 @Override

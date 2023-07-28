@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Model.User;
@@ -43,20 +44,20 @@ public class Registration_Form extends JFrame {
                 "May", "Jun", "July", "Aug",
                 "Sup", "Oct", "Nov", "Dec" };
         private String anni[]
-            = { "1995", "1996", "1997", "1998",
-                "1999", "2000", "2001", "2002",
-                "2003", "2004", "2005", "2006",
-                "2007", "2008", "2009", "2010",
-                "2011", "2012", "2013", "2014",
-                "2015", "2016", "2017", "2018",
-                "2019" };
+            = { "1980", "1981", "1982", "1983",
+            	"1984", "1985", "1986", "1987",
+            	"1988", "1989", "1990", "1991",
+            	"1992", "1993", "1994", "1995",
+            	"1996", "1997", "1998", "1999",
+                "2000", "2001", "2002", "2003",
+               };
     private JComboBox data;
     private JComboBox mese;
     private JComboBox anno;
     private JTextField email;
     private JTextField cell;
     private JTextField via;
-    private JTextField citt‡;        
+    private JTextField citt√†;        
     private JTextField provincia;
     private JTextField cap;
     private JTextField username;    
@@ -94,6 +95,7 @@ public class Registration_Form extends JFrame {
         setBounds(450, 190, 1124, 661);
         setResizable(false);
         contentPane = new JPanel();
+        contentPane.setBackground(UIManager.getColor("EditorPane.selectionBackground"));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
@@ -192,8 +194,8 @@ public class Registration_Form extends JFrame {
         btnReg.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    User user = new User(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()), cell.getText(), via.getText(), citt‡.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
-                    user.registrazione(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()).toString(), cell.getText(), via.getText(), citt‡.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
+                    User user = new User(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()), cell.getText(), via.getText(), citt√†.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
+                    user.registrazione(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()).toString(), cell.getText(), via.getText(), citt√†.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
                     JOptionPane.showMessageDialog(null, "Registrazione effettuata con successo!");
                 } catch (SQLException | NoSuchAlgorithmException ex) {
                     JOptionPane.showMessageDialog(null, "Errore durante la registrazione: " + ex.getMessage());
@@ -229,11 +231,11 @@ public class Registration_Form extends JFrame {
         contentPane.add(via);
         via.setColumns(10);
         
-        citt‡ = new JTextField();
-        citt‡.setFont(new Font("Thonburi", Font.PLAIN, 18));
-        citt‡.setBounds(707, 267, 225, 50);
-        contentPane.add(citt‡);
-        citt‡.setColumns(10);
+        citt√† = new JTextField();
+        citt√†.setFont(new Font("Thonburi", Font.PLAIN, 18));
+        citt√†.setBounds(707, 267, 225, 50);
+        contentPane.add(citt√†);
+        citt√†.setColumns(10);
         
         JLabel lblCF = new JLabel("Codice Fiscale:");
         lblCF.setFont(new Font("Thonburi", Font.PLAIN, 18));
@@ -272,5 +274,15 @@ public class Registration_Form extends JFrame {
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
         btnBack.setBounds(341, 513, 180, 70);
         contentPane.add(btnBack);
+        btnBack.addActionListener(new ActionListener() {
+	        
+            // Questo metodo viene chiamato quando il pulsante viene cliccato
+        	 public void actionPerformed(ActionEvent e) {
+        		Home_Form regForm =new Home_Form();
+ 	            regForm.setVisible(true);
+ 	            dispose();
+        	          
+        	 }
+	     });
     }
 }

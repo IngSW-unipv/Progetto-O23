@@ -14,6 +14,7 @@ import dao.Gestione_Dao;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -56,6 +57,7 @@ public class Login_Form extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 440);
 		contentPane = new JPanel();
+		contentPane.setBackground(UIManager.getColor("EditorPane.selectionBackground"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -112,6 +114,16 @@ public class Login_Form extends JFrame {
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnBack.setBounds(215, 357, 230, 35);
 		contentPane.add(btnBack);
+		btnBack.addActionListener(new ActionListener() {
+		        
+	            // Questo metodo viene chiamato quando il pulsante viene cliccato
+	        	 public void actionPerformed(ActionEvent e) {
+	        		Benvenuto_Form regForm =new Benvenuto_Form();
+	 	            regForm.setVisible(true);
+	 	            dispose();
+	        	          
+	        	}
+	     });
 	
 		
 		JLabel lblLogin = new JLabel("Login");
@@ -126,8 +138,6 @@ public class Login_Form extends JFrame {
 		contentPane.add(password);
 	}
 
-	
-	
 
 	
 	public JTextField getusername() {

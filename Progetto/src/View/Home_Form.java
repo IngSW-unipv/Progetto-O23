@@ -11,18 +11,12 @@ import javax.swing.JButton;
 import javax.swing.UIManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
 
 
+public class Home_Form extends JFrame {
 
-public class Benvenuto_Form extends JFrame {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private final JLabel lbl = new JLabel("Benvenuto, selezionare il tipo ");
+	private final JLabel lbl = new JLabel("Benvenuto cliente,");
 
 	/**
 	 * Launch the application.
@@ -31,7 +25,7 @@ public class Benvenuto_Form extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Benvenuto_Form frame = new Benvenuto_Form();
+					Home_Form frame = new Home_Form();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,25 +37,44 @@ public class Benvenuto_Form extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Benvenuto_Form() {
+	public Home_Form() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 710, 400);
+		setBounds(100, 100, 715, 402);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("FormattedTextField.selectionBackground"));
+		contentPane.setBackground(UIManager.getColor("EditorPane.selectionBackground"));
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		lbl.setForeground(new Color(0, 128, 0));
 		lbl.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
-		lbl.setBounds(62, 6, 608, 94);
+		lbl.setBounds(171, 44, 390, 108);
 		contentPane.add(lbl);
 		
-		JButton btnD = new JButton("Dipendente");
-		btnD.setFont(new Font("Thonburi", Font.PLAIN, 18));
-		btnD.setBounds(62, 184, 216, 94);
-		contentPane.add(btnD);
-		btnD.addActionListener(new ActionListener() {
+		JButton btnReg = new JButton("Registrazione");
+		btnReg.setFont(new Font("Thonburi", Font.PLAIN, 18));
+		btnReg.setBounds(92, 184, 216, 94);
+		contentPane.add(btnReg);
+		
+		//SIGNUP CASE   
+	    btnReg.addActionListener(new ActionListener() {
+	        
+	            // Questo metodo viene chiamato quando il pulsante viene cliccato
+	        	 public void actionPerformed(ActionEvent e) {
+	        		Registration_Form regForm =new Registration_Form();
+	 	            regForm.setVisible(true);
+	 	            dispose();
+	        	          
+	        	}
+	     });
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Thonburi", Font.PLAIN, 18));
+		btnLogin.setBounds(413, 184, 216, 94);
+		contentPane.add(btnLogin);
+		
+		//LOGIN CASE
+		btnLogin.addActionListener(new ActionListener() {
             
             // Questo metodo viene chiamato quando il pulsante viene cliccato
         	 public void actionPerformed(ActionEvent e) {
@@ -73,33 +86,28 @@ public class Benvenuto_Form extends JFrame {
         	          
         	}
      });
+        
 		
-		JButton btnC = new JButton("Cliente");
-		btnC.setFont(new Font("Thonburi", Font.PLAIN, 18));
-		btnC.setBounds(431, 184, 216, 94);
-		contentPane.add(btnC);
+		JButton btnBack = new JButton("Torna indietro");
+		btnBack.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		btnBack.setBounds(278, 304, 161, 38);
+		contentPane.add(btnBack);
+		
 		 //SIGNUP CASE   
-	    btnC.addActionListener(new ActionListener() {
+	    btnBack.addActionListener(new ActionListener() {
 	        
 	            // Questo metodo viene chiamato quando il pulsante viene cliccato
 	        	 public void actionPerformed(ActionEvent e) {
-	        		Home_Form regForm =new Home_Form();
+	        		Benvenuto_Form regForm =new Benvenuto_Form();
 	 	            regForm.setVisible(true);
 	 	            dispose();
 	        	          
 	        	}
 	     });
 		
-		JLabel lblNewLabel = new JLabel("di utente:");
-		lblNewLabel.setForeground(new Color(0, 128, 0));
-		lblNewLabel.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
-		lblNewLabel.setBounds(248, 70, 280, 64);
-		contentPane.add(lblNewLabel);
 		
 		
 		
-		
-            
     
     
 

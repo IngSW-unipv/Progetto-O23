@@ -192,10 +192,74 @@ public class Gestione_Dao {
         } catch (SQLException e) {
             System.out.println("Errore durante la registrazione: " + e.getMessage());
         } 
-        
-       
-    	
     }
+    
+    public void modificaDati(User user, String attributo, String nuovoValore) throws SQLException {
+        if (!login(null, null)) {
+             System.out.println("Devi effettuare il login per modificare i tuoi dati");
+             return;
+        }
+
+          DBConnessione d = new DBConnessione();
+          Connection con=null;
+          con=d.connessione(con);
+          String sql = "UPDATE user SET " + attributo + "=? WHERE username=? AND psw=?";
+
+          try (PreparedStatement stmt = con.prepareStatement(sql)) {
+               stmt.setString(1, nuovoValore);
+               stmt.setString(2, user.getUsername());
+               stmt.setString(3, user.getPassword());
+               int result = stmt.executeUpdate();
+               if (result == 1) {
+                   switch (attributo) {
+                       case "cf":
+                           user.setCf(nuovoValore);
+                           break;
+                       case "nome":
+                    	   user.setNome(nuovoValore);
+                           break;
+                       case "cognome":
+                    	   user.setCognome(nuovoValore);
+                           break;
+                       case "data_nascita":
+                           user.setDataDiNascita(java.sql.Date.valueOf(nuovoValore));
+                           break;
+                       case "cell":
+                    	   user.setNumTelefono(nuovoValore);
+                           break;
+                       case "via":
+                    	   user.setVia(nuovoValore);
+                           break;
+                       case "città":
+                    	   user.setCittà(nuovoValore);
+                           break;
+                       case "provincia":
+                    	   user.setProvincia(nuovoValore);
+                           break;    
+                       case "cap":
+                    	   user.setCAP(Integer.parseInt(nuovoValore));
+                           break;
+                       case "email":
+                    	   user.setEmail(nuovoValore);
+                           break;
+                       case "username":
+                    	   user.setUsername(nuovoValore);
+                           break;
+                       case "psw":
+                    	   user.setPassword(nuovoValore);
+                           break;
+                       default:
+                           System.out.println("Attributo non valido");
+                           return;
+                   }
+                   System.out.println("Modifica effettuata con successo");
+                              
+                   
+               } else {
+                   System.out.println("Errore durante la modifica dei dati");
+               }
+           }
+   }
     
     public boolean login(String username, String password) throws SQLException {
         Connection conn = null;
