@@ -260,7 +260,7 @@ CREATE TABLE `USER` (
   `CAP` varchar(45) NOT NULL,
   `EMAIL` varchar(40) NOT NULL,
   `USERNAME` varchar(20) NOT NULL,
-  `PSW` varchar(40) NOT NULL,
+  `PASSWORD` varchar(40) NOT NULL,
   `ID_TIPO` int(1) NOT NULL,
   PRIMARY KEY (`ID_USER`),
   UNIQUE KEY `CF_UNIQUE` (`CF`),
