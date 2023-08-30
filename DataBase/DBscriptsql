@@ -1,9 +1,8 @@
-CREATE DATABASE IF NOT EXISTS hotel /*!40100 default character set latin1 */;
-use hotel;
-
+CREATE DATABASE  IF NOT EXISTS `hotel` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `hotel`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: 127.0.0.1    Database: hotel2
+-- Host: 127.0.0.1    Database: hotel
 -- ------------------------------------------------------
 -- Server version	8.0.0-dmr
 
@@ -125,6 +124,7 @@ CREATE TABLE `CONTRATTI` (
 
 LOCK TABLES `CONTRATTI` WRITE;
 /*!40000 ALTER TABLE `CONTRATTI` DISABLE KEYS */;
+INSERT INTO `CONTRATTI` VALUES (1,'PART-TIME'),(2,'FULL-TIME'),(3,'A CHIAMATA');
 /*!40000 ALTER TABLE `CONTRATTI` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,17 +136,15 @@ DROP TABLE IF EXISTS `DIPENDENTE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `DIPENDENTE` (
-  `ID_L` int(11) NOT NULL,
-  `ID_MANS` int(10) NOT NULL,
-  `ID_CONTR` int(10) NOT NULL,
-  `STIPENDIO` decimal(6,3) NOT NULL,
-  `ID_USER` int(10) NOT NULL,
+  `ID_L` int(6) NOT NULL,
+  `RUOLO` varchar(40) NOT NULL,
+  `ID_CONTR` int(10) DEFAULT NULL,
+  `STIPENDIO` int(10) NOT NULL,
+  `ID_USER` int(6) NOT NULL,
   PRIMARY KEY (`ID_L`),
-  KEY `ID_M_idx` (`ID_MANS`),
   KEY `ID_C_idx` (`ID_CONTR`),
   KEY `ID_US_idx` (`ID_USER`),
   CONSTRAINT `ID_CO` FOREIGN KEY (`ID_CONTR`) REFERENCES `CONTRATTI` (`ID_CONTR`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ID_M` FOREIGN KEY (`ID_MANS`) REFERENCES `MANSIONE` (`ID_MANS`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `ID_US` FOREIGN KEY (`ID_USER`) REFERENCES `USER` (`ID_USER`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -157,31 +155,8 @@ CREATE TABLE `DIPENDENTE` (
 
 LOCK TABLES `DIPENDENTE` WRITE;
 /*!40000 ALTER TABLE `DIPENDENTE` DISABLE KEYS */;
+INSERT INTO `DIPENDENTE` VALUES (190,'PULIZIE',1,15000,789654),(234,'GUARDIA',NULL,20500,345098);
 /*!40000 ALTER TABLE `DIPENDENTE` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `MANSIONE`
---
-
-DROP TABLE IF EXISTS `MANSIONE`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `MANSIONE` (
-  `ID_MANS` int(10) NOT NULL,
-  `DESC_MANS` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID_MANS`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MANSIONE`
---
-
-LOCK TABLES `MANSIONE` WRITE;
-/*!40000 ALTER TABLE `MANSIONE` DISABLE KEYS */;
-INSERT INTO `MANSIONE` VALUES (1,'Segretario'),(2,'Contabile'),(3,'Programmatore'),(4,'Responsabile Acquisti'),(5,'Direttore Tecnico'),(6,'Addetto alla Sicurezza'),(7,'Responsabile Marketing'),(8,'Addetto alle Pulizie'),(9,'Dipendente ai Piani'),(10,'Responsabile Risorse Umane');
-/*!40000 ALTER TABLE `MANSIONE` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -230,7 +205,7 @@ CREATE TABLE `TIPOLOGIA_UTENTE` (
 
 LOCK TABLES `TIPOLOGIA_UTENTE` WRITE;
 /*!40000 ALTER TABLE `TIPOLOGIA_UTENTE` DISABLE KEYS */;
-INSERT INTO `TIPOLOGIA_UTENTE` VALUES (1,'Utente'),(2,'Dipendente'),(3,'Direttore');
+INSERT INTO `TIPOLOGIA_UTENTE` VALUES (1,'DIPENDENTE'),(2,'CLIENTE'),(3,'DIRETTORE');
 /*!40000 ALTER TABLE `TIPOLOGIA_UTENTE` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,14 +217,14 @@ DROP TABLE IF EXISTS `TURNI_LAVORO`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `TURNI_LAVORO` (
-  `ID_L` int(11) NOT NULL,
+  `ID_L` int(6) NOT NULL,
   `GIORNO` date NOT NULL,
-  `NUM_CT` int(10) NOT NULL,
+  `NUM_CT` int(10) DEFAULT NULL,
   `ORA_INIZIO` time NOT NULL,
   `ORA_FINE` time NOT NULL,
   PRIMARY KEY (`GIORNO`),
-  KEY `ID_idx` (`ID_L`),
   KEY `NUM_idx` (`NUM_CT`),
+  KEY `ID_TR_idx` (`ID_L`),
   CONSTRAINT `ID_TR` FOREIGN KEY (`ID_L`) REFERENCES `DIPENDENTE` (`ID_L`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `NUM_T` FOREIGN KEY (`NUM_CT`) REFERENCES `CAMERA` (`NUMERO`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -261,6 +236,7 @@ CREATE TABLE `TURNI_LAVORO` (
 
 LOCK TABLES `TURNI_LAVORO` WRITE;
 /*!40000 ALTER TABLE `TURNI_LAVORO` DISABLE KEYS */;
+INSERT INTO `TURNI_LAVORO` VALUES (234,'2023-09-01',NULL,'08:00:00','12:00:00'),(190,'2023-09-09',NULL,'00:00:00','06:00:00');
 /*!40000 ALTER TABLE `TURNI_LAVORO` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +248,7 @@ DROP TABLE IF EXISTS `USER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER` (
-  `ID_USER` int(10) NOT NULL,
+  `ID_USER` int(6) NOT NULL,
   `CF` char(16) NOT NULL,
   `NOME` varchar(20) NOT NULL,
   `COGNOME` varchar(20) NOT NULL,
@@ -285,7 +261,7 @@ CREATE TABLE `USER` (
   `EMAIL` varchar(40) NOT NULL,
   `USERNAME` varchar(20) NOT NULL,
   `PSW` varchar(40) NOT NULL,
-  `ID_TIPO` int(10) NOT NULL,
+  `ID_TIPO` int(1) NOT NULL,
   PRIMARY KEY (`ID_USER`),
   UNIQUE KEY `CF_UNIQUE` (`CF`),
   UNIQUE KEY `EMAIL_UNIQUE` (`EMAIL`),
@@ -301,7 +277,7 @@ CREATE TABLE `USER` (
 
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
-INSERT INTO `USER` VALUES (314641403,'1211112rt','Christian','Biuso','2000-05-24','3343025','sesia',10,'Milano','56484','ahdòh@jkdlf.it','uteue5','********',1),(364456785,'12310012rt','Christian','Biuso','2000-05-24','33433235','sesia',10,'Milano','56484','ahdkfòh@jkdflf.it','utete','password',1),(364456789,'12312312rt','Pippo','Biuso','2000-05-24','334332335','sesia',10,'Milano','56484','ahdkgfòh@jkdflf.it','utente','password',1),(832725315,'12311012rt','Christian','Biuso','2000-05-24','3343325','sesia',10,'Milano','56484','ahdkfòh@jkdlf.it','uteute','password',1),(981670304,'12111012rt','Christian','Biuso','2000-05-24','33433025','sesia',10,'Milano','56484','ahdkòh@jkdlf.it','uteute5','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8',1);
+INSERT INTO `USER` VALUES (123452,'NREMRC80P15H501U','MARCO','NERI','1980-09-15','3490027531','SESIA','ROMA','ROMA','00100','MARCO.NERI@HOTMAIL.IT','MARCO.NERI','password2',2),(345098,'BNCCRL76M23L219X','CARLO','BIANCHI','1976-08-23','3479924375','PO','TORINO','TO','10121','C.BIANCHI@LIBERO.IT','C.BIANCHI','password',1),(432765,'VRDGLI91C42F205H','GIULIA','VERDI','1991-03-02','3717562592','TICINO','MILANO','MI','20100','VERDI.G@GMAIL.COM','VERDI.G','password1',2),(789654,'RSSSRA00A71F839R','SARA','ROSSI','2000-01-31','3202297899','SAURO','NAPOLI','NA','80126','SARIRED@GMAIL.COM','S.ROSSI','password3',1);
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -314,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-24 17:41:11
+-- Dump completed on 2023-08-30 21:02:11
