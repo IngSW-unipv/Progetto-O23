@@ -208,7 +208,16 @@ public boolean login(String username ,String password) throws SQLException {
 	Gestione_Dao g =  new Gestione_Dao();
 	//richiamo metodo controllo dell esistenza dell'untente
 	
-	return g.login(username, password);
+	Cf=g.OttieniParametroUserString("cf", username, password);
+	Username=g.OttieniParametroUserString("username", username, password);
+	Password=g.OttieniParametroUserString("password", username, password);
+	Cognome=g.OttieniParametroUserString("cognome", username, password);
+	Nome=g.OttieniParametroUserString("nome", username, password);
+	Email=g.OttieniParametroUserString("email", username, password);
+	NumTelefono=g.OttieniParametroUserString("cell", username, password);
+	DataDiNascita=g.OttieniParametroUserDate("data_nascita", username, password);
+	login=g.login(username, password);
+	return login;
 	
 	
  
@@ -260,20 +269,22 @@ public void modificaAttr(String attributo, String nuovoValore) throws SQLExcepti
     return g.OttieniPsw(cf, user, email);
             
 }
-    
-
-    
-    
-
 
 
 @Override
 public String toString() {
-	
 	return "User [Cf=" + Cf + ", Nome=" + Nome + ", Cognome=" + Cognome + ", DataDiNascita=" + DataDiNascita
-				+ ", Eta=" + ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username
-				+ ", Password=" + Password + ", login=" + login + "]";
+			+ ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username + ", Password=" + Password
+			+ ", login=" + login + "]";
 }
+    
+
+    
+    
+
+
+
+
 
 
 

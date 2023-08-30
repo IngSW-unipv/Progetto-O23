@@ -280,7 +280,7 @@ public class Gestione_Dao {
         
         try {
             
-            String sql = "SELECT cf,nome,cognome,data_nascita,cell,email,username,password  FROM user WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -288,8 +288,6 @@ public class Gestione_Dao {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-            	User u = new User(rs.getString("cf"), null, null, null, null, null, null, null, 0, null, null, null);
-            	u.setCf(rs.getString("cf"));
             	
                 loggedIn = true;
             }
