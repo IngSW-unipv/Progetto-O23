@@ -22,7 +22,7 @@ public class User {
 
 	private int Id_User;
 	private String Via;
-	private String Città;
+	private String Citta;
 	private String Provincia;
 	private int CAP;
 	private int Id_tipo;
@@ -32,7 +32,7 @@ public class User {
 
 //Costruttore 
 	
-	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numTelefono, String via, String città, String provincia, int cap,
+	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numTelefono, String via, String citta, String provincia, int cap,
 			String email, String username, String password) {
 
 		this.Cf = cf;
@@ -41,7 +41,7 @@ public class User {
 		this.DataDiNascita = dataDiNascita;
 		this.NumTelefono = numTelefono;
 		this.Via = via;
-		this.Città=città;
+		this.Citta=citta;
 		this.CAP=cap;
 		this.Provincia=provincia;
 		this.Email=email;
@@ -155,13 +155,13 @@ public void setVia(String via) {
 	this.Via = via;
 }	
 	
-	public String getCittà() {
-		return Città;
+	public String getCitta() {
+		return Citta;
 	}
 
 
-	public void setCittà(String città) {
-		this.Città = città;
+	public void setCitta(String citta) {
+		this.Citta = citta;
 }		
 
 	public String getProvincia() {
@@ -207,7 +207,9 @@ public boolean login(String username ,String password) throws SQLException {
 
 	Gestione_Dao g =  new Gestione_Dao();
 	//richiamo metodo controllo dell esistenza dell'untente
+	
 	return g.login(username, password);
+	
 	
  
 }

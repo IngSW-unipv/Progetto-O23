@@ -39,6 +39,7 @@ public class Test {
 
 		model.login("S.ROSSI", "password3");
 		
+		System.out.println(model.toString());
 		//model.modificaDati("nome", "Pippo");
 		//model.logout(false);
 	}

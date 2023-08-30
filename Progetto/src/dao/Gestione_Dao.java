@@ -52,7 +52,7 @@ public class Gestione_Dao {
     	    	
     	    	DBConnessione d =new DBConnessione();
     	    	conn=d.connessione(conn);
-    	    	String sql = "SELECT "+par1+" FROM user WHERE  USERNAME = ? and PSW = ? ";
+    	    	String sql = "SELECT "+par1+" FROM user WHERE  USERNAME = ? and password = ? ";
     	    	String ris=null;
     	    	
     	    	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -79,7 +79,7 @@ public class Gestione_Dao {
     	
     	DBConnessione d =new DBConnessione();
     	conn=d.connessione(conn);
-    	String sql = "SELECT "+string+" FROM user WHERE  USERNAME = ? and PSW = ? ";
+    	String sql = "SELECT "+string+" FROM user WHERE  USERNAME = ? and password = ? ";
     	java.sql.Date ris = null;
     	
     	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -166,7 +166,7 @@ public class Gestione_Dao {
 
         try {
             // Inserimento dei dati nella tabella user
-            String sql = "INSERT INTO user (ID_USER,cf, nome, cognome, data_nascita, cell, email, via, citta, provincia, cap, username, psw, id_tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO user (ID_USER,cf, nome, cognome, data_nascita, cell, email, via, citta, provincia, cap, username, password, id_tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, generaID());
             stmt.setString(2, cf);
@@ -181,7 +181,7 @@ public class Gestione_Dao {
             stmt.setInt(11, cap); 
             stmt.setString(12, username);
             stmt.setString(13, password);
-            stmt.setInt(14, 1); // id_tipo = 1
+            stmt.setInt(14, 1); // id_tipo = 1 
             
             
             stmt.executeUpdate();
@@ -203,7 +203,7 @@ public class Gestione_Dao {
           DBConnessione d = new DBConnessione();
           Connection con=null;
           con=d.connessione(con);
-          String sql = "UPDATE user SET " + attributo + "=? WHERE username=? AND psw=?";
+          String sql = "UPDATE user SET " + attributo + "=? WHERE username=? AND password=?";
 
           try (PreparedStatement stmt = con.prepareStatement(sql)) {
                stmt.setString(1, nuovoValore);
@@ -230,8 +230,8 @@ public class Gestione_Dao {
                        case "via":
                     	   user.setVia(nuovoValore);
                            break;
-                       case "città":
-                    	   user.setCittà(nuovoValore);
+                       case "citta":
+                    	   user.setCitta(nuovoValore);
                            break;
                        case "provincia":
                     	   user.setProvincia(nuovoValore);
@@ -260,6 +260,13 @@ public class Gestione_Dao {
                }
            }
    }
+
+    
+//settaggio parametri classe user
+    public void setParametri(String username,String password) throws SQLException {
+    	  User u = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
+      		u.setCf(OttieniParametroUserString("CF",username,password));
+    }
     
     public boolean login(String username, String password) throws SQLException {
         Connection conn = null;
@@ -268,16 +275,22 @@ public class Gestione_Dao {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         boolean loggedIn = false;
-
+       
+      
+        
         try {
             
-            String sql = "SELECT username FROM user WHERE username = ? AND password = ?";
+            String sql = "SELECT cf,nome,cognome,data_nascita,cell,email,username,password  FROM user WHERE username = ? AND password = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
             stmt.setString(2, password);
+            
             rs = stmt.executeQuery();
 
             if (rs.next()) {
+            	User u = new User(rs.getString("cf"), null, null, null, null, null, null, null, 0, null, null, null);
+            	u.setCf(rs.getString("cf"));
+            	
                 loggedIn = true;
             }
         } finally {
@@ -292,6 +305,7 @@ public class Gestione_Dao {
             }
         }
         if(loggedIn) {
+        	 
         	System.out.println("Login effettuato con successo");
         	
         } else {
@@ -311,7 +325,7 @@ public class Gestione_Dao {
     	Connection con=null;
     	con=d.connessione(con);
     	String psw=null;
-    	String sql =" SELECT PSW \r\n"
+    	String sql =" SELECT password \r\n"
     			+"FROM USER \r\n"
     			+"WHERE USERNAME= ? and  CF= ? and EMAIL= ?";
     	 try (PreparedStatement stmt = con.prepareStatement(sql)) {

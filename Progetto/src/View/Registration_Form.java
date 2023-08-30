@@ -57,7 +57,7 @@ public class Registration_Form extends JFrame {
     private JTextField email;
     private JTextField cell;
     private JTextField via;
-    private JTextField città;        
+    private JTextField citta;        
     private JTextField provincia;
     private JTextField cap;
     private JTextField username;    
@@ -194,8 +194,8 @@ public class Registration_Form extends JFrame {
         btnReg.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    User user = new User(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()), cell.getText(), via.getText(), città.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
-                    user.registrazione(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()).toString(), cell.getText(), via.getText(), città.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
+                    User user = new User(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()), cell.getText(), via.getText(), citta.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
+                    user.registrazione(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()).toString(), cell.getText(), via.getText(), citta.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
                     JOptionPane.showMessageDialog(null, "Registrazione effettuata con successo!");
                 } catch (SQLException | NoSuchAlgorithmException ex) {
                     JOptionPane.showMessageDialog(null, "Errore durante la registrazione: " + ex.getMessage());
