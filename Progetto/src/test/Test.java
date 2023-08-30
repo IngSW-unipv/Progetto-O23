@@ -37,7 +37,7 @@ public class Test {
         // Crea un'istanza del controller e passa vista e modello come argomenti
         
 
-		model.login("utente", "password");
+		model.login("S.ROSSI", "password3");
 		
 		//model.modificaDati("nome", "Pippo");
 		//model.logout(false);

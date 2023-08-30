@@ -291,7 +291,7 @@ public class Gestione_Dao {
                 conn.close();
             }
         }
-        if(loggedIn=true) {
+        if(loggedIn) {
         	System.out.println("Login effettuato con successo");
         	
         } else {
