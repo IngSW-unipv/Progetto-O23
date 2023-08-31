@@ -16,6 +16,7 @@ import View.Registration_Form;
 import dao.DBConnessione;
 import dao.Gestione_Dao;
 import dao.Paese_Dao;
+import Model.Turni_Lavoro;
 
 public class Test {
 
@@ -30,6 +31,9 @@ public class Test {
 		//Registration_Form view = new Registration_Form();
 		//LoginController controller = new LoginController(view);
 		
+		Turni_Lavoro tl = new Turni_Lavoro(null, null, null, 234);
+		tl.GetOrarioLavoro();
+		System.out.println(tl.toString());
 		
 	
 		

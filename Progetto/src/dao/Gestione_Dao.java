@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -342,8 +343,77 @@ public class Gestione_Dao {
     	
     	
     	 }
-    }
-    
-    
+    }public void OttieniParametriLavoratore(int ID_L) throws SQLException {
+	 DBConnessione d =new DBConnessione();
+	conn=d.connessione(conn);
+	String sql = "SELECT giorno,ora_inizio,ora_fine FROM turni_lavoro WHERE ID_L = ?";
+	
+	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+         stmt.setInt(1,ID_L);
+         ResultSet rs = stmt.executeQuery();
+         
+         if (rs.next()) {
+             java.sql.Date giorno = rs.getDate("giorno");
+             java.sql.Time ora_inizio = rs.getTime("ora_inizio");
+             java.sql.Time ora_fine = rs.getTime("ora_fine");
+             rs.close();
+             stmt.close();
+            
+         } else {
+        	
+        	 rs.close();
+             stmt.close();
+            
+         }
+	 }
+}
+    // ottieni parametro data da turni_lavoro
+ public java.sql.Date OttieniParametroDateTurniLavoro(String string,int ID_L) throws SQLException {
+    	
+    	DBConnessione d =new DBConnessione();
+    	conn=d.connessione(conn);
+    	String sql = "SELECT "+string+" FROM turni_lavoro WHERE ID_L = ?";
+    	java.sql.Date ris = null;
+    	
+    	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, ID_L);
+             ResultSet rs = stmt.executeQuery();
+             if(rs.next()) {
+            	 ris=rs.getDate(string);
+            	 rs.close();
+            	 stmt.close();
+            	 
+            	 return ris;
+             }else {
+            	 rs.close();
+            	 stmt.close();
+            	 return ris;
+             }
+    	 }
+         }
+ // ottiene parametro time da turni_lavoro
+ public java.sql.Time OttieniParametroTimeTurniLavoro(String string,int ID_L) throws SQLException {
+ 	
+ 	DBConnessione d =new DBConnessione();
+ 	conn=d.connessione(conn);
+ 	String sql = "SELECT "+string+" FROM turni_lavoro WHERE ID_L = ?";
+ 	Time ris = null;
+ 	
+ 	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+         stmt.setInt(1, ID_L);
+          ResultSet rs = stmt.executeQuery();
+          if(rs.next()) {
+         	 ris=rs.getTime(string);
+         	 rs.close();
+         	 stmt.close();
+         	 
+         	 return ris;
+          }else {
+         	 rs.close();
+         	 stmt.close();
+         	 return ris;
+          }
+ 	 }
+      }
     
    }
