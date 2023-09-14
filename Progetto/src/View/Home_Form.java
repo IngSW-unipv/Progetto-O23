@@ -18,9 +18,6 @@ public class Home_Form extends JFrame {
 	private JPanel contentPane;
 	private final JLabel lbl = new JLabel("Benvenuto cliente,");
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -34,9 +31,7 @@ public class Home_Form extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public Home_Form() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +54,6 @@ public class Home_Form extends JFrame {
 		//SIGNUP CASE   
 	    btnReg.addActionListener(new ActionListener() {
 	        
-	            // Questo metodo viene chiamato quando il pulsante viene cliccato
 	        	 public void actionPerformed(ActionEvent e) {
 	        		Registration_Form regForm =new Registration_Form();
 	 	            regForm.setVisible(true);
@@ -76,12 +70,12 @@ public class Home_Form extends JFrame {
 		//LOGIN CASE
 		btnLogin.addActionListener(new ActionListener() {
             
-            // Questo metodo viene chiamato quando il pulsante viene cliccato
+            
         	 public void actionPerformed(ActionEvent e) {
         	        
         	            Login_Form loginForm =new Login_Form();
         	            loginForm.setVisible(true);
-        	            dispose(); // Chiude la finestra della prima classe
+        	            dispose(); 
         	        
         	          
         	}
@@ -96,7 +90,7 @@ public class Home_Form extends JFrame {
 		 //SIGNUP CASE   
 	    btnBack.addActionListener(new ActionListener() {
 	        
-	            // Questo metodo viene chiamato quando il pulsante viene cliccato
+	        
 	        	 public void actionPerformed(ActionEvent e) {
 	        		Benvenuto_Form regForm =new Benvenuto_Form();
 	 	            regForm.setVisible(true);

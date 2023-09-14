@@ -118,7 +118,7 @@ public class Login_Form extends JFrame {
 		        
 	            // Questo metodo viene chiamato quando il pulsante viene cliccato
 	        	 public void actionPerformed(ActionEvent e) {
-	        		Benvenuto_Form regForm =new Benvenuto_Form();
+	        		Home_Form regForm =new Home_Form();
 	 	            regForm.setVisible(true);
 	 	            dispose();
 	        	          

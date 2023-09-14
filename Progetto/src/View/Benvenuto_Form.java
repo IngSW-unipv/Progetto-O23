@@ -17,16 +17,12 @@ import javax.swing.ImageIcon;
 
 public class Benvenuto_Form extends JFrame {
 
-	/**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private final JLabel lbl = new JLabel("Benvenuto, selezionare il tipo ");
+	private final JLabel lbl2 = new JLabel("Benvenuto, selezionare il tipo ");
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,10 +36,11 @@ public class Benvenuto_Form extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
+	 // creazione frame
+	 
 	public Benvenuto_Form() {
+		setLocationRelativeTo(null); //centra finestra
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 710, 400);
@@ -52,10 +49,10 @@ public class Benvenuto_Form extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		lbl.setForeground(new Color(0, 128, 0));
-		lbl.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
-		lbl.setBounds(62, 6, 608, 94);
-		contentPane.add(lbl);
+		lbl2.setForeground(new Color(0, 128, 0));
+		lbl2.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
+		lbl2.setBounds(62, 6, 608, 94);
+		contentPane.add(lbl2);
 		
 		JButton btnD = new JButton("Dipendente");
 		btnD.setFont(new Font("Thonburi", Font.PLAIN, 18));
@@ -63,13 +60,12 @@ public class Benvenuto_Form extends JFrame {
 		contentPane.add(btnD);
 		btnD.addActionListener(new ActionListener() {
             
-            // Questo metodo viene chiamato quando il pulsante viene cliccato
+            
         	 public void actionPerformed(ActionEvent e) {
         	        
         	            Login_Form loginForm =new Login_Form();
         	            loginForm.setVisible(true);
-        	            dispose(); // Chiude la finestra della prima classe
-        	        
+        	            dispose(); 
         	          
         	}
      });
@@ -81,7 +77,7 @@ public class Benvenuto_Form extends JFrame {
 		 //SIGNUP CASE   
 	    btnC.addActionListener(new ActionListener() {
 	        
-	            // Questo metodo viene chiamato quando il pulsante viene cliccato
+	            
 	        	 public void actionPerformed(ActionEvent e) {
 	        		Home_Form regForm =new Home_Form();
 	 	            regForm.setVisible(true);
@@ -90,11 +86,11 @@ public class Benvenuto_Form extends JFrame {
 	        	}
 	     });
 		
-		JLabel lblNewLabel = new JLabel("di utente:");
-		lblNewLabel.setForeground(new Color(0, 128, 0));
-		lblNewLabel.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
-		lblNewLabel.setBounds(248, 70, 280, 64);
-		contentPane.add(lblNewLabel);
+		JLabel lbl1 = new JLabel("di utente:");
+		lbl1.setForeground(new Color(0, 128, 0));
+		lbl1.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
+		lbl1.setBounds(248, 70, 280, 64);
+		contentPane.add(lbl1);
 		
 		
 		

@@ -231,11 +231,11 @@ public class Registration_Form extends JFrame {
         contentPane.add(via);
         via.setColumns(10);
         
-        città = new JTextField();
-        città.setFont(new Font("Thonburi", Font.PLAIN, 18));
-        città.setBounds(707, 267, 225, 50);
-        contentPane.add(città);
-        città.setColumns(10);
+        citta = new JTextField();
+        citta.setFont(new Font("Thonburi", Font.PLAIN, 18));
+        citta.setBounds(707, 267, 225, 50);
+        contentPane.add(citta);
+        citta.setColumns(10);
         
         JLabel lblCF = new JLabel("Codice Fiscale:");
         lblCF.setFont(new Font("Thonburi", Font.PLAIN, 18));
