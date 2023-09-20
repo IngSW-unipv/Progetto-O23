@@ -100,7 +100,7 @@ public class DipGUI extends JFrame{
 		paneSt.setLayout(null);
 		
 		JLabel lblSt = new JLabel("Visualizza turni");
-		lblSt.setBounds(69, 6, 123, 23);
+		lblSt.setBounds(66, 6, 122, 23);
 		paneSt.add(lblSt);
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
@@ -132,7 +132,7 @@ public class DipGUI extends JFrame{
 			//chiedo conferma logout e richiamo il form benvenuto
 			public void mouseClicked(MouseEvent e) {
 				
-				if (JOptionPane.showConfirmDialog(null, "sei sicuro") == 0) {
+				if (JOptionPane.showConfirmDialog(null, "Sei sicuro?") == 0) {
 					Benvenuto_Form ben = new Benvenuto_Form();
 					ben.setVisible(true);
 					DipGUI.this.dispose();
@@ -157,7 +157,7 @@ public class DipGUI extends JFrame{
 		lblTitolo.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
 		
 		JPanel paneWindow = new JPanel();
-		paneWindow.setBounds(258, 11, 576, 501);
+		paneWindow.setBounds(258, 11, 593, 520);
 		contentPane.add(paneWindow);
 		
 		paneWindow.add(account);

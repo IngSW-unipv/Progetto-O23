@@ -80,10 +80,9 @@ public class ClienteGUI extends JFrame{
 		paneAcc.setBounds(0, 165, 248, 40);
 		paneMenu.add(paneAcc);
 		paneAcc.setBackground(new Color(102, 204, 102));
-		paneAcc.setLayout(null);
+		paneAcc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblAcc = new JLabel("Account");
-		lblAcc.setBounds(91, 5, 65, 23);
 		paneAcc.add(lblAcc);
 		lblAcc.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
@@ -98,10 +97,9 @@ public class ClienteGUI extends JFrame{
 		paneSt.setBounds(0, 204, 248, 40);
 		paneMenu.add(paneSt);
 		paneSt.setBackground(new Color(102, 204, 102));
-		paneSt.setLayout(null);
+		paneSt.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblSt = new JLabel("Le tue prenotazioni");
-		lblSt.setBounds(49, 5, 149, 23);
 		paneSt.add(lblSt);
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
@@ -115,10 +113,9 @@ public class ClienteGUI extends JFrame{
 		panePr.setBounds(0, 243, 248, 40);
 		paneMenu.add(panePr);
 		panePr.setBackground(new Color(102, 204, 102));
-		panePr.setLayout(null);
+		panePr.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblPr = new JLabel("Prenota");
-		lblPr.setBounds(94, 6, 59, 23);
 		panePr.add(lblPr);
 		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
@@ -128,7 +125,7 @@ public class ClienteGUI extends JFrame{
 				//chiedo conferma logout e richiamo il form benvenuto
 				public void mouseClicked(MouseEvent e) {
 					
-					if (JOptionPane.showConfirmDialog(null, "sei sicuro") == 0) {
+					if (JOptionPane.showConfirmDialog(null, "Sei sicuro?") == 0) {
 						Benvenuto_Form ben = new Benvenuto_Form();
 						ben.setVisible(true);
 						ClienteGUI.this.dispose();
@@ -137,7 +134,7 @@ public class ClienteGUI extends JFrame{
 				}
 				
 			});
-		paneOut.setBounds(0, 324, 248, 40);
+		paneOut.setBounds(0, 321, 248, 40);
 		paneMenu.add(paneOut);
 		paneOut.setBackground(new Color(102, 204, 102));
 		paneOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -156,18 +153,17 @@ public class ClienteGUI extends JFrame{
 			}
 	});
 		panelElAcc.setBackground(new Color(102, 204, 102));
-		panelElAcc.setBounds(0, 283, 248, 40);
+		panelElAcc.setBounds(0, 282, 248, 40);
 		paneMenu.add(panelElAcc);
 		panelElAcc.setBackground(new Color(102, 204, 102));
-		panelElAcc.setLayout(null);
+		panelElAcc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblElAcc = new JLabel("Elimina Account");
 		lblElAcc.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblElAcc.setBounds(64, 11, 125, 18);
 		panelElAcc.add(lblElAcc);
 		
 		JPanel paneWindow = new JPanel();
-		paneWindow.setBounds(258, 11, 576, 501);
+		paneWindow.setBounds(258, 11, 593, 520);
 		contentPane.add(paneWindow);
 		
 		paneWindow.add(account);
