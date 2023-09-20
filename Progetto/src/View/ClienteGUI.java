@@ -16,6 +16,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.FlowLayout;
@@ -24,6 +25,10 @@ import java.awt.GridLayout;
 public class ClienteGUI extends JFrame{
 	
 	private JPanel contentPane;
+	private AccountUtPannel account;
+	private PrenotaPanel prenota;
+	private PrenotazioniPanel prenotazioni;
+	private EliminAccountPannel elimina;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -49,6 +54,11 @@ public class ClienteGUI extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		account = new AccountUtPannel();
+		elimina = new EliminAccountPannel();
+		prenota = new PrenotaPanel();
+		prenotazioni = new PrenotazioniPanel();
+		
 		JPanel paneMenu = new JPanel();
 		paneMenu.setBackground(new Color(102, 204, 102));
 		paneMenu.setBounds(0, 0, 248, 540);
@@ -61,7 +71,12 @@ public class ClienteGUI extends JFrame{
 		paneMenu.add(lblLogo);
 		
 		JPanel paneAcc = new JPanel();
-		paneAcc.addMouseListener(new PanelMouse(paneAcc));
+		paneAcc.addMouseListener(new PanelMouse(paneAcc){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(account);
+			}
+	});
 		paneAcc.setBounds(0, 165, 248, 40);
 		paneMenu.add(paneAcc);
 		paneAcc.setBackground(new Color(102, 204, 102));
@@ -73,7 +88,13 @@ public class ClienteGUI extends JFrame{
 		lblAcc.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
 		JPanel paneSt = new JPanel();
-		paneSt.addMouseListener(new PanelMouse(paneSt));
+		paneSt.addMouseListener(new PanelMouse(paneSt)
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(prenotazioni);
+			}
+	});
 		paneSt.setBounds(0, 204, 248, 40);
 		paneMenu.add(paneSt);
 		paneSt.setBackground(new Color(102, 204, 102));
@@ -85,15 +106,16 @@ public class ClienteGUI extends JFrame{
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
 		JPanel panePr = new JPanel();
-		panePr.addMouseListener(new PanelMouse(panePr));
+		panePr.addMouseListener(new PanelMouse(panePr){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(prenota);
+			}
+	});
 		panePr.setBounds(0, 243, 248, 40);
 		paneMenu.add(panePr);
 		panePr.setBackground(new Color(102, 204, 102));
 		panePr.setLayout(null);
-		
-		JLabel label = new JLabel("");
-		label.setBounds(94, 16, 0, 0);
-		panePr.add(label);
 		
 		JLabel lblPr = new JLabel("Prenota");
 		lblPr.setBounds(94, 6, 59, 23);
@@ -101,16 +123,72 @@ public class ClienteGUI extends JFrame{
 		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
 		JPanel paneOut = new JPanel();
-		paneOut.addMouseListener(new PanelMouse(paneOut));
-		paneOut.setBounds(0, 282, 248, 40);
+		paneOut.addMouseListener(new PanelMouse(paneOut) {
+				@Override
+				//chiedo conferma logout e richiamo il form benvenuto
+				public void mouseClicked(MouseEvent e) {
+					
+					if (JOptionPane.showConfirmDialog(null, "sei sicuro") == 0) {
+						Benvenuto_Form ben = new Benvenuto_Form();
+						ben.setVisible(true);
+						ClienteGUI.this.dispose();
+					}
+					
+				}
+				
+			});
+		paneOut.setBounds(0, 324, 248, 40);
 		paneMenu.add(paneOut);
 		paneOut.setBackground(new Color(102, 204, 102));
-		paneOut.setLayout(null);
+		paneOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
 		JLabel lblOut = new JLabel("Logout");
 		lblOut.setBounds(96, 6, 55, 23);
 		paneOut.add(lblOut);
 		lblOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		
+		JPanel panelElAcc = new JPanel();
+		panelElAcc.setToolTipText("Elimina Account");
+		panelElAcc.addMouseListener(new PanelMouse(panelElAcc){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(elimina);
+			}
+	});
+		panelElAcc.setBackground(new Color(102, 204, 102));
+		panelElAcc.setBounds(0, 283, 248, 40);
+		paneMenu.add(panelElAcc);
+		panelElAcc.setBackground(new Color(102, 204, 102));
+		panelElAcc.setLayout(null);
+		
+		JLabel lblElAcc = new JLabel("Elimina Account");
+		lblElAcc.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblElAcc.setBounds(64, 11, 125, 18);
+		panelElAcc.add(lblElAcc);
+		
+		JPanel paneWindow = new JPanel();
+		paneWindow.setBounds(258, 11, 576, 501);
+		contentPane.add(paneWindow);
+		
+		paneWindow.add(account);
+		paneWindow.add(elimina);
+		paneWindow.add(prenota);
+		paneWindow.add(prenotazioni);
+		
+		menuClicked(account);
+	}
+	
+	
+	public void menuClicked(JPanel panel) {
+		account.setVisible(false);
+		elimina.setVisible(false);
+		prenota.setVisible(false);
+		prenotazioni.setVisible(false);
+		
+		
+		panel.setVisible(true);
+		
+		
 	}
 	
 	private class PanelMouse extends MouseAdapter {
@@ -145,5 +223,4 @@ public class ClienteGUI extends JFrame{
 		}
 		
 	}
-
 }
