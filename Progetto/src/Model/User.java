@@ -277,9 +277,12 @@ public String toString() {
 			+ ", NumTelefono=" + NumTelefono + ", Email=" + Email + ", Username=" + Username + ", Password=" + Password
 			+ ", login=" + login + "]";
 }
+public void EliminaAcc(int id_user, String username) throws SQLException {
+	 Gestione_Dao g = new Gestione_Dao();
+	 g.deleteAccount(id_user, username);
+}
     
 
-    
     
 
 

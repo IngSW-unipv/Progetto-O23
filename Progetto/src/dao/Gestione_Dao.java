@@ -415,5 +415,30 @@ public class Gestione_Dao {
           }
  	 }
       }
-    
+ public void deleteAccount(int id_user, String username) throws SQLException {
+
+     DBConnessione d = new DBConnessione();
+     conn = d.connessione(conn);
+     
+     String sql = "DELETE FROM user WHERE id_user = ?";
+
+     try (PreparedStatement statement = conn.prepareStatement(sql)) {
+      
+        statement.setInt(1, id_user);
+        
+        int rowsDeleted = statement.executeUpdate();
+        
+        if(rowsDeleted > 0) {
+           System.out.println("Account deleted for: " + username); 
+        }
+        else {
+           System.out.println("Account not found or error deleting account: " + username);
+        }
+        
+     } catch (SQLException e) {
+        System.out.println("Error deleting account: " + e.getMessage());
+     
+     conn.close();
+  }
+ }
    }
