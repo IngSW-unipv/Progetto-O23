@@ -20,7 +20,7 @@ public class PrenotaPanel extends JPanel {
 	public PrenotaPanel() {
 		setBackground(new Color(240, 240, 240));
 		
-		setBounds(258, 11, 576, 501);
+		setBounds(258, 11, 576, 520);
 		setLayout(null);
 		JLabel lblNewLabel = new JLabel("Prenotazione");
 		lblNewLabel.setBounds(249, 5, 92, 21);

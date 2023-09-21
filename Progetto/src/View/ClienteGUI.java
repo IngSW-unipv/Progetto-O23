@@ -25,10 +25,10 @@ import java.awt.GridLayout;
 public class ClienteGUI extends JFrame{
 	
 	private JPanel contentPane;
-	private AccountUtPannel account;
-	private PrenotaPanel prenota;
-	private PrenotazioniPanel prenotazioni;
-	private EliminAccountPannel elimina;
+	AccountUtPannel a ;
+	PrenotaPanel p1;
+	PrenotazioniPanel p2;
+	EliminAccountPannel ea;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -54,10 +54,19 @@ public class ClienteGUI extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		account = new AccountUtPannel();
-		elimina = new EliminAccountPannel();
-		prenota = new PrenotaPanel();
-		prenotazioni = new PrenotazioniPanel();
+		a = new AccountUtPannel();
+		a.setSize(586, 512);
+		a.setLocation(0, 0);
+		p1 = new PrenotaPanel();
+		p1.setSize(586, 512);
+		p1.setLocation(0, 0);
+		p2 = new PrenotazioniPanel();
+		p2.setSize(586, 512);
+		p2.setLocation(0, 0);
+		ea = new EliminAccountPannel();
+		ea.setSize(586, 512);
+		ea.setLocation(0, 0);
+		
 		
 		JPanel paneMenu = new JPanel();
 		paneMenu.setBackground(new Color(102, 204, 102));
@@ -74,7 +83,8 @@ public class ClienteGUI extends JFrame{
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(account);
+				menuClicked(a);
+				
 			}
 	});
 		paneAcc.setBounds(0, 165, 248, 40);
@@ -91,7 +101,7 @@ public class ClienteGUI extends JFrame{
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(prenotazioni);
+				menuClicked(p2);
 			}
 	});
 		paneSt.setBounds(0, 204, 248, 40);
@@ -107,7 +117,7 @@ public class ClienteGUI extends JFrame{
 		panePr.addMouseListener(new PanelMouse(panePr){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(prenota);
+				menuClicked(p1);
 			}
 	});
 		panePr.setBounds(0, 243, 248, 40);
@@ -149,7 +159,7 @@ public class ClienteGUI extends JFrame{
 		panelElAcc.addMouseListener(new PanelMouse(panelElAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(elimina);
+				menuClicked(ea);
 			}
 	});
 		panelElAcc.setBackground(new Color(102, 204, 102));
@@ -162,24 +172,27 @@ public class ClienteGUI extends JFrame{
 		lblElAcc.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panelElAcc.add(lblElAcc);
 		
+		
 		JPanel paneWindow = new JPanel();
-		paneWindow.setBounds(258, 11, 593, 520);
+		paneWindow.setBounds(258, 11, 576, 520);
 		contentPane.add(paneWindow);
 		
-		paneWindow.add(account);
-		paneWindow.add(elimina);
-		paneWindow.add(prenota);
-		paneWindow.add(prenotazioni);
+		paneWindow.setLayout(null);
 		
-		menuClicked(account);
+		paneWindow.add(a);
+		paneWindow.add(p1);
+		paneWindow.add(p2);
+		paneWindow.add(ea);
+		
+		menuClicked(a);
 	}
 	
 	
 	public void menuClicked(JPanel panel) {
-		account.setVisible(false);
-		elimina.setVisible(false);
-		prenota.setVisible(false);
-		prenotazioni.setVisible(false);
+		a.setVisible(false);
+		p1.setVisible(false);
+		p2.setVisible(false);
+		ea.setVisible(false);
 		
 		
 		panel.setVisible(true);

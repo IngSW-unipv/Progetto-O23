@@ -27,7 +27,6 @@ public class DipGUI extends JFrame{
 	
 	private JPanel contentPane;
 	private ImieiTurniPannel imTurni;
-	private PrenotaPanel prenota;
 	private AccountDipPannel account;
 	
 	public static void main(String[] args) {
@@ -56,8 +55,11 @@ public class DipGUI extends JFrame{
 		contentPane.setLayout(null);
 		
 		imTurni = new ImieiTurniPannel();
-		prenota = new PrenotaPanel();
+		imTurni.setBounds(258, 11, 576, 520);
+		imTurni.setLocation(0,0);
 		account = new AccountDipPannel();
+		account.setBounds(258, 11, 576, 520);
+		account.setLocation(0,0);
 		
 		JPanel paneMenu = new JPanel();
 		paneMenu.setBackground(new Color(102, 204, 102));
@@ -104,28 +106,6 @@ public class DipGUI extends JFrame{
 		paneSt.add(lblSt);
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
-		JPanel panePr = new JPanel();
-		
-		panePr.addMouseListener(new PanelMouse(panePr){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				menuClicked(prenota);
-			}
-	});
-		panePr.setBounds(0, 308, 248, 40);
-		paneMenu.add(panePr);
-		panePr.setBackground(new Color(102, 204, 102));
-		panePr.setLayout(null);
-		
-		JLabel label = new JLabel("");
-		label.setBounds(94, 16, 0, 0);
-		panePr.add(label);
-		
-		JLabel lblPr = new JLabel("Prenota");
-		lblPr.setBounds(94, 6, 59, 23);
-		panePr.add(lblPr);
-		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
-		
 		JPanel paneOut = new JPanel();
 		paneOut.addMouseListener(new PanelMouse(paneOut) {
 			@Override
@@ -141,7 +121,7 @@ public class DipGUI extends JFrame{
 			}
 			
 		});
-		paneOut.setBounds(0, 347, 248, 40);
+		paneOut.setBounds(0, 308, 248, 40);
 		paneMenu.add(paneOut);
 		paneOut.setBackground(new Color(102, 204, 102));
 		paneOut.setLayout(null);
@@ -157,12 +137,12 @@ public class DipGUI extends JFrame{
 		lblTitolo.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
 		
 		JPanel paneWindow = new JPanel();
-		paneWindow.setBounds(258, 11, 593, 520);
+		paneWindow.setBounds(258, 11, 576, 520);
 		contentPane.add(paneWindow);
+		paneWindow.setLayout(null);
 		
 		paneWindow.add(account);
 		paneWindow.add(imTurni);
-		paneWindow.add(prenota);
 		
 		
 		menuClicked(account);
@@ -173,7 +153,6 @@ public class DipGUI extends JFrame{
 	public void menuClicked(JPanel panel) {
 		account.setVisible(false);
 		imTurni.setVisible(false);
-		prenota.setVisible(false);
 		
 		
 		panel.setVisible(true);

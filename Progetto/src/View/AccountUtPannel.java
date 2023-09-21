@@ -25,14 +25,9 @@ public class AccountUtPannel extends JPanel {
 	 */
 	public AccountUtPannel() {
 		
-		setBounds(258, 11, 576, 501);
+		setBounds(258, 11, 576, 520);
 		setVisible(true);
 		setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Account");
-		lblNewLabel.setBounds(258, 11, 576, 501);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
-		add(lblNewLabel);
 		
 		
 		JPanel panel = new JPanel();
@@ -159,6 +154,11 @@ public class AccountUtPannel extends JPanel {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton.setBounds(127, 408, 156, 23);
 		panel.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("Account");
+		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblNewLabel.setBounds(262, 11, 94, 14);
+		add(lblNewLabel);
 		
 		
 

@@ -12,7 +12,7 @@ public class EliminAccountPannel extends JPanel {
 	 */
 	public EliminAccountPannel() {
 		
-		setBounds(258, 11, 576, 501);
+		setBounds(258, 11, 576, 520);
 		JLabel lblNewLabel = new JLabel("Eliminazione Account");
 		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
 		add(lblNewLabel);

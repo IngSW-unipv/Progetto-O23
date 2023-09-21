@@ -24,7 +24,8 @@ public class AccountDipPannel extends JPanel {
 	 */
 	public AccountDipPannel() {
 		
-		setBounds(258, 11, 576, 501);
+		setBounds(258, 11, 576, 520);
+		setVisible(true);
 		setLayout(null);
 		
 		JPanel panel = new JPanel();

@@ -16,7 +16,7 @@ public class ImieiTurniPannel extends JPanel {
 	 */
 	public ImieiTurniPannel() {
 		
-		setBounds(258, 11, 576, 501);
+		setBounds(258, 11, 576, 520);
 		setLayout(null);
 		
 		

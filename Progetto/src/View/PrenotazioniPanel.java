@@ -29,7 +29,7 @@ public class PrenotazioniPanel extends JPanel {
 	 */
 	public PrenotazioniPanel() {
 		
-		setBounds(258, 11, 576, 501);
+		setBounds(258, 11, 576, 520);
 		setLayout(null);
 		JLabel lblNewLabel = new JLabel("Le tue prenotazioni");
 		lblNewLabel.setBounds(224, 11, 132, 21);
