@@ -8,16 +8,16 @@ import java.awt.Color;
 import javax.swing.JTextField;
 
 public class AccountDipPannel extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
+	private JTextField UsField;
+	private JTextField NoField;
+	private JTextField CoField;
+	private JTextField EmField;
+	private JTextField CfField;
+	private JTextField NumField;
+	private JTextField NazField;
+	private JTextField PrField;
+	private JTextField CiField;
+	private JTextField ViField;
 
 	/**
 	 * Create the panel.
@@ -30,123 +30,123 @@ public class AccountDipPannel extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(104, 202, 104));
-		panel.setBounds(10, 43, 556, 447);
+		panel.setBounds(7, 35, 562, 450);
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Username");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(10, 29, 70, 14);
-		panel.add(lblNewLabel_1);
+		JLabel lblUs = new JLabel("Username");
+		lblUs.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblUs.setBounds(10, 25, 80, 20);
+		panel.add(lblUs);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Nome");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1.setBounds(10, 66, 70, 14);
-		panel.add(lblNewLabel_1_1);
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblNome.setBounds(10, 62, 50, 20);
+		panel.add(lblNome);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Cognome");
-		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1_1.setBounds(10, 103, 70, 14);
-		panel.add(lblNewLabel_1_1_1);
+		JLabel lblCo = new JLabel("Cognome");
+		lblCo.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblCo.setBounds(10, 100, 80, 23);
+		panel.add(lblCo);
 		
-		JLabel lblNewLabel_1_1_2 = new JLabel("Codice Fiscale");
-		lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1_2.setBounds(10, 177, 90, 14);
-		panel.add(lblNewLabel_1_1_2);
+		JLabel lblCf = new JLabel("Codice Fiscale");
+		lblCf.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblCf.setBounds(10, 177, 120, 20);
+		panel.add(lblCf);
 		
-		JLabel lblNewLabel_1_1_3 = new JLabel("Email");
-		lblNewLabel_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1_3.setBounds(10, 138, 70, 14);
-		panel.add(lblNewLabel_1_1_3);
+		JLabel lblEm = new JLabel("Email");
+		lblEm.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblEm.setBounds(10, 138, 50, 20);
+		panel.add(lblEm);
 		
-		JLabel lblNewLabel_1_1_4 = new JLabel("Numero Telefono");
-		lblNewLabel_1_1_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1_4.setBounds(10, 219, 100, 14);
-		panel.add(lblNewLabel_1_1_4);
+		JLabel lblNum = new JLabel("Numero Telefono");
+		lblNum.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblNum.setBounds(10, 219, 140, 20);
+		panel.add(lblNum);
 		
-		JLabel lblNewLabel_1_1_5 = new JLabel("Citt\u00E0");
-		lblNewLabel_1_1_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1_5.setBounds(10, 334, 66, 14);
-		panel.add(lblNewLabel_1_1_5);
+		JLabel lblCi = new JLabel("Citt\u00E0");
+		lblCi.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblCi.setBounds(10, 334, 50, 20);
+		panel.add(lblCi);
 		
-		JLabel lblNewLabel_1_1_6 = new JLabel("Nazione");
-		lblNewLabel_1_1_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1_6.setBounds(10, 258, 66, 14);
-		panel.add(lblNewLabel_1_1_6);
+		JLabel lblNaz = new JLabel("Nazione");
+		lblNaz.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblNaz.setBounds(10, 258, 70, 20);
+		panel.add(lblNaz);
 		
-		JLabel lblNewLabel_1_1_7 = new JLabel("Via");
-		lblNewLabel_1_1_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1_1_7.setBounds(10, 372, 66, 14);
-		panel.add(lblNewLabel_1_1_7);
+		JLabel lblV = new JLabel("Via");
+		lblV.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblV.setBounds(10, 372, 30, 20);
+		panel.add(lblV);
 		
-		JLabel lblNewLabel_2 = new JLabel("Provincia");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(10, 296, 66, 14);
-		panel.add(lblNewLabel_2);
+		JLabel lblPr = new JLabel("Provincia");
+		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblPr.setBounds(10, 294, 70, 20);
+		panel.add(lblPr);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(141, 27, 108, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		UsField = new JTextField();
+		UsField.setEditable(false);
+		UsField.setBounds(150, 22, 120, 30);
+		panel.add(UsField);
+		UsField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(141, 64, 108, 20);
-		panel.add(textField_1);
+		NoField = new JTextField();
+		NoField.setEditable(false);
+		NoField.setColumns(10);
+		NoField.setBounds(150, 59, 120, 30);
+		panel.add(NoField);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(141, 101, 108, 20);
-		panel.add(textField_2);
+		CoField = new JTextField();
+		CoField.setEditable(false);
+		CoField.setColumns(10);
+		CoField.setBounds(150, 98, 120, 30);
+		panel.add(CoField);
 		
-		textField_3 = new JTextField();
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(141, 136, 108, 20);
-		panel.add(textField_3);
+		EmField = new JTextField();
+		EmField.setEditable(false);
+		EmField.setColumns(10);
+		EmField.setBounds(150, 135, 120, 30);
+		panel.add(EmField);
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		textField_4.setColumns(10);
-		textField_4.setBounds(141, 175, 108, 20);
-		panel.add(textField_4);
+		CfField = new JTextField();
+		CfField.setEditable(false);
+		CfField.setColumns(10);
+		CfField.setBounds(150, 174, 120, 30);
+		panel.add(CfField);
 		
-		textField_5 = new JTextField();
-		textField_5.setEditable(false);
-		textField_5.setColumns(10);
-		textField_5.setBounds(141, 217, 108, 20);
-		panel.add(textField_5);
+		NumField = new JTextField();
+		NumField.setEditable(false);
+		NumField.setColumns(10);
+		NumField.setBounds(150, 216, 120, 30);
+		panel.add(NumField);
 		
-		textField_6 = new JTextField();
-		textField_6.setEditable(false);
-		textField_6.setColumns(10);
-		textField_6.setBounds(141, 256, 108, 20);
-		panel.add(textField_6);
+		NazField = new JTextField();
+		NazField.setEditable(false);
+		NazField.setColumns(10);
+		NazField.setBounds(150, 255, 120, 30);
+		panel.add(NazField);
 		
-		textField_7 = new JTextField();
-		textField_7.setEditable(false);
-		textField_7.setColumns(10);
-		textField_7.setBounds(141, 294, 108, 20);
-		panel.add(textField_7);
+		PrField = new JTextField();
+		PrField.setEditable(false);
+		PrField.setColumns(10);
+		PrField.setBounds(150, 289, 120, 30);
+		panel.add(PrField);
 		
-		textField_8 = new JTextField();
-		textField_8.setEditable(false);
-		textField_8.setColumns(10);
-		textField_8.setBounds(141, 332, 108, 20);
-		panel.add(textField_8);
+		CiField = new JTextField();
+		CiField.setEditable(false);
+		CiField.setColumns(10);
+		CiField.setBounds(150, 331, 120, 30);
+		panel.add(CiField);
 		
-		textField_9 = new JTextField();
-		textField_9.setEditable(false);
-		textField_9.setColumns(10);
-		textField_9.setBounds(141, 370, 108, 20);
-		panel.add(textField_9);
+		ViField = new JTextField();
+		ViField.setEditable(false);
+		ViField.setColumns(10);
+		ViField.setBounds(150, 369, 120, 30);
+		panel.add(ViField);
 		
 		JLabel lblNewLabel = new JLabel("Account");
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNewLabel.setBounds(264, 11, 56, 21);
+		lblNewLabel.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
+		lblNewLabel.setBounds(257, 8, 68, 21);
 		add(lblNewLabel);
 		setVisible(true);
 		

@@ -31,35 +31,36 @@ public class PrenotazioniPanel extends JPanel {
 		
 		setBounds(258, 11, 576, 520);
 		setLayout(null);
-		JLabel lblNewLabel = new JLabel("Le tue prenotazioni");
-		lblNewLabel.setBounds(224, 11, 132, 21);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
-		add(lblNewLabel);
+		JLabel lbl = new JLabel("Le tue prenotazioni");
+		lbl.setBounds(212, 8, 150, 21);
+		lbl.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
+		add(lbl);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(102, 204, 102));
-		panel.setBounds(10, 38, 556, 452);
+		panel.setBounds(7, 35, 562, 450);
 		add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 536, 60);
+		scrollPane.setBounds(10, 30, 536, 119);
 		panel.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
+				{null,null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"Numero Stanza", "Check in", "Check out"
+				"Data Prenotazione", "Numero Stanza", "Check in", "Check out"
 			}
 		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(126);
-		table.getColumnModel().getColumn(1).setPreferredWidth(147);
-		table.getColumnModel().getColumn(2).setPreferredWidth(170);
+		table.getColumnModel().getColumn(0).setPreferredWidth(116);
+		table.getColumnModel().getColumn(1).setPreferredWidth(146);
+		table.getColumnModel().getColumn(2).setPreferredWidth(156);
+		table.getColumnModel().getColumn(3).setPreferredWidth(166);
 		
 
 	}

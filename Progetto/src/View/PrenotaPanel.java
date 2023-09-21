@@ -12,7 +12,7 @@ import javax.swing.JButton;
 
 public class PrenotaPanel extends JPanel {
 	private JTable table;
-	private JTextField textField;
+	private JTextField NuField;
 
 	/**
 	 * Create the panel.
@@ -22,19 +22,19 @@ public class PrenotaPanel extends JPanel {
 		
 		setBounds(258, 11, 576, 520);
 		setLayout(null);
-		JLabel lblNewLabel = new JLabel("Prenotazione");
-		lblNewLabel.setBounds(249, 5, 92, 21);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
-		add(lblNewLabel);
+		JLabel lblPr = new JLabel("Prenotazione");
+		lblPr.setBounds(235, 8, 104, 21);
+		lblPr.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
+		add(lblPr);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(102, 204, 102));
-		panel.setBounds(25, 37, 541, 453);
+		panel.setBounds(7, 35, 562, 450);
 		add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 36, 521, 75);
+		scrollPane.setBounds(11, 36, 540, 120);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -50,25 +50,26 @@ public class PrenotaPanel extends JPanel {
 			}
 		));
 		
-		JLabel lblNewLabel_1 = new JLabel("Stanze Prenotabili");
-		lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(210, 11, 155, 14);
-		panel.add(lblNewLabel_1);
+		JLabel lblSt = new JLabel("Stanze Prenotabili");
+		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblSt.setBounds(211, 9, 144, 15);
+		panel.add(lblSt);
 		
-		JLabel lblNewLabel_2 = new JLabel("Scrivere la stanza da prenotare");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_2.setBackground(Color.WHITE);
-		lblNewLabel_2.setBounds(10, 244, 223, 32);
-		panel.add(lblNewLabel_2);
+		JLabel lbl = new JLabel("Scrivere la stanza da prenotare:");
+		lbl.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lbl.setBackground(Color.WHITE);
+		lbl.setBounds(10, 244, 259, 32);
+		panel.add(lbl);
 		
-		textField = new JTextField();
-		textField.setBounds(20, 287, 86, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		NuField = new JTextField();
+		NuField.setBounds(20, 285, 86, 20);
+		panel.add(NuField);
+		NuField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Prenota");
-		btnNewButton.setBounds(151, 287, 89, 23);
-		panel.add(btnNewButton);
+		JButton btnConf = new JButton("Prenota");
+		btnConf.setFont(new Font("Thonburi", Font.PLAIN, 14));
+		btnConf.setBounds(139, 278, 103, 32);
+		panel.add(btnConf);
 		
 
 	}

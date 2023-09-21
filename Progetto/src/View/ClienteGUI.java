@@ -171,6 +171,20 @@ public class ClienteGUI extends JFrame{
 		JLabel lblElAcc = new JLabel("Elimina Account");
 		lblElAcc.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panelElAcc.add(lblElAcc);
+		panelElAcc.addMouseListener(new PanelMouse(panelElAcc) {
+			@Override
+			//chiedo conferma eliminazione e richiamo il form benvenuto
+			public void mouseClicked(MouseEvent e) {
+				
+				if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il tuo account?") == 0) {
+					Benvenuto_Form ben = new Benvenuto_Form();
+					ben.setVisible(true);
+					ClienteGUI.this.dispose();
+				}
+				
+			}
+			
+		});
 		
 		
 		JPanel paneWindow = new JPanel();
