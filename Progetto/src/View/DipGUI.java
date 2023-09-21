@@ -169,6 +169,7 @@ public class DipGUI extends JFrame{
 		
 	}
 	
+	
 	public void menuClicked(JPanel panel) {
 		account.setVisible(false);
 		imTurni.setVisible(false);
