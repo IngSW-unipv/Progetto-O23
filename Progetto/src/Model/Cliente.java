@@ -1,6 +1,9 @@
 package Model;
 
+import java.sql.SQLException;
 import java.util.Date;
+
+import dao.Gestione_Dao;
 
 public class Cliente extends User{
 	private int Id_Cliente;
@@ -22,8 +25,9 @@ public class Cliente extends User{
 
 
 //metodo per cancellare l'account
-	public void EliminaACC(String Username, String Passward) {
-		
+	public void EliminaACC(String Username, String Password) throws SQLException{
+		 Gestione_Dao g = new Gestione_Dao();
+		g.deleteAccCliente(Username, Password);
 	}
 //metodo per modificare la data di prenotazione 
 	/*

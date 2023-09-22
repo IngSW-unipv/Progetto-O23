@@ -441,4 +441,27 @@ public class Gestione_Dao {
      conn.close();
   }
  }
+ public void deleteAccCliente( String username, String password) throws SQLException{
+	 
+	 DBConnessione d = new DBConnessione();
+     conn = d.connessione(conn);
+     String sql = "DELETE FROM cliente WHERE username = ? and password = ?";
+
+     try (PreparedStatement statement = conn.prepareStatement(sql)){
+    	 statement.setString(1, username);
+         
+         int rowsDeleted = statement.executeUpdate();
+         if(rowsDeleted > 0) {
+             System.out.println("Cancellazione dell'account del cliente associato allo username: " + username); 
+          }
+          else {
+             System.out.println("Account non trovato o errore nella cancellazione dell'account: " + username);
+          }
+          
+       } catch (SQLException e) {
+          System.out.println("Errore nella cancellazione dell'account " + e.getMessage());
+       
+       conn.close();
+    }
+     }
    }
