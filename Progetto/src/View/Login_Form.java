@@ -29,6 +29,8 @@ public class Login_Form extends JFrame {
 	private JPanel contentPane;
 	private JTextField username;
 	private JPasswordField password;
+	
+	private LoginController controller; // aggiunta del controller
 
 	/**
 	 * Launch the application.
@@ -53,6 +55,9 @@ public class Login_Form extends JFrame {
 	 */    
 	public Login_Form() {
 		super("Accesso");
+		
+		controller = new LoginController(this); 
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 440);
@@ -79,52 +84,50 @@ public class Login_Form extends JFrame {
 		username.setColumns(10);
 		
 		JButton btnAccedi = new JButton("Accedi al tuo account");
-		btnAccedi.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        try {
-		            Gestione_Dao dao = new Gestione_Dao();
-		            boolean loggedIn = dao.login(getUsername(), getPassword());
-		            if (loggedIn) {
-		                JOptionPane.showMessageDialog(null, "Accesso effettuato con successo!");
-		                // Aggiungere qui il codice per aprire la finestra successiva
-		            } else {
-		                JOptionPane.showMessageDialog(null, "Username o password non validi.");
-		            }
-		        } catch (SQLException ex) {
-		            JOptionPane.showMessageDialog(null, "Errore durante l'accesso: " + ex.getMessage());
-		        }
-		    }
-		});
 		
+		btnAccedi.addActionListener(new ActionListener() {   
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.handleLogin();	//delego lavoro al controller
+				
+			}
+			
+		});													
+
 		btnAccedi.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAccedi.setBounds(215, 263, 230, 35);
 		contentPane.add(btnAccedi);
-		
-		
-		
-		
-		
+	
 		JButton btnPsw = new JButton("Password dimenticata?");
 		btnPsw.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnPsw.setBounds(215, 310, 230, 35);
 		contentPane.add(btnPsw);
-		
+		btnPsw.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				PswLost_Form pswForm =new PswLost_Form();
+				pswForm.setVisible(true);
+ 	            dispose();
+			}
+		}); 
+
+				
 		
 		JButton btnBack = new JButton("Torna indietro");
+		btnBack.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				Benvenuto_Form benForm =new Benvenuto_Form();
+				benForm.setVisible(true);
+ 	            dispose();
+			}
+		});
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnBack.setBounds(215, 357, 230, 35);
 		contentPane.add(btnBack);
-		btnBack.addActionListener(new ActionListener() {
-		        
-	            // Questo metodo viene chiamato quando il pulsante viene cliccato
-	        	 public void actionPerformed(ActionEvent e) {
-	        		Home_Form regForm =new Home_Form();
-	 	            regForm.setVisible(true);
-	 	            dispose();
-	        	          
-	        	}
-	     });
-	
+		
+		
 		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setForeground(new Color(154, 205, 50));
@@ -136,16 +139,6 @@ public class Login_Form extends JFrame {
 		password.setFont(new Font("Thonburi", Font.PLAIN, 18));
 		password.setBounds(215, 172, 225, 50);
 		contentPane.add(password);
-	}
-
-
-	
-	public JTextField getusername() {
-		return username;
-	}
-	
-	public JTextField getpassword() {
-		return password;
 	}	
 	
 	public String getUsername() {

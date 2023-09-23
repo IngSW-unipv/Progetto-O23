@@ -24,10 +24,10 @@ public class Test {
 	
 		
 
-		User model = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
+		//User model = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
+		Gestione_Dao g =  new Gestione_Dao();
 		
-		
-		Home_Form view = new Home_Form();
+		g.Ottieni_Tipo("C.BIANCHI");
 		//LoginController controller = new LoginController(view);
 		
 		/*Turni_Lavoro tl = new Turni_Lavoro(null, null, null, 234);

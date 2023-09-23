@@ -1,19 +1,14 @@
 package dao;
 
-import java.security.MessageDigest;
+
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.UUID;
-
-import javax.swing.JOptionPane;
-
 import Model.User;
 
 public class Gestione_Dao {
@@ -47,6 +42,33 @@ public class Gestione_Dao {
              }
     	 }
   }
+    
+
+ public int Ottieni_Tipo(String username) throws SQLException {
+    	
+    	DBConnessione d =new DBConnessione();
+    	conn=d.connessione(conn);
+    	String sql = "SELECT id_tipo FROM user WHERE username = ?";
+    	
+    	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+             stmt.setString(1, username);
+             ResultSet rs = stmt.executeQuery();
+             
+             if (rs.next()) {
+                 int ID_Tipo = rs.getInt("id_tipo");
+                 System.out.println(ID_Tipo);
+                 rs.close();
+                 stmt.close();
+                 return ID_Tipo;
+             } else {
+            	 System.out.println(1);
+            	 rs.close();
+                 stmt.close();
+                 return 51;
+             }
+    	 }
+  }    
+    
   //OTTIENI UN PARAMETRO STRINGA DI USER DATA IL SUO USERNAME e Password
     	 
     public String OttieniParametroUserString(String par1,String user,String password ) throws SQLException {
@@ -100,6 +122,7 @@ public class Gestione_Dao {
              }
     	 }
          }
+    
 
 //METODO PER GENERARE UN ID PER LA REGISTRAZIONE DELL USER
 
@@ -276,9 +299,7 @@ public class Gestione_Dao {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         boolean loggedIn = false;
-       
-      
-        
+    
         try {
             
             String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
@@ -286,10 +307,11 @@ public class Gestione_Dao {
             stmt.setString(1, username);
             stmt.setString(2, password);
             
+            
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-            	
+            
                 loggedIn = true;
             }
         } finally {
@@ -304,8 +326,8 @@ public class Gestione_Dao {
             }
         }
         if(loggedIn) {
-        	 
         	System.out.println("Login effettuato con successo");
+        	
         	
         } else {
         	System.out.println("Errore, username o passsoword errati");

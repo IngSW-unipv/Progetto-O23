@@ -1,114 +1,61 @@
 package Controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 import Model.User;
-import View.Benvenuto_Form;
-import View.Home_Form;
+import View.ClienteGUI;
+import View.DipGUI;
 import View.Login_Form;
+import dao.Gestione_Dao;
 
 public class LoginController {
     private final Login_Form view;
-    private final User model;
+    
 
-    public LoginController(Login_Form view, User model) {
+    public LoginController(Login_Form view) {
         this.view = view;
-        this.model = model;
-        
-// VISTO CHE NON VA DI LA LA COMMENTO
-        // Aggiungi un listener al pulsante "LoginButton" nella vista
-      //  view.setLoginListener(new LoginListener());
     }
-
-    // Listener per il pulsante "LoginButton"
-    class LoginListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String username = view.getUsername();
-            String password = view.getPassword();
-
-            // Invoca il metodo "login" del modello passando i dati di login inseriti dall'utente
-            boolean esito = false;
-            try {
-                esito = model.login(username, password);
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-
-            // QUI CI SARà LA HOME DELL'UTENTE
-            if (esito) {
-                Home_Form welcomeForm = new Home_Form();
-                welcomeForm.setVisible(true);
+    
+    public void handleLogin() {
+    	String username = view.getUsername();
+    	String password = view.getPassword();
+    	
+    	
+    	try {
+            Gestione_Dao dao = new Gestione_Dao();
+            
+            int id_tipo = dao.Ottieni_Tipo(username);
+            
+            boolean loggedIn = dao.login(username, password);
+            
+            if (loggedIn) {
+            	
+            	JOptionPane.showMessageDialog(null, "Accesso effettuato con successo!");
                 view.dispose();
-                System.out.println("Accesso effettuato con successo!");
+                if(id_tipo == 1) {
+                	DipGUI dipView = new DipGUI();
+                	dipView.setVisible(true);
+                } else if (id_tipo == 2) {
+                	ClienteGUI clView = new ClienteGUI();
+                	clView.setVisible(true);
+                }
+                 
             } else {
-                System.out.println("Nome utente o password errati!");
+                JOptionPane.showMessageDialog(null, "Username o password non validi.");
             }
             
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Errore durante l'accesso: " + ex.getMessage());
         }
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-
-import Model.User;
-import View.Benvenuto_Form;
-import View.Login_Form;
-
-
-public class LoginController {
-    private final Login_Form view;
-    private final User model;
-
-    public LoginController(Login_Form view, User model) {
-        this.view = view;
-        this.model = model;
-        view.setLoginListener(new LoginListener());
-    }
-
-    // Listener per il pulsante "Accedi"
-    class LoginListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String username = view.getUsername();
-            String password = view.getPassword();
-
-            // Invoca il metodo "login" del modello passando i dati di login inseriti dall'utente
-            boolean esito = false;
-            try {
-                esito = model.login(username, password);
-                System.out.println(model.toString()); //controllo parametri accesso
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-
-            // Aggiorna la vista in base al risultato del login
-            if (esito) {
-                Benvenuto_Form welcomeForm = new Benvenuto_Form();
-                welcomeForm.setVisible(true);
-                view.dispose();
-                System.out.println("Accesso effettuato con successo!");
-            } else {
-                System.out.println("Nome utente o password errati!");
-            }
-        }
-    }
-}
-*/
+    
+   
+    	
+ }
+    
+    
+    
+    
+    

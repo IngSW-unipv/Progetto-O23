@@ -202,7 +202,7 @@ public void setId_tipo(int id_tipo) {
 
 //LOGIN
 
-public boolean login(String username ,String password) throws SQLException {
+public boolean login(String username ,String password, int id_tipo) throws SQLException {
 	
 
 	Gestione_Dao g =  new Gestione_Dao();
@@ -216,6 +216,7 @@ public boolean login(String username ,String password) throws SQLException {
 	Email=g.OttieniParametroUserString("email", username, password);
 	NumTelefono=g.OttieniParametroUserString("cell", username, password);
 	DataDiNascita=g.OttieniParametroUserDate("data_nascita", username, password);
+	Id_tipo = g.Ottieni_Tipo(username);
 	login=g.login(username, password);
 	return login;
 	
