@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PrenotaPanel extends JFrame {
 	private JTable table;
@@ -22,16 +24,16 @@ public class PrenotaPanel extends JFrame {
 		setBackground(new Color(240, 240, 240));
 		
 		setBounds(258, 11, 576, 520);
-		setLayout(null);
+		getContentPane().setLayout(null);
 		JLabel lblPr = new JLabel("Prenotazione");
 		lblPr.setBounds(235, 8, 104, 21);
 		lblPr.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
-		add(lblPr);
+		getContentPane().add(lblPr);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(102, 204, 102));
 		panel.setBounds(7, 35, 562, 450);
-		add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -71,6 +73,19 @@ public class PrenotaPanel extends JFrame {
 		btnConf.setFont(new Font("Thonburi", Font.PLAIN, 14));
 		btnConf.setBounds(139, 278, 103, 32);
 		panel.add(btnConf);
+		
+		JButton btnTornaIndietro = new JButton("Torna indietro");
+		btnTornaIndietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ClienteGUI cl = new ClienteGUI();
+				cl.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnTornaIndietro.setFont(new Font("Dialog", Font.PLAIN, 14));
+		btnTornaIndietro.setBounds(10, 407, 144, 32);
+		panel.add(btnTornaIndietro);
 		
 
 	}

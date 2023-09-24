@@ -28,7 +28,8 @@ public class Test {
 		Gestione_Dao g =  new Gestione_Dao();
 		
 		g.Ottieni_Tipo("C.BIANCHI");
-		//LoginController controller = new LoginController(view);
+		Benvenuto_Form b = new Benvenuto_Form();
+		b.setVisible(true);
 		
 		/*Turni_Lavoro tl = new Turni_Lavoro(null, null, null, 234);
 		tl.GetOrarioLavoro();

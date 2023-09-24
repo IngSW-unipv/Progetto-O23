@@ -15,6 +15,9 @@ import java.awt.EventQueue;
 import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import Controller.AcController;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +27,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 public class DipGUI extends JFrame{
+	private AcController controller;
 	
 	private JPanel contentPane;
 	//private AccountDip account;
@@ -70,6 +74,9 @@ public class DipGUI extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AccountDip dip =new AccountDip();
+				//System.out.println(controller.getUsername());
+				//controller.usaDip(dip);
+				//System.out.println(controller.getUsername());
 				dip.setVisible(true);
  	            dispose();
 			}

@@ -25,13 +25,18 @@ public class LoginController {
     	
     	try {
             Gestione_Dao dao = new Gestione_Dao();
+            AcController a = new AcController();
+            User u= new User(null, null, null, null, null, null, null, null, 0, null, null, null);
             
             int id_tipo = dao.Ottieni_Tipo(username);
             
             boolean loggedIn = dao.login(username, password);
+            u.login(username, password, id_tipo);
             
             if (loggedIn) {
-            	
+            	a.memorizza(u);
+                System.out.println(u.toString());
+                
             	JOptionPane.showMessageDialog(null, "Accesso effettuato con successo!");
                 view.dispose();
                 if(id_tipo == 1) {

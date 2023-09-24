@@ -68,7 +68,7 @@ public class ClienteGUI extends JFrame{
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountDip cl =new AccountDip();
+				AccountCl cl =new AccountCl();
 				cl.setVisible(true);
  	            dispose();
 				

@@ -163,12 +163,22 @@ public class AccountCl extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ClienteGUI cl = new ClienteGUI();
 				cl.setVisible(true);
+				dispose();
 				
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(134, 411, 156, 23);
+		btnNewButton.setBounds(10, 416, 156, 23);
 		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Modifica i dati");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton_1.setBounds(243, 416, 156, 23);
+		panel.add(btnNewButton_1);
 		
 		
 		

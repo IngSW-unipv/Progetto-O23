@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
 
+import Controller.AcController;
 import dao.Gestione_Dao;
 
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AccountDip extends JFrame {
+	
 	
 	public JTextField UsField;
 	private JTextField NoField;
@@ -95,8 +97,20 @@ public class AccountDip extends JFrame {
 		lblPr.setBounds(10, 294, 70, 20);
 		panel.add(lblPr);
 		
-		UsField = new JTextField();
+		JButton btnNewButton = new JButton("Torna indietro");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DipGUI dip = new DipGUI();
+				dip.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.setBounds(134, 411, 156, 23);
+		panel.add(btnNewButton);
 		
+		UsField = new JTextField();
 		UsField.setEditable(false);
 		UsField.setBounds(150, 22, 120, 30);
 		panel.add(UsField);
@@ -156,26 +170,21 @@ public class AccountDip extends JFrame {
 		ViField.setBounds(150, 369, 120, 30);
 		panel.add(ViField);
 		
+		
+		
 		JLabel lblNewLabel = new JLabel("Account");
 		lblNewLabel.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
 		lblNewLabel.setBounds(256, 8, 68, 21);
 		getContentPane().add(lblNewLabel);
 		setVisible(true);
 		
-		JButton btnNewButton = new JButton("Torna indietro");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DipGUI dip = new DipGUI();
-				dip.setVisible(true);
-				
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(134, 411, 156, 23);
-		panel.add(btnNewButton);
-		
-		
+	
 		
 
 	}
+	
+
+
+
+	
 }
