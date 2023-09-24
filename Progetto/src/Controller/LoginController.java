@@ -35,8 +35,10 @@ public class LoginController {
             	JOptionPane.showMessageDialog(null, "Accesso effettuato con successo!");
                 view.dispose();
                 if(id_tipo == 1) {
+               
                 	DipGUI dipView = new DipGUI();
-                	dipView.setVisible(true);
+                	dipView.setVisible(true);            
+                	
                 } else if (id_tipo == 2) {
                 	ClienteGUI clView = new ClienteGUI();
                 	clView.setVisible(true);

@@ -27,7 +27,7 @@ public class PswController {
 
 	      String newPassword = String.valueOf(password);
 	      
-	      dao.modificaDati(user, "psw", newPassword);
+	      //dao.modificaDati(user, "psw", newPassword);
 
 	      JOptionPane.showMessageDialog(view, "Password modificata");
 

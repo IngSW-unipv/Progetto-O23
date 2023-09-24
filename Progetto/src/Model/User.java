@@ -224,6 +224,9 @@ public boolean login(String username ,String password, int id_tipo) throws SQLEx
  
 }
 
+
+
+
 //LOGOUT
 public boolean logout(boolean log) {
 	
@@ -257,10 +260,10 @@ public void registrazione(String cf, String nome, String cognome, String dataNas
      
 }
 
-public void modificaAttr(String attributo, String nuovoValore) throws SQLException, NoSuchAlgorithmException {
+public void modificaAttr(String username, String attributo, String nuovoValore) throws SQLException, NoSuchAlgorithmException {
 	
 	Gestione_Dao g = new Gestione_Dao();
-	g.modificaDati(this, attributo, nuovoValore);	
+	g.modificaDati(username, attributo, nuovoValore);	
      
 }
     

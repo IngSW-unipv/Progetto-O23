@@ -1,6 +1,8 @@
 package dao;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
 
 import java.sql.Connection;
@@ -10,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import Model.User;
+import View.AccountUtPannel;
 
 public class Gestione_Dao {
     private Connection conn;
@@ -68,7 +71,8 @@ public class Gestione_Dao {
              }
     	 }
   }    
-    
+  
+ 
   //OTTIENI UN PARAMETRO STRINGA DI USER DATA IL SUO USERNAME e Password
     	 
     public String OttieniParametroUserString(String par1,String user,String password ) throws SQLException {
@@ -218,72 +222,28 @@ public class Gestione_Dao {
         } 
     }
     
-    public void modificaDati(User user, String attributo, String nuovoValore) throws SQLException {
-        if (!login(null, null)) {
-             System.out.println("Devi effettuare il login per modificare i tuoi dati");
-             return;
-        }
+    public void modificaDati(String username, String attributo, String nuovoValore) throws SQLException {
 
-          DBConnessione d = new DBConnessione();
-          Connection con=null;
-          con=d.connessione(con);
-          String sql = "UPDATE user SET " + attributo + "=? WHERE username=? AND password=?";
+    	  DBConnessione d = new DBConnessione();
+    	  Connection con=null;
+    	  con=d.connessione(con);
 
-          try (PreparedStatement stmt = con.prepareStatement(sql)) {
-               stmt.setString(1, nuovoValore);
-               stmt.setString(2, user.getUsername());
-               stmt.setString(3, user.getPassword());
-               int result = stmt.executeUpdate();
-               if (result == 1) {
-                   switch (attributo) {
-                       case "cf":
-                           user.setCf(nuovoValore);
-                           break;
-                       case "nome":
-                    	   user.setNome(nuovoValore);
-                           break;
-                       case "cognome":
-                    	   user.setCognome(nuovoValore);
-                           break;
-                       case "data_nascita":
-                           user.setDataDiNascita(java.sql.Date.valueOf(nuovoValore));
-                           break;
-                       case "cell":
-                    	   user.setNumTelefono(nuovoValore);
-                           break;
-                       case "via":
-                    	   user.setVia(nuovoValore);
-                           break;
-                       case "citta":
-                    	   user.setCitta(nuovoValore);
-                           break;
-                       case "provincia":
-                    	   user.setProvincia(nuovoValore);
-                           break;    
-                       case "cap":
-                    	   user.setCAP(Integer.parseInt(nuovoValore));
-                           break;
-                       case "email":
-                    	   user.setEmail(nuovoValore);
-                           break;
-                       case "username":
-                    	   user.setUsername(nuovoValore);
-                           break;
-                       case "psw":
-                    	   user.setPassword(nuovoValore);
-                           break;
-                       default:
-                           System.out.println("Attributo non valido");
-                           return;
-                   }
-                   System.out.println("Modifica effettuata con successo");
-                              
-                   
-               } else {
-                   System.out.println("Errore durante la modifica dei dati");
-               }
-           }
-   }
+    	  String sql = "UPDATE user SET " + attributo + "=? WHERE username=?";
+
+    	  try (PreparedStatement stmt = con.prepareStatement(sql)) {
+    	    stmt.setString(1, nuovoValore);
+    	    stmt.setString(2, username);
+
+    	    int result = stmt.executeUpdate();
+
+    	    if (result == 1) {
+    	      System.out.println("Modifica effettuata con successo");
+    	    } else {
+    	      System.out.println("Errore durante la modifica dei dati");
+    	    }
+
+    	  }
+    	}
 
     
 //settaggio parametri classe user
@@ -486,4 +446,6 @@ public class Gestione_Dao {
        conn.close();
     }
      }
+
+
    }

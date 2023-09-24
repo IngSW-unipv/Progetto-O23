@@ -1,19 +1,19 @@
 package View;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
-import dao.Gestione_Dao;
+public class VisualizzaInfo extends JFrame {
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class AccountUtPannel extends JPanel {
 	public JTextField UsField;
 	private JTextField NoField;
 	private JTextField CoField;
@@ -28,7 +28,7 @@ public class AccountUtPannel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AccountUtPannel() {
+	public VisualizzaInfo() {
 		
 		setBounds(258, 11, 576, 520);
 		setVisible(true);

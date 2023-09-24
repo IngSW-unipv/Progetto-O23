@@ -28,6 +28,7 @@ public class PswLost_Form extends JFrame {
 	private final JLabel lbl1 = new JLabel("Inserire nuova password:");
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
+	private JTextField textField;
 	
 	public char[] getPasswordField() {
 		return passwordField.getPassword();
@@ -80,17 +81,27 @@ public class PswLost_Form extends JFrame {
 		
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		passwordField_1.setBounds(303, 153, 190, 40);
+		passwordField_1.setBounds(303, 140, 190, 40);
 		contentPane.add(passwordField_1);
 		
 		JLabel lbl2 = new JLabel("Conferma password:");
 		lbl2.setForeground(Color.BLACK);
 		lbl2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lbl2.setBounds(54, 143, 193, 62);
+		lbl2.setBounds(54, 129, 193, 62);
 		contentPane.add(lbl2);
+		
+		JLabel lblNewLabel = new JLabel("Inserire username:");
+		lblNewLabel.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblNewLabel.setBounds(54, 6, 193, 62);
+		contentPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(303, 19, 190, 40);
+		contentPane.add(textField);
+		textField.setColumns(10);
 	
 	}
-
-
-
+	public String getUsername() {
+		return textField.getText();
+	}
 }
