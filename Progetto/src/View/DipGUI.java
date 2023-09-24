@@ -26,8 +26,7 @@ import java.awt.GridLayout;
 public class DipGUI extends JFrame{
 	
 	private JPanel contentPane;
-	private ImieiTurniPannel imTurni;
-	private AccountDipPannel account;
+	//private AccountDip account;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -54,12 +53,6 @@ public class DipGUI extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		imTurni = new ImieiTurniPannel();
-		imTurni.setBounds(258, 11, 576, 520);
-		imTurni.setLocation(0,0);
-		account = new AccountDipPannel();
-		account.setBounds(258, 11, 576, 520);
-		account.setLocation(0,0);
 		
 		JPanel paneMenu = new JPanel();
 		paneMenu.setBackground(new Color(102, 204, 102));
@@ -76,7 +69,9 @@ public class DipGUI extends JFrame{
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(account);
+				AccountDip dip =new AccountDip();
+				dip.setVisible(true);
+ 	            dispose();
 			}
 	});
 		paneAcc.setBounds(0, 230, 248, 40);
@@ -93,7 +88,9 @@ public class DipGUI extends JFrame{
 		paneSt.addMouseListener(new PanelMouse(paneSt) {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					menuClicked(imTurni);
+					ImieiTurniPannel tu =new ImieiTurniPannel();
+					tu.setVisible(true);
+	 	            dispose();
 				}
 		});
 		paneSt.setBounds(0, 269, 248, 40);
@@ -136,29 +133,13 @@ public class DipGUI extends JFrame{
 		paneMenu.add(lblTitolo);
 		lblTitolo.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
 		
-		JPanel paneWindow = new JPanel();
-		paneWindow.setBounds(258, 11, 576, 520);
-		contentPane.add(paneWindow);
-		paneWindow.setLayout(null);
-		
-		paneWindow.add(account);
-		paneWindow.add(imTurni);
 		
 		
-		menuClicked(account);
 		
 	}
 	
 	
-	public void menuClicked(JPanel panel) {
-		account.setVisible(false);
-		imTurni.setVisible(false);
-		
-		
-		panel.setVisible(true);
-		
-		
-	}
+	
 	
 	private class PanelMouse extends MouseAdapter {
 		JPanel contentPane;

@@ -1,6 +1,7 @@
 package View;
 
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -8,7 +9,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
-public class ImieiTurniPannel extends JPanel {
+public class ImieiTurniPannel extends JFrame {
 	private JTable table;
 
 	/**

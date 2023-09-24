@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import Model.User;
-import View.AccountUtPannel;
+//import View.Account;
 
 public class Gestione_Dao {
     private Connection conn;

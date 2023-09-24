@@ -9,8 +9,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
-public class PrenotaPanel extends JPanel {
+public class PrenotaPanel extends JFrame {
 	private JTable table;
 	private JTextField NuField;
 

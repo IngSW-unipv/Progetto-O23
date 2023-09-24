@@ -1,5 +1,6 @@
 package View;
 
+
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
@@ -25,10 +26,7 @@ import java.awt.GridLayout;
 public class ClienteGUI extends JFrame{
 	
 	private JPanel contentPane;
-	AccountUtPannel a ;
-	PrenotaPanel p1;
-	PrenotazioniPanel p2;
-	EliminAccountPannel ea;
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -54,19 +52,6 @@ public class ClienteGUI extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		a = new AccountUtPannel();
-		a.setSize(586, 512);
-		a.setLocation(0, 0);
-		p1 = new PrenotaPanel();
-		p1.setSize(586, 512);
-		p1.setLocation(0, 0);
-		p2 = new PrenotazioniPanel();
-		p2.setSize(586, 512);
-		p2.setLocation(0, 0);
-		ea = new EliminAccountPannel();
-		ea.setSize(586, 512);
-		ea.setLocation(0, 0);
-		
 		
 		JPanel paneMenu = new JPanel();
 		paneMenu.setBackground(new Color(102, 204, 102));
@@ -83,7 +68,9 @@ public class ClienteGUI extends JFrame{
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(a);
+				AccountDip cl =new AccountDip();
+				cl.setVisible(true);
+ 	            dispose();
 				
 			}
 	});
@@ -101,7 +88,9 @@ public class ClienteGUI extends JFrame{
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(p2);
+				PrenotazioniPanel tp =new PrenotazioniPanel();
+				tp.setVisible(true);
+ 	            dispose();
 			}
 	});
 		paneSt.setBounds(0, 204, 248, 40);
@@ -117,7 +106,9 @@ public class ClienteGUI extends JFrame{
 		panePr.addMouseListener(new PanelMouse(panePr){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(p1);
+				PrenotaPanel pr =new PrenotaPanel();
+				pr.setVisible(true);
+ 	            dispose();
 			}
 	});
 		panePr.setBounds(0, 243, 248, 40);
@@ -159,7 +150,7 @@ public class ClienteGUI extends JFrame{
 		panelElAcc.addMouseListener(new PanelMouse(panelElAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				menuClicked(ea);
+				
 			}
 	});
 		panelElAcc.setBackground(new Color(102, 204, 102));
@@ -187,32 +178,9 @@ public class ClienteGUI extends JFrame{
 		});
 		
 		
-		JPanel paneWindow = new JPanel();
-		paneWindow.setBounds(258, 11, 576, 520);
-		contentPane.add(paneWindow);
-		
-		paneWindow.setLayout(null);
-		
-		paneWindow.add(a);
-		paneWindow.add(p1);
-		paneWindow.add(p2);
-		paneWindow.add(ea);
-		
-		menuClicked(a);
 	}
 	
 	
-	public void menuClicked(JPanel panel) {
-		a.setVisible(false);
-		p1.setVisible(false);
-		p2.setVisible(false);
-		ea.setVisible(false);
-		
-		
-		panel.setVisible(true);
-		
-		
-	}
 	
 	private class PanelMouse extends MouseAdapter {
 		JPanel contentPane;

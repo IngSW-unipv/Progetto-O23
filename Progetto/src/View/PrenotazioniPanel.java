@@ -20,8 +20,9 @@ import java.awt.ScrollPane;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLayeredPane;
 import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 
-public class PrenotazioniPanel extends JPanel {
+public class PrenotazioniPanel extends JFrame {
 	private JTable table;
 
 	/**

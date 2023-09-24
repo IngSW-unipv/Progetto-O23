@@ -1,14 +1,19 @@
 package View;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
 
-public class AccountDipPannel extends JPanel {
-	private JTextField UsField;
+public class AccountCl extends JFrame {
+	
+	public JTextField UsField;
 	private JTextField NoField;
 	private JTextField CoField;
 	private JTextField EmField;
@@ -22,22 +27,24 @@ public class AccountDipPannel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AccountDipPannel() {
+	public AccountCl() {
 		
 		setBounds(258, 11, 576, 520);
 		setVisible(true);
-		setLayout(null);
+		getContentPane().setLayout(null);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(104, 202, 104));
 		panel.setBounds(7, 35, 562, 450);
-		add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblUs = new JLabel("Username");
 		lblUs.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		lblUs.setBounds(10, 25, 80, 20);
 		panel.add(lblUs);
+		
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -85,6 +92,7 @@ public class AccountDipPannel extends JPanel {
 		panel.add(lblPr);
 		
 		UsField = new JTextField();
+		
 		UsField.setEditable(false);
 		UsField.setBounds(150, 22, 120, 30);
 		panel.add(UsField);
@@ -146,9 +154,21 @@ public class AccountDipPannel extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("Account");
 		lblNewLabel.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
-		lblNewLabel.setBounds(257, 8, 68, 21);
-		add(lblNewLabel);
+		lblNewLabel.setBounds(256, 8, 68, 21);
+		getContentPane().add(lblNewLabel);
 		setVisible(true);
+		
+		JButton btnNewButton = new JButton("Torna indietro");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ClienteGUI cl = new ClienteGUI();
+				cl.setVisible(true);
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.setBounds(134, 411, 156, 23);
+		panel.add(btnNewButton);
 		
 		
 		

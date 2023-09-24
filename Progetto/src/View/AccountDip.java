@@ -10,10 +10,13 @@ import javax.swing.JTextField;
 import dao.Gestione_Dao;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AccountUtPannel extends JPanel {
+public class AccountDip extends JFrame {
+	
 	public JTextField UsField;
 	private JTextField NoField;
 	private JTextField CoField;
@@ -28,17 +31,17 @@ public class AccountUtPannel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AccountUtPannel() {
+	public AccountDip() {
 		
 		setBounds(258, 11, 576, 520);
 		setVisible(true);
-		setLayout(null);
+		getContentPane().setLayout(null);
 		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(104, 202, 104));
 		panel.setBounds(7, 35, 562, 450);
-		add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblUs = new JLabel("Username");
@@ -156,10 +159,17 @@ public class AccountUtPannel extends JPanel {
 		JLabel lblNewLabel = new JLabel("Account");
 		lblNewLabel.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
 		lblNewLabel.setBounds(256, 8, 68, 21);
-		add(lblNewLabel);
+		getContentPane().add(lblNewLabel);
 		setVisible(true);
 		
-		JButton btnNewButton = new JButton("Modifica i dati");
+		JButton btnNewButton = new JButton("Torna indietro");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DipGUI dip = new DipGUI();
+				dip.setVisible(true);
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(134, 411, 156, 23);
 		panel.add(btnNewButton);
