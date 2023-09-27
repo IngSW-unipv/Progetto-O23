@@ -133,8 +133,10 @@ public AccountCl() {
 	JButton btnNewButton = new JButton("Torna indietro");
 	btnNewButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			ClienteGUI cl = new ClienteGUI();
+			ClienteGUI cl = new ClienteGUI();			
+			AccountCl.this.dispose();
 			cl.setVisible(true);
+			
 		}
 	});
 	btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));

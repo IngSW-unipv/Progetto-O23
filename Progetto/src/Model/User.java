@@ -267,13 +267,13 @@ public void modificaAttr(String username, String attributo, String nuovoValore) 
      
 }
     
- //OTTIENI PASSWORD UTENTE
+/* //OTTIENI PASSWORD UTENTE
  public String OttieniPassword(String cf,String user,String email) throws SQLException {
     Gestione_Dao g =  new Gestione_Dao();
     return g.OttieniPsw(cf, user, email);
             
 }
-
+*/
 
 @Override
 public String toString() {
@@ -313,10 +313,3 @@ public void EliminaAcc(int id_user, String username) throws SQLException {
 
 
 }
-
-
-
-	 
-
-
-

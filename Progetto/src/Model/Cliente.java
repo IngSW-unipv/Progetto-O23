@@ -27,7 +27,7 @@ public class Cliente extends User{
 //metodo per cancellare l'account
 	public void EliminaACC(String Username, String Password) throws SQLException{
 		 Gestione_Dao g = new Gestione_Dao();
-		g.deleteAccCliente(Username, Password);
+		g.deleteAccCliente(Id_Cliente,Username);
 	}
 //metodo per modificare la data di prenotazione 
 	/*

@@ -22,9 +22,12 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import javax.swing.JTextField;
 
 public class DipGUI extends JFrame{
-	private JPanel contentPane;
+	public JPanel contentPane;
+	public JLabel lblDip;  //////////////
+	
 	//private AccountDip account;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -53,10 +56,10 @@ public class DipGUI extends JFrame{
 		paneMenu.setBounds(0, 0, 248, 540);
 		contentPane.add(paneMenu);
 		paneMenu.setLayout(null);
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(DipGUI.class.getResource("/logo/Senza titolo.png")));
-		lblLogo.setBounds(6, 12, 236, 135);
-		paneMenu.add(lblLogo);
+		//JLabel lblLogo = new JLabel("");
+		//lblLogo.setIcon(new ImageIcon(DipGUI.class.getResource("/logo/Senza titolo.png")));
+		//lblLogo.setBounds(6, 12, 236, 135);
+		//paneMenu.add(lblLogo);
 		JPanel paneAcc = new JPanel();
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
@@ -115,7 +118,19 @@ public class DipGUI extends JFrame{
 		lblTitolo.setBounds(28, 168, 197, 51);
 		paneMenu.add(lblTitolo);
 		lblTitolo.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
+		
+		JLabel lbl = new JLabel("Id lavoratore:");
+		lbl.setBounds(715, 6, 78, 16);
+		contentPane.add(lbl);
+		lbl.setFont(new Font("Thonburi", Font.PLAIN, 12));
+		
+		/////////////////////////
+		
+		
+		
 	}
+	
+	
 	private class PanelMouse extends MouseAdapter {
 		JPanel contentPane;
 		public PanelMouse(JPanel contentPane) {
@@ -138,4 +153,5 @@ public class DipGUI extends JFrame{
 			contentPane.setBackground(new Color(102, 204, 102));
 		}
 	}
+	
 }

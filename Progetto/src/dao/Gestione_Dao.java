@@ -21,14 +21,14 @@ public class Gestione_Dao {
         
     }
     
-    public int Ottieni_User(String user) throws SQLException {
+    public int Ottieni_User(String username) throws SQLException {
     	
     	DBConnessione d =new DBConnessione();
     	conn=d.connessione(conn);
-    	String sql = "SELECT ID_USER FROM user WHERE NOME = ?";
+    	String sql = "SELECT ID_USER FROM user WHERE username = ?";
     	
     	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-             stmt.setString(1, user);
+             stmt.setString(1, username);
              ResultSet rs = stmt.executeQuery();
              
              if (rs.next()) {
@@ -37,6 +37,31 @@ public class Gestione_Dao {
                  rs.close();
                  stmt.close();
                  return ID_CLIENTE;
+             } else {
+            	 System.out.println(1);
+            	 rs.close();
+                 stmt.close();
+                 return 51;
+             }
+    	 }
+  }
+    
+public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
+    	
+    	DBConnessione d =new DBConnessione();
+    	conn=d.connessione(conn);
+    	String sql = "SELECT ID_L FROM dipendente WHERE id_user = ?";
+    	
+    	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+             stmt.setInt(1, id_user);
+             ResultSet rs = stmt.executeQuery();
+             
+             if (rs.next()) {
+                 int ID_L = rs.getInt("ID_L");
+                 System.out.println(ID_L);
+                 rs.close();
+                 stmt.close();
+                 return ID_L;
              } else {
             	 System.out.println(1);
             	 rs.close();
@@ -247,11 +272,39 @@ public class Gestione_Dao {
 
     
 //settaggio parametri classe user
-    public void setParametri(String username,String password) throws SQLException {
+/*    public void setParametri(String username,String password) throws SQLException {
     	  User u = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
       		u.setCf(OttieniParametroUserString("CF",username,password));
     }
     
+    ////////
+     * public String OttieniPsw(String cf,String user,String email) throws SQLException{
+    	
+    	DBConnessione d =new DBConnessione();
+    	Connection con=null;
+    	con=d.connessione(con);
+    	String psw=null;
+    	String sql =" SELECT password \r\n"
+    			+"FROM USER \r\n"
+    			+"WHERE USERNAME= ? and  CF= ? and EMAIL= ?";
+    	 try (PreparedStatement stmt = con.prepareStatement(sql)) {
+             stmt.setString(1, user);
+             stmt.setString(2, cf);
+             stmt.setString(3, email);
+             ResultSet rs = stmt.executeQuery();
+             if (rs.next()) {
+            	 psw = rs.getString("PSW");
+                 return psw;
+             } else {
+            	 System.out.println("impossibile trovare password hai sbagliato a inserire i dati");
+            	 return psw;
+             }
+    	
+    	
+    	
+    	 }
+    }
+ */   
     public boolean login(String username, String password) throws SQLException {
         Connection conn = null;
         DBConnessione d =new DBConnessione();
@@ -298,34 +351,9 @@ public class Gestione_Dao {
         
        
     }
+   
     
-    
-    public String OttieniPsw(String cf,String user,String email) throws SQLException{
-    	
-    	DBConnessione d =new DBConnessione();
-    	Connection con=null;
-    	con=d.connessione(con);
-    	String psw=null;
-    	String sql =" SELECT password \r\n"
-    			+"FROM USER \r\n"
-    			+"WHERE USERNAME= ? and  CF= ? and EMAIL= ?";
-    	 try (PreparedStatement stmt = con.prepareStatement(sql)) {
-             stmt.setString(1, user);
-             stmt.setString(2, cf);
-             stmt.setString(3, email);
-             ResultSet rs = stmt.executeQuery();
-             if (rs.next()) {
-            	 psw = rs.getString("PSW");
-                 return psw;
-             } else {
-            	 System.out.println("impossibile trovare password hai sbagliato a inserire i dati");
-            	 return psw;
-             }
-    	
-    	
-    	
-    	 }
-    }public void OttieniParametriLavoratore(int ID_L) throws SQLException {
+    public void OttieniParametriLavoratore(int ID_L) throws SQLException {
 	 DBConnessione d =new DBConnessione();
 	conn=d.connessione(conn);
 	String sql = "SELECT giorno,ora_inizio,ora_fine FROM turni_lavoro WHERE ID_L = ?";
@@ -349,16 +377,16 @@ public class Gestione_Dao {
          }
 	 }
 }
-    // ottieni parametro data da turni_lavoro
- public java.sql.Date OttieniParametroDateTurniLavoro(String string,int ID_L) throws SQLException {
+   // ottieni parametro data da turni_lavoro
+ public java.sql.Date OttieniParametroDateTurniLavoro(String string,int id_user) throws SQLException {
     	
     	DBConnessione d =new DBConnessione();
     	conn=d.connessione(conn);
-    	String sql = "SELECT "+string+" FROM turni_lavoro WHERE ID_L = ?";
+    	String sql = "SELECT "+string+" FROM turni_lavoro WHERE id_user = ?";
     	java.sql.Date ris = null;
     	
     	 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, ID_L);
+            stmt.setInt(1, id_user);
              ResultSet rs = stmt.executeQuery();
              if(rs.next()) {
             	 ris=rs.getDate(string);
@@ -373,6 +401,7 @@ public class Gestione_Dao {
              }
     	 }
          }
+         
  // ottiene parametro time da turni_lavoro
  public java.sql.Time OttieniParametroTimeTurniLavoro(String string,int ID_L) throws SQLException {
  	
@@ -423,14 +452,15 @@ public class Gestione_Dao {
      conn.close();
   }
  }
- public void deleteAccCliente( String username, String password) throws SQLException{
+ 
+ public void deleteAccCliente(int id_user, String username) throws SQLException{
 	 
 	 DBConnessione d = new DBConnessione();
      conn = d.connessione(conn);
-     String sql = "DELETE FROM cliente WHERE username = ? and password = ?";
+     String sql = "DELETE FROM cliente WHERE username = ? and id_user = ?";
 
      try (PreparedStatement statement = conn.prepareStatement(sql)){
-    	 statement.setString(1, username);
+    	 statement.setInt(1, id_user);
          
          int rowsDeleted = statement.executeUpdate();
          if(rowsDeleted > 0) {

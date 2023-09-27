@@ -22,9 +22,10 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import javax.swing.JTextField;
 
 public class ClienteGUI extends JFrame{
-	private JPanel contentPane;
+	public JPanel contentPane;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,15 +53,15 @@ public class ClienteGUI extends JFrame{
 		paneMenu.setBounds(0, 0, 248, 540);
 		contentPane.add(paneMenu);
 		paneMenu.setLayout(null);
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(ClienteGUI.class.getResource("/logo/Senza titolo.png")));
-		lblLogo.setBounds(6, 16, 236, 135);
-		paneMenu.add(lblLogo);
+		//JLabel lblLogo = new JLabel("");
+		//lblLogo.setIcon(new ImageIcon(ClienteGUI.class.getResource("/logo/Senza titolo.png")));
+		//lblLogo.setBounds(6, 16, 236, 135);
+		//paneMenu.add(lblLogo);
 		JPanel paneAcc = new JPanel();
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountDip cl =new AccountDip();
+				AccountCl cl =new AccountCl();
 				cl.setVisible(true);
 				dispose();
 			}
@@ -151,6 +152,11 @@ public class ClienteGUI extends JFrame{
 				}
 			}
 		});
+		
+		JLabel lblNewLabel = new JLabel("Id cliente:");
+		lblNewLabel.setBounds(728, 6, 60, 16);
+		contentPane.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Thonburi", Font.PLAIN, 12));
 	}
 	private class PanelMouse extends MouseAdapter {
 		JPanel contentPane;

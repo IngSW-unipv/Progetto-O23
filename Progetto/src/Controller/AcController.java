@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import Model.User;
 import View.AccountCl;
 import View.AccountDip;
+import View.DipGUI;
 
 public class AcController {
 	
@@ -33,6 +34,8 @@ public class AcController {
 		
 		
 	}
+	
+
 	
 	
 	public void usaDip(AccountDip view) {

@@ -162,7 +162,9 @@ public class AccountDip extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DipGUI dip = new DipGUI();
+				AccountDip.this.dispose();
 				dip.setVisible(true);
+				
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
