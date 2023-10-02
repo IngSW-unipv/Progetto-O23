@@ -37,11 +37,10 @@ public class LoginController {
             
             boolean loggedIn = dao.login(username, password);
             u.login(username, password, id_tipo);
+            a.memorizza(u);
             
             if (loggedIn) {
-            	a.memorizza(u);
-                System.out.println(u.toString());
-                
+        
             	JOptionPane.showMessageDialog(null, "Accesso effettuato con successo!");
                 view.dispose();
                 if(id_tipo == 1) {

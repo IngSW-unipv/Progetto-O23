@@ -9,79 +9,39 @@ import View.DipGUI;
 
 public class AcController {
 	
-	private String Cf;
-	private String Nome;
-	private String Cognome;
-	private String NumTelefono; 
-	private String Email;
-	private String Username;
-	private String Via;
-	private String Citta;
-	private String Provincia;
-	private boolean log;
+	private User user;
+	private AccountDip view;
+	private AccountCl view1;
 
 	
 	public void memorizza(User u) {
 		
-		Cf=u.getCf();
-		Nome=u.getNome();
-		Cognome=u.getCognome();
-		NumTelefono=u.getNumTelefono();
-		Email=u.getEmail();
-		Username=u.getUsername();
-		Citta=u.getCitta();
-		Provincia=u.getProvincia();
-		
+		System.out.println(u.toString());
+		user=u;
 		
 	}
 	
-
-	
-	
-	public void usaDip(AccountDip view) {
-		view.UsField.setText(Username);
+	public void visualizzaDip() {
+		view=new AccountDip();
+		view.CfField.setText(user.getCf());
+		view.CoField.setText(user.getCognome());
+		view.NoField.setText(user.getNome());
+		view.EmField.setText(user.getEmail());
+		view.UsField.setText(user.getUsername());
+		view.NumField.setText(user.getNumTelefono());
 		
+		view.setVisible(true);
 	}
-
-
-	public String getCf() {
-		return Cf;
+	public void visualizzaCl() {
+		view1=new AccountCl();
+		view1.CfField.setText(user.getCf());
+		view1.CoField.setText(user.getCognome());
+		view1.NoField.setText(user.getNome());
+		view1.EmField.setText(user.getEmail());
+		view1.UsField.setText(user.getUsername());
+		view1.NumField.setText(user.getNumTelefono());
+		
+		view.setVisible(true);
 	}
-
-	public String getNome() {
-		return Nome;
-	}
-
-	public String getCognome() {
-		return Cognome;
-	}
-
-	public String getNumTelefono() {
-		return NumTelefono;
-	}
-
-	public String getEmail() {
-		return Email;
-	}
-
-	public String getUsername() {
-		return Username;
-	}
-
-	public String getVia() {
-		return Via;
-	}
-
-	public String getCitta() {
-		return Citta;
-	}
-
-	public String getProvincia() {
-		return Provincia;
-	}
-	
-	
-	
-	
 	
 }

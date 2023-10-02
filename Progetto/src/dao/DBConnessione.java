@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class DBConnessione {
     private String url = "jdbc:mysql://localhost:3306/hotel";
     private String user = "root";
-    private String password = "piattola";
+    private String password = "Biuss90!";
     private String driver = "com.mysql.cj.jdbc.Driver";
 
     public Connection connessione(Connection con) {
