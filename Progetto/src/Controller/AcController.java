@@ -12,6 +12,8 @@ public class AcController {
 	private User user;
 	private AccountDip view;
 	private AccountCl view1;
+	private int idCl;
+	private int idDip;
 
 	
 	public void memorizza(User u) {
@@ -20,6 +22,22 @@ public class AcController {
 		user=u;
 		
 	}
+	
+	public void setIdCliente(int id) {
+		  idCl = id;
+		}
+
+	public int getIdCliente() {
+		 return idCl;
+		}
+
+	public void setIdDip(int id) {
+		  idDip = id;
+		}
+
+	public int getIdDip() {
+		 return idDip;
+		}
 	
 	public void visualizzaDip() {
 		view=new AccountDip();

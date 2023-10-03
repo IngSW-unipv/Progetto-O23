@@ -15,6 +15,9 @@ import java.awt.EventQueue;
 import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import Controller.AcController;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,11 +29,15 @@ import javax.swing.JTextField;
 
 public class ClienteGUI extends JFrame{
 	public JPanel contentPane;
+	private JLabel lblCl;
+	private static int id;
+	 
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClienteGUI frame = new ClienteGUI();
+					ClienteGUI frame = new ClienteGUI(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +46,10 @@ public class ClienteGUI extends JFrame{
 		});
 	}
 
-	public ClienteGUI(){
+	public ClienteGUI(int id){
+		this.id = id;
+		
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 860, 562);
@@ -53,10 +63,10 @@ public class ClienteGUI extends JFrame{
 		paneMenu.setBounds(0, 0, 248, 540);
 		contentPane.add(paneMenu);
 		paneMenu.setLayout(null);
-		//JLabel lblLogo = new JLabel("");
-		//lblLogo.setIcon(new ImageIcon(ClienteGUI.class.getResource("/logo/Senza titolo.png")));
-		//lblLogo.setBounds(6, 16, 236, 135);
-		//paneMenu.add(lblLogo);
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(ClienteGUI.class.getResource("/logo/Senza titolo.png")));
+		lblLogo.setBounds(6, 16, 236, 135);
+		paneMenu.add(lblLogo);
 		JPanel paneAcc = new JPanel();
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
@@ -157,7 +167,20 @@ public class ClienteGUI extends JFrame{
 		lblNewLabel.setBounds(728, 6, 60, 16);
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Thonburi", Font.PLAIN, 12));
+		
+		JLabel lblCl = new JLabel();
+		lblCl.setText(String.valueOf(id));
+		lblCl.setBounds(790, 5, 64, 20);
+    	contentPane.add(lblCl);
+    	setVisible(true);
 	}
+	
+	
+	
+	public void setLbl(JLabel lblcl) {
+		this.lblCl = lblcl;
+	}
+	
 	private class PanelMouse extends MouseAdapter {
 		JPanel contentPane;
 		public PanelMouse(JPanel contentPane) {
@@ -179,5 +202,6 @@ public class ClienteGUI extends JFrame{
 		public void mouseReleased(MouseEvent e) {
 			contentPane.setBackground(new Color(0, 153, 51));
 		}
+		
 	}
 }
