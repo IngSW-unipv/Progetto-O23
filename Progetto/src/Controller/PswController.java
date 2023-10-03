@@ -9,19 +9,19 @@ import View.PswLost_Form;
 import dao.Gestione_Dao;
 
 public class PswController {
-
-	  private Gestione_Dao dao;
-
-	  public PswController(Gestione_Dao dao) {
-	    this.dao = dao;
+	  private final PswLost_Form view;
+	    
+	 
+	  public PswController(PswLost_Form view) {
+	    this.view = new PswLost_Form();
 	  }
 
-	  public void modifyPassword(User user, PswLost_Form view) throws SQLException {
+	  public void modifyPassword() {
 
 	    // Recuperare username da view
-
+		String user = view.getUsername();
 	    char[] password = view.getPasswordField();
-	    char[] repeatPassword = view.getPasswordField_1();
+	    String repeatPassword = view.GetPasswordConferma();
 
 	    if(passwordEquals(password, repeatPassword)) {
 
@@ -37,18 +37,18 @@ public class PswController {
 
 	  }
 
-	  private boolean passwordEquals(char[] p1, char[] p2) {
+	  private boolean passwordEquals(char[] p1, String repeatPassword) {
 	    // Confronto password
-		  if(p1 == null || p2 == null) {
+		  if(p1 == null || repeatPassword == null) {
 			    return false;
 			  }
 
-			  if(p1.length != p2.length) {
+			  if(p1.length != repeatPassword.length()) {
 			    return false;
 			  }
 
 			  for(int i = 0; i < p1.length; i++) {
-			    if(p1[i] != p2[i]) {
+			    if(p1[i] != repeatPassword[i]) {
 			      return false;
 			    }
 			  }
@@ -56,4 +56,5 @@ public class PswController {
 			  return true;
 	  }
 
+	
 	}

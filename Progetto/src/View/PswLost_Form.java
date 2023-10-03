@@ -2,6 +2,7 @@ package View;
 
 
 
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +12,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
+import Controller.LoginController;
+import Controller.PswController;
 import Model.User;
 
 import java.awt.event.ActionEvent;
@@ -31,6 +34,9 @@ public class PswLost_Form extends JFrame {
 	private JPasswordField passwordField_1;
 	private JTextField textField;
 	
+	private PswController controller; // aggiunta del controller
+
+	
 	public char[] getPasswordField() {
 		return passwordField.getPassword();
 	}
@@ -39,23 +45,13 @@ public class PswLost_Form extends JFrame {
 		return passwordField.getPassword();
 	}
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PswLost_Form frame = new PswLost_Form();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	
 	 // creazione frame
 	 
 	public PswLost_Form() {
+	
+		
+		
 		setLocationRelativeTo(null); //centra finestra
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +64,7 @@ public class PswLost_Form extends JFrame {
 		lbl1.setForeground(Color.BLACK);
 		lbl1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lbl1.setBounds(54, 69, 193, 62);
-		contentPane.add(lbl1);
+		contentPane.add(lbl1);			
 		
 		JButton btn = new JButton("Aggiorna");
 		btn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -100,9 +96,30 @@ public class PswLost_Form extends JFrame {
 		textField.setBounds(303, 19, 190, 40);
 		contentPane.add(textField);
 		textField.setColumns(10);
-	
-	}
+		
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PswController.modifyPassword();	//delego lavoro al controller ma NON FUNZIONA PORCA TROIA
+			}
+			
+		});
+		
+		}
+		
 	public String getUsername() {
 		return textField.getText();
 	}
+	
+	public String getPassword() {
+		return passwordField.getSelectedText();
+	}
+	
+	public String GetPasswordConferma() {
+		return passwordField_1.getSelectedText();
+	}
+	
+
+	
 }
