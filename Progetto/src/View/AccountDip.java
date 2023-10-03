@@ -32,13 +32,16 @@ public class AccountDip extends JFrame {
 	public JTextField EmField;
 	public JTextField CfField;
 	public JTextField NumField;
+	
+	private static JLabel lbl;
+	private static int id;
 
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AccountDip frame = new AccountDip();
+					AccountDip frame = new AccountDip(lbl, id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +53,10 @@ public class AccountDip extends JFrame {
 	 * Create the panel.
 
 	 */
-	public AccountDip()  {
+	public AccountDip(JLabel lbl, int id)  {
+		AccountDip.lbl = lbl;
+		AccountDip.id = id;
+		
 		setBounds(258, 11, 576, 520);
 		setVisible(true);
 		getContentPane().setLayout(null);
@@ -65,10 +71,13 @@ public class AccountDip extends JFrame {
 		lblNewLabel.setBounds(256, 8, 68, 21);
 		getContentPane().add(lblNewLabel);
 		
+		
+		
 		JButton btnNewButton = new JButton("Torna indietro");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DipGUI dip = new DipGUI();
+				DipGUI dip = new DipGUI(id);
+				dip.setLbl(lbl);
 				AccountDip.this.dispose();
 				dip.setVisible(true);
 				

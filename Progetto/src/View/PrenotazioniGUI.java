@@ -21,6 +21,8 @@ import java.awt.event.*;
 public class PrenotazioniGUI extends JFrame {
 
 	private JTable table;
+	private static JLabel lblId;
+	private static int id;
 
 
 
@@ -34,7 +36,7 @@ public class PrenotazioniGUI extends JFrame {
 
 				try {
 
-					PrenotazioniGUI frame = new PrenotazioniGUI();
+					PrenotazioniGUI frame = new PrenotazioniGUI(lblId, id);
 
 					frame.setVisible(true);
 
@@ -56,7 +58,10 @@ public class PrenotazioniGUI extends JFrame {
 
 	 */
 
-	public PrenotazioniGUI() {
+	public PrenotazioniGUI(JLabel lblId, int id) {
+		
+		PrenotazioniGUI.lblId=lblId;
+		PrenotazioniGUI.id=id;
 
 
 		setBounds(258, 11, 576, 520);
@@ -129,7 +134,8 @@ public class PrenotazioniGUI extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ClienteGUI cl = new ClienteGUI();
+				ClienteGUI cl = new ClienteGUI(id);
+				cl.setLbl(lblId);
 
 				cl.setVisible(true);
 

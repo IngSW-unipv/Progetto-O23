@@ -47,7 +47,7 @@ public class ClienteGUI extends JFrame{
 	}
 
 	public ClienteGUI(int id){
-		this.id = id;
+		ClienteGUI.id = id;
 		
 		
 		setBackground(new Color(255, 255, 255));
@@ -71,7 +71,8 @@ public class ClienteGUI extends JFrame{
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountCl cl =new AccountCl();
+				JLabel lbl = getLbl();
+				AccountCl cl =new AccountCl(getLbl(), id);
 				cl.setVisible(true);
 				dispose();
 			}
@@ -88,7 +89,8 @@ public class ClienteGUI extends JFrame{
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PrenotazioniGUI tp =new PrenotazioniGUI();
+				JLabel lbl = getLbl();
+				PrenotazioniGUI tp =new PrenotazioniGUI(getLbl(), id);
 				tp.setVisible(true);
 				dispose();
 			}
@@ -104,7 +106,8 @@ public class ClienteGUI extends JFrame{
 		panePr.addMouseListener(new PanelMouse(panePr){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PrenotaGUI pr =new PrenotaGUI();
+				JLabel lbl = getLbl();
+				PrenotaGUI pr =new PrenotaGUI(getLbl(), id);
 				pr.setVisible(true);
 				dispose();
 			}
@@ -175,7 +178,9 @@ public class ClienteGUI extends JFrame{
     	setVisible(true);
 	}
 	
-	
+	public JLabel getLbl() {
+		return lblCl;
+	}
 	
 	public void setLbl(JLabel lblcl) {
 		this.lblCl = lblcl;

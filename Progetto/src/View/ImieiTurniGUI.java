@@ -19,13 +19,15 @@ import javax.swing.JButton;
 
 public class ImieiTurniGUI extends JFrame {
 	private JTable table;
-	//private Dipendenti dipendente;
+	private static JLabel lbl;
+	private static int id;
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ImieiTurniGUI frame = new ImieiTurniGUI();
+					ImieiTurniGUI frame = new ImieiTurniGUI(lbl, id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,8 +35,11 @@ public class ImieiTurniGUI extends JFrame {
 			}
 		});
 	}
-	public ImieiTurniGUI() {
-		//this.dipendente = dipendente;
+	public ImieiTurniGUI(JLabel lbl, int id) {
+		
+		ImieiTurniGUI.lbl = lbl;
+		ImieiTurniGUI.id=id;
+		
 		setBounds(258, 11, 576, 520);
 		getContentPane().setLayout(null);
 		JLabel lblNewLabel = new JLabel("I tuoi turni");
@@ -71,8 +76,8 @@ public class ImieiTurniGUI extends JFrame {
 		panel.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DipGUI dip = new DipGUI();
-				dip.setVisible(true);
+				DipGUI dip = new DipGUI(id);
+				dip.setLbl(lbl);
 				dispose();
 			}
 		});

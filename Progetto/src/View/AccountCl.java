@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JTextField;
 
 public class AccountCl extends JFrame {
@@ -18,11 +20,43 @@ public class AccountCl extends JFrame {
 	public JTextField EmField;
 	public JTextField CfField;
 	public JTextField NumField;
+	
+	private static JLabel lbl;
+	private static int id;
 
+	public static void main(String[] args) {
+
+		EventQueue.invokeLater(new Runnable() {
+
+			public void run() {
+
+				try {
+
+				
+					AccountCl frame = new AccountCl(lbl, id);
+
+					frame.setVisible(true);
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
+				}
+
+			}
+
+		});
+
+	}
+	
 /**
 * Create the panel.
 */
-public AccountCl() {
+public AccountCl(JLabel lbl, int id) {
+	
+	AccountCl.lbl=lbl;
+	AccountCl.id=id;
+	
 	setBounds(258, 11, 576, 520);
 	setVisible(true);
 	getContentPane().setLayout(null);
@@ -36,7 +70,8 @@ public AccountCl() {
 	JButton btnNewButton = new JButton("Torna indietro");
 	btnNewButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			ClienteGUI cl = new ClienteGUI();			
+			ClienteGUI cl = new ClienteGUI(id);
+			cl.setLbl(lbl);
 			AccountCl.this.dispose();
 			cl.setVisible(true);
 			

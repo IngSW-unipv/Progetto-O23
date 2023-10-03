@@ -33,8 +33,8 @@ import javax.swing.JFrame;
 public class PrenotaGUI extends JFrame {
 
 	private JTable table;
-
-
+	private static JLabel lblId;
+	private static int id;
 
 	public static void main(String[] args) {
 
@@ -44,7 +44,7 @@ public class PrenotaGUI extends JFrame {
 
 				try {
 
-					PrenotaGUI frame = new PrenotaGUI();
+					PrenotaGUI frame = new PrenotaGUI(lblId, id);
 
 					frame.setVisible(true);
 
@@ -60,15 +60,16 @@ public class PrenotaGUI extends JFrame {
 
 	}
 
-
-
 	/**
 
 	 * Create the panel.
 
 	 */
 
-	public PrenotaGUI() {
+	public PrenotaGUI(JLabel lblId, int id) {
+		
+		PrenotaGUI.lblId=lblId;
+		PrenotaGUI.id=id;
 
 		setBackground(new Color(240, 240, 240));
 
@@ -138,15 +139,15 @@ public class PrenotaGUI extends JFrame {
 		panel.add(lblSt);
 
 
-		JLabel lbl = new JLabel("Scrivere la stanza da prenotare:");
+		JLabel lbl1 = new JLabel("Scrivere la stanza da prenotare:");
 
-		lbl.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lbl1.setFont(new Font("Thonburi", Font.PLAIN, 16));
 
-		lbl.setBackground(Color.WHITE);
+		lbl1.setBackground(Color.WHITE);
 
-		lbl.setBounds(10, 244, 259, 32);
+		lbl1.setBounds(10, 244, 259, 32);
 
-		panel.add(lbl);
+		panel.add(lbl1);
 
 
 
@@ -166,7 +167,8 @@ public class PrenotaGUI extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ClienteGUI cl = new ClienteGUI();
+				ClienteGUI cl = new ClienteGUI(id);
+				cl.setLbl(lblId);
 
 				cl.setVisible(true);
 

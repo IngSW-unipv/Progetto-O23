@@ -50,24 +50,12 @@ public class LoginController {
                 view.dispose();
                 if(id_tipo == 1) {
                 	
-                	DipGUI dipView = new DipGUI();
-                	
-                	JLabel lblDip = new JLabel();
-                	lblDip.setText(String.valueOf(id_l));
-                	lblDip.setBounds(800, 5, 30, 20);
-                	dipView.contentPane.add(lblDip);
-                	dipView.setVisible(true);            
+                	DipGUI dipView = new DipGUI(id_l);            
                 	
                 } else if (id_tipo == 2) {
                 	ClienteGUI clView = new ClienteGUI(id_c);
-                	/*
-                	 * JLabel lblCl = new JLabel();
                 	
-                	lblCl.setText(String.valueOf(id_c));
-                	lblCl.setBounds(788, 5, 50, 20);
-                	clView.contentPane.add(lblCl);
-                	clView.setVisible(true);
-                	*/
+
                 }
                  
             } else {

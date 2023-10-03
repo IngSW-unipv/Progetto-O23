@@ -27,13 +27,14 @@ import javax.swing.JTextField;
 public class DipGUI extends JFrame{
 	public JPanel contentPane;
 	public JLabel lblDip;  //////////////
+	private static int id;
 	
 	//private AccountDip account;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DipGUI frame = new DipGUI();
+					DipGUI frame = new DipGUI(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +43,10 @@ public class DipGUI extends JFrame{
 		});
 	}
 
-	public DipGUI(){
+	public DipGUI(int id){
+		
+		DipGUI.id = id;
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 860, 562);
@@ -56,15 +60,15 @@ public class DipGUI extends JFrame{
 		paneMenu.setBounds(0, 0, 248, 540);
 		contentPane.add(paneMenu);
 		paneMenu.setLayout(null);
-		//JLabel lblLogo = new JLabel("");
-		//lblLogo.setIcon(new ImageIcon(DipGUI.class.getResource("/logo/Senza titolo.png")));
-		//lblLogo.setBounds(6, 12, 236, 135);
-		//paneMenu.add(lblLogo);
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(DipGUI.class.getResource("/logo/Senza titolo.png")));
+		lblLogo.setBounds(6, 12, 236, 135);
+		paneMenu.add(lblLogo);
 		JPanel paneAcc = new JPanel();
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountDip dip =new AccountDip();
+				AccountDip dip =new AccountDip(getLbl(), id);
 				dip.setVisible(true);
 				dispose();
 			}
@@ -81,7 +85,7 @@ public class DipGUI extends JFrame{
 		paneSt.addMouseListener(new PanelMouse(paneSt) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ImieiTurniGUI tu =new ImieiTurniGUI();
+				ImieiTurniGUI tu =new ImieiTurniGUI(getLbl(), id);
 				tu.setVisible(true);
 				dispose();
 			}
@@ -124,12 +128,25 @@ public class DipGUI extends JFrame{
 		contentPane.add(lbl);
 		lbl.setFont(new Font("Thonburi", Font.PLAIN, 12));
 		
+		JLabel lblDip = new JLabel();
+		lblDip.setText(String.valueOf(id));
+		lblDip.setBounds(795, 5, 64, 20);
+    	contentPane.add(lblDip);
+    	setVisible(true);
+		
 		/////////////////////////
 		
 		
 		
 	}
 	
+	public JLabel getLbl() {
+		return lblDip;
+	}
+	
+	public void setLbl(JLabel lbldip) {
+		this.lblDip = lbldip;
+	}
 	
 	private class PanelMouse extends MouseAdapter {
 		JPanel contentPane;
