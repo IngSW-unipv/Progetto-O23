@@ -1,59 +1,50 @@
 package Controller;
 
 import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import Model.User;
 import View.PswLost_Form;
 import dao.Gestione_Dao;
 
 public class PswController {
-	  private final PswLost_Form view;
+	  private PswLost_Form view;
+	  private Gestione_Dao dao;
 	    
 	 
 	  public PswController(PswLost_Form view) {
-	    this.view = new PswLost_Form();
+	    this.view = view;
+	    dao = new Gestione_Dao();
 	  }
 
 	  public void modifyPassword() {
 
-	    // Recuperare username da view
-		String user = view.getUsername();
-	    char[] password = view.getPasswordField();
-	    String repeatPassword = view.GetPasswordConferma();
+	    // recover username da view
+		String username = view.getUsername();
+		String password = view.getPassword();
+		String repeatPassword = view.GetPasswordConferma();
 
-	    if(passwordEquals(password, repeatPassword)) {
-
-	      String newPassword = String.valueOf(password);
+	    if(check(password, repeatPassword)) {
 	      
-	      //dao.modificaDati(user, "psw", newPassword);
-
-	      JOptionPane.showMessageDialog(view, "Password modificata");
-
-	    } else {
-	      JOptionPane.showMessageDialog(view, "Password non coincidono");
+	      try {
+			dao.modificaDati(username, "password", repeatPassword);
+			JOptionPane.showMessageDialog(view, "Password modificata");
+	      } catch (SQLException e) {
+			JOptionPane.showMessageDialog(view, "Errore durante la modifica della password");
+	      }	
+		} else if (password.length()< 8){
+	      JOptionPane.showMessageDialog(view, "La password deve avere almeno 8 caratteri");
 	    }
 
 	  }
 
-	  private boolean passwordEquals(char[] p1, String repeatPassword) {
-	    // Confronto password
-		  if(p1 == null || repeatPassword == null) {
-			    return false;
-			  }
-
-			  if(p1.length != repeatPassword.length()) {
-			    return false;
-			  }
-
-			  for(int i = 0; i < p1.length; i++) {
-			    if(p1[i] != repeatPassword[i]) {
-			      return false;
-			    }
-			  }
-
-			  return true;
+	  private boolean check(String password, String repeatPassword) {
+		  if(password.isEmpty() || repeatPassword.isEmpty()) {
+			  return false;
+		  } else if(!password.equals(repeatPassword)) {
+			  return false;
+		  } else
+		  return true;
 	  }
 
 	

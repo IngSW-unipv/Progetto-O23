@@ -1,12 +1,10 @@
 package View;
 
-
-
-
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -14,43 +12,26 @@ import javax.swing.UIManager;
 
 import Controller.LoginController;
 import Controller.PswController;
-import Model.User;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
 
-
 public class PswLost_Form extends JFrame {
-
-    
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final JLabel lbl1 = new JLabel("Inserire nuova password:");
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
-	private JTextField textField;
-	
+	private JTextField textField;	
 	private PswController controller; // aggiunta del controller
 
-	
-	public char[] getPasswordField() {
-		return passwordField.getPassword();
-	}
-	
-	public char[] getPasswordField_1() {
-		return passwordField.getPassword();
-	}
-
-	
 	 // creazione frame
-	 
 	public PswLost_Form() {
-	
 		
+		controller = new PswController(this); 
 		
 		setLocationRelativeTo(null); //centra finestra
 		setBackground(new Color(255, 255, 255));
@@ -99,9 +80,10 @@ public class PswLost_Form extends JFrame {
 		
 		btn.addActionListener(new ActionListener() {
 			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PswController.modifyPassword();	//delego lavoro al controller ma NON FUNZIONA PORCA TROIA
+				controller.modifyPassword();;	//delego lavoro al controller
 			}
 			
 		});
@@ -113,11 +95,11 @@ public class PswLost_Form extends JFrame {
 	}
 	
 	public String getPassword() {
-		return passwordField.getSelectedText();
+		return new String (passwordField.getPassword());
 	}
 	
 	public String GetPasswordConferma() {
-		return passwordField_1.getSelectedText();
+		return  new String (passwordField_1.getPassword());
 	}
 	
 

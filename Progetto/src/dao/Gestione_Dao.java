@@ -247,16 +247,16 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
         } 
     }
     
-    public void modificaDati(String username, String attributo, String nuovoValore) throws SQLException {
+    public void modificaDati(String username, String password, String repeatPassword) throws SQLException {
 
     	  DBConnessione d = new DBConnessione();
     	  Connection con=null;
     	  con=d.connessione(con);
 
-    	  String sql = "UPDATE user SET " + attributo + "=? WHERE username=?";
+    	  String sql = "UPDATE user SET " + password + "=? WHERE username=?";
 
     	  try (PreparedStatement stmt = con.prepareStatement(sql)) {
-    	    stmt.setString(1, nuovoValore);
+    	    stmt.setString(1, repeatPassword);
     	    stmt.setString(2, username);
 
     	    int result = stmt.executeUpdate();
