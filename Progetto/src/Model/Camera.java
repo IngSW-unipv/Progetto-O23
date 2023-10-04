@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Camera {
 	
 	private int Numero;
-	private ArrayList<Comfort> Com;
 	private String Tipo;
 	private float Prezzo;
 	private int Piano;
@@ -13,10 +12,9 @@ public class Camera {
 	private String Stato;
 
 //Costruttore
-public Camera(int numero, ArrayList<Comfort> com, String tipo, float prezzo, int piano, int nletti, String stato) {
+public Camera(int numero, String tipo, float prezzo, int piano, int nletti, String stato) {
 	
 	this.Numero = numero;
-	this.Com = com;
 	this.Tipo = tipo;
 	this.Prezzo = prezzo;
 	this.Piano = piano;
@@ -26,12 +24,9 @@ public Camera(int numero, ArrayList<Comfort> com, String tipo, float prezzo, int
 }
 //Getter
 
+
 public int getNumero() {
 	return Numero;
-}
-
-public ArrayList<Comfort> getCom() {
-	return Com;
 }
 
 public String getTipo() {
@@ -59,7 +54,7 @@ public String getStato() {
 	
 @Override
 public String toString() {
-return "Camera [Numero=" + Numero + ", Com=" + Com + ", Tipo=" + Tipo + ", Prezzo=" + Prezzo + ", Piano="
+return "Camera [Numero=" + Numero + ", Tipo=" + Tipo + ", Prezzo=" + Prezzo + ", Piano="
 				+ Piano + ", Nletti=" + Nletti + ", Stato=" + Stato + "]";
 }
 	

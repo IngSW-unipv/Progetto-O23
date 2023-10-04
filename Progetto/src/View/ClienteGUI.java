@@ -17,6 +17,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Controller.AcController;
+import Controller.ClientController;
+import Controller.PswController;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,6 +33,7 @@ public class ClienteGUI extends JFrame{
 	public JPanel contentPane;
 	private JLabel lblCl;
 	private static int id;
+	private ClientController controller;
 	 
 	
 	public static void main(String[] args) {
@@ -49,6 +52,7 @@ public class ClienteGUI extends JFrame{
 	public ClienteGUI(int id){
 		ClienteGUI.id = id;
 		
+		controller = new ClientController(null); 
 		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,6 +122,7 @@ public class ClienteGUI extends JFrame{
 		panePr.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		JLabel lblPr = new JLabel("Prenota");
 		panePr.add(lblPr);
+		
 		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel paneOut = new JPanel();
 		paneOut.addMouseListener(new PanelMouse(paneOut) {

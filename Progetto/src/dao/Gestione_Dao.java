@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import Model.User;
 //import View.Account;
@@ -477,5 +478,34 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
     }
      }
 
+ public int RecuperaStanzeDisponibili(String datain, String dataout) throws SQLException {
+	 DBConnessione d = new DBConnessione();
+     conn = d.connessione(conn);
+     
+     String sql= "SELECT * FROM camera WHERE STATO = 1";
+     
+  // Creazione dell'oggetto Statement per eseguire la query
+     Statement stmt = conn.createStatement();
 
-   }
+     // Esecuzione della query e ottenimento dei risultati
+     ResultSet rs = stmt.executeQuery(sql);
+     //trovatestanze serve per verificare che ci siano effettivamente stanze con stato = 1
+     boolean trovateStanze = false;
+
+     while (rs.next()) {
+         int camerastato = rs.getInt("stato");
+         String cameranumero = rs.getString("numero");
+         int prezzo = rs.getInt("prezzo");
+         trovateStanze = true;
+
+         System.out.println("ID: " + camerastato + ", Nome: " + cameranumero  + ", prezzo: " + prezzo);
+         
+         conn.close();
+     } //se non trova stanze, ritorna un errore, altrimenti ritora ok
+     if (!trovateStanze) {
+         return 0;}
+     else 
+    	 
+    	 return 1;
+    }
+}

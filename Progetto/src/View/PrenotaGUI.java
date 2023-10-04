@@ -1,7 +1,4 @@
 package View;
-
-
-
 import javax.swing.JPanel;
 
 import javax.swing.JLabel;
@@ -9,23 +6,17 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 import java.awt.event.*;
-
+import java.sql.SQLException;
 import java.awt.Color;
-
 import java.awt.EventQueue;
-
-
-
 import javax.swing.JTable;
-
 import javax.swing.table.DefaultTableModel;
+import Controller.ClientController;
+import Controller.LoginController;
 
 import javax.swing.JScrollPane;
-
 import javax.swing.JTextField;
-
 import javax.swing.JButton;
-
 import javax.swing.JFrame;
 
 
@@ -35,29 +26,24 @@ public class PrenotaGUI extends JFrame {
 	private JTable table;
 	private static JLabel lblId;
 	private static int id;
+	private JTextField textField;
+	private JTextField textField_1;
+	
+	private ClientController controller; // aggiunta del controller
 
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
-
 			public void run() {
 
 				try {
-
 					PrenotaGUI frame = new PrenotaGUI(lblId, id);
-
 					frame.setVisible(true);
-
 				} catch (Exception e) {
-
 					e.printStackTrace();
-
 				}
-
 			}
-
 		});
-
 	}
 
 	/**
@@ -67,6 +53,9 @@ public class PrenotaGUI extends JFrame {
 	 */
 
 	public PrenotaGUI(JLabel lblId, int id) {
+		
+		controller = new ClientController(this); 
+		
 		
 		PrenotaGUI.lblId=lblId;
 		PrenotaGUI.id=id;
@@ -108,21 +97,19 @@ public class PrenotaGUI extends JFrame {
 		table = new JTable();
 
 		scrollPane.setViewportView(table);
+		
+		
 
 		table.setModel(new DefaultTableModel(
 
 				new Object[][] {
 
 					{null, null, null, null, null},
-
 					{null, null, null, null, null},
-
 					{null, null, null, null, null},
-
 				},
 
 				new String[] {
-
 						"Numero Stanza", "Tipo", "Piano", "Letti", "Prezzo"
 
 				}
@@ -139,13 +126,13 @@ public class PrenotaGUI extends JFrame {
 		panel.add(lblSt);
 
 
-		JLabel lbl1 = new JLabel("Scrivere la stanza da prenotare:");
+		JLabel lbl1 = new JLabel("data check-in desiderata");
 
 		lbl1.setFont(new Font("Thonburi", Font.PLAIN, 16));
 
 		lbl1.setBackground(Color.WHITE);
 
-		lbl1.setBounds(10, 244, 259, 32);
+		lbl1.setBounds(11, 188, 259, 32);
 
 		panel.add(lbl1);
 
@@ -156,7 +143,7 @@ public class PrenotaGUI extends JFrame {
 
 		btnConf.setFont(new Font("Thonburi", Font.PLAIN, 16));
 
-		btnConf.setBounds(139, 278, 103, 32);
+		btnConf.setBounds(22, 382, 103, 32);
 
 		panel.add(btnConf);
 
@@ -169,14 +156,10 @@ public class PrenotaGUI extends JFrame {
 
 				ClienteGUI cl = new ClienteGUI(id);
 				cl.setLbl(lblId);
-
 				cl.setVisible(true);
-
 				dispose();
 
-
 			}
-
 		});
 
 		btnTornaIndietro.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -184,12 +167,47 @@ public class PrenotaGUI extends JFrame {
 		btnTornaIndietro.setBounds(211, 412, 144, 32);
 
 		panel.add(btnTornaIndietro);
-
-
-
+		
+		JLabel lbl1_1 = new JLabel("data check-out desiderata");
+		lbl1_1.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lbl1_1.setBackground(Color.WHITE);
+		lbl1_1.setBounds(11, 251, 259, 32);
+		panel.add(lbl1_1);
+		
+		JButton btnConf_1 = new JButton("visualizza disponibilità"); //bottone disponibilità
+		btnConf_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("hai cliccato qua, e adesso te lo faccio");
+				try {
+					controller.RecuperaStanzeDisponibili();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnConf_1.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnConf_1.setBounds(22, 327, 196, 32);
+		panel.add(btnConf_1);
+		
+		textField = new JTextField(); //data checkin
+		textField.setBounds(200, 193, 121, 29);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField(); //data checkout
+		textField_1.setColumns(10);
+		textField_1.setBounds(211, 256, 121, 29);
+		panel.add(textField_1);
 	}
-
-
-
+	//questi due metodi mi servono per portare le date nel controller
+	public String getDateCheckin() {
+		return textField.getText();
+	}
+	
+	public String getDateCheckout() {
+		return textField_1.getText();
+	}
+	//fatto
 }
 
