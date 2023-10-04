@@ -37,7 +37,7 @@ public class Home_Form extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 715, 402);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("EditorPane.selectionBackground"));
+		contentPane.setBackground(new Color(181,247,157));
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

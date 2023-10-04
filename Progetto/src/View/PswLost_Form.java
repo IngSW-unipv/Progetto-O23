@@ -38,7 +38,7 @@ public class PswLost_Form extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 710, 400);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("FormattedTextField.selectionBackground"));
+		contentPane.setBackground(new Color(181,247,157));
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

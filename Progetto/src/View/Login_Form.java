@@ -62,7 +62,7 @@ public class Login_Form extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 440);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("EditorPane.selectionBackground"));
+		contentPane.setBackground(new Color(181,247,157));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

@@ -95,7 +95,7 @@ public class Registration_Form extends JFrame {
         setBounds(450, 190, 1124, 661);
         setResizable(false);
         contentPane = new JPanel();
-        contentPane.setBackground(UIManager.getColor("EditorPane.selectionBackground"));
+        contentPane.setBackground(new Color(181,247,157));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
