@@ -34,17 +34,17 @@ public class Test {
 		
 		
 		//test visualizzazione dati cliente
-		User model = new User(null, null, null, null, null, null, null, null, 0, null, "MARCO.NERI", "password2");
+		/*User model = new User(null, null, null, null, null, null, null, null, 0, null, "MARCO.NERI", "password2");
 		Gestione_Dao g =  new Gestione_Dao();
 		model.login("MARCO.NERI", "password2", g.Ottieni_Tipo("MARCO.NERI"));
 		AcController controller = new AcController();
 		controller.memorizza(model);
-		controller.visualizzaCl();
+		controller.visualizzaCl();*/
 		
 		
 		
-		//Benvenuto_Form b = new Benvenuto_Form();
-		//b.setVisible(true);
+		Benvenuto_Form b = new Benvenuto_Form();
+		b.setVisible(true);
 		
 		
 		/*Turni_Lavoro tl = new Turni_Lavoro(null, null, null, 234);

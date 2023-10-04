@@ -13,6 +13,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JTextField;
 
+import Model.User;
+
 public class AccountCl extends JFrame {
 	public JTextField UsField;
 	public JTextField NoField;
@@ -23,6 +25,7 @@ public class AccountCl extends JFrame {
 	
 	private static JLabel lbl;
 	private static int id;
+	private static User u;
 
 	public static void main(String[] args) {
 
@@ -33,7 +36,7 @@ public class AccountCl extends JFrame {
 				try {
 
 				
-					AccountCl frame = new AccountCl(lbl, id);
+					AccountCl frame = new AccountCl(lbl, id,u);
 
 					frame.setVisible(true);
 
@@ -52,7 +55,7 @@ public class AccountCl extends JFrame {
 /**
 * Create the panel.
 */
-public AccountCl(JLabel lbl, int id) {
+public AccountCl(JLabel lbl, int id,User u) {
 	
 	AccountCl.lbl=lbl;
 	AccountCl.id=id;
@@ -70,7 +73,7 @@ public AccountCl(JLabel lbl, int id) {
 	JButton btnNewButton = new JButton("Torna indietro");
 	btnNewButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			ClienteGUI cl = new ClienteGUI(id);
+			ClienteGUI cl = new ClienteGUI(id,u);
 			cl.setLbl(lbl);
 			AccountCl.this.dispose();
 			cl.setVisible(true);
@@ -127,36 +130,42 @@ public AccountCl(JLabel lbl, int id) {
 	
 	UsField = new JTextField();
 	UsField.setEditable(false);
+	UsField.setText(u.getUsername());
 	UsField.setBounds(150, 22, 200, 30);
 	panel.add(UsField);
 	
 	UsField.setColumns(10);
 	NoField = new JTextField();
 	NoField.setEditable(false);
+	NoField.setText(u.getNome());
 	NoField.setColumns(10);
 	NoField.setBounds(150, 59, 200, 30);
 	panel.add(NoField);
 	
 	CoField = new JTextField();
 	CoField.setEditable(false);
+	CoField.setText(u.getCognome());
 	CoField.setColumns(10);
 	CoField.setBounds(150, 98, 200, 30);
 	panel.add(CoField);
 	
 	EmField = new JTextField();
 	EmField.setEditable(false);
+	EmField.setText(u.getEmail());
 	EmField.setColumns(10);
 	EmField.setBounds(150, 135, 200, 30);
 	panel.add(EmField);
 	
 	CfField = new JTextField();
 	CfField.setEditable(false);
+	CfField.setText(u.getCf());
 	CfField.setColumns(10);
 	CfField.setBounds(150, 174, 200, 30);
 	panel.add(CfField);
 	
 	NumField = new JTextField();
 	NumField.setEditable(false);
+	NumField.setText(u.getNumTelefono());
 	NumField.setColumns(10);
 	NumField.setBounds(150, 216, 200, 30);
 	panel.add(NumField);

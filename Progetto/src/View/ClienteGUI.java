@@ -17,8 +17,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Controller.AcController;
-import Controller.ClientController;
 import Controller.PswController;
+import Model.User;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -33,14 +33,14 @@ public class ClienteGUI extends JFrame{
 	public JPanel contentPane;
 	private JLabel lblCl;
 	private static int id;
-	private ClientController controller;
+	private static User u;
 	 
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClienteGUI frame = new ClienteGUI(id);
+					ClienteGUI frame = new ClienteGUI(id,u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,10 +49,9 @@ public class ClienteGUI extends JFrame{
 		});
 	}
 
-	public ClienteGUI(int id){
+	public ClienteGUI(int id,User u){
 		ClienteGUI.id = id;
-		
-		controller = new ClientController(null); 
+		ClienteGUI.u = u;
 		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,7 +75,7 @@ public class ClienteGUI extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = getLbl();
-				AccountCl cl =new AccountCl(getLbl(), id);
+				AccountCl cl =new AccountCl(getLbl(), id,u);
 				cl.setVisible(true);
 				dispose();
 			}

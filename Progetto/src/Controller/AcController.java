@@ -16,6 +16,7 @@ public class AcController {
 	private int idDip;
 
 	
+	
 	public void memorizza(User u) {
 		
 		System.out.println(u.toString());
@@ -39,27 +40,6 @@ public class AcController {
 		 return idDip;
 		}
 	
-	public void visualizzaDip() {
-		view=new AccountDip();
-		view.CfField.setText(user.getCf());
-		view.CoField.setText(user.getCognome());
-		view.NoField.setText(user.getNome());
-		view.EmField.setText(user.getEmail());
-		view.UsField.setText(user.getUsername());
-		view.NumField.setText(user.getNumTelefono());
-		
-		view.setVisible(true);
-	}
-	public void visualizzaCl() {
-		view1=new AccountCl();
-		view1.CfField.setText(user.getCf());
-		view1.CoField.setText(user.getCognome());
-		view1.NoField.setText(user.getNome());
-		view1.EmField.setText(user.getEmail());
-		view1.UsField.setText(user.getUsername());
-		view1.NumField.setText(user.getNumTelefono());
-		
-		view.setVisible(true);
 	}
 	
-}
+	

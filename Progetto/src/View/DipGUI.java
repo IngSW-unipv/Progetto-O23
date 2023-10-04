@@ -15,6 +15,10 @@ import java.awt.EventQueue;
 import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import Controller.AcController;
+import Model.User;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,16 +29,18 @@ import java.awt.GridLayout;
 import javax.swing.JTextField;
 
 public class DipGUI extends JFrame{
+	public AcController controller;
 	public JPanel contentPane;
 	public JLabel lblDip;  //////////////
 	private static int id;
+	private static User u;
 	
 	//private AccountDip account;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DipGUI frame = new DipGUI(id);
+					DipGUI frame = new DipGUI(id,u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,9 +49,10 @@ public class DipGUI extends JFrame{
 		});
 	}
 
-	public DipGUI(int id){
+	public DipGUI(int id,User u){
 		
 		DipGUI.id = id;
+		DipGUI.u=u;
 		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +75,7 @@ public class DipGUI extends JFrame{
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountDip dip =new AccountDip(getLbl(), id);
+				AccountDip dip =new AccountDip(getLbl(), id,u);
 				dip.setVisible(true);
 				dispose();
 			}

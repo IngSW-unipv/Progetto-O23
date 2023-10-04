@@ -50,10 +50,10 @@ public class LoginController {
                 view.dispose();
                 if(id_tipo == 1) {
                 	
-                	DipGUI dipView = new DipGUI(id_l);            
+                	DipGUI dipView = new DipGUI(id_l,u);            
                 	
                 } else if (id_tipo == 2) {
-                	ClienteGUI clView = new ClienteGUI(id_c);
+                	ClienteGUI clView = new ClienteGUI(id_c,u);
                 	
 
                 }
