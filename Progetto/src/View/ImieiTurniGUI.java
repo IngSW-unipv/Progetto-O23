@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Model.Dipendenti;
+import Model.User;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -21,13 +22,14 @@ public class ImieiTurniGUI extends JFrame {
 	private JTable table;
 	private static JLabel lbl;
 	private static int id;
+	private static User u;
 	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ImieiTurniGUI frame = new ImieiTurniGUI(lbl, id);
+					ImieiTurniGUI frame = new ImieiTurniGUI(lbl, id, u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,10 +37,11 @@ public class ImieiTurniGUI extends JFrame {
 			}
 		});
 	}
-	public ImieiTurniGUI(JLabel lbl, int id) {
+	public ImieiTurniGUI(JLabel lbl, int id, User u) {
 		
 		ImieiTurniGUI.lbl = lbl;
 		ImieiTurniGUI.id=id;
+		ImieiTurniGUI.u=u;
 		
 		setBounds(258, 11, 576, 520);
 		getContentPane().setLayout(null);
@@ -76,12 +79,13 @@ public class ImieiTurniGUI extends JFrame {
 		panel.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DipGUI dip = new DipGUI(id);
+				DipGUI dip = new DipGUI(id, u);
 				dip.setLbl(lbl);
 				dispose();
 			}
 		});
 
 	}
+	
 
 }

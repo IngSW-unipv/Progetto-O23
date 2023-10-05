@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Controller.ClientController;
 import Controller.LoginController;
+import Model.User;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -28,6 +29,7 @@ public class PrenotaGUI extends JFrame {
 	private static int id;
 	private JTextField textField;
 	private JTextField textField_1;
+	private static User u;
 	
 	private ClientController controller; // aggiunta del controller
 
@@ -37,7 +39,7 @@ public class PrenotaGUI extends JFrame {
 			public void run() {
 
 				try {
-					PrenotaGUI frame = new PrenotaGUI(lblId, id);
+					PrenotaGUI frame = new PrenotaGUI(lblId, id, u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,13 +54,14 @@ public class PrenotaGUI extends JFrame {
 
 	 */
 
-	public PrenotaGUI(JLabel lblId, int id) {
+	public PrenotaGUI(JLabel lblId, int id, User u) {
 		
 		controller = new ClientController(this); 
 		
 		
 		PrenotaGUI.lblId=lblId;
 		PrenotaGUI.id=id;
+		PrenotaGUI.u=u;
 
 		setBackground(new Color(240, 240, 240));
 
@@ -154,7 +157,8 @@ public class PrenotaGUI extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ClienteGUI cl = new ClienteGUI(id);
+				
+				ClienteGUI cl = new ClienteGUI(id, u);
 				cl.setLbl(lblId);
 				cl.setVisible(true);
 				dispose();

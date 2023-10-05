@@ -6,15 +6,11 @@ import javax.swing.*;
 
 import javax.swing.table.DefaultTableModel;
 
-
+import Model.User;
 
 import java.awt.*;
 
 import java.awt.event.*;
-
-
-
-
 
 
 
@@ -23,6 +19,7 @@ public class PrenotazioniGUI extends JFrame {
 	private JTable table;
 	private static JLabel lblId;
 	private static int id;
+	private static User u;
 
 
 
@@ -36,7 +33,7 @@ public class PrenotazioniGUI extends JFrame {
 
 				try {
 
-					PrenotazioniGUI frame = new PrenotazioniGUI(lblId, id);
+					PrenotazioniGUI frame = new PrenotazioniGUI(lblId, id, u);
 
 					frame.setVisible(true);
 
@@ -58,10 +55,11 @@ public class PrenotazioniGUI extends JFrame {
 
 	 */
 
-	public PrenotazioniGUI(JLabel lblId, int id) {
+	public PrenotazioniGUI(JLabel lblId, int id, User u) {
 		
 		PrenotazioniGUI.lblId=lblId;
 		PrenotazioniGUI.id=id;
+		PrenotazioniGUI.u = u;
 
 
 		setBounds(258, 11, 576, 520);
@@ -134,7 +132,8 @@ public class PrenotazioniGUI extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ClienteGUI cl = new ClienteGUI(id);
+				
+				ClienteGUI cl = new ClienteGUI(id, u);
 				cl.setLbl(lblId);
 
 				cl.setVisible(true);

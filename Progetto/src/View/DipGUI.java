@@ -92,7 +92,7 @@ public class DipGUI extends JFrame{
 		paneSt.addMouseListener(new PanelMouse(paneSt) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ImieiTurniGUI tu =new ImieiTurniGUI(getLbl(), id);
+				ImieiTurniGUI tu =new ImieiTurniGUI(getLbl(), id, u);
 				tu.setVisible(true);
 				dispose();
 			}
