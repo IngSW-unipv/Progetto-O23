@@ -26,10 +26,10 @@ public class PrenotaGUI extends JFrame {
 
 	private JTable table;
 	private static JLabel lblId;
-	private static int id;
+	private static int id;;
 	private JTextField textField;
 	private JTextField textField_1;
-	private static User u;
+	private User user;;
 	
 	private ClientController controller; // aggiunta del controller
 
@@ -39,7 +39,7 @@ public class PrenotaGUI extends JFrame {
 			public void run() {
 
 				try {
-					PrenotaGUI frame = new PrenotaGUI(lblId, id, u);
+					PrenotaGUI frame = new PrenotaGUI(lblId, id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,14 +54,13 @@ public class PrenotaGUI extends JFrame {
 
 	 */
 
-	public PrenotaGUI(JLabel lblId, int id, User u) {
+	public PrenotaGUI(JLabel lblId, int id) {
 		
 		controller = new ClientController(this); 
 		
 		
 		PrenotaGUI.lblId=lblId;
 		PrenotaGUI.id=id;
-		PrenotaGUI.u=u;
 
 		setBackground(new Color(240, 240, 240));
 
@@ -157,8 +156,7 @@ public class PrenotaGUI extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				
-				ClienteGUI cl = new ClienteGUI(id, u);
+				ClienteGUI cl = new ClienteGUI(id, user);
 				cl.setLbl(lblId);
 				cl.setVisible(true);
 				dispose();
@@ -181,9 +179,8 @@ public class PrenotaGUI extends JFrame {
 		JButton btnConf_1 = new JButton("visualizza disponibilità"); //bottone disponibilità
 		btnConf_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("hai cliccato qua, e adesso te lo faccio");
 				try {
-					controller.RecuperaStanzeDisponibili();
+					controller.RecuperaStanze();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

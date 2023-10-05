@@ -478,34 +478,62 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
     }
      }
 
- public int RecuperaStanzeDisponibili(String datain, String dataout) throws SQLException {
-	 DBConnessione d = new DBConnessione();
-     conn = d.connessione(conn);
-     
-     String sql= "SELECT * FROM camera WHERE STATO = 1";
-     
-  // Creazione dell'oggetto Statement per eseguire la query
-     Statement stmt = conn.createStatement();
+ @SuppressWarnings("unchecked")
+ public int RecuperaStanzeOccupate(String datain, String dataout) throws SQLException {
+ 	 DBConnessione d = new DBConnessione();
+      conn = d.connessione(conn);
+      String datarrivo = datain;
+      String dataaddio = dataout;
+      
+      int[] numeriCamera = new int[20];  // Array di interi con dimensione massima 20
+      int count = 0;  // Contatore per il numero effettivo di elementi inseriti
 
-     // Esecuzione della query e ottenimento dei risultati
-     ResultSet rs = stmt.executeQuery(sql);
-     //trovatestanze serve per verificare che ci siano effettivamente stanze con stato = 1
-     boolean trovateStanze = false;
+      
+      
+              String sql= "SELECT c.NUMERO, c.TIPO, c.PIANO, c.PREZZO\r\n"
+              		+ "FROM camera c\r\n"
+              		+ "WHERE NOT EXISTS (\r\n"
+              		+ "    SELECT 1\r\n"
+              		+ "    FROM prenotazione p\r\n"
+              		+ "    WHERE p.NUMERO_CAMERA = c.NUMERO\r\n"
+              		+ "    AND (\r\n"
+              		+ "        (p.CHECK_IN <= ? AND p.CHECK_OUT >= ?)\r\n"
+              		+ "        OR (p.CHECK_IN <= ? AND p.CHECK_OUT >= ?)\r\n"
+              		+ "        OR (p.CHECK_IN >= ? AND p.CHECK_OUT <= ?)\r\n"
+              		+ "    )\r\n"
+              		+ ");;";
+              
+              try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                  statement.setString(1, datarrivo);
+                  statement.setString(2, datarrivo);
+                  statement.setString(3, dataaddio);
+                  statement.setString(4, dataaddio);
+                  statement.setString(5, datarrivo);
+                  statement.setString(6, dataaddio);
 
-     while (rs.next()) {
-         int camerastato = rs.getInt("stato");
-         String cameranumero = rs.getString("numero");
-         int prezzo = rs.getInt("prezzo");
-         trovateStanze = true;
 
-         System.out.println("ID: " + camerastato + ", Nome: " + cameranumero  + ", prezzo: " + prezzo);
-         
-         conn.close();
-     } //se non trova stanze, ritorna un errore, altrimenti ritora ok
-     if (!trovateStanze) {
-         return 0;}
-     else 
-    	 
-    	 return 1;
-    }
-}
+                  // Esecuzione della query e ottenimento dei risultati
+                  ResultSet rs = statement.executeQuery();
+
+                  boolean trovateStanze = false;
+
+                  while (rs.next()) {
+                      String cameranumero = rs.getString("numero");
+                      numeriCamera[count] = Integer.valueOf(cameranumero);
+                   
+                      trovateStanze = true;
+                      System.out.println("ID CAMERA: " + cameranumero);
+                      count++;
+                  }
+
+                  rs.close();
+                  conn.close();
+
+                  if (!trovateStanze) {
+                      return 1;
+                  } else {
+                      return 0;
+                  }
+              }
+  }
+ }
