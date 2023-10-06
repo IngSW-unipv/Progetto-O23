@@ -204,7 +204,6 @@ public void setId_tipo(int id_tipo) {
 
 public boolean login(String username ,String password, int id_tipo) throws SQLException {
 	
-
 	Gestione_Dao g =  new Gestione_Dao();
 	//richiamo metodo controllo dell esistenza dell'untente
 	
@@ -218,10 +217,9 @@ public boolean login(String username ,String password, int id_tipo) throws SQLEx
 	DataDiNascita=g.OttieniParametroUserDate("data_nascita", username, password);
 	Id_tipo = g.Ottieni_Tipo(username);
 	login=g.login(username, password);
+	
 	return login;
 	
-	
- 
 }
 
 
@@ -252,20 +250,6 @@ public boolean logout(boolean log) {
 	
 }
 
-public void registrazione(String cf, String nome, String cognome, String dataNascita, String cell, String via, String citta, String provincia, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
-	
-    // Verifica che il CF, l'username e l'email non siano già presenti nel database
-	Gestione_Dao g = new Gestione_Dao();
-	g.user_Register(cf, nome, cognome, dataNascita, cell, via, citta, provincia, cap, email, username, password);	
-     
-}
-
-public void modificaAttr(String username, String attributo, String nuovoValore) throws SQLException, NoSuchAlgorithmException {
-	
-	Gestione_Dao g = new Gestione_Dao();
-	g.modificaDati(username, attributo, nuovoValore);	
-     
-}
     
 /* //OTTIENI PASSWORD UTENTE
  public String OttieniPassword(String cf,String user,String email) throws SQLException {

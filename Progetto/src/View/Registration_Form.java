@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import Model.Cliente;
 import Model.User;
 
 import java.awt.Color;
@@ -28,10 +29,10 @@ import java.awt.Color;
 public class Registration_Form extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTextField nome;
-    private JTextField cognome;
-    private JTextField cf;
-    private String date[]
+    public JTextField nome;
+    public JTextField cognome;
+    public JTextField cf;
+    public String giorni[]
             = { "1", "2", "3", "4", "5",
                 "6", "7", "8", "9", "10",
                 "11", "12", "13", "14", "15",
@@ -39,11 +40,11 @@ public class Registration_Form extends JFrame {
                 "21", "22", "23", "24", "25",
                 "26", "27", "28", "29", "30",
                 "31" };
-        private String mesi[]
-            = { "Jan", "feb", "Mar", "Apr",
-                "May", "Jun", "July", "Aug",
-                "Sup", "Oct", "Nov", "Dec" };
-        private String anni[]
+    public String mesi[]
+            = { "01", "02", "03", "04",
+                "05", "06", "07", "08",
+                "09", "10", "11", "12" };
+    public String anni[]
             = { "1980", "1981", "1982", "1983",
             	"1984", "1985", "1986", "1987",
             	"1988", "1989", "1990", "1991",
@@ -51,19 +52,19 @@ public class Registration_Form extends JFrame {
             	"1996", "1997", "1998", "1999",
                 "2000", "2001", "2002", "2003",
                };
-    private JComboBox data;
-    private JComboBox mese;
-    private JComboBox anno;
-    private JTextField email;
-    private JTextField cell;
-    private JTextField via;
-    private JTextField citta;        
-    private JTextField provincia;
-    private JTextField cap;
-    private JTextField username;    
-    private JPasswordField password;
-    private JButton btnReg;
-    private JButton btnBack;
+    public JComboBox data;
+    public JComboBox mese;
+    public JComboBox anno;
+    public JTextField email;
+    public JTextField cell;
+    public JTextField via;
+    public JTextField citta;        
+    public JTextField provincia;
+    public JTextField cap;
+    public JTextField username;    
+    public JPasswordField password;
+    public JButton btnReg;
+    public JButton btnBack;
 
     
         
@@ -116,7 +117,7 @@ public class Registration_Form extends JFrame {
         lblCognome.setBounds(520, 95, 110, 29);
         contentPane.add(lblCognome);
         
-        data = new JComboBox(date);
+        data = new JComboBox(giorni);
         data.setFont(new Font("Arial", Font.PLAIN, 16));
         data.setSize(72, 20);
         data.setLocation(707, 159);
@@ -152,7 +153,6 @@ public class Registration_Form extends JFrame {
         cognome.setColumns(10);
 
         email = new JTextField();
-
         email.setFont(new Font("Thonburi", Font.PLAIN, 18));
         email.setBounds(214, 205, 225, 50);
         contentPane.add(email);
@@ -190,21 +190,7 @@ public class Registration_Form extends JFrame {
         password.setBounds(707, 392, 225, 50);
         contentPane.add(password);
 
-        btnReg = new JButton("Registrati");
-        btnReg.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    User user = new User(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()), cell.getText(), via.getText(), citta.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
-                    user.registrazione(cf.getText(), nome.getText(), cognome.getText(), java.sql.Date.valueOf(anno.getSelectedItem()+"-"+(mese.getSelectedIndex()+1)+"-"+data.getSelectedItem()).toString(), cell.getText(), via.getText(), citta.getText(), provincia.getText(), Integer.parseInt(cap.getText()), email.getText(), username.getText(), new String(password.getPassword()));
-                    JOptionPane.showMessageDialog(null, "Registrazione effettuata con successo!");
-                } catch (SQLException | NoSuchAlgorithmException ex) {
-                    JOptionPane.showMessageDialog(null, "Errore durante la registrazione: " + ex.getMessage());
-                } 
-           
-            } 
-        });
-        
-                
+        btnReg = new JButton("Registrati");     
         btnReg.setFont(new Font("Tahoma", Font.PLAIN, 20));
         btnReg.setBounds(619, 513, 180, 70);
         contentPane.add(btnReg);
@@ -220,7 +206,7 @@ public class Registration_Form extends JFrame {
         lblVia.setBounds(58, 281, 112, 16);
         contentPane.add(lblVia);
         
-        JLabel lbnCitta = new JLabel("Citt√†:");
+        JLabel lbnCitta = new JLabel("Citt‡†:");
         lbnCitta.setFont(new Font("Thonburi", Font.PLAIN, 18));
         lbnCitta.setBounds(520, 276, 99, 26);
         contentPane.add(lbnCitta);
@@ -274,15 +260,52 @@ public class Registration_Form extends JFrame {
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
         btnBack.setBounds(341, 513, 180, 70);
         contentPane.add(btnBack);
-        btnBack.addActionListener(new ActionListener() {
-	        
-            // Questo metodo viene chiamato quando il pulsante viene cliccato
-        	 public void actionPerformed(ActionEvent e) {
-        		Home_Form regForm =new Home_Form();
- 	            regForm.setVisible(true);
- 	            dispose();
-        	          
-        	 }
-	     });
+        
+        setVisible(true);
+             
+        
     }
+
+	public JButton getBtnReg() {
+		return btnReg;
+	}
+
+	public void setBtnReg(JButton btnReg) {
+		this.btnReg = btnReg;
+	}
+
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+	public void setBtnBack(JButton btnBack) {
+		this.btnBack = btnBack;
+	}
+
+	public JComboBox getData() {
+		return data;
+	}
+
+	public void setData(JComboBox data) {
+		this.data = data;
+	}
+
+	public JComboBox getMese() {
+		return mese;
+	}
+
+	public void setMese(JComboBox mese) {
+		this.mese = mese;
+	}
+
+	public JComboBox getAnno() {
+		return anno;
+	}
+
+	public void setAnno(JComboBox anno) {
+		this.anno = anno;
+	}
+
+    
+    
 }
