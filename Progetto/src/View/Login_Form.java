@@ -29,6 +29,10 @@ public class Login_Form extends JFrame {
 	private JPanel contentPane;
 	private JTextField username;
 	private JPasswordField password;
+	public JButton btnAccedi;
+	public JButton btnPsw;
+	public JLabel lblLogin;
+	public JButton btnBack;
 	
 	private LoginController controller; // aggiunta del controller
 
@@ -83,8 +87,7 @@ public class Login_Form extends JFrame {
 		contentPane.add(username);
 		username.setColumns(10);
 		
-		JButton btnAccedi = new JButton("Accedi al tuo account");
-		
+		btnAccedi = new JButton("Accedi al tuo account");
 		btnAccedi.addActionListener(new ActionListener() {   
 
 			@Override
@@ -99,7 +102,7 @@ public class Login_Form extends JFrame {
 		btnAccedi.setBounds(215, 263, 230, 35);
 		contentPane.add(btnAccedi);
 	
-		JButton btnPsw = new JButton("Password dimenticata?");
+		btnPsw = new JButton("Password dimenticata?");
 		btnPsw.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnPsw.setBounds(215, 310, 230, 35);
 		contentPane.add(btnPsw);
@@ -114,7 +117,7 @@ public class Login_Form extends JFrame {
 
 				
 		
-		JButton btnBack = new JButton("Torna indietro");
+		btnBack = new JButton("Torna indietro");
 		btnBack.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -129,7 +132,7 @@ public class Login_Form extends JFrame {
 		
 		
 		
-		JLabel lblLogin = new JLabel("Login");
+		lblLogin = new JLabel("Login");
 		lblLogin.setForeground(new Color(154, 205, 50));
 		lblLogin.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
 		lblLogin.setBounds(275, 6, 112, 68);
@@ -139,6 +142,8 @@ public class Login_Form extends JFrame {
 		password.setFont(new Font("Thonburi", Font.PLAIN, 18));
 		password.setBounds(215, 172, 225, 50);
 		contentPane.add(password);
+		
+		setVisible(true);
 	}	
 	
 	public String getUsername() {
@@ -148,4 +153,6 @@ public class Login_Form extends JFrame {
 	public String getPassword() {
 		return password.getText();
 	}
+	
+	
 }	    

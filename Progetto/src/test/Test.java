@@ -15,21 +15,21 @@ public class Test {
 
 	public static void main(String[] args) throws SQLException, NoSuchAlgorithmException {
 
-		
 	
 		/*Benvenuto_Form b = new Benvenuto_Form();
 		b.setVisible(true);*/
 		
-		Registration_Form view=new Registration_Form();
+		
+		//prova registrazione
+		/*Registration_Form view=new Registration_Form();
 		Cliente model = new Cliente(null, null, null, null, null, null, null, 0, null, null, null, null, 0);
-		RegistrazioneController controller = new RegistrazioneController(view, model);
+		RegistrazioneController controller = new RegistrazioneController(view, model);  */
 		
+		//prova login
+		Login_Form view  = new Login_Form();
+		User model = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
+		LogController controlle = new LogController(model, view);
 		
-	
-		
-	
-
-        
 
 	
 	}

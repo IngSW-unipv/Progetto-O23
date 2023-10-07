@@ -256,15 +256,17 @@ public class Registration_Form extends JFrame {
         contentPane.add(cap);
         cap.setColumns(10);
         
-        JButton btnBack = new JButton("Torna indietro");
-        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnBack.setBounds(341, 513, 180, 70);
-        contentPane.add(btnBack);
+        JButton btnIndietro = new JButton("Indietro");
+        btnIndietro.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnIndietro.setBounds(350, 513, 180, 70);
+        contentPane.add(btnIndietro);
         
         setVisible(true);
              
         
     }
+    
+    
 
 	public JButton getBtnReg() {
 		return btnReg;
@@ -305,7 +307,4 @@ public class Registration_Form extends JFrame {
 	public void setAnno(JComboBox anno) {
 		this.anno = anno;
 	}
-
-    
-    
 }

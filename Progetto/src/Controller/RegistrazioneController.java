@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
-import Model.Cliente;
+import Model.*;
 import View.Home_Form;
 import View.Registration_Form;
 
@@ -13,6 +13,8 @@ public class RegistrazioneController implements ActionListener {
 	
 	private Registration_Form view;
 	private Cliente model;
+	
+	
 	
 	
 	public RegistrazioneController(Registration_Form view, Cliente model) {
@@ -39,6 +41,7 @@ public class RegistrazioneController implements ActionListener {
 		String mese=(String) view.mese.getSelectedItem();
 		String anno=(String) view.anno.getSelectedItem();
 		
+		
 		String data=anno+"-"+mese+"-"+giorno;
 		
 		String cap =view.cap.getText();
@@ -53,7 +56,7 @@ public class RegistrazioneController implements ActionListener {
 			e1.printStackTrace();
 		}
 		
-		}else {
+		}else  {
 			Home_Form regForm1 =new Home_Form();
 	            regForm1.setVisible(true);
 	           
