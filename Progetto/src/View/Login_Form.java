@@ -88,7 +88,7 @@ public class Login_Form extends JFrame {
 		username.setColumns(10);
 		
 		btnAccedi = new JButton("Accedi al tuo account");
-		btnAccedi.addActionListener(new ActionListener() {   
+		/*btnAccedi.addActionListener(new ActionListener() {   
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -96,7 +96,7 @@ public class Login_Form extends JFrame {
 
 			}
 			
-		});													
+		});		*/											
 
 		btnAccedi.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAccedi.setBounds(215, 263, 230, 35);

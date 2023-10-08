@@ -30,8 +30,7 @@ public class LogController implements ActionListener {
 		
 		if(e.getSource()==view.btnAccedi) {
 			Gestione_Dao dao = new Gestione_Dao();
-			model = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
-			view= new Login_Form();
+			
 			try {
 				model.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
 			} catch (SQLException e1) {

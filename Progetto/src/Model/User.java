@@ -218,6 +218,8 @@ public boolean login(String username ,String password, int id_tipo) throws SQLEx
 	Id_tipo = g.Ottieni_Tipo(username);
 	login=g.login(username, password);
 	
+	System.out.println(toString());
+	
 	return login;
 	
 }

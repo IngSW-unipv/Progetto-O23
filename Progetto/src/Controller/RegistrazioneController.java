@@ -33,10 +33,7 @@ public class RegistrazioneController implements ActionListener {
 
 		
 		if(e.getSource()==view.btnReg) {
-			
-			
 		
-		model=new Cliente(null, null, null, null, null, null, null, 0, null, null, null, null, 0);
 		String giorno=(String) view.data.getSelectedItem();
 		String mese=(String) view.mese.getSelectedItem();
 		String anno=(String) view.anno.getSelectedItem();
