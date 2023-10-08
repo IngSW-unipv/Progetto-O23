@@ -20,6 +20,10 @@ public class Benvenuto_Form extends JFrame {
     
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btnD;
+	public JButton btnC;
+	
+	
 	private final JLabel lbl2 = new JLabel("Benvenuto, selezionare il tipo ");
 
 
@@ -54,11 +58,11 @@ public class Benvenuto_Form extends JFrame {
 		lbl2.setBounds(62, 6, 608, 94);
 		contentPane.add(lbl2);
 		
-		JButton btnD = new JButton("Dipendente");
+		btnD = new JButton("Dipendente");
 		btnD.setFont(new Font("Thonburi", Font.PLAIN, 18));
 		btnD.setBounds(62, 184, 216, 94);
 		contentPane.add(btnD);
-		btnD.addActionListener(new ActionListener() {
+		/*btnD.addActionListener(new ActionListener() {
             
             
         	 public void actionPerformed(ActionEvent e) {
@@ -68,7 +72,7 @@ public class Benvenuto_Form extends JFrame {
         	            dispose(); 
         	          
         	}
-     });
+     });*/
 		
 		JButton btnC = new JButton("Cliente");
 		btnC.setFont(new Font("Thonburi", Font.PLAIN, 18));
@@ -92,14 +96,21 @@ public class Benvenuto_Form extends JFrame {
 		lbl1.setBounds(248, 70, 280, 64);
 		contentPane.add(lbl1);
 		
-		
-		
-		
-            
-    
-    
-
-		
+		setVisible(true);
 		
 	}
+
+
+	public JButton getBtnD() {
+		return btnD;
+	}
+
+
+	public JButton getBtnC() {
+		return btnC;
+	}
+
+
+	
+	
 }
