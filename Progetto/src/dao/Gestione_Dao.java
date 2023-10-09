@@ -235,7 +235,7 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
             stmt.setInt(11, cap); 
             stmt.setString(12, username);
             stmt.setString(13, password);
-            stmt.setInt(14, 1); // id_tipo = 1 
+            stmt.setInt(14, 2); // id_tipo = 2 
             
             
             stmt.executeUpdate();

@@ -110,7 +110,7 @@ public class ClienteGUI extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = getLbl();
-				PrenotaGUI pr =new PrenotaGUI(getLbl(), id, u);
+				PrenotaGUI pr =new PrenotaGUI(getLbl(), id);
 				pr.setVisible(true);
 				dispose();
 			}

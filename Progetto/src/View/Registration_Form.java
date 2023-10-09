@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import Controller.PswController;
+import Controller.RegistrazioneController;
 import Model.Cliente;
 import Model.User;
 
@@ -65,6 +67,7 @@ public class Registration_Form extends JFrame {
     public JPasswordField password;
     public JButton btnReg;
     public JButton btnBack;
+    private RegistrazioneController controller;
 
     
         
@@ -91,6 +94,8 @@ public class Registration_Form extends JFrame {
      */
 
     public Registration_Form() {
+    	
+    	
     
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(450, 190, 1124, 661);
@@ -195,6 +200,13 @@ public class Registration_Form extends JFrame {
         btnReg.setBounds(619, 513, 180, 70);
         contentPane.add(btnReg);
         
+        btnBack = new JButton("Indietro");
+        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnBack.setBounds(350, 513, 180, 70);
+        contentPane.add(btnBack);
+        
+        setVisible(true);
+        
         JLabel lblDate = new JLabel("Data Di Nascita: ");
         lblDate.setFont(new Font("Thonburi", Font.PLAIN, 18));
         lblDate.setForeground(new Color(0, 0, 0));
@@ -206,7 +218,7 @@ public class Registration_Form extends JFrame {
         lblVia.setBounds(58, 281, 112, 16);
         contentPane.add(lblVia);
         
-        JLabel lbnCitta = new JLabel("Città :");
+        JLabel lbnCitta = new JLabel("Cittï¿½:");
         lbnCitta.setFont(new Font("Thonburi", Font.PLAIN, 18));
         lbnCitta.setBounds(520, 276, 99, 26);
         contentPane.add(lbnCitta);
@@ -255,15 +267,7 @@ public class Registration_Form extends JFrame {
         cap.setBounds(707, 329, 225, 50);
         contentPane.add(cap);
         cap.setColumns(10);
-        
-        JButton btnIndietro = new JButton("Indietro");
-        btnIndietro.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnIndietro.setBounds(350, 513, 180, 70);
-        contentPane.add(btnIndietro);
-        
-        setVisible(true);
-             
-        
+   
     }
     
     

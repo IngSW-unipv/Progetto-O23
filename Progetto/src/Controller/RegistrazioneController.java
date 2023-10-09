@@ -22,7 +22,7 @@ public class RegistrazioneController implements ActionListener {
 		this.model = model;
 		
 		view.getBtnReg().addActionListener(this);
-		//view.getBtnBack().addActionListener(this);
+		view.getBtnBack().addActionListener(this);
 		
 		
 	}
@@ -53,14 +53,16 @@ public class RegistrazioneController implements ActionListener {
 			e1.printStackTrace();
 		}
 		
-		}else  {
+		} else if (e.getSource()==view.btnBack) {
 			Home_Form regForm1 =new Home_Form();
-	            regForm1.setVisible(true);
-	           
+			view.dispose();
+        	regForm1.setVisible(true);
+			
+			}   
 			
 		}
 	}
 	
 	
 
-}
+
