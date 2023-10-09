@@ -67,7 +67,10 @@ public class Registration_Form extends JFrame {
     public JPasswordField password;
     public JButton btnReg;
     public JButton btnBack;
-    private RegistrazioneController controller;
+    
+    public JLabel checkU;
+    public JLabel checkE;
+	
 
     
         
@@ -267,6 +270,14 @@ public class Registration_Form extends JFrame {
         cap.setBounds(707, 329, 225, 50);
         contentPane.add(cap);
         cap.setColumns(10);
+        
+        checkU = new JLabel("");
+        checkU.setBounds(447, 411, 61, 16);
+        contentPane.add(checkU);
+        
+        checkE = new JLabel("");
+        checkE.setBounds(451, 224, 61, 16);
+        contentPane.add(checkE);
    
     }
     
@@ -287,6 +298,17 @@ public class Registration_Form extends JFrame {
 	public void setBtnBack(JButton btnBack) {
 		this.btnBack = btnBack;
 	}
+	
+	public void setCheckU(String text) {
+		checkU.setText(text);
+		
+	}
+	
+	public void setCheckE(String text) {
+		checkE.setText(text);
+		
+	}
+	
 
 	public JComboBox getData() {
 		return data;

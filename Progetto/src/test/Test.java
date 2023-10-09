@@ -21,8 +21,8 @@ public class Test {
 		
 		
 		//prova registrazione
-		Registration_Form view=new Registration_Form();
 		Cliente model = new Cliente(null, null, null, null, null, null, null, 0, null, null, null, null, 0);
+		Registration_Form view=new Registration_Form();		
 		RegistrazioneController controller = new RegistrazioneController(view, model); 
 		
 		//prova login

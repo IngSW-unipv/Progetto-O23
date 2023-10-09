@@ -2,18 +2,25 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import Model.*;
 import View.Home_Form;
 import View.Registration_Form;
+import dao.Gestione_Dao;
 
 public class RegistrazioneController implements ActionListener {
 	
 	private Registration_Form view;
 	private Cliente model;
 	
+	private Gestione_Dao dao;
 	
 	
 	
@@ -21,8 +28,13 @@ public class RegistrazioneController implements ActionListener {
 		this.view = view;
 		this.model = model;
 		
+		dao = new Gestione_Dao();
+		
+		
+		
 		view.getBtnReg().addActionListener(this);
 		view.getBtnBack().addActionListener(this);
+		
 		
 		
 	}
@@ -33,7 +45,9 @@ public class RegistrazioneController implements ActionListener {
 
 		
 		if(e.getSource()==view.btnReg) {
-		
+			if(!validaCampi()) {
+				return;
+			}
 		String giorno=(String) view.data.getSelectedItem();
 		String mese=(String) view.mese.getSelectedItem();
 		String anno=(String) view.anno.getSelectedItem();
@@ -61,7 +75,23 @@ public class RegistrazioneController implements ActionListener {
 			}   
 			
 		}
+	
+	private boolean validaCampi() {
+		
+		// controllo che i campi non siano vuoti
+		if(view.cf.getText().isEmpty() || view.nome.getText().isEmpty() || view.cognome.getText().isEmpty() || view.cell.getText().isEmpty() ||
+				view.via.getText().isEmpty() || view.citta.getText().isEmpty() || view.provincia.getText().isEmpty() || view.cap.getText().isEmpty()
+				|| view.cap.getText().isEmpty() || view.email.getText().isEmpty() || view.username.getText().isEmpty() ||view.password.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Errore, nessun campo può essere vuoto");
+			return false;
+		}
+		
+		return true;
+		
 	}
+	
+	
+}
 	
 	
 
