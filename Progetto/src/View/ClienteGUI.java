@@ -112,6 +112,7 @@ public class ClienteGUI extends JFrame{
 				JLabel lbl = getLbl();
 				PrenotaGUI pr =new PrenotaGUI(getLbl(), id);
 				pr.setVisible(true);
+				controller.riempitabella();
 				dispose();
 			}
 		});

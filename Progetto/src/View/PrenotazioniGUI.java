@@ -93,27 +93,23 @@ public class PrenotazioniGUI extends JFrame {
 		panel.add(scrollPane);
 
 
-		table = new JTable();
+		table_1 = new JTable();
 
 		scrollPane.setViewportView(table);
 
-		table.setModel(new DefaultTableModel(
+		table_1 = new JTable();
+		table_1.addMouseListener(new MouseAdapter() {
+			
+			 public void mouseClicked(MouseEvent e) {
+				 int selectedRow = table_1.getSelectedRow();
+	                if (selectedRow != -1) {
+	                    // Ottieni i valori delle colonne desiderate per la riga selezionata
+	                    selectedValueCol1 = (String) table_1.getValueAt(selectedRow, 0);  // Prima colonna
+	                    selectedValueCol3 = (String) table_1.getValueAt(selectedRow, 2);  // Terza colonna
 
-				new Object[][] {
-
-					{null,null, null, null},
-
-					{null, null, null, null},
-
-				},
-
-				new String[] {
-
-						"Data Prenotazione", "Numero Stanza", "Check in", "Check out"
-
-				}
-
-				));
+	                      }
+	            }
+	        });
 
 		table.getColumnModel().getColumn(0).setPreferredWidth(116);
 
