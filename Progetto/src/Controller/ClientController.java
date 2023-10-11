@@ -15,11 +15,16 @@ public class ClientController {
         this.view = view;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
 
 	public void RecuperaStanze(ActionEvent e) throws SQLException {
+=======
+	
+	public void RecuperaStanze() throws SQLException {
+>>>>>>> parent of 671828e (prenotazione finita)
 =======
 	
 	public void RecuperaStanze() throws SQLException {
@@ -45,6 +50,7 @@ public class ClientController {
 			 public void inserisciintabella() {
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
 			int risultato = dao.effettuaprenotazione(datain, dataout, selectedValueCol1, selectedValueCol3, id);
 			if (risultato == 1) {
 				JOptionPane.showMessageDialog(null, "prenotazione effettuata con successo! grazie!");
@@ -57,6 +63,9 @@ public class ClientController {
 	public void riempitabella() {
 		
 	}
+=======
+			 }
+>>>>>>> parent of 671828e (prenotazione finita)
 =======
 			 }
 >>>>>>> parent of 671828e (prenotazione finita)
