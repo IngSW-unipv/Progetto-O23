@@ -17,6 +17,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Controller.AcController;
+import Controller.ClientController;
 import Controller.PswController;
 import Model.User;
 
@@ -34,6 +35,8 @@ public class ClienteGUI extends JFrame{
 	private JLabel lblCl;
 	private static int id;
 	private static User u;
+	private ClientGUIController controller; // aggiunta del controller
+	
 	 
 	
 	public static void main(String[] args) {
@@ -52,6 +55,9 @@ public class ClienteGUI extends JFrame{
 	public ClienteGUI(int id,User u){
 		ClienteGUI.id = id;
 		ClienteGUI.u = u;
+		
+		controller = new ClienteGUIController(this); 
+		
 		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,10 +115,10 @@ public class ClienteGUI extends JFrame{
 		panePr.addMouseListener(new PanelMouse(panePr){
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				controller.riempitabella();
 				JLabel lbl = getLbl();
 				PrenotaGUI pr =new PrenotaGUI(getLbl(), id);
 				pr.setVisible(true);
-				controller.riempitabella();
 				dispose();
 			}
 		});

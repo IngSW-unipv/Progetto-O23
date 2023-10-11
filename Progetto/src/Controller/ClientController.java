@@ -2,11 +2,9 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import Model.Camera;
 import View.PrenotaGUI;
 import dao.Gestione_Dao;
 
@@ -17,6 +15,8 @@ public class ClientController {
 	public ClientController(PrenotaGUI view) {
         this.view = view;
     }
+
+
 
 
 	public void RecuperaStanze(ActionEvent e) throws SQLException {
@@ -43,5 +43,8 @@ public class ClientController {
 				JOptionPane.showMessageDialog(null, "prenotazione bloccata. piprova piu tardi.");
                 
 			}
-	}			
+	}	
+	public void riempitabella() {
+		
+	}
 }
