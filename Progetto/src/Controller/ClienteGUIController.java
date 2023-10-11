@@ -14,7 +14,7 @@ import dao.Gestione_Dao;
 public class ClienteGUIController {
 	private final ClienteGUI view;
 
-	public ClientGUIController(ClienteGUI view) {
+	public ClienteGUIController(ClienteGUI view) {
         this.view = view;
     }
 	

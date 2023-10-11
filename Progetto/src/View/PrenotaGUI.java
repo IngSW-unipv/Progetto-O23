@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import Controller.ClientController;
 import Controller.LoginController;
 import Model.User;
+import dao.Gestione_Dao;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -24,12 +25,15 @@ import javax.swing.JFrame;
 
 public class PrenotaGUI extends JFrame {
 
-	private JTable table;
+	public JTable table_1;
 	private static JLabel lblId;
 	private static int id;;
 	private JTextField textField;
 	private JTextField textField_1;
 	private User user;;
+	private Gestione_Dao dao;
+	private String selectedValueCol3;
+	private String selectedValueCol1;
 	
 	private ClientController controller; // aggiunta del controller
 
@@ -57,7 +61,7 @@ public class PrenotaGUI extends JFrame {
 	public PrenotaGUI(JLabel lblId, int id) {
 		
 		controller = new ClientController(this); 
-		
+		dao = new Gestione_Dao();
 		
 		PrenotaGUI.lblId=lblId;
 		PrenotaGUI.id=id;
@@ -89,34 +93,7 @@ public class PrenotaGUI extends JFrame {
 		panel.setLayout(null);
 
 
-		JScrollPane scrollPane = new JScrollPane();
-
-		scrollPane.setBounds(11, 36, 540, 120);
-
-		panel.add(scrollPane);
-
-
-		table = new JTable();
-
-		scrollPane.setViewportView(table);
 		
-		
-
-		table.setModel(new DefaultTableModel(
-
-				new Object[][] {
-
-					{null, null, null, null, null},
-					{null, null, null, null, null},
-					{null, null, null, null, null},
-				},
-
-				new String[] {
-						"Numero Stanza", "Tipo", "Piano", "Letti", "Prezzo"
-
-				}
-
-				));
 
 
 		JLabel lblSt = new JLabel("Stanze Prenotabili");
@@ -148,7 +125,16 @@ public class PrenotaGUI extends JFrame {
 		btnConf.setBounds(22, 382, 103, 32);
 
 		panel.add(btnConf);
-
+		btnConf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					controller.prenota(e, selectedValueCol1, selectedValueCol3, id);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		JButton btnTornaIndietro = new JButton("Torna indietro");
 
@@ -180,7 +166,7 @@ public class PrenotaGUI extends JFrame {
 		btnConf_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					controller.RecuperaStanze();
+					controller.RecuperaStanze(e);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -200,6 +186,24 @@ public class PrenotaGUI extends JFrame {
 		textField_1.setColumns(10);
 		textField_1.setBounds(211, 256, 121, 29);
 		panel.add(textField_1);
+		
+		table_1 = new JTable();
+		table_1.addMouseListener(new MouseAdapter() {
+
+			 public void mouseClicked(MouseEvent e) {
+				 int selectedRow = table_1.getSelectedRow();
+	                if (selectedRow != -1) {
+	                    // Ottieni i valori delle colonne desiderate per la riga selezionata
+	                    selectedValueCol1 = (String) table_1.getValueAt(selectedRow, 0);  // Prima colonna
+	                    selectedValueCol3 = (String) table_1.getValueAt(selectedRow, 2);  // Terza colonna
+
+	                      }
+	            }
+	        });
+
+
+		table_1.setBounds(11, 34, 520, 123);
+		panel.add(table_1);
 	}
 	//questi due metodi mi servono per portare le date nel controller
 	public String getDateCheckin() {

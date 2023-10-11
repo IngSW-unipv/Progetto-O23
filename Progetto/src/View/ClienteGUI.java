@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.AcController;
 import Controller.ClientController;
+import Controller.ClienteGUIController;
 import Controller.PswController;
 import Model.User;
 
@@ -35,7 +36,7 @@ public class ClienteGUI extends JFrame{
 	private JLabel lblCl;
 	private static int id;
 	private static User u;
-	private ClientGUIController controller; // aggiunta del controller
+	private ClienteGUIController controller; // aggiunta del controller
 	
 	 
 	
