@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,27 +17,31 @@ public class ClientController {
 	public ClientController(PrenotaGUI view) {
         this.view = view;
     }
-	
-	public void RecuperaStanze() throws SQLException {
+
+
+	public void RecuperaStanze(ActionEvent e) throws SQLException {
 		//prendo le due date dalla gui e le porto nel controller
 		String datain = view.getDateCheckin();
     	String dataout = view.getDateCheckout(); 
     	//done
     	
-		
-		
 		Gestione_Dao dao = new Gestione_Dao();
-		CameraController a = new CameraController();
-		Camera c= new Camera(0,null,0,0,0,null);
 		
-		if (dao.RecuperaStanzeOccupate(datain,dataout) == 0) { 
-		 System.out.println("queste sono le stanze disponibile");
-			 } else {
-				 System.out.println("nessuna stanza è disponibile nel periodo scelto");
-			 		}
+		dao.RecuperaStanzeOccupate(datain,dataout, view.table_1);
 	}
 	
-			 public void inserisciintabella() {
+	public void prenota(ActionEvent e, String selectedValueCol1, String selectedValueCol3, int id) throws SQLException{
+			String datain = view.getDateCheckin();
+    		String dataout = view.getDateCheckout();
+			Gestione_Dao dao = new Gestione_Dao();
 			
-			 }
+			int risultato = dao.effettuaprenotazione(datain, dataout, selectedValueCol1, selectedValueCol3, id);
+			if (risultato == 1) {
+				JOptionPane.showMessageDialog(null, "prenotazione effettuata con successo! grazie!");
+                
+			} else {
+				JOptionPane.showMessageDialog(null, "prenotazione bloccata. piprova piu tardi.");
+                
+			}
+	}			
 }
