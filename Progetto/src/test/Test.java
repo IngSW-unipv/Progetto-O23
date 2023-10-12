@@ -21,19 +21,19 @@ public class Test {
 		
 		
 		//prova registrazione
-		Cliente model = new Cliente(null, null, null, null, null, null, null, 0, null, null, null, null, 0);
+		/*Cliente model = new Cliente(null, null, null, null, null, null, null, 0, null, null, null, null, 0);
 		Registration_Form view=new Registration_Form();		
-		RegistrazioneController controller = new RegistrazioneController(view, model); 
+		RegistrazioneController controller = new RegistrazioneController(view, model); */
 		
 		//prova login
-		/*Login_Form view  = new Login_Form();
+		Login_Form view  = new Login_Form();
 		User model = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
-		LogController controlle = new LogController(model, view);*/
+		LogController controller = new LogController(model, view);
 		
 		
 		//prova inizio prognamma
 		/*Benvenuto_Form view = new Benvenuto_Form();
-		BenvenutoController controller = new BenvenutoController(view);  */
+		BenvenutoController controller = new BenvenutoController(view);*/  
 
 	
 	}

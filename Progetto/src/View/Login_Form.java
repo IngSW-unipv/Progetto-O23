@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controller.LoginController;
 import Model.User;
 import dao.Gestione_Dao;
 
@@ -37,7 +36,7 @@ public class Login_Form extends JFrame {
 	public JLabel lblLogin;
 	public JButton btnBack;
 	
-	private LoginController controller; // aggiunta del controller
+
 
 	/**
 	 * Launch the application.
@@ -63,7 +62,7 @@ public class Login_Form extends JFrame {
 	public Login_Form() {
 		super("Accesso");
 		
-		controller = new LoginController(this); 
+
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

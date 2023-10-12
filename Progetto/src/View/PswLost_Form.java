@@ -12,7 +12,7 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
-import Controller.LoginController;
+
 import Controller.PswController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

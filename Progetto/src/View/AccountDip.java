@@ -10,7 +10,6 @@ import java.awt.EventQueue;
 import javax.swing.JTextField;
 
 import Controller.AcController;
-import Controller.LoginController;
 import Model.User;
 import dao.Gestione_Dao;
 

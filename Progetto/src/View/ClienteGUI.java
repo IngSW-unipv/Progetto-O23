@@ -36,6 +36,7 @@ public class ClienteGUI extends JFrame{
 	private JLabel lblCl;
 	private static int id;
 	private static User u;
+	private JLabel lblOut;
 	private ClienteGUIController controller; // aggiunta del controller
 	
 	 
@@ -113,7 +114,7 @@ public class ClienteGUI extends JFrame{
 		paneSt.add(lblSt);
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel panePr = new JPanel();
-		panePr.addMouseListener(new PanelMouse(panePr){
+		/*panePr.addMouseListener(new PanelMouse(panePr){
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				controller.riempitabella();
@@ -122,7 +123,7 @@ public class ClienteGUI extends JFrame{
 				pr.setVisible(true);
 				dispose();
 			}
-		});
+		});*/
 		panePr.setBounds(0, 243, 248, 40);
 		paneMenu.add(panePr);
 		panePr.setBackground(new Color(102, 204, 102));
@@ -132,7 +133,7 @@ public class ClienteGUI extends JFrame{
 		
 		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel paneOut = new JPanel();
-		paneOut.addMouseListener(new PanelMouse(paneOut) {
+		/*paneOut.addMouseListener(new PanelMouse(paneOut) {
 			@Override
 			//chiedo conferma logout e richiamo il form benvenuto
 			public void mouseClicked(MouseEvent e) {
@@ -142,12 +143,12 @@ public class ClienteGUI extends JFrame{
 					ClienteGUI.this.dispose();
 				}
 			}
-		});
+		});*/
 		paneOut.setBounds(0, 321, 248, 40);
 		paneMenu.add(paneOut);
 		paneOut.setBackground(new Color(102, 204, 102));
 		paneOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
-		JLabel lblOut = new JLabel("Logout");
+		lblOut = new JLabel("Logout");
 		lblOut.setBounds(96, 6, 55, 23);
 		paneOut.add(lblOut);
 		lblOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -221,4 +222,15 @@ public class ClienteGUI extends JFrame{
 		}
 		
 	}
+
+	public JLabel getLblOut() {
+		return lblOut;
+	}
+
+	public void setLblOut(JLabel lblOut) {
+		this.lblOut = lblOut;
+	}
+	
+	
+	
 }

@@ -34,6 +34,7 @@ public class DipGUI extends JFrame{
 	public JLabel lblDip;  //////////////
 	private static int id;
 	private static User u;
+	private JLabel lblOut;
 	
 	//private AccountDip account;
 	public static void main(String[] args) {
@@ -121,7 +122,7 @@ public class DipGUI extends JFrame{
 		paneMenu.add(paneOut);
 		paneOut.setBackground(new Color(102, 204, 102));
 		paneOut.setLayout(null);
-		JLabel lblOut = new JLabel("Logout");
+		lblOut = new JLabel("Logout");
 		lblOut.setBounds(96, 6, 55, 23);
 		paneOut.add(lblOut);
 		lblOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -177,5 +178,15 @@ public class DipGUI extends JFrame{
 			contentPane.setBackground(new Color(102, 204, 102));
 		}
 	}
+
+	public JLabel getLblOut() {
+		return lblOut;
+	}
+
+	public void setLblOut(JLabel lblOut) {
+		this.lblOut = lblOut;
+	}
+	
+	
 	
 }

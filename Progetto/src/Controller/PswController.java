@@ -1,5 +1,7 @@
 package Controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.*;
 
@@ -7,7 +9,7 @@ import Model.User;
 import View.PswLost_Form;
 import dao.Gestione_Dao;
 
-public class PswController {
+public class PswController implements ActionListener{
 	  private PswLost_Form view;
 	  private Gestione_Dao dao;
 	    
@@ -46,6 +48,12 @@ public class PswController {
 		  } else
 		  return true;
 	  }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 	}

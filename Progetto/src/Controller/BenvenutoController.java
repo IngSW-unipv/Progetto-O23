@@ -14,21 +14,27 @@ public class BenvenutoController implements ActionListener{
 		
 		this.view = view;
 		
-		//view.btnC.addActionListener(this);
+		view.getBtnC().addActionListener(this);
 		view.getBtnD().addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource()==view.getBtnC()) {
-			
-			
-			
-		}else if (e.getSource()==view.getBtnD()) {
-			view.dispose();
+		
+		if (e.getSource()==view.getBtnD()) {
 			Login_Form view  = new Login_Form();
-			User model = new User(null, null, null, null, null, null, null, null, 0, null, null, null);
-			LogController controlle = new LogController(model, view);
+			Dipendenti model = new Dipendenti(null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0);
+			LogController controller = new LogController(model, view);
+			view.dispose();
+			
+			
+		}else if (e.getSource()==view.getBtnC()) {
+			
+			view= new Benvenuto_Form();
+			Login_Form view  = new Login_Form();
+			Cliente model1 = new Cliente(null, null, null, null, null, null, null, 0, null, null, null, null, 0);
+			LogController controller = new LogController(model1, view);
+			view.dispose();
 			
 		}
 		

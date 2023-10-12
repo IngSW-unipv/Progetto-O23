@@ -12,7 +12,7 @@ import java.awt.EventQueue;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Controller.ClientController;
-import Controller.LoginController;
+
 import Model.User;
 import dao.Gestione_Dao;
 
