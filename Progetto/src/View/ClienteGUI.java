@@ -65,7 +65,7 @@ public class ClienteGUI extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 860, 562);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("FormattedTextField.selectionBackground"));
+		contentPane.setBackground(new Color(181,247,157));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

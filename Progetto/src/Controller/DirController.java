@@ -35,7 +35,7 @@ public class DirController {
 	
 	public void actionPerformed1(ActionEvent e1) {
 		
-		dao.caricaStanze(frame1.table1);
+		dao.caricaStanze(frame1.table);
 	}
 	
 	

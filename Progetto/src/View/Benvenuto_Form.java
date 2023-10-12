@@ -12,6 +12,9 @@ import java.awt.Insets;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+
+import Controller.BenvenutoController;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -25,6 +28,7 @@ public class Benvenuto_Form extends JFrame {
 	private JPanel contentPane;
 	private JButton btnD;
 	public JButton btnC;
+	
 	
 	
 	private final JLabel lbl2 = new JLabel("Benvenuto, selezionare il tipo ");
@@ -47,6 +51,9 @@ public class Benvenuto_Form extends JFrame {
 	 // creazione frame
 	 
 	public Benvenuto_Form() {
+		
+		
+		
 		setLocationRelativeTo(null); //centra finestra
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
