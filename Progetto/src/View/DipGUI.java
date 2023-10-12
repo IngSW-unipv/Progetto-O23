@@ -17,6 +17,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Controller.AcController;
+import Controller.DipGuiController;
 import Model.User;
 
 import javax.swing.JButton;
@@ -35,6 +36,7 @@ public class DipGUI extends JFrame{
 	private static int id;
 	private static User u;
 	private JLabel lblOut;
+	
 	
 	//private AccountDip account;
 	public static void main(String[] args) {

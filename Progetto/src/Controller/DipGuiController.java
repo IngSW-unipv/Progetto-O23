@@ -14,6 +14,8 @@ public class DipGuiController implements ActionListener{
 	
 	private  DipGUI view;
 	private Dipendenti model;
+	
+	
 
 	public DipGuiController(DipGUI view) {
         this.view = view;

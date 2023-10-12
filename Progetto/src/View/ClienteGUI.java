@@ -130,6 +130,11 @@ public class ClienteGUI extends JFrame{
 		panePr.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		JLabel lblPr = new JLabel("Prenota");
 		panePr.add(lblPr);
+		panePr.addMouseListener(new PanelMouse(panePr){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		
 		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel paneOut = new JPanel();
@@ -152,6 +157,12 @@ public class ClienteGUI extends JFrame{
 		lblOut.setBounds(96, 6, 55, 23);
 		paneOut.add(lblOut);
 		lblOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		paneOut.addMouseListener(new PanelMouse(paneOut){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		
 		JPanel panelElAcc = new JPanel();
 		panelElAcc.setToolTipText("Elimina Account");
 		panelElAcc.addMouseListener(new PanelMouse(panelElAcc){
