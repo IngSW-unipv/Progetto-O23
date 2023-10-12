@@ -17,6 +17,7 @@ import Model.User;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.UIManager;
 
 public class ImieiTurniGUI extends JFrame {
 	private JTable table;
@@ -38,6 +39,7 @@ public class ImieiTurniGUI extends JFrame {
 		});
 	}
 	public ImieiTurniGUI(JLabel lbl, int id, User u) {
+		getContentPane().setBackground(Color.WHITE);
 		
 		ImieiTurniGUI.lbl = lbl;
 		ImieiTurniGUI.id=id;
