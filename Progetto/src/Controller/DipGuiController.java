@@ -17,21 +17,23 @@ public class DipGuiController implements ActionListener{
 	
 	
 
-	public DipGuiController(DipGUI view) {
+	public DipGuiController(DipGUI view,Dipendenti model) {
         this.view = view;
+        this.model= model;
         
-        //view.getLblOut().addAncestorListener((AncestorListener) this);
+        view.getBtnLogout().addActionListener(this);;
         
     }
 	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==view.getLblOut()) {
-			model.logout(model.getLogin());
+		if(e.getSource()==view.getBtnLogout()) {
 			view.dispose();
+			model.logout(model.getLogin());
 			Benvenuto_Form view1 = new Benvenuto_Form();
 			BenvenutoController controller = new BenvenutoController(view1);
+			
 		}
 	
 	

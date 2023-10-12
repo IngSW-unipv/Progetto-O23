@@ -47,14 +47,21 @@ public class LogController implements ActionListener {
 				model.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
 				if(model.getId_tipo()==1) {
 					
+					view.dispose();
+					Dipendenti dip=new Dipendenti(null, null, null, null, null, null, null, id_l, null, null, null, null, id_l, id_l);
+					dip.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
 					DipGUI view2 = new DipGUI(id_l, model);
-					DipGuiController controller2 =new DipGuiController(view2);
+					DipGuiController controller2 =new DipGuiController(view2,dip);
+					view.dispose();
 					
 					
 				}	else if (model.getId_tipo()==2) {
 					
+					view.dispose();
+					Cliente cli = new Cliente(null, null, null, null, null, null, null, id_l, null, null, null, null, id_l);
+					cli.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
 					ClienteGUI view1 = new ClienteGUI(id_c,model);
-					ClienteGUIController controller1 = new ClienteGUIController(view1);
+					ClienteGUIController controller1 = new ClienteGUIController(view1,cli);
 					
 				}
 				

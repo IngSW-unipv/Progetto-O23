@@ -138,14 +138,14 @@ public class Login_Form extends JFrame {
 						
 				
 				btnBack = new JButton("Torna indietro");
-				btnBack.addActionListener(new ActionListener() {
+				/*btnBack.addActionListener(new ActionListener() {
 					
 					public void actionPerformed(ActionEvent e) {
 						Benvenuto_Form benForm =new Benvenuto_Form();
 						benForm.setVisible(true);
  	            dispose();
 					}
-				});
+				});*/
 				
 					btnPsw = new JButton("Password dimenticata?");
 					btnPsw.setFont(new Font("Tahoma", Font.PLAIN, 20));

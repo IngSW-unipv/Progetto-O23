@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import Model.*;
+import View.Benvenuto_Form;
 import View.ClienteGUI;
 import dao.Gestione_Dao;
 
@@ -17,15 +18,25 @@ public class ClienteGUIController implements ActionListener{
 	private final ClienteGUI view;
 	private Cliente model;
 
-	public ClienteGUIController(ClienteGUI view) {
+	public ClienteGUIController(ClienteGUI view,Cliente model) {
         this.view = view;
+        this.model=model;
         
+        view.getBtnLogout().addActionListener(this);
         
     }
 	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==view.getBtnLogout()) {
+			view.dispose();
+			model.logout(model.getLogin());
+			Benvenuto_Form view1 = new Benvenuto_Form();
+			BenvenutoController controller = new BenvenutoController(view1);
+			
+		}
 	
 	
 	

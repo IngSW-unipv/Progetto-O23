@@ -36,8 +36,7 @@ public class ClienteGUI extends JFrame{
 	private JLabel lblCl;
 	private static int id;
 	private static User u;
-	private JLabel lblOut;
-	private ClienteGUIController controller; // aggiunta del controller
+	private JButton btnLogout;
 	
 	 
 	
@@ -57,8 +56,6 @@ public class ClienteGUI extends JFrame{
 	public ClienteGUI(int id,User u){
 		ClienteGUI.id = id;
 		ClienteGUI.u = u;
-		
-		controller = new ClienteGUIController(this); 
 		
 		
 		setBackground(new Color(255, 255, 255));
@@ -137,31 +134,6 @@ public class ClienteGUI extends JFrame{
 		});
 		
 		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
-		JPanel paneOut = new JPanel();
-		/*paneOut.addMouseListener(new PanelMouse(paneOut) {
-			@Override
-			//chiedo conferma logout e richiamo il form benvenuto
-			public void mouseClicked(MouseEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Sei sicuro?") == 0) {
-					Benvenuto_Form ben = new Benvenuto_Form();
-					ben.setVisible(true);
-					ClienteGUI.this.dispose();
-				}
-			}
-		});*/
-		paneOut.setBounds(0, 321, 248, 40);
-		paneMenu.add(paneOut);
-		paneOut.setBackground(new Color(102, 204, 102));
-		paneOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
-		lblOut = new JLabel("Logout");
-		lblOut.setBounds(96, 6, 55, 23);
-		paneOut.add(lblOut);
-		lblOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
-		paneOut.addMouseListener(new PanelMouse(paneOut){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
 		
 		JPanel panelElAcc = new JPanel();
 		panelElAcc.setToolTipText("Elimina Account");
@@ -189,6 +161,12 @@ public class ClienteGUI extends JFrame{
 				}
 			}
 		});
+		
+		btnLogout = new JButton("Log Out");
+		btnLogout.setBackground(new Color(102, 204, 102));
+		btnLogout.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnLogout.setBounds(0, 322, 248, 40);
+		paneMenu.add(btnLogout);
 		
 		JLabel lblNewLabel = new JLabel("Id cliente:");
 		lblNewLabel.setBounds(728, 6, 60, 16);
@@ -234,13 +212,15 @@ public class ClienteGUI extends JFrame{
 		
 	}
 
-	public JLabel getLblOut() {
-		return lblOut;
+	public JButton getBtnLogout() {
+		return btnLogout;
 	}
 
-	public void setLblOut(JLabel lblOut) {
-		this.lblOut = lblOut;
+	public void setBtnLogout(JButton btnLogout) {
+		this.btnLogout = btnLogout;
 	}
+
+	
 	
 	
 	
