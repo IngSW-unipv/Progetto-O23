@@ -23,11 +23,11 @@ public class DirettoreDAO {
     	
    	 // Connessione al database
        DBConnessione d =new DBConnessione();
-      	Connection con=null;
-      	con=d.connessione(con);
+       Connection con=null;
+       con=d.connessione(con);
        PreparedStatement stmt = null;
        
-       //String hashedPassword=password.replaceAll(".", "*");
+       
        
 
        java.sql.Date date=Date.valueOf(dataNascita);//conversione della data di nascita da stringa a java.sql.date
@@ -49,7 +49,7 @@ public class DirettoreDAO {
            stmt.setInt(11, cap); 
            stmt.setString(12, username);
            stmt.setString(13, password);
-           stmt.setInt(14, 2); // id_tipo = 2 
+           stmt.setInt(14, 1); // id_tipo = 1 dipendenti 
            
            
            stmt.executeUpdate();
@@ -192,4 +192,6 @@ public class DirettoreDAO {
 		 }
 		
 	}
+	
+	
 }
