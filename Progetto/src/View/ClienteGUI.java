@@ -20,6 +20,7 @@ import Controller.AcController;
 import Controller.ClientController;
 import Controller.ClienteGUIController;
 import Controller.PswController;
+import Model.Cliente;
 import Model.User;
 
 import javax.swing.JButton;
@@ -35,7 +36,7 @@ public class ClienteGUI extends JFrame{
 	public JPanel contentPane;
 	private JLabel lblCl;
 	private static int id;
-	private static User u;
+	private static Cliente u;
 	private JButton btnLogout;
 	private JButton btnIMieiDati;
 	
@@ -54,7 +55,7 @@ public class ClienteGUI extends JFrame{
 		});
 	}
 
-	public ClienteGUI(int id,User u){
+	public ClienteGUI(int id,Cliente u){
 		ClienteGUI.id = id;
 		ClienteGUI.u = u;
 		

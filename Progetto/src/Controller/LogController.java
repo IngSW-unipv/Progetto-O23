@@ -33,13 +33,7 @@ public class LogController implements ActionListener {
 			int id_c=0;
 			int id_l=0;
 			  
-			try {
-				id_c = dao.Ottieni_User(model.getUsername());
-				id_l = dao.Ottieni_Dip(dao.Ottieni_User(model.getUsername()));
-			} catch (SQLException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}	////
+			////
 	          
 			
 			try {
@@ -48,9 +42,10 @@ public class LogController implements ActionListener {
 				if(model.getId_tipo()==1) {
 					
 					view.dispose();
-					Dipendenti dip=new Dipendenti(null, null, null, null, null, null, null, id_l, null, null, null, null, id_l, id_l);
+					Dipendenti dip=new Dipendenti(null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0);
 					dip.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
-					DipGUI view2 = new DipGUI(id_l, model);
+					id_l = dao.Ottieni_Dip(dao.Ottieni_User(dip.getUsername()));
+					DipGUI view2 = new DipGUI(id_l, dip);
 					DipGuiController controller2 =new DipGuiController(view2,dip);
 					view.dispose();
 					
@@ -60,7 +55,8 @@ public class LogController implements ActionListener {
 					view.dispose();
 					Cliente cli = new Cliente(null, null, null, null, null, null, null, id_l, null, null, null, null, id_l);
 					cli.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
-					ClienteGUI view1 = new ClienteGUI(id_c,model);
+					id_c = dao.Ottieni_User(cli.getUsername());
+					ClienteGUI view1 = new ClienteGUI(id_c,cli);
 					ClienteGUIController controller1 = new ClienteGUIController(view1,cli);
 					
 				}

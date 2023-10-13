@@ -75,15 +75,6 @@ public class AccountDip extends JFrame {
 		
 		
 		btnIndierto = new JButton("Torna indietro");
-		btnIndierto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DipGUI dip = new DipGUI(id,u);
-				dip.setLbl(lbl);
-				AccountDip.this.dispose();
-				dip.setVisible(true);
-				
-			}
-		});
 		btnIndierto.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnIndierto.setBounds(10, 416, 156, 23);
 		panel.add(btnIndierto);

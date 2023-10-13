@@ -23,7 +23,7 @@ public class ImieiTurniGUI extends JFrame {
 	private JTable table;
 	private static JLabel lbl;
 	private static int id;
-	private static User u;
+	private static Dipendenti u;
 	
 
 	public static void main(String[] args) {
@@ -38,7 +38,7 @@ public class ImieiTurniGUI extends JFrame {
 			}
 		});
 	}
-	public ImieiTurniGUI(JLabel lbl, int id, User u) {
+	public ImieiTurniGUI(JLabel lbl, int id, Dipendenti u) {
 		getContentPane().setBackground(Color.WHITE);
 		
 		ImieiTurniGUI.lbl = lbl;

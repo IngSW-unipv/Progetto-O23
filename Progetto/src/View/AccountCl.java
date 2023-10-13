@@ -70,17 +70,7 @@ public AccountCl(JLabel lbl, int id,User u) {
 	getContentPane().add(panel);
 	panel.setLayout(null);
 	
-	
-	JButton btnIndietro = new JButton("Torna indietro");
-	btnIndietro.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			ClienteGUI cl = new ClienteGUI(id,u);
-			cl.setLbl(lbl);
-			AccountCl.this.dispose();
-			cl.setVisible(true);
-			
-		}
-	});
+	btnIndietro = new JButton("Torna indietro");
 	btnIndietro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 	btnIndietro.setBounds(10, 416, 156, 23);
 	panel.add(btnIndietro);

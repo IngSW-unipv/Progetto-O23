@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.AcController;
 import Controller.DipGuiController;
+import Model.Dipendenti;
 import Model.User;
 
 import javax.swing.JButton;
@@ -34,7 +35,7 @@ public class DipGUI extends JFrame{
 	public JPanel contentPane;
 	public JLabel lblDip;  //////////////
 	private static int id;
-	private static User u;
+	private static Dipendenti u;
 	private JButton btnLogout;
 	private JButton btnIMieiDati;
 	
@@ -53,7 +54,7 @@ public class DipGUI extends JFrame{
 		});
 	}
 
-	public DipGUI(int id,User u){
+	public DipGUI(int id,Dipendenti u){
 		
 		DipGUI.id = id;
 		DipGUI.u=u;
