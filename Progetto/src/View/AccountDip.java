@@ -35,6 +35,7 @@ public class AccountDip extends JFrame {
 	private static JLabel lbl;
 	private static int id;
 	private static User u;
+	private JButton btnIndierto;
 
 
 	public static void main(String[] args) {
@@ -73,8 +74,8 @@ public class AccountDip extends JFrame {
 		
 		
 		
-		JButton btnNewButton = new JButton("Torna indietro");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnIndierto = new JButton("Torna indietro");
+		btnIndierto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DipGUI dip = new DipGUI(id,u);
 				dip.setLbl(lbl);
@@ -83,9 +84,9 @@ public class AccountDip extends JFrame {
 				
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(10, 416, 156, 23);
-		panel.add(btnNewButton);
+		btnIndierto.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnIndierto.setBounds(10, 416, 156, 23);
+		panel.add(btnIndierto);
 		
 		JLabel lblUs = new JLabel("Username");
 		lblUs.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -163,4 +164,12 @@ public class AccountDip extends JFrame {
 		
 
 	}
+	public JButton getBtnIndierto() {
+		return btnIndierto;
+	}
+	public void setBtnIndierto(JButton btnIndierto) {
+		this.btnIndierto = btnIndierto;
+	}
+	
+	
 }

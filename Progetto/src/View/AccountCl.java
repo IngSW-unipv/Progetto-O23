@@ -13,7 +13,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JTextField;
 
-import Model.User;
+import Model.*;
 
 public class AccountCl extends JFrame {
 	public JTextField UsField;
@@ -25,7 +25,8 @@ public class AccountCl extends JFrame {
 	
 	private static JLabel lbl;
 	private static int id;
-	private static User u;
+	private static Cliente u;
+	private JButton btnIndietro;
 
 	public static void main(String[] args) {
 
@@ -70,8 +71,8 @@ public AccountCl(JLabel lbl, int id,User u) {
 	panel.setLayout(null);
 	
 	
-	JButton btnNewButton = new JButton("Torna indietro");
-	btnNewButton.addActionListener(new ActionListener() {
+	JButton btnIndietro = new JButton("Torna indietro");
+	btnIndietro.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			ClienteGUI cl = new ClienteGUI(id,u);
 			cl.setLbl(lbl);
@@ -80,9 +81,9 @@ public AccountCl(JLabel lbl, int id,User u) {
 			
 		}
 	});
-	btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-	btnNewButton.setBounds(10, 416, 156, 23);
-	panel.add(btnNewButton);
+	btnIndietro.setFont(new Font("Tahoma", Font.PLAIN, 16));
+	btnIndietro.setBounds(10, 416, 156, 23);
+	panel.add(btnIndietro);
 	
 	JButton btnNewButton_1 = new JButton("Modifica dati");
 	btnNewButton_1.addActionListener(new ActionListener() {
@@ -171,9 +172,7 @@ public AccountCl(JLabel lbl, int id,User u) {
 	panel.add(NumField);
 	
 	
-	
 	setVisible(true);
 	
-	
-}
+	}
 }

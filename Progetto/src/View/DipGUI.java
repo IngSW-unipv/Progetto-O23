@@ -36,6 +36,7 @@ public class DipGUI extends JFrame{
 	private static int id;
 	private static User u;
 	private JButton btnLogout;
+	private JButton btnIMieiDati;
 	
 	
 	//private AccountDip account;
@@ -74,23 +75,6 @@ public class DipGUI extends JFrame{
 		lblLogo.setIcon(new ImageIcon(DipGUI.class.getResource("/logo/Senza titolo.png")));
 		lblLogo.setBounds(6, 12, 236, 135);
 		paneMenu.add(lblLogo);
-		JPanel paneAcc = new JPanel();
-		paneAcc.addMouseListener(new PanelMouse(paneAcc){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AccountDip dip =new AccountDip(getLbl(), id,u);
-				dip.setVisible(true);
-				dispose();
-			}
-		});
-		paneAcc.setBounds(0, 230, 248, 40);
-		paneMenu.add(paneAcc);
-		paneAcc.setBackground(new Color(102, 204, 102));
-		paneAcc.setLayout(null);
-		JLabel lblAcc = new JLabel("Account");
-		lblAcc.setBounds(91, 5, 65, 23);
-		paneAcc.add(lblAcc);
-		lblAcc.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel paneSt = new JPanel();
 		paneSt.addMouseListener(new PanelMouse(paneSt) {
 			@Override
@@ -120,6 +104,14 @@ public class DipGUI extends JFrame{
 		btnLogout.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnLogout.setBounds(0, 308, 248, 40);
 		paneMenu.add(btnLogout);
+		
+		btnIMieiDati = new JButton("I miei dati");
+		btnIMieiDati.setToolTipText("");
+		btnIMieiDati.setForeground(Color.BLACK);
+		btnIMieiDati.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnIMieiDati.setBackground(new Color(102, 204, 102));
+		btnIMieiDati.setBounds(0, 230, 248, 40);
+		paneMenu.add(btnIMieiDati);
 		
 		JLabel lbl = new JLabel("Id lavoratore:");
 		lbl.setBounds(715, 6, 78, 16);
@@ -176,6 +168,14 @@ public class DipGUI extends JFrame{
 
 	public void setBtnLogout(JButton btnLogout) {
 		this.btnLogout = btnLogout;
+	}
+
+	public JButton getBtnIMieiDati() {
+		return btnIMieiDati;
+	}
+
+	public void setBtnIMieiDati(JButton btnIMieiDati) {
+		this.btnIMieiDati = btnIMieiDati;
 	}
 	
 	

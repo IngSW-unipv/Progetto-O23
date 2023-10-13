@@ -37,6 +37,7 @@ public class ClienteGUI extends JFrame{
 	private static int id;
 	private static User u;
 	private JButton btnLogout;
+	private JButton btnIMieiDati;
 	
 	 
 	
@@ -75,23 +76,6 @@ public class ClienteGUI extends JFrame{
 		lblLogo.setIcon(new ImageIcon(ClienteGUI.class.getResource("/logo/Senza titolo.png")));
 		lblLogo.setBounds(6, 16, 236, 135);
 		paneMenu.add(lblLogo);
-		JPanel paneAcc = new JPanel();
-		paneAcc.addMouseListener(new PanelMouse(paneAcc){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JLabel lbl = getLbl();
-				AccountCl cl =new AccountCl(getLbl(), id,u);
-				cl.setVisible(true);
-				dispose();
-			}
-		});
-		paneAcc.setBounds(0, 165, 248, 40);
-		paneMenu.add(paneAcc);
-		paneAcc.setBackground(new Color(102, 204, 102));
-		paneAcc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel lblAcc = new JLabel("Account");
-		paneAcc.add(lblAcc);
-		lblAcc.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel paneSt = new JPanel();
 		paneSt.addMouseListener(new PanelMouse(paneSt)
 		{
@@ -168,6 +152,14 @@ public class ClienteGUI extends JFrame{
 		btnLogout.setBounds(0, 322, 248, 40);
 		paneMenu.add(btnLogout);
 		
+		btnIMieiDati = new JButton("I miei dati");
+		btnIMieiDati.setToolTipText("");
+		btnIMieiDati.setForeground(Color.BLACK);
+		btnIMieiDati.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnIMieiDati.setBackground(new Color(102, 204, 102));
+		btnIMieiDati.setBounds(0, 165, 248, 40);
+		paneMenu.add(btnIMieiDati);
+		
 		JLabel lblNewLabel = new JLabel("Id cliente:");
 		lblNewLabel.setBounds(728, 6, 60, 16);
 		contentPane.add(lblNewLabel);
@@ -218,6 +210,14 @@ public class ClienteGUI extends JFrame{
 
 	public void setBtnLogout(JButton btnLogout) {
 		this.btnLogout = btnLogout;
+	}
+
+	public JButton getBtnIMieiDati() {
+		return btnIMieiDati;
+	}
+
+	public void setBtnIMieiDati(JButton btnIMieiDati) {
+		this.btnIMieiDati = btnIMieiDati;
 	}
 
 	

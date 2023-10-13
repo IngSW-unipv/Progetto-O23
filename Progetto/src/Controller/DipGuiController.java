@@ -21,7 +21,8 @@ public class DipGuiController implements ActionListener{
         this.view = view;
         this.model= model;
         
-        view.getBtnLogout().addActionListener(this);;
+        view.getBtnLogout().addActionListener(this);
+        view.getBtnIMieiDati().addActionListener(this);
         
     }
 	
@@ -33,6 +34,12 @@ public class DipGuiController implements ActionListener{
 			model.logout(model.getLogin());
 			Benvenuto_Form view1 = new Benvenuto_Form();
 			BenvenutoController controller = new BenvenutoController(view1);
+			
+		}else if(e.getSource()==view.getBtnIMieiDati()) {
+			view.dispose();
+			AccountDip view1 = new AccountDip(view.getLbl(),view.getWidth(),model); 
+			DatiDipController controller = new DatiDipController(view1, model);
+			
 			
 		}
 	
