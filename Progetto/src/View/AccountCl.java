@@ -165,4 +165,16 @@ public AccountCl(JLabel lbl, int id,User u) {
 	setVisible(true);
 	
 	}
+
+public JButton getBtnIndietro() {
+	return btnIndietro;
+}
+
+public void setBtnIndietro(JButton btnIndietro) {
+	this.btnIndietro = btnIndietro;
+}
+	
+	
+
+
 }

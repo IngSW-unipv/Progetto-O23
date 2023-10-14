@@ -18,10 +18,17 @@ public class ClienteGUIController implements ActionListener{
 	
 	private final ClienteGUI view;
 	private Cliente model;
+	private String username;
+	private String password;
+	private int id_tipo;
 
-	public ClienteGUIController(ClienteGUI view,Cliente model) {
+	public ClienteGUIController(ClienteGUI view,Cliente model,String username,String password,int id_tipo) {
         this.view = view;
-        this.model=model;
+        this.model = model;
+        this.username = username;
+        this.password = password;
+        this.id_tipo = id_tipo;
+        
         
         view.getBtnLogout().addActionListener(this);
         view.getBtnIMieiDati().addActionListener(this);
@@ -31,7 +38,6 @@ public class ClienteGUIController implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 		if(e.getSource()==view.getBtnLogout()) {
 			view.dispose();
 			model.logout(model.getLogin());
@@ -41,7 +47,7 @@ public class ClienteGUIController implements ActionListener{
 		}else if(e.getSource()==view.getBtnIMieiDati()) {
 			view.dispose();
 			AccountCl view1 = new AccountCl(view.getLbl(),view.getWidth(),model); 
-			DatiCliController controller = new DatiCliController(view1, model);
+			DatiCliController controller = new DatiCliController(view1, model, view, password, password, id_tipo);
 			
 			
 		}
@@ -49,6 +55,39 @@ public class ClienteGUIController implements ActionListener{
 	
 	
 	}
+
+
+	public Cliente getModel() {
+		return model;
+	}
+
+
+	public void setModel(Cliente model) {
+		this.model = model;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public int getId_tipo() {
+		return id_tipo;
+	}
+
+
+	public void setId_tipo(int id_tipo) {
+		this.id_tipo = id_tipo;
+	}
+	
+	
+	
 
 
 }

@@ -13,6 +13,9 @@ public class LogController implements ActionListener {
 	
 	private User model;
 	private Login_Form view;
+	private String username;
+	private String password;
+	private int id_tipo;
 	
 	
 	public LogController(User model, Login_Form view) {
@@ -37,16 +40,19 @@ public class LogController implements ActionListener {
 	          
 			
 			try {
+					username=view.getUsername();
+					password= view.getPassword();
+					id_tipo=dao.Ottieni_Tipo(view.getUsername());
 				
-				model.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
+				model.login(username, password,id_tipo);
 				if(model.getId_tipo()==1) {
 					
 					view.dispose();
 					Dipendenti dip=new Dipendenti(null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0);
-					dip.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
+					dip.login(username, password,id_tipo);
 					id_l = dao.Ottieni_Dip(dao.Ottieni_User(dip.getUsername()));
 					DipGUI view2 = new DipGUI(id_l, dip);
-					DipGuiController controller2 =new DipGuiController(view2,dip);
+					DipGuiController controller2 =new DipGuiController(view2,dip,username,password,id_tipo);
 					view.dispose();
 					
 					
@@ -54,10 +60,10 @@ public class LogController implements ActionListener {
 					
 					view.dispose();
 					Cliente cli = new Cliente(null, null, null, null, null, null, null, id_l, null, null, null, null, id_l);
-					cli.login(view.getUsername(), view.getPassword(), dao.Ottieni_Tipo(view.getUsername()));
+					cli.login(username, password,id_tipo);
 					id_c = dao.Ottieni_User(cli.getUsername());
 					ClienteGUI view1 = new ClienteGUI(id_c,cli);
-					ClienteGUIController controller1 = new ClienteGUIController(view1,cli);
+					ClienteGUIController controller1 = new ClienteGUIController(view1,cli,username, password,id_tipo);
 					
 				}
 				
@@ -85,6 +91,30 @@ public class LogController implements ActionListener {
 			}
 
 		
+	}
+
+	public User getModel() {
+		return model;
+	}
+
+	public void setModel(User model) {
+		this.model = model;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getId_tipo() {
+		return id_tipo;
+	}
+
+	public void setId_tipo(int id_tipo) {
+		this.id_tipo = id_tipo;
 	}
 	
 	
