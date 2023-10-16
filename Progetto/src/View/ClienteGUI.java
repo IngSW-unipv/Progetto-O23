@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.border.EmptyBorder;
+
+import Controller.LogOutCliController;
 import Model.Cliente;
 
 
@@ -157,15 +159,15 @@ public class ClienteGUI extends JFrame{
 		JLabel lblLogOut = new JLabel("Log out");
 		lblLogOut.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panelLogOut.add(lblLogOut);
+		
 		panelLogOut.addMouseListener(new PanelMouse(panelLogOut) {
 			@Override
 			//chiedo conferma logout e richiamo il form benvenuto
 			public void mouseClicked(MouseEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Sei sicuro?") == 0) {
-					Benvenuto_Form ben = new Benvenuto_Form();
-					ben.setVisible(true);
-					dispose();
-				}
+				JOptionPane opzione = null;
+				LogOutCliController controller = new LogOutCliController(opzione, u);
+				controller.actionPerformed(e);
+				dispose();
 			}
 		});
 		

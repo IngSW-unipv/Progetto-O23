@@ -16,6 +16,8 @@ import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import Controller.LogOutCliController;
+import Controller.LogOutDipController;
 import Model.Dipendenti;
 import Model.User;
 
@@ -129,11 +131,10 @@ public class DipGUI extends JFrame{
 			@Override
 			//chiedo conferma logout e richiamo il form benvenuto
 			public void mouseClicked(MouseEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Sei sicuro?") == 0) {
-					Benvenuto_Form ben = new Benvenuto_Form();
-					ben.setVisible(true);
-					dispose();
-				}
+				JOptionPane opzione = null;
+				LogOutDipController controller = new LogOutDipController(opzione, u);
+				controller.actionPerformed(e);
+				dispose();
 			}
 		});
 		

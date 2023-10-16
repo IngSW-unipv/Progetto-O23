@@ -63,7 +63,7 @@ public class LogController implements ActionListener {
 				}	else if (model.getId_tipo()==2) {
 					
 					view.dispose();
-					Cliente cli = new Cliente(null, null, null, null, null, null, null, id_l, null, null, null, null, id_l);
+					Cliente cli = new Cliente(null, null, null, null, null, null, null, 0, null, null, null, null, 0);
 					cli.login(this.username.getText(),this.password.getText(),id_tipo);
 					id_c = dao.Ottieni_User(cli.getUsername());
 					ClienteGUI view1 = new ClienteGUI(id_c,cli);
