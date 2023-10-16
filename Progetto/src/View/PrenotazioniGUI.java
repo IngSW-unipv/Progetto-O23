@@ -13,7 +13,8 @@ import java.sql.SQLException;
 import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JTable;
-import Controller.PrenotazioneGUIController;
+
+import Controller.prenotazione.PrenotazioneGUIController;
 import Model.Cliente;
 import Model.User;
 import javax.swing.JButton;

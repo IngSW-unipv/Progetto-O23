@@ -1,4 +1,4 @@
-package Controller;
+package Controller.prenotazione;
 
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
