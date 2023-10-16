@@ -16,10 +16,9 @@ import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import Controller.AcController;
-import Controller.DipGuiController;
 import Model.Dipendenti;
 import Model.User;
+
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,13 +30,11 @@ import java.awt.GridLayout;
 import javax.swing.JTextField;
 
 public class DipGUI extends JFrame{
-	public AcController controller;
+
 	public JPanel contentPane;
 	public JLabel lblDip;  //////////////
 	private static int id;
 	private static Dipendenti u;
-	private JButton btnLogout;
-	private JButton btnIMieiDati;
 	
 	
 	//private AccountDip account;
@@ -98,21 +95,47 @@ public class DipGUI extends JFrame{
 		paneMenu.add(lblTitolo);
 		lblTitolo.setFont(new Font("Yuppy TC", Font.PLAIN, 45));
 		
-		btnLogout = new JButton("Log Out");
-		btnLogout.setToolTipText("");
-		btnLogout.setForeground(Color.BLACK);
-		btnLogout.setBackground(new Color(102, 204, 102));
-		btnLogout.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnLogout.setBounds(0, 308, 248, 40);
-		paneMenu.add(btnLogout);
+		JPanel paneDati = new JPanel();
+		paneDati.setBackground(new Color(102, 204, 102));
+		paneDati.setBounds(0, 230, 248, 40);
+		paneMenu.add(paneDati);
+		paneDati.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		paneDati.addMouseListener(new PanelMouse(paneDati){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JLabel lbl = getLbl();
+				AccountDip dip =new AccountDip(getLbl(), id,u);
+				dip.setVisible(true);
+				dispose();
+			}
+		});
 		
-		btnIMieiDati = new JButton("I miei dati");
-		btnIMieiDati.setToolTipText("");
-		btnIMieiDati.setForeground(Color.BLACK);
-		btnIMieiDati.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnIMieiDati.setBackground(new Color(102, 204, 102));
-		btnIMieiDati.setBounds(0, 230, 248, 40);
-		paneMenu.add(btnIMieiDati);
+		JLabel lblIMieiDati = new JLabel("I miei dati");
+		lblIMieiDati.setFont(new Font("Dialog", Font.PLAIN, 16));
+		paneDati.add(lblIMieiDati);
+		
+		JPanel panelLogOut = new JPanel();
+		panelLogOut.setToolTipText("Log out");
+		panelLogOut.setBackground(new Color(102, 204, 102));
+		panelLogOut.setBounds(0, 309, 248, 40);
+		paneMenu.add(panelLogOut);
+		panelLogOut.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblLogOut = new JLabel("Log out");
+		lblLogOut.setFont(new Font("Dialog", Font.PLAIN, 16));
+		panelLogOut.add(lblLogOut);
+		panelLogOut.addMouseListener(new PanelMouse(panelLogOut) {
+			@Override
+			//chiedo conferma logout e richiamo il form benvenuto
+			public void mouseClicked(MouseEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "Sei sicuro?") == 0) {
+					Benvenuto_Form ben = new Benvenuto_Form();
+					ben.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		
 		
 		JLabel lbl = new JLabel("Id lavoratore:");
 		lbl.setBounds(715, 6, 78, 16);
@@ -163,22 +186,7 @@ public class DipGUI extends JFrame{
 		
 	}
 
-	public JButton getBtnLogout() {
-		return btnLogout;
-	}
 
-	public void setBtnLogout(JButton btnLogout) {
-		this.btnLogout = btnLogout;
-	}
-
-	public JButton getBtnIMieiDati() {
-		return btnIMieiDati;
-	}
-
-	public void setBtnIMieiDati(JButton btnIMieiDati) {
-		this.btnIMieiDati = btnIMieiDati;
-	}
-	
 	
 	
 }

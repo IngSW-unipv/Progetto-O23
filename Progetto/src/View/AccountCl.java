@@ -74,6 +74,12 @@ public AccountCl(JLabel lbl, int id,User u) {
 	btnIndietro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 	btnIndietro.setBounds(10, 416, 156, 23);
 	panel.add(btnIndietro);
+	btnIndietro.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		}
+		
+		ClienteGUI cli = new ClienteGUI(id, (Cliente) u);
+	});
 	
 	JButton btnNewButton_1 = new JButton("Modifica dati");
 	btnNewButton_1.addActionListener(new ActionListener() {

@@ -42,27 +42,21 @@ public class LogController implements ActionListener {
 	   
 			try {
 
-					id_tipo=dao.Ottieni_Tipo(view.getUsername());
-				
+				id_tipo=dao.Ottieni_Tipo(view.getUsername());
 				model.login(this.username.getText(),this.password.getText(),id_tipo);
 				
-				
-				if(model.getPassword()==null && model.getUsername()==null) {
+				if(model.getLogin()==false) {
 					
 					view.dispose();
 					Login_Form view  = new Login_Form();
 					
-				}	
-				
-					
-				if(model.getId_tipo()==1) {
+				}else if(model.getId_tipo()==1) {
 					
 					view.dispose();
 					Dipendenti dip=new Dipendenti(null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0);
 					dip.login(this.username.getText(),this.password.getText(),id_tipo);
 					id_l = dao.Ottieni_Dip(dao.Ottieni_User(dip.getUsername()));
 					DipGUI view2 = new DipGUI(id_l, dip);
-					DipGuiController controller2 =new DipGuiController(view2,dip,this.username.getText(),this.password.getText(),id_tipo);
 					view.dispose();
 					
 					
@@ -73,7 +67,7 @@ public class LogController implements ActionListener {
 					cli.login(this.username.getText(),this.password.getText(),id_tipo);
 					id_c = dao.Ottieni_User(cli.getUsername());
 					ClienteGUI view1 = new ClienteGUI(id_c,cli);
-					ClienteGUIController controller1 = new ClienteGUIController(view1,cli,this.username.getText(),this.password.getText(),id_tipo);
+					
 					
 				}
 				
@@ -89,13 +83,7 @@ public class LogController implements ActionListener {
 			
 			
 			
-			}else if(e.getSource()==view.btnBack) {
-				
-				Benvenuto_Form view1 = new Benvenuto_Form();
-				BenvenutoController controller = new BenvenutoController(view1);
-		           
-				
-			} else if(e.getSource()==view.btnPsw){
+			}else if(e.getSource()==view.btnPsw){
 				
 				
 				
