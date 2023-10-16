@@ -12,7 +12,7 @@ import java.awt.EventQueue;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Controller.ClientController;
-
+import Model.Cliente;
 import Model.User;
 import dao.Gestione_Dao;
 
@@ -27,13 +27,13 @@ public class PrenotaGUI extends JFrame {
 
 	public JTable table_1;
 	private static JLabel lblId;
-	private static int id;;
+	private static int id;
 	private JTextField textField;
 	private JTextField textField_1;
-	private User user;;
 	private Gestione_Dao dao;
 	private String selectedValueCol3;
 	private String selectedValueCol1;
+	private static Cliente c;
 	
 	private ClientController controller; // aggiunta del controller
 
@@ -65,6 +65,7 @@ public class PrenotaGUI extends JFrame {
 		
 		PrenotaGUI.lblId=lblId;
 		PrenotaGUI.id=id;
+		PrenotaGUI.c = c;
 
 		setBackground(new Color(240, 240, 240));
 
@@ -142,7 +143,7 @@ public class PrenotaGUI extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ClienteGUI cl = new ClienteGUI(id, user);
+				ClienteGUI cl = new ClienteGUI(id, c);
 				cl.setLbl(lblId);
 				cl.setVisible(true);
 				dispose();

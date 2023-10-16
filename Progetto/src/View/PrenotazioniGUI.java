@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JTable;
 import Controller.PrenotazioneGUIController;
+import Model.Cliente;
 import Model.User;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ public class PrenotazioniGUI extends JFrame {
 	public JTable table;
 	private static JLabel lblId;
 	private static int id;
-	private static User u;
+	private static Cliente c;
 	private PrenotazioneGUIController controller; // aggiunta del controller
 	public JTable table_1;
 	private String selectedValueCol1;
@@ -42,7 +43,7 @@ public class PrenotazioniGUI extends JFrame {
 
 				try {
 
-					PrenotazioniGUI frame = new PrenotazioniGUI(lblId, id, u);
+					PrenotazioniGUI frame = new PrenotazioniGUI(lblId, id, c);
 
 					frame.setVisible(true);
 
@@ -63,7 +64,7 @@ public class PrenotazioniGUI extends JFrame {
 		
 		PrenotazioniGUI.lblId=lblId;
 		PrenotazioniGUI.id=id;
-		PrenotazioniGUI.u = u;
+		PrenotazioniGUI.c = c;
 		
 		controller = new PrenotazioneGUIController(this); 
 		
@@ -105,7 +106,7 @@ public class PrenotazioniGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				
-				ClienteGUI cl = new ClienteGUI(id, u);
+				ClienteGUI cl = new ClienteGUI(id, c);
 				cl.setLbl(lblId);
 
 				cl.setVisible(true);
