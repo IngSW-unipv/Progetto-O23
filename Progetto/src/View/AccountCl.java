@@ -76,9 +76,12 @@ public AccountCl(JLabel lbl, int id,User u) {
 	panel.add(btnIndietro);
 	btnIndietro.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			ClienteGUI cli = new ClienteGUI(id, (Cliente) u);
+			dispose();
 		}
 		
-		ClienteGUI cli = new ClienteGUI(id, (Cliente) u);
+		
+
 	});
 	
 	JButton btnNewButton_1 = new JButton("Modifica dati");

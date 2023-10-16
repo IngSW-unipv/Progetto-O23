@@ -139,10 +139,11 @@ public class ClienteGUI extends JFrame{
 		paneDati.addMouseListener(new PanelMouse(paneDati){
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				dispose();
 				JLabel lbl = getLbl();
 				AccountCl cl =new AccountCl(getLbl(), id,u);
 				cl.setVisible(true);
-				dispose();
+				
 			}
 		});
 		

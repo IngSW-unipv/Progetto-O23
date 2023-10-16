@@ -103,10 +103,11 @@ public class DipGUI extends JFrame{
 		paneDati.addMouseListener(new PanelMouse(paneDati){
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				dispose();
 				JLabel lbl = getLbl();
 				AccountDip dip =new AccountDip(getLbl(), id,u);
 				dip.setVisible(true);
-				dispose();
+				
 			}
 		});
 		
