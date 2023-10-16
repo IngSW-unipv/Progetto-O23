@@ -2,35 +2,19 @@ package View;
 
 
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JPanel;
-import java.awt.GridBagConstraints;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JSplitPane;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-
-import Controller.AcController;
-import Controller.ClientController;
-import Controller.ClienteGUIController;
-import Controller.PswController;
 import Model.Cliente;
-import Model.User;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import javax.swing.JTextField;
 
 public class ClienteGUI extends JFrame{
 	public JPanel contentPane;
@@ -96,27 +80,13 @@ public class ClienteGUI extends JFrame{
 		paneSt.add(lblSt);
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel panePr = new JPanel();
-		/*panePr.addMouseListener(new PanelMouse(panePr){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				controller.riempitabella();
-				JLabel lbl = getLbl();
-				PrenotaGUI pr =new PrenotaGUI(getLbl(), id);
-				pr.setVisible(true);
-				dispose();
-			}
-		});*/
+		
 		panePr.setBounds(0, 243, 248, 40);
 		paneMenu.add(panePr);
 		panePr.setBackground(new Color(102, 204, 102));
 		panePr.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		JLabel lblPr = new JLabel("Prenota");
 		panePr.add(lblPr);
-		panePr.addMouseListener(new PanelMouse(panePr){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
 		
 		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
