@@ -80,6 +80,15 @@ public class ClienteGUI extends JFrame{
 		paneSt.add(lblSt);
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel panePr = new JPanel();
+		panePr.addMouseListener(new PanelMouse(panePr){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PrenotaGUI prenota = new PrenotaGUI(lblCl, id);
+				prenota.setVisible(true);
+				ClienteGUI.this.dispose();
+			}
+		});
+		
 		
 		panePr.setBounds(0, 243, 248, 40);
 		paneMenu.add(panePr);
