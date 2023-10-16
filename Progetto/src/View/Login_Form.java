@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controller.LogController;
 import Model.User;
 import dao.Gestione_Dao;
 
@@ -29,8 +30,8 @@ import java.awt.Insets;
 public class Login_Form extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField username;
-	private JPasswordField password;
+	private  JTextField username;
+	private  JPasswordField password;
 	public JButton btnAccedi;
 	public JButton btnPsw;
 	public JLabel lblLogin;
@@ -90,6 +91,10 @@ public class Login_Form extends JFrame {
 		gbc_lblLogin.gridy = 0;
 		contentPane.add(lblLogin, gbc_lblLogin);
 		
+		
+		
+		
+		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setFont(new Font("Thonburi", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
@@ -127,6 +132,7 @@ public class Login_Form extends JFrame {
 		
 		btnAccedi = new JButton("Accedi al tuo account");
 		
+		
 				btnAccedi.setFont(new Font("Tahoma", Font.PLAIN, 20));
 				GridBagConstraints gbc_btnAccedi = new GridBagConstraints();
 				gbc_btnAccedi.fill = GridBagConstraints.BOTH;
@@ -135,17 +141,11 @@ public class Login_Form extends JFrame {
 				gbc_btnAccedi.gridy = 4;
 				contentPane.add(btnAccedi, gbc_btnAccedi);
 		
-						
+				LogController controller = new LogController(this,username,password);
+				btnAccedi.addActionListener(controller);	
 				
 				btnBack = new JButton("Torna indietro");
-				/*btnBack.addActionListener(new ActionListener() {
-					
-					public void actionPerformed(ActionEvent e) {
-						Benvenuto_Form benForm =new Benvenuto_Form();
-						benForm.setVisible(true);
- 	            dispose();
-					}
-				});*/
+				
 				
 					btnPsw = new JButton("Password dimenticata?");
 					btnPsw.setFont(new Font("Tahoma", Font.PLAIN, 20));
