@@ -45,6 +45,16 @@ public class LogController implements ActionListener {
 					id_tipo=dao.Ottieni_Tipo(view.getUsername());
 				
 				model.login(this.username.getText(),this.password.getText(),id_tipo);
+				
+				
+				if(model.getPassword()==null && model.getUsername()==null) {
+					
+					view.dispose();
+					Login_Form view  = new Login_Form();
+					
+				}	
+				
+					
 				if(model.getId_tipo()==1) {
 					
 					view.dispose();
@@ -66,6 +76,7 @@ public class LogController implements ActionListener {
 					ClienteGUIController controller1 = new ClienteGUIController(view1,cli,this.username.getText(),this.password.getText(),id_tipo);
 					
 				}
+				
 				
 			} catch (SQLException e1) {
 				
