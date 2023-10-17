@@ -1,11 +1,13 @@
 package Model.direttore;
 
+import java.awt.event.ActionEvent;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -34,7 +36,9 @@ public class DirettoreDAO {
 
        try {
            // Inserimento dei dati nella tabella user
-           String sql = "INSERT INTO user (ID_USER,cf, nome, cognome, data_nascita, cell, email, via, citta, provincia, cap, username, password, id_tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+           String sql = "INSERT INTO user "
+           		+ "(ID_USER,cf, nome, cognome, data_nascita, cell, email, via, citta, provincia, cap, username, password, id_tipo) "
+           		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
            stmt = con.prepareStatement(sql);
            stmt.setInt(1, generaID());
            stmt.setString(2, cf);
@@ -77,7 +81,8 @@ public class DirettoreDAO {
             
             try {
                 // Check if the generated ID already exists in the database
-                String sql = "SELECT COUNT(*) FROM user WHERE ID_USER = ?";
+                String sql = "SELECT COUNT(*) FROM user "
+                		+ "WHERE ID_USER = ?";
                 stmt = con.prepareStatement(sql);
                 stmt.setInt(1, id);
                 rs = stmt.executeQuery();
@@ -102,57 +107,16 @@ public class DirettoreDAO {
     }	
 	
 	
-	public void caricaTurni(JTable table) {
-		 DBConnessione d = new DBConnessione();
-	        Connection con = null;
-	        con = d.connessione(con);
-		
-		String sql = "select id_l, giorno, ora_inizio, ora_fine from turni_lavoro";
-		
-		 try(PreparedStatement stmt = con.prepareStatement(sql)) {
-	         
-			 
-			 
-	         ResultSet rs = stmt.executeQuery();
-			 java.sql.ResultSetMetaData rsmd = rs.getMetaData();
-			 DefaultTableModel model =(DefaultTableModel) table.getModel();
-	         
-			 int col = rsmd.getColumnCount();
-			 String[] colName = new String[col];
-			 
-			 for(int i=0; i<col; i++ ) {
-				 colName[i]=rsmd.getColumnName(i+1);
-				 model.setColumnIdentifiers(colName);
-			 }	 
-				 
-				 
-				 while(rs.next()) {
-					 
-					 String lavoratore=rs.getString(1);
-					 String giorno=rs.getString(2);
-					 String ora_inizio=rs.getString(3);
-					 String ora_fine=rs.getString(4);
-					 
-					 
-					 String[] row= {lavoratore, giorno, ora_inizio, ora_fine};
-					 model.addRow(row);
-				
-			 }
-				 rs.close();
-				 stmt.close();
-		
-		 } catch(SQLException e1) {
-			 e1.printStackTrace();
-		 }
-		
-	}
+	
 	
 	public void caricaStanze(JTable table) {
 		 DBConnessione d = new DBConnessione();
 	        Connection con = null;
 	        con = d.connessione(con);
 		
-		String sql = "select numero, cod_pr, check_in, check_out, data_pr, id_user from camera left join prenotazione on numero=numero_camera";
+		String sql = "select numero, cod_pr, check_in, check_out, data_pr, id_user from camera "
+				+ "left join prenotazione on numero=numero_camera "
+				+ "ORDER BY NUMERO asc";
 		
 		 try(PreparedStatement stmt = con.prepareStatement(sql)) {
 	         
@@ -161,7 +125,7 @@ public class DirettoreDAO {
 	         ResultSet rs = stmt.executeQuery();
 			 java.sql.ResultSetMetaData rsmd = rs.getMetaData();
 			 DefaultTableModel model =(DefaultTableModel) table.getModel();
-	         
+			 model.setRowCount(0);
 			 int col = rsmd.getColumnCount();
 			 String[] colName = new String[col];
 			 
@@ -192,6 +156,5 @@ public class DirettoreDAO {
 		 }
 		
 	}
-	
-	
+
 }

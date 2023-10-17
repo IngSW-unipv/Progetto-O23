@@ -1,61 +1,17 @@
-package View;
+package View.direttore;
 
 
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.sql.*;
 
-
-
-import java.awt.Color;
-
-
-
-import java.awt.EventQueue;
-
-import java.awt.Font;
-
-import javax.swing.JFrame;
-
-import javax.swing.JPanel;
-
-import javax.swing.border.EmptyBorder;
-
-import javax.swing.JButton;
-
-import javax.swing.JTable;
-
-import javax.swing.JScrollPane;
-
-import java.awt.event.ActionListener;
-
-import java.sql.Connection;
-
-import java.sql.Date;
-
-import java.sql.PreparedStatement;
-
-import java.sql.SQLException;
-
-import java.sql.Time;
-
-import java.awt.event.ActionEvent;
-
-import javax.swing.JLabel;
-
-import java.awt.GridBagLayout;
-
-import java.awt.GridBagConstraints;
-
-import java.awt.Insets;
-
-import javax.swing.JTextField;
-
-
-
-import Controller.DirController;
+import Controller.direttore.LavActionListener;
+import java.awt.event.*;
 
 import Model.User;
-
 import Model.direttore.DirettoreDAO;
-
+import Model.turni.TurniDao;
 import dao.DBConnessione;
 
 
@@ -68,9 +24,9 @@ public class LavoratoriGUI extends JFrame {
 
 	public JTable table;
 
-	private DirettoreDAO dao;
+	private TurniDao dao;
 
-	private Connection conn;
+	
 
 	public static JLabel lbl;
 
@@ -86,6 +42,12 @@ public class LavoratoriGUI extends JFrame {
 
 	private JTextField OfField;
 
+	private JButton btnAg;
+	private JButton btn;
+	private JButton btnCancella;
+	private JButton btnMo;
+	
+	private int idT;
 
 
 	/**
@@ -138,15 +100,15 @@ public class LavoratoriGUI extends JFrame {
 		LavoratoriGUI.u=u;
 
 
-		dao = new DirettoreDAO();
+		dao = new TurniDao();
 
 
-		DirController controller = new DirController(dao, this);
+		LavActionListener controller = new LavActionListener(dao, this);
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setBounds(100, 100, 741, 565);
+		setBounds(100, 100, 888, 565);
 
 		contentPane = new JPanel();
 
@@ -206,6 +168,27 @@ public class LavoratoriGUI extends JFrame {
 		table = new JTable();
 
 		scrollPane.setViewportView(table);
+		
+		table.addMouseListener(new MouseAdapter() {
+
+			 public void mouseClicked(MouseEvent e) {
+				 int row = table.getSelectedRow();
+	                
+	                    // Ottieni i valori delle colonne desiderate per la riga selezionata
+	                    String id_l = (String) table.getValueAt(row, 0);  
+	                    String giorno = (String) table.getValueAt(row, 1);
+	                    String oraI = (String) table.getValueAt(row, 2);
+	                    String oraF = (String) table.getValueAt(row, 3);
+	                    idT = Integer.valueOf((String) table.getValueAt(row, 4));
+	                    // imposta i valori nelle field
+	                    IdField.setText(id_l);
+	                    DayField.setText(giorno);
+	                    OiField.setText(oraI);
+	                    OfField.setText(oraF);
+	                      
+	            }
+	        });
+		
 
 
 		JLabel lblId = new JLabel("Id:");
@@ -344,9 +327,9 @@ public class LavoratoriGUI extends JFrame {
 		OfField.setColumns(10);
 
 
-		JButton btnAg = new JButton("Aggiorna");
+		btnAg = new JButton("Aggiorna");
 
-		btnAg.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		getBtnAg().setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		GridBagConstraints gbc_btnAg = new GridBagConstraints();
 
@@ -358,9 +341,9 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_btnAg.gridy = 7;
 
-		contentPane.add(btnAg, gbc_btnAg);
+		contentPane.add(getBtnAg(), gbc_btnAg);
 
-		btnAg.addActionListener(new ActionListener() {
+		getBtnAg().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
@@ -371,11 +354,16 @@ public class LavoratoriGUI extends JFrame {
 		});
 
 
-		JButton btnMo = new JButton("Modifica");
+		btnMo = new JButton("Modifica");
+		btnMo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.actionPerformed(e);
+			}
+		});
 
 		GridBagConstraints gbc_btnMo = new GridBagConstraints();
 
-		btnMo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		getBtnMo().setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		gbc_btnMo.fill = GridBagConstraints.BOTH;
 
@@ -385,8 +373,8 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_btnMo.gridy = 7;
 
-		contentPane.add(btnMo, gbc_btnMo);
-
+		contentPane.add(getBtnMo(), gbc_btnMo);
+/*
 		btnMo.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -431,14 +419,15 @@ public class LavoratoriGUI extends JFrame {
 
 		});
 
-
-		JButton btn = new JButton("Aggiungi");
+*/
+		
+		btn = new JButton("Aggiungi");
 
 
 
 		GridBagConstraints gbc_btn = new GridBagConstraints();
 
-		btn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		getBtn().setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		gbc_btn.fill = GridBagConstraints.BOTH;
 
@@ -448,60 +437,24 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_btn.gridy = 8;
 
-		contentPane.add(btn, gbc_btn);
-
-		btn.addActionListener(new ActionListener() {
+		contentPane.add(getBtn(), gbc_btn);
+		
+		getBtn().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				// Connessione al database
-
-				DBConnessione d =new DBConnessione();
-
-				Connection con=null;
-
-				con=d.connessione(con);
-
-				PreparedStatement stmt = null;
-
-
-
-				try {
-
-					String sql ="insert into turni_lavoro (id_l, giorno, ora_inizio, ora_fine) values (?, ?, ?, ?)";
-
-					stmt=con.prepareStatement(sql);
-
-					stmt.setInt(1, Integer.valueOf(IdField.getText()));
-
-					stmt.setDate(2, Date.valueOf(DayField.getText()));
-
-					stmt.setTime(3, Time.valueOf(OiField.getText()));
-
-					stmt.setTime(4, Time.valueOf(OfField.getText()));
-
-
-
-					stmt.executeUpdate();
-
-					System.out.println("Aggiunta completata con successo");
-
-
-
-				} catch (SQLException e1) {
-
-					e1.printStackTrace();
-
-				} 
-
-
+				controller.actionPerformed(e);
 
 			}
 
 		});
 
-
-		JButton btnCancella = new JButton("Cancella");
+		btnCancella = new JButton("Cancella");
+		btnCancella.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.actionPerformed(e);
+			}
+		});
 
 		GridBagConstraints gbc_btnCancella = new GridBagConstraints();
 
@@ -552,6 +505,46 @@ public class LavoratoriGUI extends JFrame {
 
 
 
+	}
+	
+	public String getId_l() {
+		return IdField.getText();
+	}
+	
+	public String getGiorno() {
+		return DayField.getText();
+	}
+	public String getOraI() {
+		return OiField.getText();
+	}
+	public String getOraf() {
+		return OfField.getText();
+	}
+
+
+
+	public JButton getBtnAg() {
+		return btnAg;
+	}
+
+	public JButton getBtn() {
+		return btn;
+	}
+	
+	public JButton getBtnCancella() {
+		return btnCancella;
+	}
+
+
+
+	public JButton getBtnMo() {
+		return btnMo;
+	}
+
+
+
+	public int getIdT() {
+		return idT;
 	}
 
 }

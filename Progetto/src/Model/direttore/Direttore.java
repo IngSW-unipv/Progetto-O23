@@ -1,10 +1,17 @@
 package Model.direttore;
 
+import java.sql.Date;
+import java.sql.Time;
+
 import Model.User;
+import Model.turni.TurniDao;
+import Model.turni.Turni_Lavoro;
 
 public class Direttore extends User{
 	private int id_L;
 	private float Stipendio;
+	
+	
 
 //COSTRUTTORE
 	public Direttore(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String via, String citta, String provincia, int cap, String numTelefono,
@@ -29,8 +36,20 @@ public class Direttore extends User{
 	}
 
 	
+	public void aggiuntaT(int id_l, Date giorno, Time oraI, Time oraF, int id_t) {
+		TurniDao turni = new TurniDao();
+		turni.aggiungiTurni(id_l, giorno, oraI, oraF, id_t);
+	}
 	
-
+	public void rimuoviT(int id_t) {
+		TurniDao turni = new TurniDao();
+		turni.eliminaTurni(id_t);
+	}
+	
+	public void modificaT(int id_l, Date giorno, Time oraI, Time oraF, int id_t) {
+		TurniDao turni = new TurniDao();
+		turni.modificaTurni(id_l, giorno, oraI, oraF, id_t);
+	}
 	
 	
 

@@ -1,4 +1,4 @@
-package View;
+package View.direttore;
 
 
 import javax.swing.*;
@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.AcController;
 import Model.User;
+import View.AccountCl;
+import View.Benvenuto_Form;
 
 
 public class DirettoreGUI extends JFrame{
