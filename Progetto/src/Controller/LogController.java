@@ -9,7 +9,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Model.*;
+import Model.direttore.Direttore;
 import View.*;
+import View.direttore.DirettoreGUI;
 import dao.Gestione_Dao;
 
 public class LogController implements ActionListener {
@@ -37,6 +39,7 @@ public class LogController implements ActionListener {
 			Gestione_Dao dao = new Gestione_Dao();
 			int id_c=0;
 			int id_l=0;
+			int id_d=0;
 			  
 			////
 	   
@@ -69,6 +72,12 @@ public class LogController implements ActionListener {
 					ClienteGUI view1 = new ClienteGUI(id_c,cli);
 					
 					
+				}else if (model.getId_tipo()==3) {
+					
+					Direttore dir = new Direttore(null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0);
+					dir.login(this.username.getText(),this.password.getText(),id_tipo);
+					id_d = dao.Ottieni_User(dir.getUsername());
+					DirettoreGUI view3 =new DirettoreGUI(id_d, dir);
 				}
 				
 				
