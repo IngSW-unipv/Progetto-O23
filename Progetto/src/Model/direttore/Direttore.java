@@ -3,9 +3,8 @@ package Model.direttore;
 import java.sql.Date;
 import java.sql.Time;
 
+import Model.Turni_Lavoro;
 import Model.User;
-import Model.turni.TurniDao;
-import Model.turni.Turni_Lavoro;
 
 public class Direttore extends User{
 	private int id_L;

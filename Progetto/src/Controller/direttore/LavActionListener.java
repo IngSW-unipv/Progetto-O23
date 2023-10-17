@@ -11,7 +11,7 @@ import java.sql.Time;
 import javax.swing.JOptionPane;
 
 import Model.direttore.DirettoreDAO;
-import Model.turni.TurniDao;
+import Model.direttore.TurniDao;
 import View.direttore.LavoratoriGUI;
 import dao.Gestione_Dao;
 

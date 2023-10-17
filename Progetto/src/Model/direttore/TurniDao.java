@@ -1,4 +1,4 @@
-package Model.turni;
+package Model.direttore;
 
 import java.sql.Connection;
 import java.sql.Date;

@@ -12,7 +12,7 @@ import java.awt.event.*;
 import Model.User;
 import Model.direttore.Direttore;
 import Model.direttore.DirettoreDAO;
-import Model.turni.TurniDao;
+import Model.direttore.TurniDao;
 import dao.DBConnessione;
 
 
