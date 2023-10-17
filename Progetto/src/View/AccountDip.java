@@ -9,7 +9,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JTextField;
 
-import Controller.AcController;
+import Model.Cliente;
+import Model.Dipendenti;
 import Model.User;
 import dao.Gestione_Dao;
 
@@ -35,7 +36,7 @@ public class AccountDip extends JFrame {
 	private static JLabel lbl;
 	private static int id;
 	private static User u;
-	private JButton btnIndierto;
+
 
 
 	public static void main(String[] args) {
@@ -74,10 +75,19 @@ public class AccountDip extends JFrame {
 		
 		
 		
-		btnIndierto = new JButton("Torna indietro");
+		JButton btnIndierto;btnIndierto = new JButton("Torna indietro");
 		btnIndierto.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnIndierto.setBounds(10, 416, 156, 23);
 		panel.add(btnIndierto);
+		btnIndierto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DipGUI cli = new DipGUI(id,(Dipendenti) u);
+				dispose();
+			}
+			
+			
+
+		});
 		
 		JLabel lblUs = new JLabel("Username");
 		lblUs.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -155,12 +165,6 @@ public class AccountDip extends JFrame {
 		
 
 	}
-	public JButton getBtnIndierto() {
-		return btnIndierto;
-	}
-	public void setBtnIndierto(JButton btnIndierto) {
-		this.btnIndierto = btnIndierto;
-	}
-	
+
 	
 }

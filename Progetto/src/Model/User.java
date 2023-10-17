@@ -243,6 +243,9 @@ public boolean logout(boolean log) {
    	 	NumTelefono=null;
    	 	DataDiNascita=null;
    	 	System.out.println("logout effettuato!");
+   	 	
+   	 	System.out.println(toString());
+   	 	
    	 	return login;
 		
 		

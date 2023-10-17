@@ -8,6 +8,7 @@ import java.awt.event.*;
 
 import Controller.direttore.StanzaActionListener;
 import Model.User;
+import Model.direttore.Direttore;
 import Model.direttore.DirettoreDAO;
 
 public class StanzeGUI extends JFrame {
@@ -17,7 +18,7 @@ public class StanzeGUI extends JFrame {
 	private DirettoreDAO dao;
 	public static JLabel lbl;
 	private static int id;
-	private static User u;
+	private static Direttore dir;
 
 	/**
 	 * Launch the application.
@@ -26,7 +27,7 @@ public class StanzeGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StanzeGUI frame = new StanzeGUI(lbl, id, u);
+					StanzeGUI frame = new StanzeGUI(lbl, id, dir);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,11 +40,11 @@ public class StanzeGUI extends JFrame {
 	 * Create the frame.
 	 * @param lbl 
 	 */
-	public StanzeGUI(JLabel lbl, int id, User u) {
+	public StanzeGUI(JLabel lbl, int id, Direttore dir) {
 		
 		StanzeGUI.lbl = lbl;
 		StanzeGUI.id=id;
-		StanzeGUI.u=u;
+		StanzeGUI.dir=dir;
 		
 		dao = new DirettoreDAO();
 		
@@ -106,7 +107,7 @@ public class StanzeGUI extends JFrame {
 		contentPane.add(btnBack, gbc_btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DirettoreGUI dip = new DirettoreGUI(id, u);
+				DirettoreGUI dip = new DirettoreGUI(id, dir);
 				dip.setLbl(lbl);
 				dispose();
 			}

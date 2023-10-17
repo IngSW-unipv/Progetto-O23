@@ -10,6 +10,7 @@ import Controller.direttore.LavActionListener;
 import java.awt.event.*;
 
 import Model.User;
+import Model.direttore.Direttore;
 import Model.direttore.DirettoreDAO;
 import Model.turni.TurniDao;
 import dao.DBConnessione;
@@ -32,7 +33,7 @@ public class LavoratoriGUI extends JFrame {
 
 	private static int id;
 
-	private static User u;
+	private static Direttore dir;
 
 	private JTextField IdField;
 
@@ -64,7 +65,7 @@ public class LavoratoriGUI extends JFrame {
 
 				try {
 
-					LavoratoriGUI frame = new LavoratoriGUI(lbl, id, u);
+					LavoratoriGUI frame = new LavoratoriGUI(lbl, id, dir);
 
 					frame.setVisible(true);
 
@@ -90,14 +91,14 @@ public class LavoratoriGUI extends JFrame {
 
 	 */
 
-	public LavoratoriGUI(JLabel lbl, int id, User u) {
+	public LavoratoriGUI(JLabel lbl, int id, Direttore dir) {
 
 
 		LavoratoriGUI.lbl = lbl;
 
 		LavoratoriGUI.id=id;
 
-		LavoratoriGUI.u=u;
+		LavoratoriGUI.dir=dir;
 
 
 		dao = new TurniDao();
@@ -491,7 +492,7 @@ public class LavoratoriGUI extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				DirettoreGUI dip = new DirettoreGUI(id, u);
+				DirettoreGUI dip = new DirettoreGUI(id, dir);
 
 				dip.setLbl(lbl);
 

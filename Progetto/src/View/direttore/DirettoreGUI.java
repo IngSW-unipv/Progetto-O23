@@ -7,8 +7,9 @@ import java.awt.event.MouseEvent;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
 
-import Controller.AcController;
+
 import Model.User;
+import Model.direttore.Direttore;
 import View.AccountCl;
 import View.Benvenuto_Form;
 
@@ -17,14 +18,14 @@ public class DirettoreGUI extends JFrame{
 	public JPanel contentPane;
 	private JLabel lblCl;
 	private static int id;
-	private static User u;
+	private static Direttore dir;
 	 
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DirettoreGUI frame = new DirettoreGUI(id,u);
+					DirettoreGUI frame = new DirettoreGUI(id,dir);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,9 +34,9 @@ public class DirettoreGUI extends JFrame{
 		});
 	}
 
-	public DirettoreGUI(int id,User u){
+	public DirettoreGUI(int id,Direttore dir){
 		DirettoreGUI.id = id;
-		DirettoreGUI.u = u;
+		DirettoreGUI.dir = dir;
 		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,7 +78,7 @@ public class DirettoreGUI extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = getLbl();
-				AccountCl cl =new AccountCl(getLbl(), id,u);
+				AccountCl cl =new AccountCl(getLbl(), id,dir);
 				cl.setVisible(true);
 				dispose();
 			}
@@ -98,7 +99,7 @@ public class DirettoreGUI extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = getLbl();
-				LavoratoriGUI tp =new LavoratoriGUI(getLbl(), id, u);
+				LavoratoriGUI tp =new LavoratoriGUI(getLbl(), id, dir);
 				tp.setVisible(true);
 				dispose();
 			}
@@ -118,7 +119,7 @@ public class DirettoreGUI extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = getLbl();
-				StanzeGUI pr =new StanzeGUI(getLbl(), id, u);
+				StanzeGUI pr =new StanzeGUI(getLbl(), id, dir);
 				pr.setVisible(true);
 				dispose();
 			}
