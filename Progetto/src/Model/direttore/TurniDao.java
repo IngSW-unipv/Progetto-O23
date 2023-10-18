@@ -10,7 +10,6 @@ import java.sql.Time;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import View.direttore.LavoratoriGUI;
 import dao.DBConnessione;
 
 public class TurniDao {
@@ -20,7 +19,7 @@ public class TurniDao {
 	        Connection con = null;
 	        con = d.connessione(con);
 		
-		String sql = "select id_l, giorno, ora_inizio, ora_fine, id_t from turni_lavoro";
+		String sql = "select id_l, giorno, ora_inizio, ora_fine, id_t from turni_lavoro ORDER BY giorno asc";
 		
 		 try(PreparedStatement stmt = con.prepareStatement(sql)) {
 	         

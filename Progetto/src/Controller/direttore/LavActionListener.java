@@ -12,15 +12,15 @@ import javax.swing.JOptionPane;
 
 import Model.direttore.DirettoreDAO;
 import Model.direttore.TurniDao;
-import View.direttore.LavoratoriGUI;
+import View.direttore.LavTurniGUI;
 import dao.Gestione_Dao;
 
 
 public class LavActionListener implements ActionListener {
 	private TurniDao dao;
-	private LavoratoriGUI view;
+	private LavTurniGUI view;
 	
-	public LavActionListener(TurniDao dao, LavoratoriGUI view){
+	public LavActionListener(TurniDao dao, LavTurniGUI view){
 		this.dao=dao;
 		this.view=view;
 		

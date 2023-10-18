@@ -99,7 +99,7 @@ public class DirettoreGUI extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = getLbl();
-				LavoratoriGUI tp =new LavoratoriGUI(getLbl(), id, dir);
+				LavTurniGUI tp =new LavTurniGUI(getLbl(), id, dir);
 				tp.setVisible(true);
 				dispose();
 			}

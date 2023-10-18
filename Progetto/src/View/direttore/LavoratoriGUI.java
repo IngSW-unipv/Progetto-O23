@@ -1,15 +1,15 @@
 package View.direttore;
 
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.sql.*;
 
-import Controller.direttore.LavActionListener;
+import Controller.direttore.GestioneLavAL;
 import java.awt.event.*;
 
 import Model.User;
+import Model.direttore.DipendentiDAO;
 import Model.direttore.Direttore;
 import Model.direttore.DirettoreDAO;
 import Model.direttore.TurniDao;
@@ -23,9 +23,15 @@ public class LavoratoriGUI extends JFrame {
 
 	private JPanel contentPane;
 
-	public JTable table;
+	private JTable table;
 
-	private TurniDao dao;
+	public JTable getTable() {
+		return table;
+	}
+
+
+
+	private DipendentiDAO dao;
 
 	
 
@@ -37,18 +43,16 @@ public class LavoratoriGUI extends JFrame {
 
 	private JTextField IdField;
 
-	private JTextField DayField;
+	private JTextField RuField;
 
-	private JTextField OiField;
-
-	private JTextField OfField;
+	private JTextField StField;
 
 	private JButton btnAg;
-	private JButton btn;
 	private JButton btnCancella;
 	private JButton btnMo;
 	
-	private int idT;
+	private int id_l;
+	private int stipendio;
 
 
 	/**
@@ -101,15 +105,15 @@ public class LavoratoriGUI extends JFrame {
 		LavoratoriGUI.dir=dir;
 
 
-		dao = new TurniDao();
+		dao = new DipendentiDAO();
 
 
-		LavActionListener controller = new LavActionListener(dao, this);
+		GestioneLavAL controller = new GestioneLavAL(dao, this);
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setBounds(100, 100, 888, 565);
+		setBounds(100, 100, 1376, 500);
 
 		contentPane = new JPanel();
 
@@ -121,13 +125,13 @@ public class LavoratoriGUI extends JFrame {
 
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 
-		gbl_contentPane.columnWidths = new int[]{40, 117, 120, 344, 20, 0};
+		gbl_contentPane.columnWidths = new int[]{20, 190, 190, 344, 10, 0};
 
-		gbl_contentPane.rowHeights = new int[]{40, 40, 40, 40, 40, 40, 40, 40, 40, 40,40, 0};
+		gbl_contentPane.rowHeights = new int[]{40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0};
 
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0,0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 
 		contentPane.setLayout(gbl_contentPane);
 
@@ -153,15 +157,15 @@ public class LavoratoriGUI extends JFrame {
 
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 
-		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 
-		gbc_scrollPane.gridheight = 11;
+		gbc_scrollPane.gridheight = 8;
 
 		gbc_scrollPane.gridx = 3;
 
-		gbc_scrollPane.gridy = 1;
+		gbc_scrollPane.gridy = 2;
 
 		contentPane.add(scrollPane, gbc_scrollPane);
 
@@ -176,20 +180,18 @@ public class LavoratoriGUI extends JFrame {
 				 int row = table.getSelectedRow();
 	                
 	                    // Ottieni i valori delle colonne desiderate per la riga selezionata
-	                    String id_l = (String) table.getValueAt(row, 0);  
-	                    String giorno = (String) table.getValueAt(row, 1);
-	                    String oraI = (String) table.getValueAt(row, 2);
-	                    String oraF = (String) table.getValueAt(row, 3);
-	                    idT = Integer.valueOf((String) table.getValueAt(row, 4));
+	                    id_l = Integer.valueOf((String) table.getValueAt(row, 0));  
+	                    String ruolo = (String) table.getValueAt(row, 3);
+	                    String stipendio = ((String) table.getValueAt(row, 4));
+	                    
 	                    // imposta i valori nelle field
-	                    IdField.setText(id_l);
-	                    DayField.setText(giorno);
-	                    OiField.setText(oraI);
-	                    OfField.setText(oraF);
+	                    IdField.setText(String.valueOf(id_l));
+	                    RuField.setText(ruolo);
+	                    StField.setText(stipendio);
+	                    
 	                      
 	            }
 	        });
-		
 
 
 		JLabel lblId = new JLabel("Id:");
@@ -226,106 +228,72 @@ public class LavoratoriGUI extends JFrame {
 		IdField.setColumns(10);
 
 
-		JLabel lblDay = new JLabel("Giorno:");
+		JLabel lblRu = new JLabel("Ruolo:");
 
-		lblDay.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		GridBagConstraints gbc_lblRu = new GridBagConstraints();
 
-		GridBagConstraints gbc_lblDay = new GridBagConstraints();
+		gbc_lblRu.anchor = GridBagConstraints.EAST;
 
-		gbc_lblDay.anchor = GridBagConstraints.EAST;
+		lblRu.setFont(new Font("Thonburi", Font.PLAIN, 16));
 
-		gbc_lblDay.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRu.insets = new Insets(0, 0, 5, 5);
 
-		gbc_lblDay.gridx = 1;
+		gbc_lblRu.gridx = 1;
 
-		gbc_lblDay.gridy = 3;
+		gbc_lblRu.gridy = 3;
 
-		contentPane.add(lblDay, gbc_lblDay);
-
-
-		DayField = new JTextField();
-
-		GridBagConstraints gbc_DayField = new GridBagConstraints();
-
-		gbc_DayField.insets = new Insets(0, 0, 5, 5);
-
-		gbc_DayField.fill = GridBagConstraints.BOTH;
-
-		gbc_DayField.gridx = 2;
-
-		gbc_DayField.gridy = 3;
-
-		contentPane.add(DayField, gbc_DayField);
-
-		DayField.setColumns(10);
+		contentPane.add(lblRu, gbc_lblRu);
 
 
-		JLabel lblIn = new JLabel("Orario d'inizio:");
+		RuField = new JTextField();
 
-		GridBagConstraints gbc_lblIn = new GridBagConstraints();
+		GridBagConstraints gbc_RuField = new GridBagConstraints();
 
-		gbc_lblIn.anchor = GridBagConstraints.EAST;
+		gbc_RuField.insets = new Insets(0, 0, 5, 5);
 
-		lblIn.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		gbc_RuField.fill = GridBagConstraints.BOTH;
 
-		gbc_lblIn.insets = new Insets(0, 0, 5, 5);
+		gbc_RuField.gridx = 2;
 
-		gbc_lblIn.gridx = 1;
+		gbc_RuField.gridy = 3;
 
-		gbc_lblIn.gridy = 4;
+		contentPane.add(RuField, gbc_RuField);
 
-		contentPane.add(lblIn, gbc_lblIn);
-
-
-		OiField = new JTextField();
-
-		GridBagConstraints gbc_OiField = new GridBagConstraints();
-
-		gbc_OiField.insets = new Insets(0, 0, 5, 5);
-
-		gbc_OiField.fill = GridBagConstraints.BOTH;
-
-		gbc_OiField.gridx = 2;
-
-		gbc_OiField.gridy = 4;
-
-		contentPane.add(OiField, gbc_OiField);
-
-		OiField.setColumns(10);
+		RuField.setColumns(10);
 
 
-		JLabel lblFi = new JLabel("Orario di fine:");
+		JLabel lblSt = new JLabel("Stipendio:");
 
-		GridBagConstraints gbc_lblFi = new GridBagConstraints();
+		GridBagConstraints gbc_lblSt = new GridBagConstraints();
 
-		gbc_lblFi.anchor = GridBagConstraints.EAST;
+		gbc_lblSt.anchor = GridBagConstraints.EAST;
 
-		lblFi.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
 
-		gbc_lblFi.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSt.insets = new Insets(0, 0, 5, 5);
 
-		gbc_lblFi.gridx = 1;
+		gbc_lblSt.gridx = 1;
 
-		gbc_lblFi.gridy = 5;
+		gbc_lblSt.gridy = 4;
 
-		contentPane.add(lblFi, gbc_lblFi);
+		contentPane.add(lblSt, gbc_lblSt);
 
 
-		OfField = new JTextField();
+		StField = new JTextField();
 
-		GridBagConstraints gbc_OfField = new GridBagConstraints();
+		GridBagConstraints gbc_StField = new GridBagConstraints();
 
-		gbc_OfField.insets = new Insets(0, 0, 5, 5);
+		gbc_StField.insets = new Insets(0, 0, 5, 5);
 
-		gbc_OfField.fill = GridBagConstraints.BOTH;
+		gbc_StField.fill = GridBagConstraints.BOTH;
 
-		gbc_OfField.gridx = 2;
+		gbc_StField.gridx = 2;
 
-		gbc_OfField.gridy = 5;
+		gbc_StField.gridy = 4;
 
-		contentPane.add(OfField, gbc_OfField);
+		contentPane.add(StField, gbc_StField);
 
-		OfField.setColumns(10);
+		StField.setColumns(10);
 
 
 		btnAg = new JButton("Aggiorna");
@@ -349,6 +317,7 @@ public class LavoratoriGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				controller.actionPerformed(e);
+				
 
 			}
 
@@ -358,6 +327,11 @@ public class LavoratoriGUI extends JFrame {
 		btnMo = new JButton("Modifica");
 		btnMo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/*
+				IdField.setEditable(true);
+				RuField.setEditable(true);
+				StField.setEditable(true);  */
+				
 				controller.actionPerformed(e);
 			}
 		});
@@ -375,71 +349,7 @@ public class LavoratoriGUI extends JFrame {
 		gbc_btnMo.gridy = 7;
 
 		contentPane.add(getBtnMo(), gbc_btnMo);
-/*
-		btnMo.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				// Connessione al database
-
-				DBConnessione d =new DBConnessione();
-
-				Connection con=null;
-
-				con=d.connessione(con);
-
-				PreparedStatement stmt = null;
-
-
-
-				try {
-
-					String sql ="update turni_lavoro set id_l='"+Integer.valueOf(IdField.getText())+"', giorno='"+Date.valueOf(DayField.getText())+"',ora_inizio='"+Time.valueOf(OiField.getText())+"', ora_fine='"+Time.valueOf(OfField.getText())+"' where id_l='"+Integer.valueOf(IdField.getText())+"' and giorno='"+Date.valueOf(DayField.getText())+"'";
-
-					stmt=con.prepareStatement(sql);
-
-
-
-
-
-					stmt.executeUpdate();
-
-					System.out.println("Modifica completata con successo");
-
-
-
-				} catch (SQLException e1) {
-
-					e1.printStackTrace();
-
-				} 
-
-
-
-			}
-
-		});
-
-*/
-		
-		btn = new JButton("Aggiungi");
-
-
-
-		GridBagConstraints gbc_btn = new GridBagConstraints();
-
-		getBtn().setFont(new Font("Tahoma", Font.PLAIN, 16));
-
-		gbc_btn.fill = GridBagConstraints.BOTH;
-
-		gbc_btn.insets = new Insets(0, 0, 5, 5);
-
-		gbc_btn.gridx = 1;
-
-		gbc_btn.gridy = 8;
-
-		contentPane.add(getBtn(), gbc_btn);
-		
+/*		
 		getBtn().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -449,27 +359,7 @@ public class LavoratoriGUI extends JFrame {
 			}
 
 		});
-
-		btnCancella = new JButton("Cancella");
-		btnCancella.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controller.actionPerformed(e);
-			}
-		});
-
-		GridBagConstraints gbc_btnCancella = new GridBagConstraints();
-
-		btnCancella.setFont(new Font("Tahoma", Font.PLAIN, 16));
-
-		gbc_btnCancella.fill = GridBagConstraints.BOTH;
-
-		gbc_btnCancella.insets = new Insets(0, 0, 5, 5);
-
-		gbc_btnCancella.gridx = 2;
-
-		gbc_btnCancella.gridy = 8;
-
-		contentPane.add(btnCancella, gbc_btnCancella);
+*/
 
 
 		JButton btnBack = new JButton("Indietro");
@@ -484,7 +374,7 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_btnBack.gridx = 1;
 
-		gbc_btnBack.gridy = 10;
+		gbc_btnBack.gridy = 8;
 
 		contentPane.add(btnBack, gbc_btnBack);
 
@@ -501,6 +391,28 @@ public class LavoratoriGUI extends JFrame {
 			}
 
 		});
+		btnCancella = new JButton("Cancella");
+/*		
+		btnCancella.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				controller.actionPerformed(e);
+			}
+		});
+*/
+		GridBagConstraints gbc_btnCancella = new GridBagConstraints();
+
+		btnCancella.setFont(new Font("Tahoma", Font.PLAIN, 16));
+
+		gbc_btnCancella.fill = GridBagConstraints.BOTH;
+
+		gbc_btnCancella.insets = new Insets(0, 0, 5, 5);
+
+		gbc_btnCancella.gridx = 2;
+
+		gbc_btnCancella.gridy = 8;
+
+		contentPane.add(btnCancella, gbc_btnCancella);
 
 
 
@@ -508,28 +420,21 @@ public class LavoratoriGUI extends JFrame {
 
 	}
 	
-	public String getId_l() {
-		return IdField.getText();
+	public int getIdL() {
+	
+		return id_l;
+	}
+	public String getStipendio() {
+		
+		return StField.getText();
+	}
+
+	public String getRuolo() {
+		return RuField.getText();
 	}
 	
-	public String getGiorno() {
-		return DayField.getText();
-	}
-	public String getOraI() {
-		return OiField.getText();
-	}
-	public String getOraf() {
-		return OfField.getText();
-	}
-
-
-
 	public JButton getBtnAg() {
 		return btnAg;
-	}
-
-	public JButton getBtn() {
-		return btn;
 	}
 	
 	public JButton getBtnCancella() {
@@ -544,12 +449,6 @@ public class LavoratoriGUI extends JFrame {
 
 
 
-	public int getIdT() {
-		return idT;
-	}
+	
 
 }
-
-
-
-	
