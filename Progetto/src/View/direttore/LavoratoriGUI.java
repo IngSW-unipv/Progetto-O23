@@ -52,7 +52,7 @@ public class LavoratoriGUI extends JFrame {
 	private JButton btnMo;
 	
 	private int id_l;
-	private int stipendio;
+	private String stipendio;
 
 
 	/**
@@ -177,12 +177,17 @@ public class LavoratoriGUI extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 
 			 public void mouseClicked(MouseEvent e) {
+				 
+				 IdField.setEditable(true);
+				 RuField.setEditable(true);
+				 StField.setEditable(true);
+				 
 				 int row = table.getSelectedRow();
 	                
 	                    // Ottieni i valori delle colonne desiderate per la riga selezionata
 	                    id_l = Integer.valueOf((String) table.getValueAt(row, 0));  
 	                    String ruolo = (String) table.getValueAt(row, 3);
-	                    String stipendio = ((String) table.getValueAt(row, 4));
+	                    stipendio = ((String) table.getValueAt(row, 4));
 	                    
 	                    // imposta i valori nelle field
 	                    IdField.setText(String.valueOf(id_l));
@@ -212,6 +217,7 @@ public class LavoratoriGUI extends JFrame {
 
 
 		IdField = new JTextField();
+		IdField.setEditable(false);
 
 		GridBagConstraints gbc_IdField = new GridBagConstraints();
 
@@ -246,6 +252,7 @@ public class LavoratoriGUI extends JFrame {
 
 
 		RuField = new JTextField();
+		RuField.setEditable(false);
 
 		GridBagConstraints gbc_RuField = new GridBagConstraints();
 
@@ -280,6 +287,7 @@ public class LavoratoriGUI extends JFrame {
 
 
 		StField = new JTextField();
+		StField.setEditable(false);
 
 		GridBagConstraints gbc_StField = new GridBagConstraints();
 
@@ -315,9 +323,8 @@ public class LavoratoriGUI extends JFrame {
 		getBtnAg().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
-				controller.actionPerformed(e);
 				
+				controller.actionPerformed(e);
 
 			}
 
@@ -325,16 +332,6 @@ public class LavoratoriGUI extends JFrame {
 
 
 		btnMo = new JButton("Modifica");
-		btnMo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*
-				IdField.setEditable(true);
-				RuField.setEditable(true);
-				StField.setEditable(true);  */
-				
-				controller.actionPerformed(e);
-			}
-		});
 
 		GridBagConstraints gbc_btnMo = new GridBagConstraints();
 
@@ -349,17 +346,12 @@ public class LavoratoriGUI extends JFrame {
 		gbc_btnMo.gridy = 7;
 
 		contentPane.add(getBtnMo(), gbc_btnMo);
-/*		
-		getBtn().addActionListener(new ActionListener() {
-
+		btnMo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 				controller.actionPerformed(e);
-
 			}
-
 		});
-*/
 
 
 		JButton btnBack = new JButton("Indietro");

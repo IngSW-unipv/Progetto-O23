@@ -85,9 +85,9 @@ public class DipendentiDAO {
 			String sql ="update dipendente set ruolo=?, stipendio=? where id_l=? ";
 
 			stmt=con.prepareStatement(sql);
-			stmt.setInt(1, id_l);
+			stmt.setString(1, ruolo);
 			stmt.setInt(2, stipendio);
-			stmt.setString(3, ruolo);
+			stmt.setInt(3, id_l);
 			stmt.executeUpdate();
 			System.out.println("nuovo stipendio"+ stipendio);
 			System.out.println("Modifica completata con successo");

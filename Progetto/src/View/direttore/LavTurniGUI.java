@@ -173,6 +173,8 @@ public class LavTurniGUI extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 
 			 public void mouseClicked(MouseEvent e) {
+				 edit();
+				 
 				 int row = table.getSelectedRow();
 	                
 	                    // Ottieni i valori delle colonne desiderate per la riga selezionata
@@ -210,6 +212,7 @@ public class LavTurniGUI extends JFrame {
 
 
 		IdField = new JTextField();
+		IdField.setEditable(false);
 
 		GridBagConstraints gbc_IdField = new GridBagConstraints();
 
@@ -244,6 +247,7 @@ public class LavTurniGUI extends JFrame {
 
 
 		DayField = new JTextField();
+		DayField.setEditable(false);
 
 		GridBagConstraints gbc_DayField = new GridBagConstraints();
 
@@ -278,6 +282,7 @@ public class LavTurniGUI extends JFrame {
 
 
 		OiField = new JTextField();
+		OiField.setEditable(false);
 
 		GridBagConstraints gbc_OiField = new GridBagConstraints();
 
@@ -312,6 +317,7 @@ public class LavTurniGUI extends JFrame {
 
 
 		OfField = new JTextField();
+		OfField.setEditable(false);
 
 		GridBagConstraints gbc_OfField = new GridBagConstraints();
 
@@ -347,9 +353,8 @@ public class LavTurniGUI extends JFrame {
 		getBtnAg().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
-				controller.actionPerformed(e);
-
+				
+				controller.actionPerformed(e);				
 			}
 
 		});
@@ -358,7 +363,9 @@ public class LavTurniGUI extends JFrame {
 		btnMo = new JButton("Modifica");
 		btnMo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				controller.actionPerformed(e);
+				unedit();
 			}
 		});
 
@@ -375,53 +382,7 @@ public class LavTurniGUI extends JFrame {
 		gbc_btnMo.gridy = 7;
 
 		contentPane.add(getBtnMo(), gbc_btnMo);
-/*
-		btnMo.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
-
-				// Connessione al database
-
-				DBConnessione d =new DBConnessione();
-
-				Connection con=null;
-
-				con=d.connessione(con);
-
-				PreparedStatement stmt = null;
-
-
-
-				try {
-
-					String sql ="update turni_lavoro set id_l='"+Integer.valueOf(IdField.getText())+"', giorno='"+Date.valueOf(DayField.getText())+"',ora_inizio='"+Time.valueOf(OiField.getText())+"', ora_fine='"+Time.valueOf(OfField.getText())+"' where id_l='"+Integer.valueOf(IdField.getText())+"' and giorno='"+Date.valueOf(DayField.getText())+"'";
-
-					stmt=con.prepareStatement(sql);
-
-
-
-
-
-					stmt.executeUpdate();
-
-					System.out.println("Modifica completata con successo");
-
-
-
-				} catch (SQLException e1) {
-
-					e1.printStackTrace();
-
-				} 
-
-
-
-			}
-
-		});
-
-*/
-		
 		btn = new JButton("Aggiungi");
 
 
@@ -443,9 +404,9 @@ public class LavTurniGUI extends JFrame {
 		getBtn().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				
 				controller.actionPerformed(e);
-
+				unedit();
 			}
 
 		});
@@ -546,6 +507,20 @@ public class LavTurniGUI extends JFrame {
 
 	public int getIdT() {
 		return idT;
+	}
+	
+	private void edit() {
+		IdField.setEditable(true);
+		DayField.setEditable(true);
+		OiField.setEditable(true);
+		OfField.setEditable(true);
+	}
+	
+	private void unedit() {
+		IdField.setEditable(false);
+		DayField.setEditable(false);
+		OiField.setEditable(false);
+		OfField.setEditable(false);
 	}
 
 }
