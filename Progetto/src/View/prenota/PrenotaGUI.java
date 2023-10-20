@@ -1,23 +1,20 @@
-package View;
+package View.prenota;
+
 import javax.swing.JPanel;
-
 import javax.swing.JLabel;
-
 import java.awt.Font;
-
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.awt.Color;
-import java.awt.EventQueue;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import Controller.ClientController;
-import Model.Cliente;
-import Model.User;
-import dao.Gestione_Dao;
 
-import javax.swing.JScrollPane;
+import Model.Cliente;
+import Model.prenotazione.PrenotaDAO;
+import View.ClienteGUI;
 import javax.swing.JTextField;
+
+import Controller.prenota.PrenotaController;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -30,108 +27,64 @@ public class PrenotaGUI extends JFrame {
 	private static int id;
 	private JTextField textField;
 	private JTextField textField_1;
-	private Gestione_Dao dao;
+	private PrenotaDAO dao;
 	private String selectedValueCol3;
 	private String selectedValueCol1;
 	private static Cliente c;
-	
-	private ClientController controller; // aggiunta del controller
+	private PrenotaController controller;
 
 	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-
-				try {
-					PrenotaGUI frame = new PrenotaGUI(lblId, id);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
-
-	/**
-
-	 * Create the panel.
-
-	 */
 
 	public PrenotaGUI(JLabel lblId, int id) {
 		
-		controller = new ClientController(this); 
-		dao = new Gestione_Dao();
+		controller = new PrenotaController(this); 
+		dao = new PrenotaDAO();
 		
 		PrenotaGUI.lblId=lblId;
 		PrenotaGUI.id=id;
-		PrenotaGUI.c = c;
 
 		setBackground(new Color(240, 240, 240));
 
-
 		setBounds(258, 11, 576, 520);
-
 		getContentPane().setLayout(null);
-
 		JLabel lblPr = new JLabel("Prenotazione");
-
 		lblPr.setBounds(235, 8, 104, 21);
-
 		lblPr.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
-
 		getContentPane().add(lblPr);
 
 
 		JPanel panel = new JPanel();
-
 		panel.setBackground(new Color(102, 204, 102));
-
 		panel.setBounds(7, 35, 562, 450);
-
 		getContentPane().add(panel);
-
 		panel.setLayout(null);
-
-
 		
-
-
+		//label per stanze prenotabili
 		JLabel lblSt = new JLabel("Stanze Prenotabili");
-
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
-
 		lblSt.setBounds(211, 9, 144, 15);
-
 		panel.add(lblSt);
 
-
+		//label per data check in
 		JLabel lbl1 = new JLabel("data check-in desiderata");
-
 		lbl1.setFont(new Font("Thonburi", Font.PLAIN, 16));
-
 		lbl1.setBackground(Color.WHITE);
-
 		lbl1.setBounds(11, 188, 259, 32);
-
 		panel.add(lbl1);
 
-
-
-
+		//bottone per le prenotazione
 		JButton btnConf = new JButton("Prenota");
-
 		btnConf.setFont(new Font("Thonburi", Font.PLAIN, 16));
-
 		btnConf.setBounds(22, 382, 103, 32);
-
 		panel.add(btnConf);
 		btnConf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					controller.prenota(e, selectedValueCol1, selectedValueCol3, id);
+//passo al controller PrenotaController l'actionEvent e l'id dell'utente attivo
+//l'id mi serve per capire qual'è l'utente che sta lavorando
+					controller.prenota(e, id);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -213,6 +166,13 @@ public class PrenotaGUI extends JFrame {
 	
 	public String getDateCheckout() {
 		return textField_1.getText();
+	}
+	
+	public String getValore1() {
+		return selectedValueCol1;
+	}
+	public String getValore3() {
+		return selectedValueCol3;
 	}
 	//fatto
 }

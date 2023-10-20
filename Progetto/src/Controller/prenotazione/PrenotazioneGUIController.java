@@ -2,8 +2,8 @@ package Controller.prenotazione;
 
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
-import View.PrenotazioniGUI;
-import dao.Gestione_Dao;
+import View.prenotazione.PrenotazioniGUI;
+import Model.PrenotazioneVE.PrenotazioniDAO;
 
 public class PrenotazioneGUIController {
 	private final PrenotazioniGUI view;
@@ -11,12 +11,13 @@ public class PrenotazioneGUIController {
 	public PrenotazioneGUIController(PrenotazioniGUI view) {
         this.view = view;
     }
-	
-	
+
+
+
 public void riempitabella(ActionEvent e) throws SQLException {
 	int id = view.getID();
 	
-	Gestione_Dao dao = new Gestione_Dao();
+	PrenotazioniDAO dao = new PrenotazioniDAO();
 	
 	dao.MostraLePrenotazioni(id, view.table_1);
 }
@@ -24,7 +25,7 @@ public void riempitabella(ActionEvent e) throws SQLException {
 public void eliminaPrenotazione(ActionEvent e, String selectedValueCol1) throws SQLException {
 	int id = view.getID();
 	
-	Gestione_Dao dao = new Gestione_Dao();
+	PrenotazioniDAO dao = new PrenotazioniDAO();
 	
 	dao.eliminaprenotazioneDAO(id, selectedValueCol1);
 	

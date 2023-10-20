@@ -1,26 +1,19 @@
-package View;
-
-
+package View.prenotazione;
 
 import javax.swing.JPanel;
-
 import javax.swing.JLabel;
-
 import java.awt.Font;
-
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JTable;
-
-import Controller.prenotazione.PrenotazioneGUIController;
 import Model.Cliente;
 import Model.User;
+import View.ClienteGUI;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-
+import Controller.prenotazione.PrenotazioneGUIController;
 
 public class PrenotazioniGUI extends JFrame {
 
@@ -67,8 +60,7 @@ public class PrenotazioniGUI extends JFrame {
 		PrenotazioniGUI.id=id;
 		PrenotazioniGUI.c = c;
 		
-		controller = new PrenotazioneGUIController(this); 
-		
+		controller = new PrenotazioneGUIController(this);
 
 		setBounds(258, 11, 576, 520);
 
