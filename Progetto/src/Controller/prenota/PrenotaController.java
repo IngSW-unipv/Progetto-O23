@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import Model.prenotazione.PrenotaDAO;
+import Model.prenotazione.MostraStanzeDAO;
 import View.prenota.PrenotaGUI;
 
 public class PrenotaController {
@@ -22,7 +23,7 @@ public class PrenotaController {
     	String dataout = view.getDateCheckout(); 
     	//done
     	
-		PrenotaDAO dao = new PrenotaDAO();
+		MostraStanzeDAO dao = new MostraStanzeDAO();
 		dao.RecuperaStanzeOccupate(datain,dataout, view.table_1);
 	}
 	
