@@ -13,7 +13,13 @@ public class PrenotazioniDAO {
 	 private Connection conn;
 
 	public void MostraLePrenotazioni(int id, JTable table) throws SQLException {
-		
+		 //pulisci la tabella se c'è contenuto
+		 DefaultTableModel model1 =(DefaultTableModel) table.getModel();
+        
+		 while (model1.getRowCount() > 0) {
+             model1.removeRow(0);
+         }
+		 
 		    int j = 0;
 		    id = 123452;
 		    DBConnessione d = new DBConnessione();
@@ -27,7 +33,7 @@ public class PrenotazioniDAO {
 		        ResultSet rs = stmt.executeQuery();
 		        ResultSetMetaData rsmd = rs.getMetaData();
 		        DefaultTableModel model2 = (DefaultTableModel) table.getModel();
-
+		        
 		        int col = rsmd.getColumnCount();
 		        String[] colName = new String[col];
 
@@ -57,19 +63,24 @@ public class PrenotazioniDAO {
 		    }
 		}
 	 
-	 public void eliminaprenotazioneDAO(int id, String selectedValueCol1) {
+	 public int eliminaprenotazioneDAO(int id, String selectedValueCol1) {
 
+		 if (selectedValueCol1 == null || selectedValueCol1.isEmpty() || id == 0) {
+	    	 return 2;
+	     }
+		 
 		    DBConnessione d = new DBConnessione();
 		    conn = d.connessione(conn);
+		    
 		    
 		        String query = "DELETE FROM prenotazione WHERE COD_PR=?";
 		        
 		        try(PreparedStatement statement = conn.prepareStatement(query)){
 		        statement.setString(1, selectedValueCol1);
 		        statement.executeUpdate();
-		        System.out.println("prenotazione eliminata con successo!");
+		        return 1;
 		    } catch (SQLException e) {
-		        System.out.println("Errore durante l'eliminazione della riga: " + e.getMessage());
+		    	return 0;
 		    }
 	 }
 	 

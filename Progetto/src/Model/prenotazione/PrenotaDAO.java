@@ -16,7 +16,9 @@ public class PrenotaDAO {
 	       DBConnessione d =new DBConnessione();
 	       Connection conn=null;
 	       conn=d.connessione(conn);
-	     
+	     if (datain.isEmpty() || dataout.isEmpty() || Colonna1.isEmpty() || Colonna3.isEmpty() || id == 0) {
+	    	 return 2;
+	     }
 	     String sql = "INSERT INTO prenotazione (COD_PR, CHECK_IN, CHECK_OUT, COSTO, DATA_PR, NUMERO_CAMERA, ID_USER)VALUES (?,?,?,?,?,?,?);";
 	     int codice = recuperacodiceprenotazione();
 	     int datetotali = recuperacostoprenotazione(datain, dataout);
@@ -35,20 +37,17 @@ public class PrenotaDAO {
 	    	 statement2.setInt(6, numerocamera);
 	    	 statement2.setInt(7, id);
 	    	 
-	         int rowsDeleted = statement2.executeUpdate();
-	         if(rowsDeleted > 0) {
-	        	 int numero = 1;
-	             return  numero; //pren ok
+	         int prenotazionecodiceeffettuata = statement2.executeUpdate();
+	         if(prenotazionecodiceeffettuata > 0) {
+	        	 return 1;
 	          }
 	          else {
-	        	  int numero = 0; //pren sbagliata
-	        	  return numero;
+	        	  return 0;
 	          }
 	          
 	       } catch (SQLException e) {
 	           conn.close();
-	    	   int numero = 0; //pren sbagliata
-	     	  return numero;
+	    	   return 0;
 	    }
 		 
 	 }

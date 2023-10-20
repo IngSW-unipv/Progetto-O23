@@ -16,7 +16,10 @@ public class MostraStanzeDAO {
 	       DBConnessione d =new DBConnessione();
 	       Connection con=null;
 	       con=d.connessione(con);
-
+	       
+	       if (datain == null || datain.isEmpty() || dataout == null || dataout.isEmpty()) {
+	    	    return 2;
+		     } else {
 	      
 	      int[] numeriCamera = new int[20];  // Array di interi con dimensione massima 20
 	      int count = 0;  // Contatore per il numero effettivo di elementi inseriti      
@@ -66,9 +69,17 @@ public class MostraStanzeDAO {
 	                      return 0;
 	                  }
 	              }
+		     }
 	  }
 	
 	 private void mostrastanzeingui(int[] numeriCamera, int count, JTable tabella) throws SQLException {
+		 //pulisci la tabella se c'è contenuto
+		 DefaultTableModel model1 =(DefaultTableModel) tabella.getModel();
+         
+		 while (model1.getRowCount() > 0) {
+              model1.removeRow(0);
+          }
+		 
 		 // Connessione al database
 	       DBConnessione d =new DBConnessione();
 	       Connection conn=null;
