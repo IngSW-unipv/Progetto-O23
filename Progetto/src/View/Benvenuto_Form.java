@@ -105,7 +105,7 @@ public class Benvenuto_Form extends JFrame {
 		gbc_btnC_1.gridy = 4;
 		contentPane.add(btnC_1, gbc_btnC_1);
 		//SIGNUP CASE   
-	    /*btnC_1.addActionListener(new ActionListener() {
+	    btnC_1.addActionListener(new ActionListener() {
 	        
 	            
 	        	 public void actionPerformed(ActionEvent e) {
@@ -114,8 +114,8 @@ public class Benvenuto_Form extends JFrame {
 	 	            dispose();
 	        	          
 	        	}
-	     });*/
-		/*btnD.addActionListener(new ActionListener() {
+	     });
+		btnD.addActionListener(new ActionListener() {
             
             
         	 public void actionPerformed(ActionEvent e) {
@@ -125,7 +125,7 @@ public class Benvenuto_Form extends JFrame {
         	            dispose(); 
         	          
         	}
-     });*/
+     });
 		
 		setVisible(true);
 		

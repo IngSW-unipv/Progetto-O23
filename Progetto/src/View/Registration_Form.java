@@ -205,6 +205,16 @@ public class Registration_Form extends JFrame {
         contentPane.add(btnReg);
         
         btnBack = new JButton("Indietro");
+        btnBack.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		Login_Form loginForm =new Login_Form();
+	            loginForm.setVisible(true);
+	            dispose(); 
+	        
+        		
+        	}
+        });
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
         btnBack.setBounds(350, 513, 180, 70);
         contentPane.add(btnBack);
@@ -222,7 +232,7 @@ public class Registration_Form extends JFrame {
         lblVia.setBounds(58, 281, 112, 16);
         contentPane.add(lblVia);
         
-        JLabel lbnCitta = new JLabel("Cittï¿½:");
+        JLabel lbnCitta = new JLabel("Città:");
         lbnCitta.setFont(new Font("Thonburi", Font.PLAIN, 18));
         lbnCitta.setBounds(520, 276, 99, 26);
         contentPane.add(lbnCitta);

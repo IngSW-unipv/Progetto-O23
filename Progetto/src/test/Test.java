@@ -8,7 +8,7 @@ public class Test {
 
 	public static void main(String[] args) throws IOException{
 		//prova login
-		Login_Form view  = new Login_Form();
+		Benvenuto_Form view  = new Benvenuto_Form();
 	
 	}
 }		

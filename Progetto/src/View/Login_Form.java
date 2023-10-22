@@ -145,6 +145,17 @@ public class Login_Form extends JFrame {
 				btnAccedi.addActionListener(controller);	
 				
 				btnBack = new JButton("Torna indietro");
+				btnBack.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						Benvenuto_Form ben =new Benvenuto_Form();
+		 	            ben.setVisible(true);
+		 	            dispose();
+		        	          
+						
+						
+					}
+				});
 				
 				
 					btnPsw = new JButton("Password dimenticata?");
@@ -169,15 +180,7 @@ public class Login_Form extends JFrame {
 				gbc_btnBack.gridx = 1;
 				gbc_btnBack.gridy = 6;
 				contentPane.add(btnBack, gbc_btnBack);
-		/*btnAccedi.addActionListener(new ActionListener() {   
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.handleLogin();	//delego lavoro al controller
-
-			}
-			
-		});		*/											
+											
 		
 		setVisible(true);
 	}	
