@@ -76,7 +76,7 @@ public class Home_Form extends JFrame {
 	    btnReg.addActionListener(new ActionListener() {
 	        
 	        	 public void actionPerformed(ActionEvent e) {
-	        		Registration_Form regForm =new Registration_Form();
+	        		Registration_Form regForm =new Registration_Form(0);
 	 	            regForm.setVisible(true);
 	 	            dispose();
 	        	          

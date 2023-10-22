@@ -409,17 +409,17 @@ public class LavoratoriGUI extends JFrame {
 		contentPane.add(btnCancella, gbc_btnCancella);
 		
 		btnNewButton = new JButton("Registra nuovo dipendente");
-		/*
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Registration_Form dip = new Registration_Form(id);
 
-				dip.setLbl(lbl);
+				//dip.setLbl(lbl);
 
 				dispose();
 			}
 		});
-*/		
+		
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.fill = GridBagConstraints.VERTICAL;

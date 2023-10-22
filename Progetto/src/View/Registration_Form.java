@@ -30,6 +30,7 @@ import java.awt.Color;
 
 public class Registration_Form extends JFrame {
     private static final long serialVersionUID = 1L;
+    private static int id;
     private JPanel contentPane;
     public JTextField nome;
     public JTextField cognome;
@@ -71,7 +72,7 @@ public class Registration_Form extends JFrame {
     public JLabel checkU;
     public JLabel checkE;
 	
-
+    
     
         
     
@@ -82,7 +83,7 @@ public class Registration_Form extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Registration_Form frame = new Registration_Form();
+                    Registration_Form frame = new Registration_Form(id);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -96,10 +97,10 @@ public class Registration_Form extends JFrame {
      * Create the frame.
      */
 
-    public Registration_Form() {
+    public Registration_Form(int id) {
     	
     	
-    
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(450, 190, 1124, 661);
         setResizable(false);
