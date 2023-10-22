@@ -63,7 +63,7 @@ public class DirettoreGUI extends JFrame{
 		gbl_paneMenu.columnWidths = new int[]{248, 0};
 		gbl_paneMenu.rowHeights = new int[]{135, 30, 0, 30, 30, 30, 30, 30, 30, 0};
 		gbl_paneMenu.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_paneMenu.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_paneMenu.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		paneMenu.setLayout(gbl_paneMenu);
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(DirettoreGUI.class.getResource("/logo/Senza titolo.png")));
@@ -107,11 +107,11 @@ public class DirettoreGUI extends JFrame{
 		GridBagConstraints gbc_paneLav = new GridBagConstraints();
 		gbc_paneLav.insets = new Insets(0, 0, 5, 0);
 		gbc_paneLav.gridx = 0;
-		gbc_paneLav.gridy = 2;
+		gbc_paneLav.gridy = 3;
 		paneMenu.add(paneLav, gbc_paneLav);
 		paneLav.setBackground(new Color(102, 204, 102));
 		paneLav.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel lblLav = new JLabel("Visualizza lavoratori");
+		JLabel lblLav = new JLabel("Turni lavoratori");
 		paneLav.add(lblLav);
 		lblLav.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel paneSt = new JPanel();
@@ -127,11 +127,11 @@ public class DirettoreGUI extends JFrame{
 		GridBagConstraints gbc_paneSt = new GridBagConstraints();
 		gbc_paneSt.insets = new Insets(0, 0, 5, 0);
 		gbc_paneSt.gridx = 0;
-		gbc_paneSt.gridy = 3;
+		gbc_paneSt.gridy = 4;
 		paneMenu.add(paneSt, gbc_paneSt);
 		paneSt.setBackground(new Color(102, 204, 102));
 		paneSt.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel lblSt = new JLabel("Visualizza stato stanze");
+		JLabel lblSt = new JLabel("Stato stanze");
 		paneSt.add(lblSt);
 		
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -142,12 +142,12 @@ public class DirettoreGUI extends JFrame{
 		GridBagConstraints gbc_panelElAcc = new GridBagConstraints();
 		gbc_panelElAcc.insets = new Insets(0, 0, 5, 0);
 		gbc_panelElAcc.gridx = 0;
-		gbc_panelElAcc.gridy = 4;
+		gbc_panelElAcc.gridy = 5;
 		paneMenu.add(panelElAcc, gbc_panelElAcc);
 		panelElAcc.setBackground(new Color(102, 204, 102));
 		panelElAcc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel lblElAcc = new JLabel("Elimina Account");
-		lblElAcc.setFont(new Font("Dialog", Font.PLAIN, 16));
+		JLabel lblElAcc = new JLabel("Elimina account");
+		lblElAcc.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		panelElAcc.add(lblElAcc);
 		panelElAcc.addMouseListener(new PanelMouse(panelElAcc) {
 			@Override
@@ -160,6 +160,30 @@ public class DirettoreGUI extends JFrame{
 				}
 			}
 		});
+		
+		JPanel paneLav2 = new JPanel();
+		GridBagConstraints gbc_paneLav2 = new GridBagConstraints();
+		paneLav2.setBackground(new Color(102, 204, 102));
+		paneLav2.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		gbc_paneLav2.insets = new Insets(0, 0, 5, 0);
+		gbc_paneLav2.fill = GridBagConstraints.VERTICAL;
+		gbc_paneLav2.gridx = 0;
+		gbc_paneLav2.gridy = 2;
+		paneMenu.add(paneLav2, gbc_paneLav2);
+		paneLav2.addMouseListener(new PanelMouse(paneLav2){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JLabel lbl = getLbl();
+				LavoratoriGUI lav =new LavoratoriGUI(getLbl(), id,dir);
+				lav.setVisible(true);
+				dispose();
+			}
+		});
+		
+		JLabel lblLav2 = new JLabel("Lavoratori");
+		lblLav2.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		paneLav2.add(lblLav2);
+		
 		JPanel paneOut = new JPanel();
 		paneOut.addMouseListener(new PanelMouse(paneOut) {
 			@Override
@@ -173,9 +197,10 @@ public class DirettoreGUI extends JFrame{
 			}
 		});
 		GridBagConstraints gbc_paneOut = new GridBagConstraints();
+		gbc_paneOut.fill = GridBagConstraints.VERTICAL;
 		gbc_paneOut.insets = new Insets(0, 0, 5, 0);
 		gbc_paneOut.gridx = 0;
-		gbc_paneOut.gridy = 5;
+		gbc_paneOut.gridy = 6;
 		paneMenu.add(paneOut, gbc_paneOut);
 		paneOut.setBackground(new Color(102, 204, 102));
 		paneOut.setFont(new Font("Thonburi", Font.PLAIN, 16));

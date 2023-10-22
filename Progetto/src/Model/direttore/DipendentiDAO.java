@@ -22,7 +22,7 @@ public class DipendentiDAO {
 	
 	String sql = "SELECT id_l, user.nome, user.cognome, ruolo, stipendio, cf, data_nascita, cell, via, citta, provincia, cap FROM user\n" + 
 			"\n" + 
-			"join dipendente on user.id_user=dipendente.id_user;";
+			"join dipendente on user.id_user=dipendente.id_user AND id_l NOT IN('999');";
 	
 	 try(PreparedStatement stmt = con.prepareStatement(sql)) {
          

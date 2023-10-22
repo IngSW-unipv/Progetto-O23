@@ -13,6 +13,7 @@ import Model.direttore.DipendentiDAO;
 import Model.direttore.Direttore;
 import Model.direttore.DirettoreDAO;
 import Model.direttore.TurniDao;
+import View.Registration_Form;
 import dao.DBConnessione;
 
 
@@ -53,6 +54,7 @@ public class LavoratoriGUI extends JFrame {
 	
 	private int id_l;
 	private String stipendio;
+	private JButton btnNewButton;
 
 
 	/**
@@ -405,6 +407,26 @@ public class LavoratoriGUI extends JFrame {
 		gbc_btnCancella.gridy = 8;
 
 		contentPane.add(btnCancella, gbc_btnCancella);
+		
+		btnNewButton = new JButton("Registra nuovo dipendente");
+		/*
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Registration_Form dip = new Registration_Form(id);
+
+				dip.setLbl(lbl);
+
+				dispose();
+			}
+		});
+*/		
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.gridx = 3;
+		gbc_btnNewButton.gridy = 10;
+		contentPane.add(btnNewButton, gbc_btnNewButton);
 
 
 
