@@ -20,8 +20,8 @@ public class DirettoreDAO {
 	
 	
 	
-	public void dip_Register(String cf, String nome, String cognome, String dataNascita, String cell, String via,  String citta, String provincia, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
-    	
+	public void dip_Register(String cf, String nome, String cognome, java.sql.Date dataNascita, String cell, String via,  String citta, String provincia, int cap, String email, String username, String password, String ruolo, int stipendio) throws SQLException, NoSuchAlgorithmException {
+		System.out.println("entro nel dao");
     	
    	 // Connessione al database
        DBConnessione d =new DBConnessione();
@@ -29,44 +29,70 @@ public class DirettoreDAO {
        con=d.connessione(con);
        PreparedStatement stmt = null;
        
-       
-       
-
-       java.sql.Date date=Date.valueOf(dataNascita);//conversione della data di nascita da stringa a java.sql.date
+       int id_u= generaIdU();
+       int cellI = Integer.valueOf(cell);
+       System.out.println("id"+id_u+"\n"+cell);
+       //java.sql.Date data=Date.valueOf(dataNascita);//conversione della data di nascita da stringa a java.sql.date
 
        try {
+    	   System.out.println("entro nel try del dao");
            // Inserimento dei dati nella tabella user
            String sql = "INSERT INTO user "
            		+ "(ID_USER,cf, nome, cognome, data_nascita, cell, email, via, citta, provincia, cap, username, password, id_tipo) "
            		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
            stmt = con.prepareStatement(sql);
-           stmt.setInt(1, generaID());
+           stmt.setInt(1, id_u);
            stmt.setString(2, cf);
            stmt.setString(3, nome);
            stmt.setString(4, cognome);
-           stmt.setDate(5, date);
-           stmt.setString(6, cell);
-           stmt.setString(7, email);
-           stmt.setString(8, via);
-           stmt.setString(9, citta);
-           stmt.setString(10, provincia);
-           stmt.setInt(11, cap); 
+           stmt.setDate(5, dataNascita);
+           stmt.setInt(6, cellI);
+           stmt.setString(7, via);
+           stmt.setString(8, citta);
+           stmt.setString(9, provincia);
+           stmt.setInt(10, cap); 
+           stmt.setString(11, email);
            stmt.setString(12, username);
            stmt.setString(13, password);
            stmt.setInt(14, 1); // id_tipo = 1 dipendenti 
-           
-           
+         
            stmt.executeUpdate();
-
+           stmt.close();
            
-               System.out.println("Registrazione completata con successo");
+           
+           System.out.println("prima query");
+           
+           
+           PreparedStatement st = null;
+           int id_d= generaIdD();
+           String sql2="insert into dipendente "
+           		+ "(id_l, nome, cognome, ruolo, stipendio, id_user)"
+           		+ "values (?, ?, ?, ?, ?, ?) ";
+           st = con.prepareStatement(sql2);
+           st.setInt(1, id_d);
+           st.setString(2, nome);
+           st.setString(3, cognome);
+           st.setString(4, ruolo);
+           st.setInt(5, stipendio);
+           st.setInt(6, id_u);
+           
+           st.executeUpdate(); 
+           st.close();
+           System.out.println("seconda query");
+           
+
+           System.out.println("Registrazione completata con successo");
+           st.close();
+           con.close();
        
        } catch (SQLException e) {
            System.out.println("Errore durante la registrazione: " + e.getMessage());
+           stmt.close();
+           con.close();
        } 
    }
 	
-	public int generaID() throws SQLException {
+	public int generaIdU() throws SQLException {
         DBConnessione d = new DBConnessione();
         Connection con = null;
         con = d.connessione(con);
@@ -77,12 +103,11 @@ public class DirettoreDAO {
         boolean uniqueId = false;
         while (!uniqueId) {
             // Generate a random integer between 100000000 and 999999999
-            id = (int) (Math.random() * (999999999 - 100000000 + 1)) + 100000000;
+            id = (int) (Math.random() * (999 - 10000 + 1)) + 10000;
             
             try {
                 // Check if the generated ID already exists in the database
-                String sql = "SELECT COUNT(*) FROM user "
-                		+ "WHERE ID_USER = ?";
+                String sql = "SELECT COUNT(*) FROM user WHERE ID_USER = ?";
                 stmt = con.prepareStatement(sql);
                 stmt.setInt(1, id);
                 rs = stmt.executeQuery();
@@ -104,7 +129,47 @@ public class DirettoreDAO {
         }
         
         return id;
-    }	
+    }
+	
+	public int generaIdD() throws SQLException {
+        DBConnessione d = new DBConnessione();
+        Connection con = null;
+        con = d.connessione(con);
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        int id = -1;
+        boolean uniqueId = false;
+        while (!uniqueId) {
+            // Generate a random integer between 100000000 and 999999999
+            id = (int) (Math.random() * (999 - 10000 + 1)) + 10000;
+            
+            try {
+                // Check if the generated ID already exists in the database
+                String sql = "SELECT COUNT(*) FROM dipendente WHERE id_l = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, id);
+                rs = stmt.executeQuery();
+                if (rs.next() && rs.getInt(1) == 0) {
+                    // If the ID doesn't exist, mark it as unique and exit the loop
+                    uniqueId = true;
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la generazione dell'ID: " + e.getMessage());
+                throw e;
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+            }
+        }
+        
+        return id;
+    }
+	
 	
 	
 	
@@ -150,6 +215,7 @@ public class DirettoreDAO {
 			 }
 				 rs.close();
 				 stmt.close();
+				 con.close();
 		
 		 } catch(SQLException e1) {
 			 e1.printStackTrace();

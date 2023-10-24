@@ -20,9 +20,7 @@ public class StanzeGUI extends JFrame {
 	private static int id;
 	private static Direttore dir;
 
-	/**
-	 * Launch the application.
-	 */
+/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -35,7 +33,7 @@ public class StanzeGUI extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 * @param lbl 

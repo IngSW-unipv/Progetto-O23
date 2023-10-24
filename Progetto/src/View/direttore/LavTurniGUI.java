@@ -50,13 +50,7 @@ public class LavTurniGUI extends JFrame {
 	
 	private int idT;
 
-
-	/**
-
-	 * Launch the application.
-
-	 */
-
+/*
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
@@ -81,7 +75,7 @@ public class LavTurniGUI extends JFrame {
 
 	}
 
-
+*/
 
 	/**
 

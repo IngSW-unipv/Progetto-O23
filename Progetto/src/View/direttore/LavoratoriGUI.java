@@ -56,13 +56,7 @@ public class LavoratoriGUI extends JFrame {
 	private String stipendio;
 	private JButton btnNewButton;
 
-
-	/**
-
-	 * Launch the application.
-
-	 */
-
+/*
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
@@ -86,7 +80,7 @@ public class LavoratoriGUI extends JFrame {
 		});
 
 	}
-
+*/
 
 
 	/**
@@ -412,10 +406,8 @@ public class LavoratoriGUI extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Registration_Form dip = new Registration_Form(id);
-
-				//dip.setLbl(lbl);
-
+				RegistraDipGUI dip = new RegistraDipGUI(lbl,id, dir);
+				dip.setLbl(lbl);
 				dispose();
 			}
 		});

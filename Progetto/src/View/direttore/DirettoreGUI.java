@@ -20,7 +20,7 @@ public class DirettoreGUI extends JFrame{
 	private static int id;
 	private static Direttore dir;
 	 
-	
+/*	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -33,7 +33,7 @@ public class DirettoreGUI extends JFrame{
 			}
 		});
 	}
-
+*/
 	public DirettoreGUI(int id,Direttore dir){
 		DirettoreGUI.id = id;
 		DirettoreGUI.dir = dir;
