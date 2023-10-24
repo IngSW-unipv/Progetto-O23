@@ -13,7 +13,7 @@ public class Test {
 
 	public static void main(String[] args) throws IOException{
 		//prova login
-		DirettoreDAO dao=new DirettoreDAO();
+		/*DirettoreDAO dao=new DirettoreDAO();
 		int id;
 		try {
 			id = dao.generaIdU();
@@ -21,10 +21,11 @@ public class Test {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
-	
+		Benvenuto_Form start = new Benvenuto_Form();
 	}
+		
 }		
 
 

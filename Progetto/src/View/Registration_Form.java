@@ -30,7 +30,6 @@ import java.awt.Color;
 
 public class Registration_Form extends JFrame {
     private static final long serialVersionUID = 1L;
-    private static int id;
     private JPanel contentPane;
     public JTextField nome;
     public JTextField cognome;
@@ -83,7 +82,7 @@ public class Registration_Form extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Registration_Form frame = new Registration_Form(id);
+                    Registration_Form frame = new Registration_Form();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -97,7 +96,7 @@ public class Registration_Form extends JFrame {
      * Create the frame.
      */
 
-    public Registration_Form(int id) {
+    public Registration_Form() {
     	
     	
     	
@@ -203,6 +202,9 @@ public class Registration_Form extends JFrame {
         btnReg.setFont(new Font("Tahoma", Font.PLAIN, 20));
         btnReg.setBounds(619, 513, 180, 70);
         contentPane.add(btnReg);
+        
+        RegistrazioneController controller= new RegistrazioneController(this, nome, cognome, cf, data, mese, anno, email, cell, via, citta, provincia, cap, username, password);
+        btnReg.addActionListener(controller);
         
         btnBack = new JButton("Indietro");
         btnBack.addActionListener(new ActionListener() {
