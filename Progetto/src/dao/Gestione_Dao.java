@@ -339,8 +339,7 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
             }
         }
         if(loggedIn) {
-	    	JOptionPane.showMessageDialog(null, "Login effettuato con successo");
-        	
+        	System.out.println("Login effettuato con successo");
         } else {
 	    	JOptionPane.showMessageDialog(null, "Errore, per favore riprova");
         }
