@@ -12,8 +12,8 @@ import java.awt.EventQueue;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import Model.Dipendenti;
 import Model.User;
+import Model.dipendente.Dipendenti;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;

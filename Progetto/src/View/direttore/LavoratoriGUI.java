@@ -9,10 +9,10 @@ import Controller.direttore.GestioneLavAL;
 import java.awt.event.*;
 
 import Model.User;
-import Model.direttore.DipendentiDAO;
+import Model.dipendente.DipendentiDAO;
 import Model.direttore.Direttore;
 import Model.direttore.DirettoreDAO;
-import Model.direttore.TurniDao;
+import Model.turni.TurniDao;
 import View.Registration_Form;
 import dao.DBConnessione;
 
@@ -56,7 +56,7 @@ public class LavoratoriGUI extends JFrame {
 	private String stipendio;
 	private JButton btnNewButton;
 
-/*
+///*
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
@@ -80,7 +80,7 @@ public class LavoratoriGUI extends JFrame {
 		});
 
 	}
-*/
+//*/
 
 
 	/**
@@ -173,8 +173,7 @@ public class LavoratoriGUI extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 
 			 public void mouseClicked(MouseEvent e) {
-				 
-				 IdField.setEditable(true);
+				
 				 RuField.setEditable(true);
 				 StField.setEditable(true);
 				 
@@ -369,7 +368,7 @@ public class LavoratoriGUI extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				
 				DirettoreGUI dip = new DirettoreGUI(id, dir);
 
 				dip.setLbl(lbl);
@@ -380,14 +379,14 @@ public class LavoratoriGUI extends JFrame {
 
 		});
 		btnCancella = new JButton("Cancella");
-/*		
+
 		btnCancella.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				controller.actionPerformed(e);
 			}
 		});
-*/
+
 		GridBagConstraints gbc_btnCancella = new GridBagConstraints();
 
 		btnCancella.setFont(new Font("Tahoma", Font.PLAIN, 16));

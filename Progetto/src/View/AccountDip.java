@@ -10,8 +10,8 @@ import java.awt.EventQueue;
 import javax.swing.JTextField;
 
 import Model.Cliente;
-import Model.Dipendenti;
 import Model.User;
+import Model.dipendente.Dipendenti;
 import dao.Gestione_Dao;
 
 import javax.swing.JButton;

@@ -1,4 +1,4 @@
-package Model.direttore;
+package Model.dipendente;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -100,6 +100,25 @@ public class DipendentiDAO {
 
 		} 
 		
+	}
+	
+	public void Licenzia(int id_l) {
+		DBConnessione d = new DBConnessione();
+	    Connection con = null;
+        con = d.connessione(con);
+        PreparedStatement stmt = null;
+	    
+	        String sql = "DELETE FROM dipendente WHERE id_l=?";
+	        
+	        try {
+	        	
+	        	stmt=con.prepareStatement(sql);
+	        	stmt.setInt(1, id_l);
+	        	stmt.executeUpdate();
+	        System.out.println("dipendente licenziato con successo!");
+	    } catch (SQLException e) {
+	        System.out.println("Errore durante l'eliminazione della riga: " + e.getMessage());
+	    }
 	}
 
 }

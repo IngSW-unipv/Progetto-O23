@@ -41,7 +41,7 @@ public class RegistraDipGUI extends JFrame {
 	private static Direttore dir;
 	private static JLabel lbl;
 
-
+/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -56,8 +56,6 @@ public class RegistraDipGUI extends JFrame {
 
 	}    
 
-	/**
-	 * Create the frame.
 	 */
 
 	public RegistraDipGUI(JLabel lbl, int id, Direttore dir) {
@@ -382,8 +380,9 @@ public class RegistraDipGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				DirettoreGUI dirHome =new DirettoreGUI(id, dir);
+				dirHome.setLbl(lbl);
 				dirHome.setVisible(true);
-				dispose(); 
+				dispose();
 
 
 			}
@@ -400,6 +399,10 @@ public class RegistraDipGUI extends JFrame {
 		btnReg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reg.actionPerformed(e);
+				DirettoreGUI dirHome =new DirettoreGUI(id, dir);
+				dirHome.setLbl(lbl);
+				dirHome.setVisible(true);
+				dispose(); 
 			}
 		});
 		btnReg.setFont(new Font("Tahoma", Font.PLAIN, 20));

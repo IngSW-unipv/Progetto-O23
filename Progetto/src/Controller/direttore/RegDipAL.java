@@ -1,16 +1,12 @@
 package Controller.direttore;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Date;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Calendar;
+import javax.swing.*;
 
-import javax.swing.JOptionPane;
-
-import com.toedter.calendar.JDateChooser;
-
+import Model.dipendente.Dipendenti;
 import Model.direttore.DirettoreDAO;
 import View.direttore.RegistraDipGUI;
 
@@ -31,7 +27,6 @@ public class RegDipAL implements ActionListener {
 			if(!validaCampi()) {
 				return;
 			}
-			System.out.println("entro nel controller");
 			
 			Calendar cal = view.getDateChooser().getCalendar();
 			
@@ -44,19 +39,15 @@ public class RegDipAL implements ActionListener {
 			int stipendio= Integer.valueOf(view.getStipendio().getText());
 			//int cell= Integer.valueOf(view.getCell().getText());
 			try {
+				dirD.dip_Register(new Dipendenti(view.getCf().getText(), view.getNome().getText(), view.getCognome().getText(), data , view.getCell().getText(), view.getVia().getText(), 
+						view.getCitta().getText(), view.getProvincia().getText(), cap, view.getEmail().getText(), view.getUsername().getText(), view.getPassword().getText(), view.getRuolo().getText(), stipendio));
 				
-				System.out.println("entro nel dao con " +view.getCf().getText()+ view.getNome().getText()+ view.getCognome().getText()+ data + view.getCell().getText()+ view.getVia().getText()+ 
-						view.getCitta().getText()+ view.getProvincia().getText()+ cap+ view.getEmail().getText()+ view.getUsername().getText()+ view.getPassword().getText()+ 
-						view.getRuolo().getText()+ stipendio);
-				dirD.dip_Register(view.getCf().getText(), view.getNome().getText(), view.getCognome().getText(), data , view.getCell().getText(), view.getVia().getText(), 
-						view.getCitta().getText(), view.getProvincia().getText(), cap, view.getEmail().getText(), view.getUsername().getText(), view.getPassword().getText(), view.getRuolo().getText(), stipendio);
-				
-				
+				JOptionPane.showMessageDialog(null, "Registrazione effettuata con successo");
 				
 			} catch (SQLException | NoSuchAlgorithmException e1) {
 				
 				e1.printStackTrace();
-				System.out.println("esco nel controller");
+				
 			}
 			
 		}
@@ -71,7 +62,7 @@ private boolean validaCampi() {
 				|| view.getCap().getText().isEmpty() || view.getEmail().getText().isEmpty() || view.getUsername().getText().isEmpty() ||view.getPassword().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Errore, nessun campo può essere vuoto");
 			return false;
-		}
+		} 
 		
 		return true;
 		

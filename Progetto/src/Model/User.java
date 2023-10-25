@@ -32,14 +32,14 @@ public class User {
 
 //Costruttore 
 	
-	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numTelefono, String via, String citta, String provincia, int cap,
+	public User(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String numCell, String via, String citta, String provincia, int cap,
 			String email, String username, String password) {
 
 		this.Cf = cf;
 		this.Nome = nome;
 		this.Cognome = cognome;
 		this.DataDiNascita = dataDiNascita;
-		this.NumTelefono = numTelefono;
+		this.NumTelefono = numCell;
 		this.Via = via;
 		this.Citta=citta;
 		this.CAP=cap;

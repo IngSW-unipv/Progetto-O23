@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 
-import Model.Dipendenti;
+import Model.dipendente.Dipendenti;
 import View.Benvenuto_Form;
 
 public class LogOutDipController {

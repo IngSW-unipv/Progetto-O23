@@ -9,6 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Model.*;
+import Model.dipendente.Dipendenti;
 import Model.direttore.Direttore;
 import View.*;
 import View.direttore.DirettoreGUI;
@@ -56,7 +57,7 @@ public class LogController implements ActionListener {
 				}else if(model.getId_tipo()==1) {
 					
 					view.dispose();
-					Dipendenti dip=new Dipendenti(null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0);
+					Dipendenti dip=new Dipendenti(null, null, null, null, null, null, null, null,0, null, null, null, null, 0);
 					dip.login(this.username.getText(),this.password.getText(),id_tipo);
 					id_l = dao.Ottieni_Dip(dao.Ottieni_User(dip.getUsername()));
 					DipGUI view2 = new DipGUI(id_l, dip);

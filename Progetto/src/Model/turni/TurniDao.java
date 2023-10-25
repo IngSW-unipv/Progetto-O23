@@ -1,4 +1,4 @@
-package Model.direttore;
+package Model.turni;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -174,7 +175,7 @@ public class TurniDao {
 	        	stmt=con.prepareStatement(sql);
 	        	stmt.setInt(1, id_t);
 	        	stmt.executeUpdate();
-	        System.out.println("turno eliminato con successo!");
+	        
 	    } catch (SQLException e) {
 	        System.out.println("Errore durante l'eliminazione della riga: " + e.getMessage());
 	    }

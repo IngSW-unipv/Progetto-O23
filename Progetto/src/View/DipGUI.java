@@ -18,9 +18,8 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.LogOutCliController;
 import Controller.LogOutDipController;
-import Model.Dipendenti;
 import Model.User;
-
+import Model.dipendente.Dipendenti;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;

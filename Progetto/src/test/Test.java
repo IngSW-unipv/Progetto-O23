@@ -23,7 +23,7 @@ public class Test {
 			e.printStackTrace();
 		}*/
 		
-		Benvenuto_Form start = new Benvenuto_Form();
+		Login_Form start = new Login_Form();
 	}
 		
 }		
