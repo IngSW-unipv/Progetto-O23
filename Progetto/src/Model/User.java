@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class User {
 	private String Cf;
 	private String Nome;
@@ -218,7 +220,7 @@ public boolean login(String username ,String password, int id_tipo) throws SQLEx
 	Id_tipo = g.Ottieni_Tipo(username);
 	login=g.login(username, password);
 	
-	System.out.println(toString());
+	//System.out.println(toString());
 	
 	return login;
 	
@@ -242,15 +244,15 @@ public boolean logout(boolean log) {
    	 	Email=null;
    	 	NumTelefono=null;
    	 	DataDiNascita=null;
-   	 	System.out.println("logout effettuato!");
+   	 JOptionPane.showMessageDialog(null, "Logout Effettuato!");
    	 	
-   	 	System.out.println(toString());
+   	 //	System.out.println(toString());
    	 	
    	 	return login;
 		
 		
 	}else
-		System.out.println("impossibile effettuare logout non hai effettuato il login");
+		JOptionPane.showMessageDialog(null, "Errore Generico, riprova più tardi, grazie");
 	return login;
 	
 }

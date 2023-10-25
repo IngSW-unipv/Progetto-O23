@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalDate;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,12 +42,10 @@ public class Gestione_Dao {
              
              if (rs.next()) {
                  int ID_CLIENTE = rs.getInt("ID_USER");
-                 System.out.println(ID_CLIENTE);
                  rs.close();
                  stmt.close();
                  return ID_CLIENTE;
              } else {
-            	 System.out.println(1);
             	 rs.close();
                  stmt.close();
                  return 51;
@@ -66,12 +65,10 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
              
              if (rs.next()) {
                  int ID_L = rs.getInt("ID_L");
-                 System.out.println(ID_L);
                  rs.close();
                  stmt.close();
                  return ID_L;
              } else {
-            	 System.out.println(1);
             	 rs.close();
                  stmt.close();
                  return 51;
@@ -92,12 +89,10 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
              
              if (rs.next()) {
                  int ID_Tipo = rs.getInt("id_tipo");
-                 System.out.println(ID_Tipo);
                  rs.close();
                  stmt.close();
                  return ID_Tipo;
              } else {
-            	 System.out.println(1);
             	 rs.close();
                  stmt.close();
                  return 51;
@@ -187,7 +182,7 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
                     uniqueId = true;
                 }
             } catch (SQLException e) {
-                System.out.println("Errore durante la generazione dell'ID: " + e.getMessage());
+            	JOptionPane.showMessageDialog(null, "Errore durante la generazione dell'ID: " +  e.getMessage());
                 throw e;
             } finally {
                 if (rs != null) {
@@ -246,12 +241,9 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
             
             
             stmt.executeUpdate();
-
-            
-                System.out.println("Registrazione completata con successo");
-        
+            JOptionPane.showMessageDialog(null, "Registrazione completata con successo");        
         } catch (SQLException e) {
-            System.out.println("Errore durante la registrazione: " + e.getMessage());
+        	JOptionPane.showMessageDialog(null, "Errore durante la registrazione: " +  e.getMessage());
         } 
     }
     
@@ -270,10 +262,10 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
     	    int result = stmt.executeUpdate();
 
     	    if (result == 1) {
-    	      System.out.println("Modifica effettuata con successo");
+    	    	JOptionPane.showMessageDialog(null, "Modifiche effettuate con successo");
     	    } else {
-    	      System.out.println("Errore durante la modifica dei dati");
-    	    }
+    	    	JOptionPane.showMessageDialog(null, "Errore durante le modifiche. Riprova");
+                }
 
     	  }
     	}
@@ -347,12 +339,10 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
             }
         }
         if(loggedIn) {
-        	System.out.println("Login effettuato con successo");
-        	
+	    	JOptionPane.showMessageDialog(null, "Login effettuato con successo");
         	
         } else {
-        	System.out.println("Errore, username o passsoword errati");
-        	
+	    	JOptionPane.showMessageDialog(null, "Errore, per favore riprova");
         }
         return loggedIn;
         
@@ -448,15 +438,14 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
         int rowsDeleted = statement.executeUpdate();
         
         if(rowsDeleted > 0) {
-           System.out.println("Account deleted for: " + username); 
+	    	JOptionPane.showMessageDialog(null, "Account eliminato per: " + username);
         }
         else {
-           System.out.println("Account not found or error deleting account: " + username);
+	    	JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione di: " + username);
         }
         
      } catch (SQLException e) {
-        System.out.println("Error deleting account: " + e.getMessage());
-     
+	    	JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione di: " + e.getMessage());
      conn.close();
   }
  }
@@ -472,16 +461,15 @@ public int Ottieni_Dip(int id_user) throws SQLException {	////NUOVO
          
          int rowsDeleted = statement.executeUpdate();
          if(rowsDeleted > 0) {
-             System.out.println("Cancellazione dell'account del cliente associato allo username: " + username); 
+ 	    	JOptionPane.showMessageDialog(null, "Cancellazione dell'account del cliente: " + username + " effettuata");
           }
           else {
-             System.out.println("Account non trovato o errore nella cancellazione dell'account: " + username);
-          }
+  	    	JOptionPane.showMessageDialog(null, "Account non trovato o errore nella cancellazione dell'account: " + username);
+               }
           
        } catch (SQLException e) {
-          System.out.println("Errore nella cancellazione dell'account " + e.getMessage());
-       
-       conn.close();
+    	   JOptionPane.showMessageDialog(null, "Account non trovato o errore nella cancellazione dell'account: " + username);
+         conn.close();
     }
      }
 }

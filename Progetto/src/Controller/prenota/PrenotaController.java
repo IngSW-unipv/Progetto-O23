@@ -2,6 +2,9 @@ package Controller.prenota;
 
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.JOptionPane;
 
 import Model.prenotazione.PrenotaDAO;
@@ -23,13 +26,25 @@ public class PrenotaController {
     	String dataout = view.getDateCheckout(); 
     	//done
     	
-		MostraStanzeDAO dao = new MostraStanzeDAO();
-		int risultato = dao.RecuperaStanzeOccupate(datain,dataout, view.table_1);
-		if(risultato == 1) {
-			JOptionPane.showMessageDialog(null, "C'è stato un errore, riprova piu tardi");
-		} else if(risultato == 2) {
-			JOptionPane.showMessageDialog(null, "Dati mancanti, per favore riprova");
-		}
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // Conversione delle stringhe in oggetti LocalDate
+        LocalDate dateIn = LocalDate.parse(datain, formatter);
+        LocalDate dateOut = LocalDate.parse(dataout, formatter);
+
+        // Verifica se dataout è maggiore di datain
+        if (dateOut.isAfter(dateIn)) {
+        	MostraStanzeDAO dao = new MostraStanzeDAO();
+    		int risultato = dao.RecuperaStanzeOccupate(datain,dataout, view.table_1);
+    		if(risultato == 1) {
+    			JOptionPane.showMessageDialog(null, "C'è stato un errore, riprova piu tardi");
+    		} else if(risultato == 2) {
+    			JOptionPane.showMessageDialog(null, "Dati mancanti, per favore riprova");
+    		}
+        } else {
+        	JOptionPane.showMessageDialog(null, "Le date inserite sono errate, per favore riprova");
+        	 } 	
+		
 	}
 	
 	public void prenota(ActionEvent e, int id) throws SQLException{
