@@ -132,13 +132,14 @@ public class LavoratoriGUI extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 
 
-		JLabel lblNewLabel = new JLabel("Lavoratori");
+		JLabel lblNewLabel = new JLabel("Dipendenti");
 
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 
-		lblNewLabel.setFont(new Font("Yuppy SC", Font.PLAIN, 18));
+		lblNewLabel.setFont(new Font("Yuppy SC", Font.PLAIN, 20));
 
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridheight = 2;
 
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 
@@ -176,6 +177,9 @@ public class LavoratoriGUI extends JFrame {
 				
 				 RuField.setEditable(true);
 				 StField.setEditable(true);
+				 
+				 btnCancella.setEnabled(true);
+				 btnMo.setEnabled(true);
 				 
 				 int row = table.getSelectedRow();
 	                
@@ -326,7 +330,8 @@ public class LavoratoriGUI extends JFrame {
 		});
 
 
-		btnMo = new JButton("Modifica");
+		btnMo = new JButton("Salva");
+		btnMo.setEnabled(false);
 
 		GridBagConstraints gbc_btnMo = new GridBagConstraints();
 
@@ -379,11 +384,15 @@ public class LavoratoriGUI extends JFrame {
 
 		});
 		btnCancella = new JButton("Cancella");
+		btnCancella.setEnabled(false);
+		btnCancella.setToolTipText("Dipendente fuori organico");
 
 		btnCancella.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il dipendente?") == 0) {
 				controller.actionPerformed(e);
+				}
 			}
 		});
 

@@ -169,6 +169,8 @@ public class LavTurniGUI extends JFrame {
 			 public void mouseClicked(MouseEvent e) {
 				 edit();
 				 
+				 btnCancella.setEnabled(true);
+				 btnMo.setEnabled(true);
 				 int row = table.getSelectedRow();
 	                
 	                    // Ottieni i valori delle colonne desiderate per la riga selezionata
@@ -354,7 +356,8 @@ public class LavTurniGUI extends JFrame {
 		});
 
 
-		btnMo = new JButton("Modifica");
+		btnMo = new JButton("Salva");
+		btnMo.setEnabled(false);
 		btnMo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -406,6 +409,7 @@ public class LavTurniGUI extends JFrame {
 		});
 
 		btnCancella = new JButton("Cancella");
+		btnCancella.setEnabled(false);
 		btnCancella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.actionPerformed(e);

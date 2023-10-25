@@ -32,21 +32,26 @@ public class LavActionListener implements ActionListener {
 			Time oraI= Time.valueOf(view.getOraI());
 			Time oraF= Time.valueOf(view.getOraf());
 			int id_t = 0;
+			if(!checkOra(oraI, oraF)) {
 			
-			try {
-				if(dao.turnoDuplicato(id_l, giorno, oraI, oraF)) {
-					JOptionPane.showMessageDialog(null, "Errore, turno già presente");
-					return;
+				try {
+					if(dao.turnoDuplicato(id_l, giorno, oraI, oraF)) {
+						JOptionPane.showMessageDialog(null, "Errore, turno già presente");
+						return;
+					}
+				
+					id_t = dao.prossimoId();
+				
+				} catch (SQLException e1) {
+				
+					e1.printStackTrace();
 				}
-				checkOra(oraI, oraF);
-				id_t = dao.prossimoId();
-				
-			} catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
 			
-			dao.aggiungiTurni(id_l, giorno, oraI, oraF, id_t );
+				dao.aggiungiTurni(id_l, giorno, oraI, oraF, id_t );
+				dao.caricaTurni(view.table);
+			} else	{
+				JOptionPane.showMessageDialog(null, "Orari non validi");
+			}
 		
 		} else if(e.getSource()==view.getBtnCancella()) {
 			int id_t = view.getIdT();
@@ -60,7 +65,7 @@ public class LavActionListener implements ActionListener {
 			Time oraI= Time.valueOf(view.getOraI());
 			Time oraF= Time.valueOf(view.getOraf());
 			int id_t = view.getIdT();
-			
+			if(!checkOra(oraI, oraF)){
 			
 				try {
 					if(dao.turnoDuplicato(id_l, giorno, oraI, oraF)) {
@@ -73,15 +78,23 @@ public class LavActionListener implements ActionListener {
 			
 			dao.modificaTurni(id_l, giorno, oraI, oraF, id_t);
 			JOptionPane.showMessageDialog(null, "Turno modificato con successo!");
+			dao.caricaTurni(view.table);
+			
+		} else {
+			JOptionPane.showMessageDialog(null, "Orari non validi");
+			}
 		}
+			
 	}
 
-	public void checkOra(Time oraI, Time oraF) {
+	public boolean checkOra(Time oraI, Time oraF) {
 		
 		System.out.println(""+oraI+"  "+oraF);
 		if(oraF.before(oraI)) {
-			JOptionPane.showMessageDialog(null, "Orari non validi");
+			
+			return true;
 		}
+		return false;
 	}
 
 	
