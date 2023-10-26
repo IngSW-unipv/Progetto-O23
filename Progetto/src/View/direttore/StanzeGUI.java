@@ -80,6 +80,7 @@ public class StanzeGUI extends JFrame {
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
+		table.setDefaultEditor(Object.class, null); // impedisco di poter modificare i campi da tabella
 		scrollPane.setViewportView(table);
 		
 		

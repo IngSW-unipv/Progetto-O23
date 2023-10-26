@@ -47,37 +47,32 @@ public class DirettoreDAO {
            stmt.setString(13, dip.getPassword());
            stmt.setInt(14, 1); // id_tipo = 1 dipendenti 
          
-           stmt.executeUpdate();
-           stmt.close();           
+           stmt.executeUpdate();           
            
            System.out.println("prima query");
                 
-           PreparedStatement st = null;
            int id_d= generaIdD();
            String sql2="insert into dipendente "
            		+ "(id_l, nome, cognome, ruolo, stipendio, id_user)"
            		+ "values (?, ?, ?, ?, ?, ?) ";
-           st = con.prepareStatement(sql2);
-           st.setInt(1, id_d);
-           st.setString(2, dip.getNome());
-           st.setString(3, dip.getCognome());
-           st.setString(4, dip.getRuolo());
-           st.setInt(5, dip.getStipendio());
-           st.setInt(6, id_u);
+           stmt = con.prepareStatement(sql2);
+           stmt.setInt(1, id_d);
+           stmt.setString(2, dip.getNome());
+           stmt.setString(3, dip.getCognome());
+           stmt.setString(4, dip.getRuolo());
+           stmt.setInt(5, dip.getStipendio());
+           stmt.setInt(6, id_u);
            
-           st.executeUpdate(); 
-           st.close();
+           stmt.executeUpdate(); 
+           
            System.out.println("seconda query");
-           
 
            System.out.println("Registrazione completata con successo");
-           st.close();
            con.close();
        
        } catch (SQLException e) {
            System.out.println("Errore durante la registrazione: " + e.getMessage());
-           stmt.close();
-           con.close();
+           return;
        } 
    }
 	
@@ -117,7 +112,7 @@ public class DirettoreDAO {
             }
         }
         
-        return id;
+        return id;        
     }
 	
 	public int generaIdD() throws SQLException {
@@ -217,6 +212,7 @@ public class DirettoreDAO {
 		
 		 } catch(SQLException e1) {
 			 e1.printStackTrace();
+			 return;
 		 }
 		
 	}

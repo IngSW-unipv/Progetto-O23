@@ -56,7 +56,7 @@ public class LavoratoriGUI extends JFrame {
 	private String stipendio;
 	private JButton btnNewButton;
 
-///*
+/*
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
@@ -80,7 +80,7 @@ public class LavoratoriGUI extends JFrame {
 		});
 
 	}
-//*/
+*/
 
 
 	/**
@@ -167,15 +167,16 @@ public class LavoratoriGUI extends JFrame {
 		contentPane.add(scrollPane, gbc_scrollPane);
 
 
-		table = new JTable();
+		table = new JTable(); 
+		table.setDefaultEditor(Object.class, null); // impedisco di poter modificare i campi da tabella
 
 		scrollPane.setViewportView(table);
 		
 		table.addMouseListener(new MouseAdapter() {
 
-			 public void mouseClicked(MouseEvent e) {
-				
-				 RuField.setEditable(true);
+			 public void mouseClicked(MouseEvent e) { 
+				// rendo campi e bottoni che mi servono editabili
+				 RuField.setEditable(true); 
 				 StField.setEditable(true);
 				 
 				 btnCancella.setEnabled(true);
@@ -390,6 +391,7 @@ public class LavoratoriGUI extends JFrame {
 		btnCancella.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				//doppio controllo sul tasto cancella visto che è importante
 				if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il dipendente?") == 0) {
 				controller.actionPerformed(e);
 				}

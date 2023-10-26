@@ -160,8 +160,8 @@ public class LavTurniGUI extends JFrame {
 		contentPane.add(scrollPane, gbc_scrollPane);
 
 
-		table = new JTable();
-
+		table = new JTable(); 
+		table.setDefaultEditor(Object.class, null); // impedisco di poter modificare i campi da tabella
 		scrollPane.setViewportView(table);
 		
 		table.addMouseListener(new MouseAdapter() {
@@ -349,8 +349,9 @@ public class LavTurniGUI extends JFrame {
 		getBtnAg().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				edit();
+				controller.actionPerformed(e);	
 				
-				controller.actionPerformed(e);				
 			}
 
 		});
@@ -413,6 +414,7 @@ public class LavTurniGUI extends JFrame {
 		btnCancella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.actionPerformed(e);
+				unedit();
 			}
 		});
 

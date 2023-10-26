@@ -27,6 +27,7 @@ public class LavActionListener implements ActionListener {
 			dao.caricaTurni(view.table);
 		
 		} else if(e.getSource()==view.getBtn()){
+			// prendo i campi che mi servono con gli opportuni cast
 			int id_l= Integer.valueOf(view.getId_l());
 			Date giorno= Date.valueOf(view.getGiorno());
 			Time oraI= Time.valueOf(view.getOraI());
@@ -48,18 +49,20 @@ public class LavActionListener implements ActionListener {
 				}
 			
 				dao.aggiungiTurni(id_l, giorno, oraI, oraF, id_t );
-				dao.caricaTurni(view.table);
+				dao.caricaTurni(view.table); //aggiorno la tabella
 			} else	{
 				JOptionPane.showMessageDialog(null, "Orari non validi");
 			}
 		
 		} else if(e.getSource()==view.getBtnCancella()) {
+			//prendo solo l'id perchè mi serve solo la chiave della tabella per l'eliminazione
 			int id_t = view.getIdT();
 			dao.eliminaTurni(id_t);
 			JOptionPane.showMessageDialog(null, "Turno eliminato con successo!");
-			dao.caricaTurni(view.table);
+			dao.caricaTurni(view.table); //aggiorno la tabella
 		
 		} else if(e.getSource()==view.getBtnMo()) {
+			// prendo i campi che mi servono con gli opportuni cast 
 			int id_l= Integer.valueOf(view.getId_l());
 			Date giorno= Date.valueOf(view.getGiorno());
 			Time oraI= Time.valueOf(view.getOraI());
@@ -78,7 +81,7 @@ public class LavActionListener implements ActionListener {
 			
 			dao.modificaTurni(id_l, giorno, oraI, oraF, id_t);
 			JOptionPane.showMessageDialog(null, "Turno modificato con successo!");
-			dao.caricaTurni(view.table);
+			dao.caricaTurni(view.table); //aggiorno la tabella
 			
 		} else {
 			JOptionPane.showMessageDialog(null, "Orari non validi");
@@ -86,7 +89,7 @@ public class LavActionListener implements ActionListener {
 		}
 			
 	}
-
+// metodo per la verifica che l'ora di inizio non sia minore dell'ora fine
 	public boolean checkOra(Time oraI, Time oraF) {
 		
 		System.out.println(""+oraI+"  "+oraF);

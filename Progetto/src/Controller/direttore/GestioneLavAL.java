@@ -25,19 +25,17 @@ public class GestioneLavAL implements ActionListener {
 			dip.caricaLav(view.getTable());
 			
 		} else if(e.getSource()==view.getBtnMo()) {
-			
+			//prendo da field i campi che mi interessano con gli opportuni cast 
 			int id_l = view.getIdL();
 			int stipendio=Integer.valueOf(view.getStipendio());			
 			String ruolo=view.getRuolo();
 
 			dip.modificaDip(id_l, stipendio, ruolo);
-			JOptionPane.showMessageDialog(null, "Dipendente modificato con successo!");
 			dip.caricaLav(view.getTable());
 			
 		} else if(e.getSource()==view.getBtnCancella()) {
 			int id_l = view.getIdL();
 			dip.Licenzia(id_l);
-			JOptionPane.showMessageDialog(null, "Riga eliminata con successo!");
 			dip.caricaLav(view.getTable());
 		}
 	}

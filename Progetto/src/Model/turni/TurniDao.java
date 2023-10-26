@@ -14,7 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import dao.DBConnessione;
 
 public class TurniDao {
-	
+
+// metodo per caricare da db i turni	
 	public void caricaTurni(JTable table) {
 		 	DBConnessione d = new DBConnessione();
 	        Connection con = null;
@@ -24,10 +25,11 @@ public class TurniDao {
 		
 		 try(PreparedStatement stmt = con.prepareStatement(sql)) {
 	         
-			 
+			// utilizzo un modello che prende direttamente dal db la costruzione in righe e colonne della tabella
+			
 			 
 	         ResultSet rs = stmt.executeQuery();
-			 java.sql.ResultSetMetaData rsmd = rs.getMetaData();
+			 java.sql.ResultSetMetaData rsmd = rs.getMetaData();	
 			 DefaultTableModel model =(DefaultTableModel) table.getModel();
 	         
 			 model.setRowCount(0);
@@ -40,7 +42,7 @@ public class TurniDao {
 				 model.setColumnIdentifiers(colName);
 			 }	 
 				 
-				 
+			// successivamente imposto l'ordine di visualizzazione delle colonne				 
 				 while(rs.next()) {
 					 
 					 String lavoratore=rs.getString(1);
@@ -56,13 +58,15 @@ public class TurniDao {
 			 }
 				 rs.close();
 				 stmt.close();
-		
+				 con.close();
 		 } catch(SQLException e1) {
 			 e1.printStackTrace();
+			 return;
 		 }
 		
 	}
-	
+
+// due metodi per la generazione degli id
 	public int prossimoId() throws SQLException {
 
 		DBConnessione d = new DBConnessione();
@@ -99,7 +103,7 @@ public class TurniDao {
 		  return id;
 
 		}
-	
+// metodo per aggiungere un nuovo turno tramite i valori delle field presenti nella view	
 	public void aggiungiTurni(int id_l, Date giorno, Time oraIn, Time oraF, int id_t) {
 		DBConnessione d = new DBConnessione();
         Connection con = null;
@@ -121,16 +125,17 @@ public class TurniDao {
 
 			System.out.println("Modifica completata con successo");
 
-
+			stmt.close();
+			con.close();
 
 		} catch (SQLException e1) {
 
 			e1.printStackTrace();
-			
+			return;
 		} 
         
 	}
-	
+// metodo di modifica del turno tramite inserimento in tabella dei valori delle field	
 	public void modificaTurni(int id_l, Date giorno, Time oraIn, Time oraF, int id_t) {
 		DBConnessione d = new DBConnessione();
         Connection con = null;
@@ -150,13 +155,14 @@ public class TurniDao {
 			stmt.executeUpdate();
 
 			System.out.println("Modifica completata con successo");
-
+			stmt.close();
+			con.close();
 
 
 		} catch (SQLException e1) {
 
 			e1.printStackTrace();
-
+			return;
 		} 
 
 	}
@@ -175,9 +181,13 @@ public class TurniDao {
 	        	stmt=con.prepareStatement(sql);
 	        	stmt.setInt(1, id_t);
 	        	stmt.executeUpdate();
-	        
+	        	
+	        	stmt.close();
+	        	con.close();
+	        	
 	    } catch (SQLException e) {
 	        System.out.println("Errore durante l'eliminazione della riga: " + e.getMessage());
+	        return;
 	    }
  }
 
@@ -188,7 +198,7 @@ public class TurniDao {
         PreparedStatement stmt = null;
                 
 		try {
-
+			// query di verifica duplicato, controlla se ho già un turno del tipo inserito nelle field per l'id_l selezionato
 			String sql ="select count(*) from turni_lavoro where id_l= ? and giorno=? and ora_inizio=? and ora_fine=?";
 
 			stmt=con.prepareStatement(sql);
@@ -206,6 +216,8 @@ public class TurniDao {
 
 			e1.printStackTrace();
 
+		}finally {
+		   con.close();
 		}
 		return false;
 	}

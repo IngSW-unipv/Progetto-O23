@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -67,9 +68,10 @@ public class DipendentiDAO {
 		 }
 			 rs.close();
 			 stmt.close();
-	
+			 con.close();
 	 } catch(SQLException e1) {
 		 e1.printStackTrace();
+		 return;
 	 }
 	
 }
@@ -89,15 +91,14 @@ public class DipendentiDAO {
 			stmt.setInt(2, stipendio);
 			stmt.setInt(3, id_l);
 			stmt.executeUpdate();
-			System.out.println("nuovo stipendio"+ stipendio);
 			System.out.println("Modifica completata con successo");
 
-
-
+			JOptionPane.showMessageDialog(null, "Dipendente modificato con successo!");
+			stmt.close();
+			con.close();
 		} catch (SQLException e1) {
-
 			e1.printStackTrace();
-
+			return;
 		} 
 		
 	}
@@ -107,6 +108,8 @@ public class DipendentiDAO {
 	    Connection con = null;
         con = d.connessione(con);
         PreparedStatement stmt = null;
+        	
+        	verificaTurno(id_l);
 	    
 	        String sql = "DELETE FROM dipendente WHERE id_l=?";
 	        
@@ -116,9 +119,47 @@ public class DipendentiDAO {
 	        	stmt.setInt(1, id_l);
 	        	stmt.executeUpdate();
 	        System.out.println("dipendente licenziato con successo!");
+			JOptionPane.showMessageDialog(null, "Riga eliminata con successo!");
+			stmt.close();
+			con.close();
 	    } catch (SQLException e) {
 	        System.out.println("Errore durante l'eliminazione della riga: " + e.getMessage());
+	        return;
 	    }
 	}
+	
+	public void verificaTurno(int id_l) {
+		DBConnessione d = new DBConnessione();
+        Connection con = null;
+        con = d.connessione(con);
+        PreparedStatement stmt = null;
+                
+		try {
+			// query di controllo se ho turni per l'id selezionato
+			String sql ="select count(*), id_l from turni_lavoro where id_l= ? group by id_l";
+
+			stmt=con.prepareStatement(sql);
+			stmt.setInt(1, id_l);
+			
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				int count=rs.getInt(1);
+				if(count>0) {
+					String sql2 ="delete from turni_lavoro where id_l= ?";
+					stmt=con.prepareStatement(sql2);
+					System.out.println("turni dipendente eliminati");
+				} else return;
+			}
+			rs.close();
+			stmt.close();
+			con.close();
+			
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+			return;
+		} 
+	}
+	
 
 }

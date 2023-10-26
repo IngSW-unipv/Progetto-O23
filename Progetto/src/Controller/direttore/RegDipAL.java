@@ -27,7 +27,7 @@ public class RegDipAL implements ActionListener {
 			if(!validaCampi()) {
 				return;
 			}
-			
+			// per prendere la data estraggo un calendario dal chooser e prendo i campi giorno, mese, anno
 			Calendar cal = view.getDateChooser().getCalendar();
 			
 			int anno = cal.get(cal.YEAR);
@@ -37,7 +37,7 @@ public class RegDipAL implements ActionListener {
 			
 			int cap = Integer.valueOf(view.getCap().getText());
 			int stipendio= Integer.valueOf(view.getStipendio().getText());
-			//int cell= Integer.valueOf(view.getCell().getText());
+
 			try {
 				dirD.dip_Register(new Dipendenti(view.getCf().getText(), view.getNome().getText(), view.getCognome().getText(), data , view.getCell().getText(), view.getVia().getText(), 
 						view.getCitta().getText(), view.getProvincia().getText(), cap, view.getEmail().getText(), view.getUsername().getText(), view.getPassword().getText(), view.getRuolo().getText(), stipendio));
