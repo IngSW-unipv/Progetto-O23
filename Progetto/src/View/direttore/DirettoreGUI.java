@@ -7,8 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
 
-
-import Model.User;
+import Controller.direttore.LogoutDirML;
 import Model.direttore.Direttore;
 import View.AccountCl;
 import View.Benvenuto_Form;
@@ -190,8 +189,9 @@ public class DirettoreGUI extends JFrame{
 			//chiedo conferma logout e richiamo il form benvenuto
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Sei sicuro?") == 0) {
-					Benvenuto_Form ben = new Benvenuto_Form();
-					ben.setVisible(true);
+					JOptionPane opzione = null;
+					LogoutDirML dirOut = new LogoutDirML(opzione, dir);	
+					dirOut.actionPerformed(e);
 					DirettoreGUI.this.dispose();
 				}
 			}
@@ -229,6 +229,10 @@ public class DirettoreGUI extends JFrame{
     	setVisible(true);
 	}
 	
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
 	public JLabel getLbl() {
 		return lblCl;
 	}
