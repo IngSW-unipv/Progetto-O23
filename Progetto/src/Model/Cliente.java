@@ -37,7 +37,7 @@ public Cliente(String cf, String nome, String cognome, java.sql.Date dataDiNasci
 //metodo per registrare il cliente
 	public void registrazione(String cf, String nome, String cognome, String dataNascita, String cell, String via, String citta, String provincia, int cap, String email, String username, String password) throws SQLException, NoSuchAlgorithmException {
 		
-	    // Verifica che il CF, l'username e l'email non siano già  presenti nel database
+	    // Verifica che il CF, l'username e l'email non siano giï¿½ presenti nel database
 		
 		Gestione_Dao g = new Gestione_Dao();
 		g.user_Register(cf, nome, cognome, dataNascita, cell, via, citta, provincia, cap, email, username, password);	

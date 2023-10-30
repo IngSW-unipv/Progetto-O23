@@ -18,8 +18,7 @@ public class PrenotaController {
 	public PrenotaController(PrenotaGUI view) {
         this.view = view;
     }
-
-
+	
 	public void RecuperaStanze(ActionEvent e) throws SQLException {
 		//prendo le due date dalla gui e le porto nel controller
 		String datain = view.getDateCheckin();
