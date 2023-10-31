@@ -6,15 +6,14 @@ import java.sql.*;
 import java.util.Calendar;
 import javax.swing.*;
 
-import Model.dipendente.Dipendenti;
-import Model.direttore.DirettoreDAO;
+import Model.direttore.Direttore;
 import View.direttore.RegistraDipGUI;
 
 public class RegDipAL implements ActionListener {
 	private RegistraDipGUI view;
-	private DirettoreDAO dirD;
+	private Direttore dirD;
 
-	public RegDipAL(DirettoreDAO dirD, RegistraDipGUI view) {
+	public RegDipAL(Direttore dirD, RegistraDipGUI view) {
 		this.dirD= dirD;
 		this.view=view;
 	}
@@ -39,10 +38,10 @@ public class RegDipAL implements ActionListener {
 			int stipendio= Integer.valueOf(view.getStipendio().getText());
 
 			try {
-				dirD.dip_Register(new Dipendenti(view.getCf().getText(), view.getNome().getText(), view.getCognome().getText(), data , view.getCell().getText(), view.getVia().getText(), 
-						view.getCitta().getText(), view.getProvincia().getText(), cap, view.getEmail().getText(), view.getUsername().getText(), view.getPassword().getText(), view.getRuolo().getText(), stipendio));
+				dirD.registaDip(view.getCf().getText(), view.getNome().getText(), view.getCognome().getText(), data , view.getCell().getText(), view.getVia().getText(), 
+						view.getCitta().getText(), view.getProvincia().getText(), cap, view.getEmail().getText(), view.getUsername().getText(), view.getPassword().getText(), view.getRuolo().getText(), stipendio);
 				
-				JOptionPane.showMessageDialog(null, "Registrazione effettuata con successo");
+				
 				
 			} catch (SQLException | NoSuchAlgorithmException e1) {
 				

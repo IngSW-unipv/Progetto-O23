@@ -1,11 +1,9 @@
 package Model.dipendente;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -147,12 +145,16 @@ public class DipendentiDAO {
 				if(count>0) {
 					String sql2 ="delete from turni_lavoro where id_l= ?";
 					stmt=con.prepareStatement(sql2);
-					System.out.println("turni dipendente eliminati");
-				} else return;
+					stmt.setInt(1,  id_l);
+					
+					stmt.executeUpdate();
+		
+				} else {
+					return;
+				}
 			}
 			rs.close();
-			stmt.close();
-			con.close();
+			
 			
 		} catch (SQLException e1) {
 

@@ -1,15 +1,10 @@
 package Model.direttore;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
 
 import Model.User;
 import Model.dipendente.Dipendenti;
-import Model.dipendente.DipendentiDAO;
-import Model.turni.TurniDao;
-import Model.turni.Turni_Lavoro;
 
 public class Direttore extends User{
 	private int id_L;
@@ -33,30 +28,6 @@ public void registaDip(String cf, String nome, String cognome, java.sql.Date dat
 	
 }
 
-public void aggiuntaT(int id_l, Date giorno, Time oraI, Time oraF, int id_t) {
-	TurniDao turni = new TurniDao();
-	turni.aggiungiTurni(id_l, giorno, oraI, oraF, id_t);
-}
-
-public void rimuoviT(int id_t) {
-	TurniDao turni = new TurniDao();
-	turni.eliminaTurni(id_t);
-}
-
-public void modificaT(int id_l, Date giorno, Time oraI, Time oraF, int id_t) {
-	TurniDao turni = new TurniDao();
-	turni.modificaTurni(id_l, giorno, oraI, oraF, id_t);
-}
-
-public void modificaL(int id_l, int stipendio, String ruolo) {
-	DipendentiDAO dip = new DipendentiDAO();
-	dip.modificaDip(id_l, stipendio, ruolo);
-}
-
-public void rimuoviL(int id_l) {
-	DipendentiDAO dip = new DipendentiDAO();
-	dip.Licenzia(id_l);
-}
 
 	
 //GETTER SETTER

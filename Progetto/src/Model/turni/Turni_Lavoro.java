@@ -2,13 +2,9 @@ package Model.turni;
 
 import java.sql.Date;
 import java.sql.Time;
-import dao.DBConnessione;
-import dao.Gestione_Dao;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import dao.Gestione_Dao;
 
 public class Turni_Lavoro {
 	private Date Giorno;

@@ -1,7 +1,5 @@
 package Model.dipendente;
 
-import java.util.Date;
-
 import Model.User;
 
 public class Dipendenti extends User{

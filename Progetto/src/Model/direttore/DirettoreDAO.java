@@ -6,7 +6,6 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import Model.User;
 import Model.dipendente.Dipendenti;
 import dao.DBConnessione;
 
@@ -15,7 +14,6 @@ public class DirettoreDAO {
 	
 	
 	public void dip_Register(Dipendenti dip) throws SQLException, NoSuchAlgorithmException {
-		System.out.println("entro nel dao");
     	
    	 // Connessione al database
        DBConnessione d =new DBConnessione();
@@ -26,7 +24,6 @@ public class DirettoreDAO {
        int id_u= generaIdU();
       
        try {
-    	   System.out.println("entro nel try del dao");
            // Inserimento dei dati nella tabella user
            String sql = "INSERT INTO user "
            		+ "(ID_USER,cf, nome, cognome, data_nascita, cell, via, citta, provincia, cap, email, username, password, id_tipo) "
@@ -48,8 +45,6 @@ public class DirettoreDAO {
            stmt.setInt(14, 1); // id_tipo = 1 dipendenti 
          
            stmt.executeUpdate();           
-           
-           System.out.println("prima query");
                 
            int id_d= generaIdD();
            String sql2="insert into dipendente "
@@ -64,10 +59,9 @@ public class DirettoreDAO {
            stmt.setInt(6, id_u);
            
            stmt.executeUpdate(); 
-           
-           System.out.println("seconda query");
 
            System.out.println("Registrazione completata con successo");
+           JOptionPane.showMessageDialog(null, "Registrazione effettuata con successo");
            con.close();
        
        } catch (SQLException e) {

@@ -8,7 +8,6 @@ import java.awt.*;
 import javax.swing.border.EmptyBorder;
 
 import Model.direttore.Direttore;
-import Model.direttore.DirettoreDAO;
 import Controller.direttore.RegDipAL;
 
 
@@ -66,10 +65,10 @@ public class RegistraDipGUI extends JFrame {
 
 		RegistraDipGUI.dir=dir;
 		
-		DirettoreDAO dao = new DirettoreDAO();
+		//DirettoreDAO dao = new DirettoreDAO();
 
 
-		RegDipAL reg = new RegDipAL(dao, this);
+		RegDipAL reg = new RegDipAL(dir, this);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 190, 1124, 595);

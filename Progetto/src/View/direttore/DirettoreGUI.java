@@ -16,8 +16,8 @@ import View.Benvenuto_Form;
 public class DirettoreGUI extends JFrame{
 	public JPanel contentPane;
 	private JLabel lblCl;
-	private static int id;
-	private static Direttore dir;
+	private int id;
+	private Direttore dir;
 	 
 /*	
 	public static void main(String[] args) {
@@ -34,8 +34,8 @@ public class DirettoreGUI extends JFrame{
 	}
 */
 	public DirettoreGUI(int id,Direttore dir){
-		DirettoreGUI.id = id;
-		DirettoreGUI.dir = dir;
+		this.id = id;
+		this.dir = dir;
 		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

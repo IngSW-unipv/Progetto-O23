@@ -4,16 +4,13 @@ package View.direttore;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import java.sql.*;
 
 import Controller.direttore.LavActionListener;
 import java.awt.event.*;
 
-import Model.User;
 import Model.direttore.Direttore;
-import Model.direttore.DirettoreDAO;
 import Model.turni.TurniDao;
-import dao.DBConnessione;
+
 
 
 
@@ -31,9 +28,9 @@ public class LavTurniGUI extends JFrame {
 
 	public static JLabel lbl;
 
-	private static int id;
+	private int id;
 
-	private static Direttore dir;
+	private Direttore dir;
 
 	private JTextField IdField;
 
@@ -88,11 +85,11 @@ public class LavTurniGUI extends JFrame {
 	public LavTurniGUI(JLabel lbl, int id, Direttore dir) {
 
 
-		LavTurniGUI.lbl = lbl;
+		this.lbl = lbl;
 
-		LavTurniGUI.id=id;
+		this.id=id;
 
-		LavTurniGUI.dir=dir;
+		this.dir=dir;
 
 
 		dao = new TurniDao();

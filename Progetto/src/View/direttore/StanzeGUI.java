@@ -3,11 +3,9 @@ package View.direttore;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import java.sql.*;
 import java.awt.event.*;
 
 import Controller.direttore.StanzaActionListener;
-import Model.User;
 import Model.direttore.Direttore;
 import Model.direttore.DirettoreDAO;
 
@@ -17,8 +15,8 @@ public class StanzeGUI extends JFrame {
 	public JTable table;
 	private DirettoreDAO dao;
 	public static JLabel lbl;
-	private static int id;
-	private static Direttore dir;
+	private int id;
+	private Direttore dir;
 
 /*
 	public static void main(String[] args) {
@@ -41,8 +39,8 @@ public class StanzeGUI extends JFrame {
 	public StanzeGUI(JLabel lbl, int id, Direttore dir) {
 		
 		StanzeGUI.lbl = lbl;
-		StanzeGUI.id=id;
-		StanzeGUI.dir=dir;
+		this.id=id;
+		this.dir=dir;
 		
 		dao = new DirettoreDAO();
 		

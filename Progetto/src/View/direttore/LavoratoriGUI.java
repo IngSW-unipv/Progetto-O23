@@ -3,20 +3,12 @@ package View.direttore;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import java.sql.*;
 
 import Controller.direttore.GestioneLavAL;
 import java.awt.event.*;
 
-import Model.User;
 import Model.dipendente.DipendentiDAO;
 import Model.direttore.Direttore;
-import Model.direttore.DirettoreDAO;
-import Model.turni.TurniDao;
-import View.Registration_Form;
-import dao.DBConnessione;
-
-
 
 public class LavoratoriGUI extends JFrame {
 
