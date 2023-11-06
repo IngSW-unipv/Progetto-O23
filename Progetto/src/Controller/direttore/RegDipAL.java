@@ -61,7 +61,8 @@ private boolean validaCampi() {
 				|| view.getCap().getText().isEmpty() || view.getEmail().getText().isEmpty() || view.getUsername().getText().isEmpty() ||view.getPassword().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Errore, nessun campo può essere vuoto");
 			return false;
-		} 
+		}
+		
 		
 		return true;
 		

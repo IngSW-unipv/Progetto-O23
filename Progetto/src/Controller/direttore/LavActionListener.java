@@ -6,16 +6,19 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
+import Model.direttore.Direttore;
 import Model.turni.TurniDao;
-import View.direttore.LavTurniGUI;
+import View.direttore.LavTurniPanel;
 
 public class LavActionListener implements ActionListener {
 	private TurniDao dao;
-	private LavTurniGUI view;
+	private LavTurniPanel view;
+	private Direttore dir;
 	
-	public LavActionListener(TurniDao dao, LavTurniGUI view){
+	public LavActionListener(TurniDao dao, LavTurniPanel view, Direttore dir){
 		this.dao=dao;
 		this.view=view;
+		this.dir=dir;
 		
 	}
 	
@@ -48,7 +51,7 @@ public class LavActionListener implements ActionListener {
 					e1.printStackTrace();
 				}
 			
-				dao.aggiungiTurni(id_l, giorno, oraI, oraF, id_t );
+				dir.aggiungiTu(id_l, giorno, oraI, oraF, id_t );
 				dao.caricaTurni(view.table); //aggiorno la tabella
 			} else	{
 				JOptionPane.showMessageDialog(null, "Orari non validi");
@@ -57,7 +60,7 @@ public class LavActionListener implements ActionListener {
 		} else if(e.getSource()==view.getBtnCancella()) {
 			//prendo solo l'id perchè mi serve solo la chiave della tabella per l'eliminazione
 			int id_t = view.getIdT();
-			dao.eliminaTurni(id_t);
+			dir.cancellaTu(id_t);
 			JOptionPane.showMessageDialog(null, "Turno eliminato con successo!");
 			dao.caricaTurni(view.table); //aggiorno la tabella
 		
@@ -79,7 +82,7 @@ public class LavActionListener implements ActionListener {
 					e1.printStackTrace();
 				}
 			
-			dao.modificaTurni(id_l, giorno, oraI, oraF, id_t);
+			dir.modificaTu(id_l, giorno, oraI, oraF, id_t);
 			JOptionPane.showMessageDialog(null, "Turno modificato con successo!");
 			dao.caricaTurni(view.table); //aggiorno la tabella
 			

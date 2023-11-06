@@ -122,7 +122,7 @@ public class TurniDao {
 			
 			stmt.executeUpdate();
 
-			System.out.println("Modifica completata con successo");
+			System.out.println("Turno aggiunto con successo");
 
 			stmt.close();
 			con.close();

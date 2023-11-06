@@ -10,34 +10,18 @@ import java.awt.event.*;
 import Model.dipendente.DipendentiDAO;
 import Model.direttore.Direttore;
 
-public class LavoratoriGUI extends JFrame {
-
-
-
-	private JPanel contentPane;
+public class LavoratoriPanel extends JPanel {
 
 	private JTable table;
 
-	public JTable getTable() {
-		return table;
-	}
-
-
-
 	private DipendentiDAO dao;
 
-	
-
 	public static JLabel lbl;
-
-	private static int id;
-
-	private static Direttore dir;
+	
+	private Direttore dir;
 
 	private JTextField IdField;
-
 	private JTextField RuField;
-
 	private JTextField StField;
 
 	private JButton btnAg;
@@ -48,80 +32,39 @@ public class LavoratoriGUI extends JFrame {
 	private String stipendio;
 	private JButton btnNewButton;
 
-/*
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-
-			public void run() {
-
-				try {
-
-					LavoratoriGUI frame = new LavoratoriGUI(lbl, id, dir);
-
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-
-					e.printStackTrace();
-
-				}
-
-			}
-
-		});
-
-	}
-*/
-
-
 	/**
 
 	 * Create the frame.
 
-	 * @param lbl 
+	 * @param dir
 
 	 */
 
-	public LavoratoriGUI(JLabel lbl, int id, Direttore dir) {
-
-
-		LavoratoriGUI.lbl = lbl;
-
-		LavoratoriGUI.id=id;
-
-		LavoratoriGUI.dir=dir;
-
-
+	public LavoratoriPanel(Direttore dir) {
+		this.dir=dir;
 		dao = new DipendentiDAO();
 
 
-		GestioneLavAL controller = new GestioneLavAL(dao, this);
+		GestioneLavAL controller = new GestioneLavAL(dao, dir, this);
+
+		setBounds(100, 100, 1440, 500);
 
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBackground(new Color(181,247,157));
 
-		setBounds(100, 100, 1376, 500);
-
-		contentPane = new JPanel();
-
-		contentPane.setBackground(new Color(102, 204, 102));
-
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 
-		gbl_contentPane.columnWidths = new int[]{20, 190, 190, 344, 10, 0};
+		gbl_contentPane.columnWidths = new int[]{190, 190, 0};
 
 		gbl_contentPane.rowHeights = new int[]{40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0};
 
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 
-		contentPane.setLayout(gbl_contentPane);
+		setLayout(gbl_contentPane);
 
 
 		JLabel lblNewLabel = new JLabel("Dipendenti");
@@ -133,30 +76,30 @@ public class LavoratoriGUI extends JFrame {
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.gridheight = 2;
 
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 
-		gbc_lblNewLabel.gridx = 3;
+		gbc_lblNewLabel.gridx = 2;
 
 		gbc_lblNewLabel.gridy = 0;
 
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		add(lblNewLabel, gbc_lblNewLabel);
 
 
 		JScrollPane scrollPane = new JScrollPane();
 
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 
 		gbc_scrollPane.gridheight = 8;
 
-		gbc_scrollPane.gridx = 3;
+		gbc_scrollPane.gridx = 2;
 
 		gbc_scrollPane.gridy = 2;
 
-		contentPane.add(scrollPane, gbc_scrollPane);
+		add(scrollPane, gbc_scrollPane);
 
 
 		table = new JTable(); 
@@ -201,11 +144,11 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_lblId.insets = new Insets(0, 0, 5, 5);
 
-		gbc_lblId.gridx = 1;
+		gbc_lblId.gridx = 0;
 
 		gbc_lblId.gridy = 2;
 
-		contentPane.add(lblId, gbc_lblId);
+		add(lblId, gbc_lblId);
 
 
 		IdField = new JTextField();
@@ -217,11 +160,11 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_IdField.fill = GridBagConstraints.BOTH;
 
-		gbc_IdField.gridx = 2;
+		gbc_IdField.gridx = 1;
 
 		gbc_IdField.gridy = 2;
 
-		contentPane.add(IdField, gbc_IdField);
+		add(IdField, gbc_IdField);
 
 		IdField.setColumns(10);
 
@@ -236,11 +179,11 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_lblRu.insets = new Insets(0, 0, 5, 5);
 
-		gbc_lblRu.gridx = 1;
+		gbc_lblRu.gridx = 0;
 
 		gbc_lblRu.gridy = 3;
 
-		contentPane.add(lblRu, gbc_lblRu);
+		add(lblRu, gbc_lblRu);
 
 
 		RuField = new JTextField();
@@ -252,11 +195,11 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_RuField.fill = GridBagConstraints.BOTH;
 
-		gbc_RuField.gridx = 2;
+		gbc_RuField.gridx = 1;
 
 		gbc_RuField.gridy = 3;
 
-		contentPane.add(RuField, gbc_RuField);
+		add(RuField, gbc_RuField);
 
 		RuField.setColumns(10);
 
@@ -271,11 +214,11 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_lblSt.insets = new Insets(0, 0, 5, 5);
 
-		gbc_lblSt.gridx = 1;
+		gbc_lblSt.gridx = 0;
 
 		gbc_lblSt.gridy = 4;
 
-		contentPane.add(lblSt, gbc_lblSt);
+		add(lblSt, gbc_lblSt);
 
 
 		StField = new JTextField();
@@ -287,11 +230,11 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_StField.fill = GridBagConstraints.BOTH;
 
-		gbc_StField.gridx = 2;
+		gbc_StField.gridx = 1;
 
 		gbc_StField.gridy = 4;
 
-		contentPane.add(StField, gbc_StField);
+		add(StField, gbc_StField);
 
 		StField.setColumns(10);
 
@@ -306,11 +249,11 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_btnAg.insets = new Insets(0, 0, 5, 5);
 
-		gbc_btnAg.gridx = 1;
+		gbc_btnAg.gridx = 0;
 
 		gbc_btnAg.gridy = 7;
 
-		contentPane.add(getBtnAg(), gbc_btnAg);
+		add(getBtnAg(), gbc_btnAg);
 
 		getBtnAg().addActionListener(new ActionListener() {
 
@@ -334,47 +277,16 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_btnMo.insets = new Insets(0, 0, 5, 5);
 
-		gbc_btnMo.gridx = 2;
+		gbc_btnMo.gridx = 1;
 
 		gbc_btnMo.gridy = 7;
 
-		contentPane.add(getBtnMo(), gbc_btnMo);
+		add(getBtnMo(), gbc_btnMo);
 		btnMo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				controller.actionPerformed(e);
 			}
-		});
-
-
-		JButton btnBack = new JButton("Indietro");
-
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
-
-		gbc_btnBack.fill = GridBagConstraints.BOTH;
-
-		gbc_btnBack.insets = new Insets(0, 0, 5, 5);
-
-		gbc_btnBack.gridx = 1;
-
-		gbc_btnBack.gridy = 8;
-
-		contentPane.add(btnBack, gbc_btnBack);
-
-		btnBack.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				
-				DirettoreGUI dip = new DirettoreGUI(id, dir);
-
-				dip.setLbl(lbl);
-
-				dispose();
-
-			}
-
 		});
 		btnCancella = new JButton("Cancella");
 		btnCancella.setEnabled(false);
@@ -383,10 +295,14 @@ public class LavoratoriGUI extends JFrame {
 		btnCancella.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				int selectedRow = table.getSelectedRow();
+                if (selectedRow != -1) {
 				//doppio controllo sul tasto cancella visto che è importante
-				if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il dipendente?") == 0) {
-				controller.actionPerformed(e);
-				}
+                	if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il dipendente?") == 0) {
+                		controller.actionPerformed(e);
+                		init();
+                	}
+                }
 			}
 		});
 
@@ -398,34 +314,38 @@ public class LavoratoriGUI extends JFrame {
 
 		gbc_btnCancella.insets = new Insets(0, 0, 5, 5);
 
-		gbc_btnCancella.gridx = 2;
+		gbc_btnCancella.gridx = 1;
 
 		gbc_btnCancella.gridy = 8;
 
-		contentPane.add(btnCancella, gbc_btnCancella);
+		add(btnCancella, gbc_btnCancella);
 		
 		btnNewButton = new JButton("Registra nuovo dipendente");
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistraDipGUI dip = new RegistraDipGUI(lbl,id, dir);
-				dip.setLbl(lbl);
-				dispose();
+				RegistraDipGUI dip = new RegistraDipGUI(dir);
+				//dispose();
 			}
 		});
 		
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.fill = GridBagConstraints.VERTICAL;
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridx = 3;
+		gbc_btnNewButton.gridx = 2;
 		gbc_btnNewButton.gridy = 10;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		add(btnNewButton, gbc_btnNewButton);
 
 
 
 
 
+	}
+	
+	public void init() {
+		IdField.setText("");
+		RuField.setText("");
+		StField.setText("");
 	}
 	
 	public int getIdL() {
@@ -448,8 +368,10 @@ public class LavoratoriGUI extends JFrame {
 	public JButton getBtnCancella() {
 		return btnCancella;
 	}
-
-
+	
+	public JTable getTable() {
+		return table;
+	}
 
 	public JButton getBtnMo() {
 		return btnMo;

@@ -14,30 +14,17 @@ import Model.turni.TurniDao;
 
 
 
-public class LavTurniGUI extends JFrame {
-
-
-
-	private JPanel contentPane;
+public class LavTurniPanel extends JPanel {
 
 	public JTable table;
 
 	private TurniDao dao;
-
-	
-
 	public static JLabel lbl;
-
-	private int id;
-
 	private Direttore dir;
 
 	private JTextField IdField;
-
 	private JTextField DayField;
-
 	private JTextField OiField;
-
 	private JTextField OfField;
 
 	private JButton btnAg;
@@ -47,68 +34,28 @@ public class LavTurniGUI extends JFrame {
 	
 	private int idT;
 
-/*
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-
-			public void run() {
-
-				try {
-
-					LavTurniGUI frame = new LavTurniGUI(lbl, id, dir);
-
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-
-					e.printStackTrace();
-
-				}
-
-			}
-
-		});
-
-	}
-
-*/
 
 	/**
 
 	 * Create the frame.
 
-	 * @param lbl 
+	 * @param dir
 
 	 */
 
-	public LavTurniGUI(JLabel lbl, int id, Direttore dir) {
-
-
-		this.lbl = lbl;
-
-		this.id=id;
+	public LavTurniPanel(Direttore dir) {
 
 		this.dir=dir;
 
-
 		dao = new TurniDao();
 
+		LavActionListener controller = new LavActionListener(dao, this, dir);
 
-		LavActionListener controller = new LavActionListener(dao, this);
+		setBounds(100, 100, 1440, 565);
 
+		setBackground(new Color(181,247,157));
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		setBounds(100, 100, 888, 565);
-
-		contentPane = new JPanel();
-
-		contentPane.setBackground(new Color(102, 204, 102));
-
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 
@@ -120,7 +67,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0,0.0, Double.MIN_VALUE};
 
-		contentPane.setLayout(gbl_contentPane);
+		setLayout(gbl_contentPane);
 
 
 		JLabel lblNewLabel = new JLabel("Turni lavoratori");
@@ -137,7 +84,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_lblNewLabel.gridy = 0;
 
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		add(lblNewLabel, gbc_lblNewLabel);
 
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -154,7 +101,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_scrollPane.gridy = 1;
 
-		contentPane.add(scrollPane, gbc_scrollPane);
+		add(scrollPane, gbc_scrollPane);
 
 
 		table = new JTable(); 
@@ -201,7 +148,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_lblId.gridy = 2;
 
-		contentPane.add(lblId, gbc_lblId);
+		add(lblId, gbc_lblId);
 
 
 		IdField = new JTextField();
@@ -217,7 +164,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_IdField.gridy = 2;
 
-		contentPane.add(IdField, gbc_IdField);
+		add(IdField, gbc_IdField);
 
 		IdField.setColumns(10);
 
@@ -236,7 +183,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_lblDay.gridy = 3;
 
-		contentPane.add(lblDay, gbc_lblDay);
+		add(lblDay, gbc_lblDay);
 
 
 		DayField = new JTextField();
@@ -252,7 +199,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_DayField.gridy = 3;
 
-		contentPane.add(DayField, gbc_DayField);
+		add(DayField, gbc_DayField);
 
 		DayField.setColumns(10);
 
@@ -271,7 +218,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_lblIn.gridy = 4;
 
-		contentPane.add(lblIn, gbc_lblIn);
+		add(lblIn, gbc_lblIn);
 
 
 		OiField = new JTextField();
@@ -287,7 +234,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_OiField.gridy = 4;
 
-		contentPane.add(OiField, gbc_OiField);
+		add(OiField, gbc_OiField);
 
 		OiField.setColumns(10);
 
@@ -306,7 +253,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_lblFi.gridy = 5;
 
-		contentPane.add(lblFi, gbc_lblFi);
+		add(lblFi, gbc_lblFi);
 
 
 		OfField = new JTextField();
@@ -322,7 +269,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_OfField.gridy = 5;
 
-		contentPane.add(OfField, gbc_OfField);
+		add(OfField, gbc_OfField);
 
 		OfField.setColumns(10);
 
@@ -341,7 +288,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_btnAg.gridy = 7;
 
-		contentPane.add(getBtnAg(), gbc_btnAg);
+		add(getBtnAg(), gbc_btnAg);
 
 		getBtnAg().addActionListener(new ActionListener() {
 
@@ -376,7 +323,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_btnMo.gridy = 7;
 
-		contentPane.add(getBtnMo(), gbc_btnMo);
+		add(getBtnMo(), gbc_btnMo);
 
 		btn = new JButton("Aggiungi");
 
@@ -394,7 +341,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_btn.gridy = 8;
 
-		contentPane.add(getBtn(), gbc_btn);
+		add(getBtn(), gbc_btn);
 		
 		getBtn().addActionListener(new ActionListener() {
 
@@ -427,38 +374,7 @@ public class LavTurniGUI extends JFrame {
 
 		gbc_btnCancella.gridy = 8;
 
-		contentPane.add(btnCancella, gbc_btnCancella);
-
-
-		JButton btnBack = new JButton("Indietro");
-
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
-
-		gbc_btnBack.fill = GridBagConstraints.BOTH;
-
-		gbc_btnBack.insets = new Insets(0, 0, 5, 5);
-
-		gbc_btnBack.gridx = 1;
-
-		gbc_btnBack.gridy = 10;
-
-		contentPane.add(btnBack, gbc_btnBack);
-
-		btnBack.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				DirettoreGUI dip = new DirettoreGUI(id, dir);
-
-				dip.setLbl(lbl);
-
-				dispose();
-
-			}
-
-		});
+		add(btnCancella, gbc_btnCancella);
 
 
 

@@ -40,34 +40,11 @@ public class RegistraDipGUI extends JFrame {
 	private static Direttore dir;
 	private static JLabel lbl;
 
-/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistraDipGUI frame = new RegistraDipGUI(lbl,id, dir);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 
-	}    
+	public RegistraDipGUI(Direttore dir) {
 
-	 */
-
-	public RegistraDipGUI(JLabel lbl, int id, Direttore dir) {
-
-		RegistraDipGUI.lbl = lbl;
-
-		RegistraDipGUI.id=id;
-
-		RegistraDipGUI.dir=dir;
-		
-		//DirettoreDAO dao = new DirettoreDAO();
-
-
+		this.dir=dir;
+	
 		RegDipAL reg = new RegDipAL(dir, this);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -374,13 +351,10 @@ public class RegistraDipGUI extends JFrame {
 		contentPane.add(stipendio, gbc_stipendio);
 		stipendio.setColumns(10);
 
-		btnBack = new JButton("Indietro");
+		btnBack = new JButton("Annulla");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				DirettoreGUI dirHome =new DirettoreGUI(id, dir);
-				dirHome.setLbl(lbl);
-				dirHome.setVisible(true);
 				dispose();
 
 
@@ -398,9 +372,6 @@ public class RegistraDipGUI extends JFrame {
 		btnReg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reg.actionPerformed(e);
-				DirettoreGUI dirHome =new DirettoreGUI(id, dir);
-				dirHome.setLbl(lbl);
-				dirHome.setVisible(true);
 				dispose(); 
 			}
 		});

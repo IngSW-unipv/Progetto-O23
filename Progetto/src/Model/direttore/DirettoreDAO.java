@@ -20,7 +20,7 @@ public class DirettoreDAO {
        Connection con=null;
        con=d.connessione(con);
        PreparedStatement stmt = null;
-       
+       check(dip.getUsername(), dip.getEmail());
        int id_u= generaIdU();
       
        try {
@@ -70,6 +70,54 @@ public class DirettoreDAO {
        } 
    }
 	
+	private void check(String username, String email) {
+		DBConnessione d = new DBConnessione();
+        Connection con = null;
+        con = d.connessione(con);
+        PreparedStatement stmt = null;
+                
+		try {
+			// query di controllo se ho turni per l'id selezionato
+			String sql ="select count(*),email from user where email=? group by email";
+
+			stmt=con.prepareStatement(sql);
+			stmt.setString(1, email);			
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				int count=rs.getInt(1);
+				
+				if(count>0) {					
+					JOptionPane.showMessageDialog(null, "Email già presente");
+				} else { 
+					String sql2 ="select count(*),username from user where username=? group by username";
+					stmt=con.prepareStatement(sql2);
+					stmt.setString(1, username);
+					ResultSet rs2 = stmt.executeQuery();
+					if(rs2.next()) {
+						int count2=rs2.getInt(1);
+						if(count2>0) {					
+							JOptionPane.showMessageDialog(null, "Username già presente");
+						} else {
+							return;
+						}
+					return;
+				}
+				rs2.close();
+			}
+			rs.close();
+			
+			}
+			
+			
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+			return;
+		} 
+	}
+		
+	
+
 	public int generaIdU() throws SQLException {
         DBConnessione d = new DBConnessione();
         Connection con = null;

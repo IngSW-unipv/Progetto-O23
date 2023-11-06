@@ -9,50 +9,72 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.direttore.LogoutDirML;
 import Model.direttore.Direttore;
-import View.AccountCl;
+//import View.AccountCl;
 import View.Benvenuto_Form;
 
 
 public class DirettoreGUI extends JFrame{
 	public JPanel contentPane;
 	private JLabel lblCl;
-	private int id;
-	private Direttore dir;
-	 
-/*	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DirettoreGUI frame = new DirettoreGUI(id,dir);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
+	private static int id;
+	private static Direttore dir;
+	private JPanel stanze;
+	private JPanel dip;
+	private JPanel turni;
+
 	public DirettoreGUI(int id,Direttore dir){
 		this.id = id;
 		this.dir = dir;
 		
+		turni = new LavTurniPanel(getDir());
+		turni.setVisible(false);
+		
+		stanze = new StanzePanel();
+		stanze.setVisible(false);
+		
+		dip = new LavoratoriPanel(getDir());
+		dip.setVisible(false);
+		
 		setBackground(new Color(255, 255, 255));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 860, 562);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 1200, 680);
 		contentPane = new JPanel();
 		contentPane.setBackground((new Color(181,247,157)));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{258, 457, 20, 20, 0};
-		gbl_contentPane.rowHeights = new int[]{530, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[]{258, 500, 30, 53};
+		gbl_contentPane.rowHeights = new int[]{530, 0, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
+
+		GridBagConstraints gbc_stanze = new GridBagConstraints();
+		gbc_stanze.insets = new Insets(0, 0, 5, 5);
+		gbc_stanze.gridy = 0;
+		gbc_stanze.fill = GridBagConstraints.BOTH;
+		gbc_stanze.gridx = 1;
+		contentPane.add(stanze, gbc_stanze);
+		
+		GridBagConstraints gbc_dip = new GridBagConstraints();
+		gbc_dip.insets = new Insets(0, 0, 5, 5);
+		gbc_dip.gridy = 0;
+		gbc_dip.fill = GridBagConstraints.BOTH;
+		gbc_dip.gridx = 1;
+		contentPane.add(dip, gbc_dip);
+		
+		GridBagConstraints gbc_turni = new GridBagConstraints();
+		gbc_turni.insets = new Insets(0, 0, 5, 5);
+		gbc_turni.gridy = 0;
+		gbc_turni.fill = GridBagConstraints.BOTH;
+		gbc_turni.gridx = 1;
+		contentPane.add(turni, gbc_turni);
+		
 		JPanel paneMenu = new JPanel();
 		paneMenu.setBackground(new Color(102, 204, 102));
 		GridBagConstraints gbc_paneMenu = new GridBagConstraints();
+		gbc_paneMenu.gridheight = 2;
 		gbc_paneMenu.fill = GridBagConstraints.BOTH;
 		gbc_paneMenu.insets = new Insets(0, 0, 0, 5);
 		gbc_paneMenu.gridx = 0;
@@ -76,10 +98,11 @@ public class DirettoreGUI extends JFrame{
 		paneAcc.addMouseListener(new PanelMouse(paneAcc){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JLabel lbl = getLbl();
+				/* IN ATTESA DI SISTEMAZIONE
+				 * JLabel lbl = getLbl();
 				AccountCl cl =new AccountCl(getLbl(), id,dir);
 				cl.setVisible(true);
-				dispose();
+				dispose(); */
 			}
 		});
 		GridBagConstraints gbc_paneAcc = new GridBagConstraints();
@@ -97,10 +120,9 @@ public class DirettoreGUI extends JFrame{
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JLabel lbl = getLbl();
-				LavTurniGUI tp =new LavTurniGUI(getLbl(), id, dir);
-				tp.setVisible(true);
-				dispose();
+				
+				init();
+				turni.setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_paneLav = new GridBagConstraints();
@@ -117,10 +139,9 @@ public class DirettoreGUI extends JFrame{
 		paneSt.addMouseListener(new PanelMouse(paneSt){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JLabel lbl = getLbl();
-				StanzeGUI pr =new StanzeGUI(getLbl(), id, dir);
-				pr.setVisible(true);
-				dispose();
+				
+				init();
+				stanze.setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_paneSt = new GridBagConstraints();
@@ -172,10 +193,9 @@ public class DirettoreGUI extends JFrame{
 		paneLav2.addMouseListener(new PanelMouse(paneLav2){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JLabel lbl = getLbl();
-				LavoratoriGUI lav =new LavoratoriGUI(getLbl(), id,dir);
-				lav.setVisible(true);
-				dispose();
+				
+				init();
+				dip.setVisible(true);
 			}
 		});
 		
@@ -212,7 +232,7 @@ public class DirettoreGUI extends JFrame{
     	JLabel lblNewLabel = new JLabel("Id:");
     	GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
     	gbc_lblNewLabel.anchor = GridBagConstraints.NORTHEAST;
-    	gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+    	gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
     	gbc_lblNewLabel.gridx = 2;
     	gbc_lblNewLabel.gridy = 0;
     	contentPane.add(lblNewLabel, gbc_lblNewLabel);
@@ -221,7 +241,7 @@ public class DirettoreGUI extends JFrame{
     	JLabel lblCl_1 = new JLabel();
     	lblCl_1.setText(String.valueOf(id));
     	GridBagConstraints gbc_lblCl_1 = new GridBagConstraints();
-    	gbc_lblCl_1.insets = new Insets(0, 0, 0, 5);
+    	gbc_lblCl_1.insets = new Insets(0, 0, 5, 0);
     	gbc_lblCl_1.anchor = GridBagConstraints.NORTHWEST;
     	gbc_lblCl_1.gridx = 3;
     	gbc_lblCl_1.gridy = 0;
@@ -229,6 +249,10 @@ public class DirettoreGUI extends JFrame{
     	setVisible(true);
 	}
 	
+	public static Direttore getDir() {
+		return dir;
+	}
+
 	public JPanel getContentPane() {
 		return contentPane;
 	}
@@ -239,6 +263,12 @@ public class DirettoreGUI extends JFrame{
 	
 	public void setLbl(JLabel lblcl) {
 		this.lblCl = lblcl;
+	}
+	
+	public void init() {
+		turni.setVisible(false);
+		dip.setVisible(false);
+		stanze.setVisible(false);
 	}
 	
 	private class PanelMouse extends MouseAdapter {
@@ -264,4 +294,5 @@ public class DirettoreGUI extends JFrame{
 		}
 		
 	}
+	
 }
