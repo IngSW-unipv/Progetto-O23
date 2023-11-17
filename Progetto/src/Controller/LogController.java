@@ -75,7 +75,7 @@ public class LogController implements ActionListener {
 					
 				}else if (model.getId_tipo()==3) {
 					
-					Direttore dir = new Direttore(null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0);
+					Direttore dir = new Direttore(null, null, null, null, null, null, null, 0, null, null, null, null, 0, null, 0);
 					dir.login(this.username.getText(),this.password.getText(),id_tipo);
 					id_d = dao.Ottieni_User(dir.getUsername());
 					DirettoreGUI view3 =new DirettoreGUI(id_d, dir);

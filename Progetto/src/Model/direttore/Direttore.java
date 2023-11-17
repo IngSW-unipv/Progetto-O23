@@ -11,18 +11,13 @@ import Model.dipendente.DipendentiDAO;
 import Model.turni.TurniDao;
 import Model.turni.Turni_Lavoro;
 
-public class Direttore extends User{
-	private int id_L;
-	private float Stipendio;
-	
-	
-
+public class Direttore extends Dipendenti{
+	int id_L;
 //COSTRUTTORE
 	public Direttore(String cf, String nome, String cognome, java.sql.Date dataDiNascita, String via, String citta, String provincia, int cap, String numTelefono,
-			String email, String username, String password, int id_L, float stipendio) {
-		super(cf, nome, cognome, dataDiNascita, numTelefono, via, citta, provincia, cap, email, username, password);
-		this.id_L = id_L;
-		Stipendio = stipendio;
+			String email, String username, String password, int id_L, String ruolo, int stipendio) {
+		super(cf, nome, cognome, dataDiNascita, numTelefono, via, citta, provincia, cap, email, username, password, ruolo, stipendio);
+		
 	}
 
 public void registaDip(String cf, String nome, String cognome, java.sql.Date dataNascita, String cell, String via,  String citta, String provincia, int cap, String email, 
@@ -68,9 +63,7 @@ public void licenziaDi(int id_l) {
 		this.id_L = id_L;
 	}
 
-	public float getStipendio() {
-		return Stipendio;
-	}
+
 
 	
 	
