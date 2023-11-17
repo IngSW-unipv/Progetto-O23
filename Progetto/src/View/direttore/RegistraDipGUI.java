@@ -39,7 +39,7 @@ public class RegistraDipGUI extends JFrame {
 	private static Direttore dir;
 	private static JLabel lbl;
 	private JComboBox comboBox;
-	private String ruolo[]= {"Guardia", "Addetto alle pulizie", "Addetto alla reception",
+	private String ruolo[]= {"","Guardia", "Addetto alle pulizie", "Addetto alla reception",
 			"Cameriere", "Portiere"};
 
 
@@ -326,7 +326,6 @@ public class RegistraDipGUI extends JFrame {
 		
 		comboBox = new JComboBox(ruolo);
 		comboBox.setFont(new Font("Thonburi", Font.PLAIN, 16));
-		comboBox.setEditable(true);
 		
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
