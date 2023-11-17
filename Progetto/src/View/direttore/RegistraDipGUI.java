@@ -24,7 +24,6 @@ public class RegistraDipGUI extends JFrame {
 	private JTextField provincia;
 	private JTextField cap;
 	private JTextField username;
-	private JTextField ruolo;
 	private JTextField stipendio;
 
 	private JPasswordField password;
@@ -39,6 +38,9 @@ public class RegistraDipGUI extends JFrame {
 	private static int id;
 	private static Direttore dir;
 	private static JLabel lbl;
+	private JComboBox comboBox;
+	private String ruolo[]= {"Guardia", "Addetto alle pulizie", "Addetto alla reception",
+			"Cameriere", "Portiere"};
 
 
 	public RegistraDipGUI(Direttore dir) {
@@ -321,16 +323,19 @@ public class RegistraDipGUI extends JFrame {
 		gbc_lblRu.gridx = 1;
 		gbc_lblRu.gridy = 7;
 		contentPane.add(lblRu, gbc_lblRu);
-
-		ruolo = new JTextField();
-		ruolo.setFont(new Font("Thonburi", Font.PLAIN, 16));
-		GridBagConstraints gbc_ruolo = new GridBagConstraints();
-		gbc_ruolo.insets = new Insets(0, 0, 5, 5);
-		gbc_ruolo.fill = GridBagConstraints.BOTH;
-		gbc_ruolo.gridx = 2;
-		gbc_ruolo.gridy = 7;
-		contentPane.add(ruolo, gbc_ruolo);
-		ruolo.setColumns(10);
+		
+		comboBox = new JComboBox(ruolo);
+		comboBox.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		comboBox.setEditable(true);
+		
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.BOTH;
+		gbc_comboBox.gridx = 2;
+		gbc_comboBox.gridy = 7;
+		contentPane.add(comboBox, gbc_comboBox);
+		
+		
 
 		JLabel lblSt = new JLabel("Stipendio:");
 		lblSt.setFont(new Font("Thonburi", Font.PLAIN, 16));
@@ -470,12 +475,13 @@ public class RegistraDipGUI extends JFrame {
 		return password;
 	}
 
-	public JTextField getRuolo() {
-		return ruolo;
-	}
-
+	
 	public JTextField getStipendio() {
 		return stipendio;
+	}
+
+	public JComboBox getRuolo() {
+		return comboBox;
 	}
 
 }

@@ -36,10 +36,10 @@ public class RegDipAL implements ActionListener {
 			
 			int cap = Integer.valueOf(view.getCap().getText());
 			int stipendio= Integer.valueOf(view.getStipendio().getText());
-
+			String ruolo= (String) view.getRuolo().getSelectedItem(); 
 			try {
 				dirD.registaDip(view.getCf().getText(), view.getNome().getText(), view.getCognome().getText(), data , view.getCell().getText(), view.getVia().getText(), 
-						view.getCitta().getText(), view.getProvincia().getText(), cap, view.getEmail().getText(), view.getUsername().getText(), view.getPassword().getText(), view.getRuolo().getText(), stipendio);
+						view.getCitta().getText(), view.getProvincia().getText(), cap, view.getEmail().getText(), view.getUsername().getText(), view.getPassword().getText(), ruolo, stipendio);
 				
 				
 				

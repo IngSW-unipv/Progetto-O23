@@ -298,7 +298,8 @@ public class LavoratoriPanel extends JPanel {
 				int selectedRow = table.getSelectedRow();
                 if (selectedRow != -1) {
 				//doppio controllo sul tasto cancella visto che è importante
-                	if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il dipendente?") == 0) {
+                	if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il dipendente?"
+                			+ "Questa azione cancellerà eventuali turni presenti per il dipendente selezionato") == 0) {
                 		controller.actionPerformed(e);
                 		init();
                 	}
