@@ -16,10 +16,10 @@ import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import Controller.LogOutCliController;
-import Controller.LogOutDipController;
 import Model.User;
 import Model.dipendente.Dipendenti;
+import logout.controller.LogOutCliController;
+import logout.controller.LogOutDipController;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;

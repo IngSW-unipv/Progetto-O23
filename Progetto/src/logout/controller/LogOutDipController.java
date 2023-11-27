@@ -1,4 +1,4 @@
-package Controller;
+package logout.controller;
 
 import java.awt.event.MouseEvent;
 

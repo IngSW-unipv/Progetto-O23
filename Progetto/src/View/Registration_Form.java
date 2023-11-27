@@ -20,9 +20,9 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Controller.PswController;
-import Controller.RegistrazioneController;
 import Model.Cliente;
 import Model.User;
+import regcli.controller.RegistrazioneController;
 
 import java.awt.Color;
 

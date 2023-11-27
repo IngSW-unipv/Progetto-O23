@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controller.LogController;
 import Model.User;
 import dao.Gestione_Dao;
+import login.controller.LogController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

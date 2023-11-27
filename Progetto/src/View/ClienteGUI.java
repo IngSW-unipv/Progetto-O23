@@ -9,10 +9,10 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.border.EmptyBorder;
 
-import Controller.LogOutCliController;
 import Model.Cliente;
 import View.prenota.PrenotaGUI;
 import View.prenotazione.PrenotazioniGUI;
+import logout.controller.LogOutCliController;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;

@@ -2,8 +2,6 @@ package Model.prenotazione;
 
 import java.sql.Date;
 
-import Model.SqlDateTime;
-
 
 
 public class Prenotazione {
