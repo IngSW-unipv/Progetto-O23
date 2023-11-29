@@ -166,7 +166,7 @@ public class ClienteGUI extends JFrame{
 			//chiedo conferma logout e richiamo il form benvenuto
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane opzione = null;
-				LogOutCliController controller = new LogOutCliController(opzione, u);
+				LogOutCliController controller = new LogOutCliController(opzione, u,id);
 				controller.actionPerformed(e);
 				dispose();
 			}

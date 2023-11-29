@@ -9,18 +9,21 @@ import javax.swing.JOptionPane;
 import Model.Cliente;
 import View.Benvenuto_Form;
 import View.ClienteGUI;
+import View.DipGUI;
 
 public class LogOutCliController{
 	
 	private Cliente model;
 	private JOptionPane view;
+	private int id;
 	
 	
 	
-	public LogOutCliController(JOptionPane view,Cliente model) {
+	public LogOutCliController(JOptionPane view,Cliente model,int id) {
 		
 		this.view = view;
 		this.model = model;
+		this.id = id;
 		
 	}
 
@@ -33,7 +36,11 @@ public class LogOutCliController{
 			model.logout(model.getLogin());
 			ben.setVisible(true);
 		
-		}	
+		}else {
+			
+			ClienteGUI cli =new ClienteGUI(id, model);
+			
+		}
 		
 	}
 	

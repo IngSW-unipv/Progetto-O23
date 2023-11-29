@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 import java.awt.GridBagConstraints;
@@ -131,8 +132,13 @@ public class DipGUI extends JFrame{
 			//chiedo conferma logout e richiamo il form benvenuto
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane opzione = null;
-				LogOutDipController controller = new LogOutDipController(opzione, u);
-				controller.actionPerformed(e);
+				LogOutDipController controller = new LogOutDipController(opzione, u,id);
+				try {
+					controller.actionPerformed(e);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				dispose();
 			}
 		});
