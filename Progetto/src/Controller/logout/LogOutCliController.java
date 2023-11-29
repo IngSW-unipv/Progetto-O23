@@ -1,18 +1,23 @@
-package logout.controller;
+package Controller.logout;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 
-import Model.dipendente.Dipendenti;
+import Model.Cliente;
 import View.Benvenuto_Form;
+import View.ClienteGUI;
 
-public class LogOutDipController {
-
+public class LogOutCliController{
+	
+	private Cliente model;
 	private JOptionPane view;
-	private Dipendenti model;
-
-	public LogOutDipController(JOptionPane view, Dipendenti model) {
+	
+	
+	
+	public LogOutCliController(JOptionPane view,Cliente model) {
 		
 		this.view = view;
 		this.model = model;
@@ -20,6 +25,7 @@ public class LogOutDipController {
 	}
 
 
+	
 	public void actionPerformed(MouseEvent e) {
 		
 		if (JOptionPane.showConfirmDialog(null, "Sei sicuro?") == 0) {

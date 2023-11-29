@@ -1,4 +1,4 @@
-package login.controller;
+package Controller.login;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
