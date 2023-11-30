@@ -70,7 +70,7 @@ public class LavTurniPanel extends JPanel {
 		setLayout(gbl_contentPane);
 
 
-		JLabel lblNewLabel = new JLabel("Turni lavoratori");
+		JLabel lblNewLabel = new JLabel("Turni dipendenti");
 
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 

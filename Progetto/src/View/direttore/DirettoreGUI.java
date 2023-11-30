@@ -9,8 +9,11 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.direttore.LogoutDirML;
 import Model.direttore.Direttore;
+import View.AccountCl;
 //import View.AccountCl;
 import View.Benvenuto_Form;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 
 
 public class DirettoreGUI extends JFrame{
@@ -34,7 +37,7 @@ public class DirettoreGUI extends JFrame{
 		
 		dip = new LavoratoriPanel(getDir());
 		dip.setVisible(false);
-		
+		 
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1200, 680);
@@ -82,9 +85,9 @@ public class DirettoreGUI extends JFrame{
 		contentPane.add(paneMenu, gbc_paneMenu);
 		GridBagLayout gbl_paneMenu = new GridBagLayout();
 		gbl_paneMenu.columnWidths = new int[]{248, 0};
-		gbl_paneMenu.rowHeights = new int[]{135, 30, 0, 30, 30, 30, 30, 30, 30, 0};
+		gbl_paneMenu.rowHeights = new int[]{135, 0, 10, 0, 30, 30, 30, 30, 30, 30, 0};
 		gbl_paneMenu.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_paneMenu.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_paneMenu.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		paneMenu.setLayout(gbl_paneMenu);
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(DirettoreGUI.class.getResource("/logo/Senza titolo.png")));
@@ -94,27 +97,14 @@ public class DirettoreGUI extends JFrame{
 		gbc_lblLogo.gridx = 0;
 		gbc_lblLogo.gridy = 0;
 		paneMenu.add(lblLogo, gbc_lblLogo);
-		JPanel paneAcc = new JPanel();
-		paneAcc.addMouseListener(new PanelMouse(paneAcc){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				/* IN ATTESA DI SISTEMAZIONE
-				 * JLabel lbl = getLbl();
-				AccountCl cl =new AccountCl(getLbl(), id,dir);
-				cl.setVisible(true);
-				dispose(); */
-			}
-		});
-		GridBagConstraints gbc_paneAcc = new GridBagConstraints();
-		gbc_paneAcc.insets = new Insets(0, 0, 5, 0);
-		gbc_paneAcc.gridx = 0;
-		gbc_paneAcc.gridy = 1;
-		paneMenu.add(paneAcc, gbc_paneAcc);
-		paneAcc.setBackground(new Color(102, 204, 102));
-		paneAcc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel lblAcc = new JLabel("Account");
-		paneAcc.add(lblAcc);
-		lblAcc.setFont(new Font("Thonburi", Font.PLAIN, 16));
+		
+		JLabel lblNewLabel_1 = new JLabel("Business");
+		lblNewLabel_1.setFont(new Font("Yuppy SC", Font.BOLD, 30));
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 1;
+		paneMenu.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		JPanel paneLav = new JPanel();
 		paneLav.addMouseListener(new PanelMouse(paneLav)
 		{
@@ -128,11 +118,11 @@ public class DirettoreGUI extends JFrame{
 		GridBagConstraints gbc_paneLav = new GridBagConstraints();
 		gbc_paneLav.insets = new Insets(0, 0, 5, 0);
 		gbc_paneLav.gridx = 0;
-		gbc_paneLav.gridy = 3;
+		gbc_paneLav.gridy = 4;
 		paneMenu.add(paneLav, gbc_paneLav);
 		paneLav.setBackground(new Color(102, 204, 102));
 		paneLav.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel lblLav = new JLabel("Turni lavoratori");
+		JLabel lblLav = new JLabel("Turni dipendenti");
 		paneLav.add(lblLav);
 		lblLav.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		JPanel paneSt = new JPanel();
@@ -147,7 +137,7 @@ public class DirettoreGUI extends JFrame{
 		GridBagConstraints gbc_paneSt = new GridBagConstraints();
 		gbc_paneSt.insets = new Insets(0, 0, 5, 0);
 		gbc_paneSt.gridx = 0;
-		gbc_paneSt.gridy = 4;
+		gbc_paneSt.gridy = 5;
 		paneMenu.add(paneSt, gbc_paneSt);
 		paneSt.setBackground(new Color(102, 204, 102));
 		paneSt.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -162,7 +152,7 @@ public class DirettoreGUI extends JFrame{
 		GridBagConstraints gbc_panelElAcc = new GridBagConstraints();
 		gbc_panelElAcc.insets = new Insets(0, 0, 5, 0);
 		gbc_panelElAcc.gridx = 0;
-		gbc_panelElAcc.gridy = 5;
+		gbc_panelElAcc.gridy = 6;
 		paneMenu.add(panelElAcc, gbc_panelElAcc);
 		panelElAcc.setBackground(new Color(102, 204, 102));
 		panelElAcc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -188,7 +178,7 @@ public class DirettoreGUI extends JFrame{
 		gbc_paneLav2.insets = new Insets(0, 0, 5, 0);
 		gbc_paneLav2.fill = GridBagConstraints.VERTICAL;
 		gbc_paneLav2.gridx = 0;
-		gbc_paneLav2.gridy = 2;
+		gbc_paneLav2.gridy = 3;
 		paneMenu.add(paneLav2, gbc_paneLav2);
 		paneLav2.addMouseListener(new PanelMouse(paneLav2){
 			@Override
@@ -199,7 +189,7 @@ public class DirettoreGUI extends JFrame{
 			}
 		});
 		
-		JLabel lblLav2 = new JLabel("Lavoratori");
+		JLabel lblLav2 = new JLabel("Dipendenti");
 		lblLav2.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		paneLav2.add(lblLav2);
 		
@@ -220,7 +210,7 @@ public class DirettoreGUI extends JFrame{
 		gbc_paneOut.fill = GridBagConstraints.VERTICAL;
 		gbc_paneOut.insets = new Insets(0, 0, 5, 0);
 		gbc_paneOut.gridx = 0;
-		gbc_paneOut.gridy = 6;
+		gbc_paneOut.gridy = 7;
 		paneMenu.add(paneOut, gbc_paneOut);
 		paneOut.setBackground(new Color(102, 204, 102));
 		paneOut.setFont(new Font("Thonburi", Font.PLAIN, 16));
