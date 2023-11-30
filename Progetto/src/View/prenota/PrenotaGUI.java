@@ -10,7 +10,8 @@ import javax.swing.JTable;
 
 import Model.Cliente;
 import Model.prenotazione.PrenotaDAO;
-import View.ClienteGUI;
+import View.cliente.ClienteGUI;
+
 import javax.swing.JTextField;
 
 import Controller.prenota.PrenotaController;

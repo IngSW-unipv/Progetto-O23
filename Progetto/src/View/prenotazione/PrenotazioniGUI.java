@@ -10,7 +10,8 @@ import java.awt.EventQueue;
 import javax.swing.JTable;
 import Model.Cliente;
 import Model.User;
-import View.ClienteGUI;
+import View.cliente.ClienteGUI;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import Controller.prenotazione.PrenotazioneGUIController;

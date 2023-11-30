@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import Model.*;
 import View.Benvenuto_Form;
 import View.Home_Form;
-import View.Registration_Form;
+import View.cliente.Registration_Form;
 import dao.Gestione_Dao;
 
 public class RegistrazioneController implements ActionListener {

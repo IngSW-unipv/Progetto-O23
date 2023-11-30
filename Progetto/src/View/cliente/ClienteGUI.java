@@ -1,4 +1,4 @@
-package View;
+package View.cliente;
 
 
 import javax.swing.JFrame;
@@ -103,33 +103,6 @@ public class ClienteGUI extends JFrame{
 		
 		lblPr.setFont(new Font("Thonburi", Font.PLAIN, 16));
 		
-		JPanel panelElAcc = new JPanel();
-		panelElAcc.setToolTipText("Elimina Account");
-		panelElAcc.addMouseListener(new PanelMouse(panelElAcc){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		panelElAcc.setBackground(new Color(102, 204, 102));
-		panelElAcc.setBounds(0, 282, 248, 40);
-		paneMenu.add(panelElAcc);
-		panelElAcc.setBackground(new Color(102, 204, 102));
-		panelElAcc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel lblElAcc = new JLabel("Elimina Account");
-		lblElAcc.setFont(new Font("Dialog", Font.PLAIN, 16));
-		panelElAcc.add(lblElAcc);
-		panelElAcc.addMouseListener(new PanelMouse(panelElAcc) {
-			@Override
-			//chiedo conferma eliminazione e richiamo il form benvenuto
-			public void mouseClicked(MouseEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il tuo account?") == 0) {
-					Benvenuto_Form ben = new Benvenuto_Form();
-					ben.setVisible(true);
-					ClienteGUI.this.dispose();
-				}
-			}
-		});
-		
 		JPanel paneDati = new JPanel();
 		paneDati .setBackground(new Color(102, 204, 102));
 		paneDati .setBounds(0, 165, 248, 40);
@@ -153,7 +126,7 @@ public class ClienteGUI extends JFrame{
 		JPanel panelLogOut = new JPanel();
 		panelLogOut.setToolTipText("Log Out");
 		panelLogOut.setBackground(new Color(102, 204, 102));
-		panelLogOut.setBounds(0, 320, 248, 40);
+		panelLogOut.setBounds(0, 282, 248, 40);
 		paneMenu.add(panelLogOut);
 		panelLogOut.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		

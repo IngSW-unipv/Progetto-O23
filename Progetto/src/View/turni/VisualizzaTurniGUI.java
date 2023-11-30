@@ -10,8 +10,7 @@ import javax.swing.JTable;
 
 import Model.User;
 import Model.dipendente.Dipendenti;
-import View.DipGUI;
-
+import View.cliente.DipGUI;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

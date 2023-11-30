@@ -1,4 +1,4 @@
-package View;
+package View.cliente;
 
 
 import javax.swing.JFrame;
@@ -21,6 +21,8 @@ import Controller.logout.LogOutCliController;
 import Controller.logout.LogOutDipController;
 import Model.User;
 import Model.dipendente.Dipendenti;
+import View.dipendente.AccountDip;
+import View.dipendente.ImieiTurniGUI;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;

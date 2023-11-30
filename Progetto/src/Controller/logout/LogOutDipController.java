@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 import Model.dipendente.Dipendenti;
 import View.Benvenuto_Form;
-import View.DipGUI;
+import View.cliente.DipGUI;
 import dao.Gestione_Dao;
 
 public class LogOutDipController {

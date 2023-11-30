@@ -1,4 +1,4 @@
-package View;
+package View.cliente;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

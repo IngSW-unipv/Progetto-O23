@@ -1,4 +1,4 @@
-package View;
+package View.cliente;
 
 
 import java.awt.EventQueue;
@@ -23,6 +23,7 @@ import Controller.PswController;
 import Controller.registrazione.RegistrazioneController;
 import Model.Cliente;
 import Model.User;
+import View.Login_Form;
 
 import java.awt.Color;
 
