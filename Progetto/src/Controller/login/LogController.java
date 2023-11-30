@@ -13,7 +13,7 @@ import Model.dipendente.Dipendenti;
 import Model.direttore.Direttore;
 import View.*;
 import View.cliente.ClienteGUI;
-import View.cliente.DipGUI;
+import View.dipendente.DipGUI;
 import View.direttore.DirettoreGUI;
 import dao.Gestione_Dao;
 

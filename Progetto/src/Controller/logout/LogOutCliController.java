@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import Model.Cliente;
 import View.Benvenuto_Form;
 import View.cliente.ClienteGUI;
-import View.cliente.DipGUI;
+import View.dipendente.DipGUI;
 
 public class LogOutCliController{
 	

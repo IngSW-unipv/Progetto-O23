@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import Model.Cliente;
 import Model.User;
 import Model.dipendente.Dipendenti;
-import View.cliente.DipGUI;
 import dao.Gestione_Dao;
 
 import javax.swing.JButton;

@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.User;
 import Model.dipendente.Dipendenti;
-import View.cliente.DipGUI;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
