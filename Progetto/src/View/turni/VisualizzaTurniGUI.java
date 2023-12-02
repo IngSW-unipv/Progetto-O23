@@ -9,7 +9,10 @@ import java.awt.EventQueue;
 import javax.swing.JTable;
 
 import Model.User;
+import Model.VisualizzaTurni.VisualizzaTurniDAO;
 import Model.dipendente.Dipendenti;
+import Model.turni.TurniDao;
+import View.cliente.ClienteGUI;
 import View.dipendente.DipGUI;
 
 import javax.swing.JButton;
@@ -26,6 +29,8 @@ public class VisualizzaTurniGUI extends JFrame{
 	private VisualizzaTurniGUIController controller; // aggiunta del controller
 	public JTable table_1;
 	private String selectedValueCol1;
+	private VisualizzaTurniDAO dao;
+	
 
 public static void main(String[] args) {
 
@@ -52,13 +57,14 @@ EventQueue.invokeLater(new Runnable() {
 }
 
 
-public VisualizzaTurniGUI(JLabel lblId, int id, User u) {
+public VisualizzaTurniGUI(JLabel lblId, int id, Dipendenti d) {
 
 VisualizzaTurniGUI.lblId=lblId;
 VisualizzaTurniGUI.id=id;
 VisualizzaTurniGUI.d = d;
 
 controller = new VisualizzaTurniGUIController(this);
+dao = new VisualizzaTurniDAO();
 
 setBounds(258, 11, 576, 520);
 
@@ -103,10 +109,7 @@ btnNewButton.addActionListener(new ActionListener() {
 		cl.setVisible(true);
 
 		dispose();
-
-
 	}
-
 });
 
 btnNewButton.setBounds(211, 412, 144, 32);

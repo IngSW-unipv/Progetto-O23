@@ -23,4 +23,9 @@ public void riempitabella(ActionEvent e) throws SQLException {
 	dao.MostraTurni(id, view.table_1);
 }
 
+
+
+
 }
+
+

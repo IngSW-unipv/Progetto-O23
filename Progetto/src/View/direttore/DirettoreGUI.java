@@ -12,8 +12,8 @@ import Model.direttore.Direttore;
 //import View.AccountCl;
 import View.Benvenuto_Form;
 import View.cliente.AccountCl;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
+//import javafx.scene.layout.Background;
+//import javafx.scene.layout.BackgroundImage;
 
 
 public class DirettoreGUI extends JFrame{
