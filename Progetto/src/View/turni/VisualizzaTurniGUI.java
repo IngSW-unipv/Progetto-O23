@@ -11,8 +11,7 @@ import javax.swing.JTable;
 import Model.User;
 import Model.VisualizzaTurni.VisualizzaTurniDAO;
 import Model.dipendente.Dipendenti;
-import Model.turni.TurniDao;
-import View.cliente.ClienteGUI;
+
 import View.dipendente.DipGUI;
 
 import javax.swing.JButton;
@@ -164,9 +163,12 @@ return id;
 }
 
 
-public void MostraTurni(int id2, JTable table_12) {
-// TODO Auto-generated method stub
 
+
+
+public void vediTurni(int id2, JTable table_12) {
+	// TODO Auto-generated method stub
+	
 }
 
 

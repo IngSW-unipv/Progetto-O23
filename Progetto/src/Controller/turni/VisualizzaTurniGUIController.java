@@ -20,7 +20,7 @@ public void riempitabella(ActionEvent e) throws SQLException {
 	
 	 VisualizzaTurniGUI dao = new VisualizzaTurniGUI(null, id, null);
 	
-	dao.MostraTurni(id, view.table_1);
+	dao.vediTurni(id, view.table_1);
 }
 
 
