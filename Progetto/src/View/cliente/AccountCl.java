@@ -84,15 +84,6 @@ public AccountCl(JLabel lbl, int id,User u) {
 
 	});
 	
-	JButton btnNewButton_1 = new JButton("Modifica dati");
-	btnNewButton_1.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		}
-	});
-	btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-	btnNewButton_1.setBounds(10, 283, 156, 23);
-	panel.add(btnNewButton_1);
-	
 	JLabel lblNewLabel = new JLabel("Account");
 	lblNewLabel.setFont(new Font("Yuppy TC", Font.PLAIN, 18));
 	lblNewLabel.setBounds(256, 8, 68, 21);
